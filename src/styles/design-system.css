@@ -1,0 +1,474 @@
+/**
+ * SAH Group — Design System primitives (additive)
+ *
+ * These classes formalize existing patterns without replacing
+ * prototype-parity component classes (.button, .section, .entity-card, …).
+ * Prefer existing prototype classes in shipping UI; use `ds-*` when building
+ * new surfaces so they stay on tokens.
+ *
+ * Compatible with Tailwind utilities (compose freely).
+ */
+
+/* ── Typography helpers ─────────────────────────────────────── */
+
+.ds-eyebrow {
+  margin-bottom: 14px;
+  color: var(--deep);
+  font-family: var(--font-display);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-label);
+}
+
+.ds-eyebrow-light {
+  color: var(--gold-soft);
+}
+
+.ds-lead {
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-lead);
+  margin-bottom: 0;
+}
+
+.ds-caption {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-base);
+}
+
+.ds-micro {
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-chip);
+  text-transform: uppercase;
+}
+
+/* ── Focus / disabled (shared interaction language) ─────────── */
+
+.ds-focusable:focus-visible {
+  outline: none;
+  border-color: var(--focus-border);
+  box-shadow: var(--focus-ring-strong);
+}
+
+.ds-disabled,
+.ds-disabled:disabled,
+[aria-disabled="true"].ds-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Input (product standard = auth/apply metrics) ──────────── */
+
+.ds-label {
+  display: block;
+  color: var(--label-color);
+  font-size: var(--label-fs);
+  font-weight: var(--label-fw);
+}
+
+.ds-input,
+.ds-textarea,
+.ds-select {
+  width: 100%;
+  margin-top: var(--form-label-gap);
+  padding: var(--input-pad-y) var(--input-pad-x);
+  color: var(--ink);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  outline: none;
+  background: var(--input-bg);
+  font: inherit;
+  font-size: var(--input-fs);
+  transition:
+    border-color var(--duration-base) var(--ease),
+    box-shadow var(--duration-base) var(--ease),
+    background var(--duration-base) var(--ease);
+}
+
+.ds-input,
+.ds-textarea {
+  cursor: text;
+}
+
+.ds-select {
+  cursor: pointer;
+}
+
+.ds-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.ds-input:focus,
+.ds-textarea:focus,
+.ds-select:focus {
+  border-color: var(--focus-border);
+  background: var(--input-bg-focus);
+  box-shadow: var(--focus-ring-strong);
+}
+
+.ds-input.is-invalid,
+.ds-textarea.is-invalid,
+.ds-select.is-invalid {
+  border-color: var(--error);
+  box-shadow: var(--focus-ring-error);
+}
+
+.ds-input:disabled,
+.ds-textarea:disabled,
+.ds-select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Card / surface shells ──────────────────────────────────── */
+
+.ds-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--card-pad);
+  transition:
+    transform var(--duration-slow) var(--ease-spring),
+    box-shadow var(--duration-slow) var(--ease-spring),
+    border-color var(--duration-slow) var(--ease);
+}
+
+.ds-card-interactive:hover {
+  transform: translateY(var(--lift-card));
+  border-color: var(--gold);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.ds-card-interactive {
+  cursor: pointer;
+}
+
+.ds-card-lg {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.ds-card-compact {
+  border-radius: var(--radius-card-compact);
+  padding: var(--card-pad-sm);
+}
+
+/* ── Badge / tag / chip (from entity-tags + filter-chip) ─────── */
+
+.ds-badge,
+.ds-tag,
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--chip-pad-y) var(--chip-pad-x);
+  border-radius: var(--chip-radius);
+  font-family: var(--font-mono-num);
+  font-size: var(--chip-fs);
+  font-weight: var(--chip-fw);
+  letter-spacing: var(--ls-label);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.ds-badge {
+  color: var(--deep);
+  background: color-mix(in srgb, var(--gold) 18%, var(--white));
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+}
+
+.ds-tag {
+  --tag-accent: var(--deep);
+  color: var(--tag-accent);
+  background: color-mix(in srgb, var(--tag-accent) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--tag-accent) 35%, transparent);
+}
+
+.ds-chip {
+  color: var(--muted);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--deep-3) 6%, transparent);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease),
+    background var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
+}
+
+.ds-chip:hover {
+  color: var(--deep);
+  border-color: var(--gold);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--deep-3) 10%, transparent);
+}
+
+.ds-chip.is-active,
+.ds-chip[aria-pressed="true"] {
+  color: var(--white);
+  background: var(--deep);
+  border-color: var(--deep);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--deep) 18%, transparent);
+}
+
+/* ── Avatar ─────────────────────────────────────────────────── */
+
+.ds-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--img-placeholder-bg);
+  color: color-mix(in srgb, var(--white) 65%, transparent);
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+}
+
+.ds-avatar-sm {
+  width: var(--avatar-sm);
+  height: var(--avatar-sm);
+  font-size: var(--fs-sm);
+}
+.ds-avatar-md {
+  width: var(--avatar-md);
+  height: var(--avatar-md);
+  font-size: var(--fs-lg);
+}
+.ds-avatar-lg {
+  width: var(--avatar-lg);
+  height: var(--avatar-lg);
+  font-size: 1.8rem;
+}
+.ds-avatar-xl {
+  width: var(--avatar-xl);
+  height: var(--avatar-xl);
+  font-size: 2.4rem;
+}
+
+.ds-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: var(--img-object-fit);
+}
+
+/* ── Icon box ───────────────────────────────────────────────── */
+
+.ds-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+}
+
+.ds-icon-xs {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+.ds-icon-sm {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+.ds-icon-md {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+.ds-icon-xl {
+  width: var(--icon-xl);
+  height: var(--icon-xl);
+}
+.ds-icon-2xl {
+  width: var(--icon-2xl);
+  height: var(--icon-2xl);
+}
+
+.ds-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Image treatment ────────────────────────────────────────── */
+
+.ds-media {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--img-radius);
+  object-fit: var(--img-object-fit);
+}
+
+.ds-media-lg {
+  border-radius: var(--img-radius-lg);
+}
+
+.ds-media-placeholder {
+  background: var(--img-placeholder-bg);
+  aspect-ratio: 16 / 10;
+  border-radius: var(--img-radius);
+}
+
+/* ── Modal shell (tokenized; existing .modal remains source for live UI) */
+
+.ds-modal-panel {
+  width: min(var(--modal-max), calc(100% - 32px));
+  max-height: min(90vh, 900px);
+  padding: var(--modal-pad);
+  border-radius: var(--modal-radius);
+  background: var(--white);
+  box-shadow: var(--shadow-modal);
+}
+
+/* ── Section / grid helpers ─────────────────────────────────── */
+
+.ds-section {
+  position: relative;
+  padding: var(--section-pad-y) 0;
+  overflow: clip;
+}
+
+.ds-container {
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.ds-grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.ds-grid-md {
+  gap: var(--grid-gap-md);
+}
+.ds-grid-lg {
+  gap: var(--grid-gap-lg);
+}
+
+/* ── Hover motion helpers (opt-in) ───────────────────────────── */
+
+.ds-lift-button {
+  transition: transform var(--duration-base) var(--ease);
+}
+.ds-lift-button:hover {
+  transform: translateY(var(--lift-button));
+}
+
+.ds-lift-card {
+  transition:
+    transform var(--duration-slow) var(--ease-spring),
+    box-shadow var(--duration-slow) var(--ease-spring);
+}
+.ds-lift-card:hover {
+  transform: translateY(var(--lift-card));
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Skeleton (future) ──────────────────────────────────────── */
+
+@keyframes ds-skeleton-shine {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.ds-skeleton {
+  display: block;
+  border-radius: var(--skeleton-radius);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base) 0%,
+    var(--skeleton-shine) 50%,
+    var(--skeleton-base) 100%
+  );
+  background-size: 200% 100%;
+  animation: ds-skeleton-shine 1.2s ease-in-out infinite;
+}
+
+.ds-skeleton-text {
+  height: 0.85em;
+  width: 100%;
+  margin-block: 0.35em;
+}
+
+.ds-skeleton-avatar {
+  width: var(--avatar-md);
+  height: var(--avatar-md);
+  border-radius: var(--radius-full);
+}
+
+.ds-skeleton-media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-skeleton {
+    animation: none;
+    background: var(--skeleton-base);
+  }
+}
+
+/* ── Toast (future) ─────────────────────────────────────────── */
+
+.ds-toast {
+  position: fixed;
+  z-index: var(--z-toast);
+  inset-inline: var(--space-4);
+  bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 420px;
+  margin-inline: auto;
+  padding: var(--toast-pad-y) var(--toast-pad-x);
+  border-radius: var(--toast-radius);
+  background: var(--toast-bg);
+  color: var(--toast-color);
+  box-shadow: var(--toast-shadow);
+  font-size: var(--toast-fs);
+  font-weight: var(--fw-semibold);
+}
+
+.ds-toast-success {
+  background: var(--deep-2);
+}
+.ds-toast-error {
+  background: var(--error);
+}
+.ds-toast-gold {
+  background: var(--gold);
+  color: var(--deep);
+}
+
+html[dir="ltr"] .ds-toast {
+  margin-inline: auto 0;
+}
+html[dir="rtl"] .ds-toast {
+  margin-inline: 0 auto;
+}
+
+/* FormField feedback */
+.field-error {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--error);
+  font-size: var(--fs-sm);
+}
+.field-hint {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--muted);
+}

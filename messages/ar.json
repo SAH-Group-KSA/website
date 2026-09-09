@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "مجموعة سعة | من الإنسان إلى الأثر",
+    "description": "مجموعة سعة منظومة متكاملة تضم ست شركات متخصصة، تتكامل خبراتها لفهم الإنسان واحتياجات الأعمال وصناعة أثر مستدام."
+  },
+  "nav": {
+    "findYourPath": "حدد مسارك",
+    "sahGroup": "مجموعة سعة",
+    "solutions": "الحلول",
+    "programs": "البرامج",
+    "initiatives": "المبادرات",
+    "partners": "الشركاء",
+    "about": "عن المجموعة",
+    "community": "المجتمع",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "startYourJourney": "ابدأ رحلتك",
+    "skipToContent": "تجاوز إلى المحتوى",
+    "backToTop": "العودة إلى الأعلى",
+    "backToHome": "العودة إلى الرئيسية",
+    "primaryNav": "التنقل الرئيسي",
+    "mobileNav": "التنقل عبر الجوال"
+  },
+  "language": {
+    "label": "اللغة",
+    "en": "English",
+    "ar": "العربية",
+    "switchTo": "التبديل إلى {locale}"
+  },
+  "footer": {
+    "logoAlt": "مجموعة سعة",
+    "blurb": "نبدأ من الإنسان ونبني الأعمال ونصنع الأثر",
+    "startNeed": "ابدأ من احتياجك",
+    "forIndividuals": "للأفراد",
+    "forOrganizations": "للجهات",
+    "clientJourney": "رحلة العميل",
+    "group": "المجموعة",
+    "entities": "الكيانات",
+    "programs": "البرامج",
+    "contact": "تواصل",
+    "emailAddress": "البريد الإلكتروني",
+    "communities": "مجتمعات سعة",
+    "bookDiscovery": "احجز جلسة اكتشاف",
+    "copyright": "© 2026 SAH Group جميع الحقوق محفوظة",
+    "motto": "People First Business Follows"
+  }
+}

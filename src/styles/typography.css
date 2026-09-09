@@ -1,0 +1,358 @@
+/**
+ * SAH Group — Typography system
+ * Single source for headings, body, lead, caption, small, buttons, links.
+ * All sizes come from design-tokens.css. Do not add one-off font-size rules elsewhere.
+ */
+
+/* ── Base document ──────────────────────────────────────────── */
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-loose);
+  color: var(--ink);
+}
+
+/* ── Headings (one style each) ──────────────────────────────── */
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  color: inherit;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-4);
+}
+
+/**
+ * Homepage marketing display — same typeface/weight as H1;
+ * only uses the hero size token (one intentional display step).
+ */
+.hero h1 {
+  font-size: var(--fs-hero);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-hero);
+  text-transform: capitalize;
+  margin-bottom: clamp(10px, 2svh, var(--space-6));
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-5);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-2);
+}
+
+h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 620px) {
+  :root {
+    --fs-h2: clamp(1.75rem, 9vw, 2.5rem);
+    --fs-hero: clamp(2rem, min(11vw, 6svh), 3.4rem);
+  }
+}
+
+/* ── Body / paragraph ───────────────────────────────────────── */
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-loose);
+}
+
+/* Lead — supporting intro under headings (not body) */
+.lead,
+.section-heading .lead,
+.hero-lead,
+.page-hero .lead {
+  margin-bottom: 0;
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-lead);
+  color: var(--muted);
+}
+
+.hero-lead {
+  max-width: 650px;
+  color: color-mix(in srgb, var(--white) 84%, transparent);
+  line-height: clamp(1.45, 0.35svh + 1.35, var(--lh-hero-lead));
+}
+
+.page-hero .lead,
+.section-dark .lead,
+.section-dark .section-heading .lead {
+  color: var(--white);
+}
+
+/* Small text — one size */
+small,
+.text-small {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+}
+
+/* Caption — one size */
+.caption,
+.text-caption {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-base);
+  color: var(--muted);
+}
+
+/* Eyebrow / label — one size */
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--deep);
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-label);
+  line-height: var(--lh-tight);
+}
+
+.eyebrow-light {
+  color: var(--white);
+}
+
+/* Card / UI titles that are not section H2 — use display + lg */
+.text-card-title,
+.card-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--deep);
+}
+
+/* Micro labels (chips, kicker) */
+.text-micro {
+  font-family: var(--font-mono-num);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-chip);
+  line-height: var(--lh-tight);
+}
+
+/* ── Buttons — one typography style ─────────────────────────── */
+
+.button,
+.button-small,
+.lang-switch-btn {
+  font-family: var(--font-sans);
+  font-size: var(--btn-fs);
+  font-weight: var(--btn-fw);
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/* Size changes padding/height only — type stays identical */
+.button-small {
+  font-size: var(--btn-fs);
+}
+
+/* ── Links — one typography style ───────────────────────────── */
+
+.text-link {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-base);
+  color: var(--deep);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.text-link span {
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.text-link:hover span {
+  transform: translateX(-6px);
+}
+
+html[dir="ltr"] .text-link:hover span {
+  transform: translateX(6px);
+}
+
+/* Inline content links (not buttons / nav) */
+.prose-link,
+.auth-footer a,
+.form-footer a:not(.button),
+.newsletter-status a {
+  font-family: var(--font-sans);
+  font-size: inherit;
+  font-weight: var(--fw-bold);
+  color: var(--deep);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth-footer a:hover,
+.form-footer a:not(.button):hover {
+  color: var(--gold);
+}
+
+/* ── Form labels — one size ─────────────────────────────────── */
+
+.contact-form label,
+.auth-form label,
+.apply-form label,
+.profile-form label,
+.dreq-label,
+.ds-label {
+  font-family: var(--font-sans);
+  font-size: var(--label-fs);
+  font-weight: var(--label-fw);
+  color: var(--label-color);
+  letter-spacing: 0;
+}
+
+/* ── Preflight re-assert (Tailwind resets headings) ─────────── */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display) !important;
+  font-weight: var(--fw-bold) !important;
+}
+
+h1 {
+  font-size: var(--fs-h1) !important;
+  line-height: var(--lh-snug) !important;
+  letter-spacing: var(--ls-tight) !important;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero) !important;
+  line-height: var(--lh-snug) !important;
+  letter-spacing: var(--ls-hero) !important;
+}
+
+h2 {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-tight) !important;
+  letter-spacing: var(--ls-tight) !important;
+}
+
+h3 {
+  font-size: var(--fs-h3) !important;
+  line-height: var(--lh-tight) !important;
+}
+
+.method-panel h3 {
+  font-size: 3.25rem !important;
+  line-height: 1.1 !important;
+}
+
+h4 {
+  font-size: var(--fs-h4) !important;
+  line-height: var(--lh-tight) !important;
+}
+
+/* Arabic headings — looser line-height so multi-line display titles do not collide */
+[dir="rtl"] h1 {
+  line-height: var(--lh-snug-ar) !important;
+  letter-spacing: 0 !important;
+}
+[dir="rtl"] .hero h1 {
+  line-height: var(--lh-snug-ar) !important;
+  letter-spacing: 0 !important;
+}
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] .community-main-title,
+[dir="rtl"] .contact-modal-copy h2,
+[dir="rtl"] .text-card-title {
+  line-height: var(--lh-tight-ar) !important;
+  letter-spacing: 0 !important;
+}
+
+.lead,
+.section-heading .lead,
+.hero-lead {
+  font-family: var(--font-serif) !important;
+  font-size: var(--fs-md) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: var(--lh-lead) !important;
+}
+
+.hero-lead {
+  line-height: clamp(1.45, 0.35svh + 1.35, var(--lh-hero-lead)) !important;
+}
+
+.eyebrow {
+  font-family: var(--font-sans) !important;
+  font-size: var(--fs-eyebrow) !important;
+  font-weight: var(--fw-bold) !important;
+  letter-spacing: var(--ls-label) !important;
+}
+
+.button,
+.button-small {
+  font-family: var(--font-sans) !important;
+  font-size: var(--btn-fs) !important;
+  font-weight: var(--btn-fw) !important;
+}
+
+/* Ensure section heading classes cannot drift from the system */
+.page-hero h1,
+.auth-title,
+h1.auth-title {
+  font-size: var(--fs-h1) !important;
+}
+
+.contact-main-title,
+.about-main-title,
+.faq-main-title,
+.community-main-title,
+.need-banner-title,
+.footer-subscribe-title,
+.program-modal-title,
+.contact-modal-copy h2 {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-tight) !important;
+  letter-spacing: var(--ls-tight) !important;
+}
+
+/* Non-heading card title utility (use on <p> / <span>, not to override h3) */
+.text-card-title {
+  font-family: var(--font-sans) !important;
+  font-size: var(--fs-lg) !important;
+  font-weight: var(--fw-bold) !important;
+  line-height: var(--lh-tight) !important;
+}

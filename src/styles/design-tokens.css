@@ -1,0 +1,405 @@
+/**
+ * SAH Group — Design Tokens (`:root` only).
+ * Color System 1.0 — palette sheets: COLOR_PALETTE.md.
+ * Company skins: `brand-themes.css` via `html[data-theme]` (docs/theming.md).
+ * Accent hex registry (TS): `src/lib/brand-themes.ts`.
+ * Hex values must come from the brand sheets only — do not invent colors.
+ *
+ * Tailwind mirrors these via tailwind.config.ts (var(--*) references).
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════════════════
+     1. COLOR PALETTE — SAH GROUP (COLOR_PALETTE.md)
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Full Group sheet */
+  --brand-primary: #271710; /* Primary Brown */
+  --brand-dark: #1f120d; /* Dark Brown */
+  --brand-deep: #342019; /* Deep Brown */
+  --brand-medium: #4a3128; /* Medium Brown */
+  --brand-warm: #6a4a3c; /* Warm Brown */
+  --brand-soft: #a08373; /* Soft Brown */
+  --brand-beige: #e9e2dd; /* Light Beige */
+  --brand-bg: #f8f6f4; /* Off White */
+  --brand-accent: #c8a04d; /* Accent Gold */
+
+  /* Semantic UI — mapped from Group sheet roles */
+  --deep: var(--brand-primary); /* titles, primary buttons, dark sections */
+  --deep-2: var(--brand-deep); /* section depth / hover */
+  --deep-3: var(--brand-dark); /* deepest chrome */
+  --cream: var(--brand-bg); /* page background */
+  --cream-2: var(--brand-beige); /* cards / layered surfaces */
+  --white: #f8f6f4; /* Group lightest — Off White (no pure white in Group sheet) */
+  --gold: var(--brand-accent); /* CTAs, links, highlights */
+  --gold-soft: var(--brand-soft); /* soft accent / supporting */
+  --gold-hover: var(--brand-soft); /* hover uses Soft Brown (sheet only) */
+  --ink: var(--brand-primary);
+  --muted: var(--brand-warm);
+  --line: var(--brand-beige);
+  --surface: var(--brand-bg);
+
+  /* Entity accents — keep in sync with ENTITY_UI_COLORS (src/lib/brand-themes.ts) */
+  --human: #0f6b46;
+  --seera: #280a45;
+  --nexus: #0d1b2a;
+  --connect: #2b2f36; /* Sponsor: Dark Slate for UI contrast */
+  --lego: #d4a017;
+  --impact: #008a5e;
+
+  /* Semantic surfaces */
+  --error: var(--deep-3);
+  --error-soft: color-mix(in srgb, var(--deep) 12%, transparent);
+  --success: var(--brand-primary);
+  --success-soft: color-mix(in srgb, var(--brand-primary) 12%, transparent);
+  --warning: var(--brand-medium);
+  --warning-soft: color-mix(in srgb, var(--brand-accent) 20%, transparent);
+  --footer-bg: var(--brand-dark);
+  --entity-bg: var(--brand-bg);
+  --modal-bg: var(--brand-bg);
+  --journey-bg: var(--brand-beige);
+  --header-bg-scrolled: color-mix(in srgb, var(--cream) 97%, transparent);
+  --backdrop: color-mix(in srgb, var(--deep-3) 66%, transparent);
+
+  /* Focus / interaction */
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--gold) 14%, transparent);
+  --focus-ring-strong: 0 0 0 4px color-mix(in srgb, var(--gold) 12%, transparent);
+  --focus-ring-error: 0 0 0 3px color-mix(in srgb, var(--deep) 14%, transparent);
+  --focus-ring-on-dark: inset 0 0 0 2px color-mix(in srgb, var(--gold) 70%, transparent);
+  --focus-border: var(--gold);
+
+  /* ═══════════════════════════════════════════════════════════
+     2. TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════ */
+
+  --font-sans: "Thmanyah Sans", Tahoma, Arial, sans-serif;
+  --font-display: "Thmanyah Serif Display", "Thmanyah Sans", Tahoma, Arial, sans-serif;
+  --font-serif: "Thmanyah Serif Text", "Thmanyah Sans", Georgia, serif;
+  --font-mono-num: "Thmanyah Sans", Arial, sans-serif;
+
+  /* Type scale (extracted) */
+  --fs-micro: 0.68rem; /* chips, scroll hint */
+  --fs-xs: 0.74rem; /* captions */
+  --fs-eyebrow: 0.76rem; /* eyebrows, small buttons */
+  --fs-sm: 0.84rem; /* buttons md, secondary / small text */
+  --fs-base: 1rem; /* body */
+  --fs-md: clamp(1rem, 0.96rem + 0.28vw, 1.12rem); /* lead */
+  --fs-lg: clamp(1.2rem, 1.12rem + 0.42vw, 1.35rem); /* card titles */
+  --fs-xl: 1.6rem; /* page/auth titles, subtitles */
+  --fs-h4: 1.05rem;
+  --fs-h3: 1.22rem;
+  --fs-h2: clamp(1.9rem, min(3.6vw, 4.9svh), 3.35rem);
+  --fs-h1: clamp(1.9rem, min(4.2vw, 5.4svh), 3.2rem); /* all page H1s */
+  --fs-hero: clamp(
+    2.2rem,
+    min(5.3vw, 6svh),
+    5rem
+  ); /* homepage hero H1 — width + height aware */
+
+  /* Weights (as used) */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Letter-spacing */
+  --ls-tight: -0.02em;
+  --ls-hero: -0.055em;
+  --ls-label: 0.04em;
+  --ls-nav: 0.07em;
+  --ls-wide: 0.08em;
+  --ls-chip: 0.1em;
+
+  /* Line-height */
+  --lh-tight: 1.35;
+  --lh-snug: 1.18; /* hero h1 */
+  --lh-base: 1.65;
+  --lh-loose: 1.8; /* body */
+  --lh-lead: 2;
+  --lh-hero-lead: 2.05;
+  /* Thmanyah display needs a touch more vertical room for Arabic */
+  --lh-tight-ar: 1.7;
+  --lh-snug-ar: 1.5;
+
+  /* ═══════════════════════════════════════════════════════════
+     3. SPACING SCALE (4px grid)
+     Prefer these tokens; snap off-scale literals to the nearest step.
+     ═══════════════════════════════════════════════════════════ */
+
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 86px; /* section @860 */
+  --space-14: 118px; /* default section */
+
+  /* Semantic aliases */
+  --space-section: var(--space-14);
+  --space-section-md: var(--space-13);
+  --space-content: clamp(
+    var(--space-7),
+    5svh,
+    var(--space-10)
+  ); /* heading → content / grids */
+  --space-stack: var(--space-4); /* default stack inside cards/forms */
+  --space-stack-sm: var(--space-3);
+  --space-stack-lg: var(--space-6);
+  --header-height: 72px;
+  --header-height-scrolled: 66px;
+
+  /* ═══════════════════════════════════════════════════════════
+     4. LAYOUT / CONTAINERS
+     ═══════════════════════════════════════════════════════════ */
+
+  --container-max: 1180px;
+  --container-pad: var(--space-9); /* 40px */
+  --container-pad-md: var(--space-8); /* 32px — was 34 */
+  --container-pad-sm: var(--space-6); /* 24px */
+  --container: min(var(--container-max), calc(100% - var(--container-pad)));
+  --container-md: min(980px, calc(100% - var(--container-pad-md)));
+  --container-sm: min(580px, calc(100% - var(--container-pad-sm)));
+  --section-heading-max: 760px;
+  --auth-card-max: 460px;
+  --modal-max: 900px;
+  --modal-contact-max: 590px;
+  --dashboard-nav-width: 268px;
+  --dashboard-nav-width-collapsed: 84px;
+  --content-max-md: 680px;
+  --content-max-lg: 960px;
+
+  /* Grid gaps (4px scale) */
+  --grid-gap-sm: var(--space-3); /* 12px — was 13 */
+  --grid-gap: var(--space-4); /* 16px */
+  --grid-gap-md: var(--space-5); /* 20px */
+  --grid-gap-lg: var(--space-6); /* 24px */
+  --grid-gap-xl: var(--space-9); /* 40px — was 42 */
+
+  /* Large two-column / split layouts */
+  --layout-gap: clamp(var(--space-9), 7svh, var(--space-12)); /* 80px */
+  --layout-gap-md: clamp(var(--space-8), 5.5svh, var(--space-11)); /* 64px */
+
+  /* ═══════════════════════════════════════════════════════════
+     5. BORDER RADIUS
+     ═══════════════════════════════════════════════════════════ */
+
+  --radius-xs: 8px; /* inputs (legacy contact), small controls */
+  --radius-sm: 12px; /* auth inputs, chips of surface */
+  --radius-md: 16px; /* challenge cards, principles */
+  --radius: 22px; /* default marketing cards */
+  --radius-lg: 34px; /* journey shell, auth card, method panel */
+  --radius-pill: 999px; /* buttons, filter chips, tags */
+  --radius-full: 50%; /* avatars, orbit nodes */
+
+  /* Card / modal radius tiers (intentional hierarchy — do not converge cards) */
+  --radius-card-compact: 14px; /* entity-card */
+  --radius-card-program: 18px; /* program-card, toolbar, contact form shell */
+  --radius-modal: 28px; /* all dialogs (entity + program + contact) */
+
+  /* ═══════════════════════════════════════════════════════════
+     6. SHADOWS
+     ═══════════════════════════════════════════════════════════ */
+
+  --shadow-xs: 0 2px 12px color-mix(in srgb, var(--deep) 5%, transparent);
+  --shadow-sm: 0 8px 28px color-mix(in srgb, var(--deep) 8%, transparent);
+  --shadow-md: 0 20px 56px color-mix(in srgb, var(--deep) 13%, transparent);
+  --shadow-dark: 0 30px 80px color-mix(in srgb, var(--deep-3) 24%, transparent);
+  --shadow-modal: 0 32px 96px color-mix(in srgb, var(--deep-3) 22%, transparent);
+  --shadow-dropdown:
+    0 16px 48px color-mix(in srgb, var(--deep) 12%, transparent),
+    0 4px 12px color-mix(in srgb, var(--deep-3) 5%, transparent);
+  --shadow-focus: var(--focus-ring);
+
+  /* ═══════════════════════════════════════════════════════════
+     7. MOTION
+     ═══════════════════════════════════════════════════════════ */
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.3, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1); /* card hovers */
+
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 350ms;
+  --duration-panel: 450ms;
+  --duration-reveal: 750ms;
+  --duration-modal-in: 380ms;
+  --duration-modal-out: 280ms;
+
+  /* Hover lifts (existing) */
+  --lift-button: -2px;
+  --lift-card-sm: -3px; /* challenge */
+  --lift-card: -6px; /* default cards */
+
+  /* ═══════════════════════════════════════════════════════════
+     8. BUTTONS (existing .button metrics)
+     ═══════════════════════════════════════════════════════════ */
+
+  --btn-height: 50px;
+  --btn-height-sm: 42px;
+  --btn-pad-y: 11px;
+  --btn-pad-x: 23px;
+  --btn-pad-y-sm: 8px;
+  --btn-pad-x-sm: 18px;
+  --btn-fs: var(--fs-sm);
+  --btn-fs-sm: var(--fs-eyebrow);
+  --btn-radius: var(--radius-pill);
+  --btn-fw: var(--fw-bold);
+  --btn-gap: var(--space-2); /* 8px — was 9 */
+
+  /* ═══════════════════════════════════════════════════════════
+     9. FORMS / INPUTS (product default = auth/apply recipe)
+     ═══════════════════════════════════════════════════════════ */
+
+  --input-pad-y: var(--space-3); /* 12px — was 13 */
+  --input-pad-x: var(--space-4); /* 16px — was 14 */
+  --input-radius: var(--radius-sm);
+  --input-border: var(--line);
+  --input-bg: var(--surface);
+  --input-bg-focus: var(--white);
+  --input-fs: var(--fs-base);
+  --label-fs: 0.75rem;
+  --label-fw: var(--fw-semibold);
+  --label-color: var(--muted);
+  --form-gap: var(--space-4); /* 16px — field stack */
+  --form-gap-sm: var(--space-3); /* 12px — compact grids */
+  --form-label-gap: var(--space-1); /* 4px — was 5 */
+
+  /* Contact form (legacy marketing) — documented, not deleted */
+  --input-contact-pad-y: var(--space-3); /* 12px — was 11 */
+  --input-contact-pad-x: var(--space-3);
+  --input-contact-radius: 10px;
+
+  /* ═══════════════════════════════════════════════════════════
+     10. CARDS / MODAL / SECTION
+     ═══════════════════════════════════════════════════════════ */
+
+  --card-bg: var(--white);
+  --card-border: var(--line);
+  --card-radius: var(--radius);
+  --card-pad: clamp(
+    var(--space-5),
+    2.8svh,
+    var(--space-7)
+  ); /* 28px — marketing / profile cards */
+  --card-pad-sm: clamp(
+    var(--space-4),
+    2.1svh,
+    var(--space-5)
+  ); /* 20px — compact / list cards */
+  --card-pad-lg: clamp(
+    var(--space-7),
+    4.2svh,
+    var(--space-9)
+  ); /* 40px — auth / apply shells */
+  --card-shadow-hover: var(--shadow-sm);
+
+  --modal-radius: var(--radius-modal);
+  --modal-pad: var(--space-8);
+  --modal-backdrop-blur: 14px;
+
+  --section-pad-y: clamp(56px, 10svh, var(--space-section));
+  --section-pad-y-md: clamp(48px, 9svh, var(--space-section-md));
+
+  /* ═══════════════════════════════════════════════════════════
+     11. ICONS / AVATARS / CHIPS
+     ═══════════════════════════════════════════════════════════ */
+
+  --icon-xs: 10px;
+  --icon-sm: 12px;
+  --icon-md: 14px;
+  --icon-lg: 16px;
+  --icon-xl: 20px;
+  --icon-2xl: 24px;
+
+  --avatar-sm: 40px;
+  --avatar-md: 54px; /* audience-icon */
+  --avatar-lg: 72px; /* profile */
+  --avatar-xl: 120px;
+
+  --chip-fs: 0.72rem;
+  --chip-pad-y: 5px;
+  --chip-pad-x: 9px;
+  --chip-radius: var(--radius-pill);
+  --chip-fw: var(--fw-bold);
+
+  /* ═══════════════════════════════════════════════════════════
+     12. IMAGE TREATMENT
+     ═══════════════════════════════════════════════════════════ */
+
+  --img-radius: var(--radius-sm);
+  --img-radius-lg: var(--radius);
+  --img-object-fit: cover;
+  --img-placeholder-bg: linear-gradient(160deg, var(--deep), var(--deep-2));
+
+  /* ═══════════════════════════════════════════════════════════
+     13. Z-INDEX
+     ═══════════════════════════════════════════════════════════ */
+
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-modal: 500;
+  --z-toast: 600;
+  --z-skip: 9999;
+
+  /* ═══════════════════════════════════════════════════════════
+     14. SKELETON / TOAST
+     ═══════════════════════════════════════════════════════════ */
+
+  --skeleton-base: var(--cream-2);
+  --skeleton-shine: var(--surface);
+  --skeleton-radius: var(--radius-sm);
+
+  --toast-bg: var(--deep);
+  --toast-color: var(--white);
+  --toast-radius: var(--radius-sm);
+  --toast-shadow: var(--shadow-md);
+  --toast-pad-y: var(--space-3);
+  --toast-pad-x: var(--space-4);
+  --toast-fs: var(--fs-sm);
+}
+
+/* Responsive token overrides — match existing prototype behavior */
+@media (max-width: 1100px) {
+  :root {
+    --container: var(--container-md);
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --space-section: var(--space-section-md);
+  }
+}
+
+@media (max-height: 860px) {
+  :root {
+    --space-content: clamp(var(--space-6), 4svh, var(--space-8));
+    --layout-gap: clamp(var(--space-8), 5.5svh, var(--space-10));
+    --layout-gap-md: clamp(var(--space-7), 4.5svh, var(--space-9));
+    --section-pad-y: clamp(44px, 8svh, 72px);
+    --section-pad-y-md: clamp(40px, 7svh, 64px);
+    --fs-hero: clamp(2rem, min(4.8vw, 5.2svh), 4.2rem);
+    --fs-h1: clamp(1.8rem, min(3.8vw, 4.6svh), 2.9rem);
+    --fs-h2: clamp(1.75rem, min(3.2vw, 4.1svh), 2.8rem);
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --container: var(--container-sm);
+    --fs-base: 0.9375rem; /* 15px — previous body @620 */
+    --fs-h2: clamp(1.75rem, 9vw, 2.5rem);
+    --fs-hero: clamp(2rem, min(11vw, 6svh), 3.4rem);
+  }
+}

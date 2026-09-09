@@ -1,0 +1,3491 @@
+{
+  "locale": "en",
+  "dir": "ltr",
+  "meta": {
+    "title": "SAH Group | From People to Impact",
+    "description": "SAH Group is an integrated Saudi ecosystem of six specialized entities that develops people and leadership, transforms business and technology, builds partnerships, and creates sustainable impact.",
+    "ogTitle": "SAH Group | From People to Impact",
+    "ogDescription": "Start with your need and let SAH Group design the right pathway for an individual or an organization.",
+    "siteName": "SAH Group",
+    "tagline": "From People to Impact",
+    "motto": "People First Business Follows"
+  },
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "id": "discovery",
+      "label": "Your Path",
+      "href": "/discovery"
+    },
+    {
+      "id": "services",
+      "label": "What We Do",
+      "href": "/sah-human",
+      "children": [
+        {
+          "id": "svc-human",
+          "label": "SAH Human",
+          "description": "People & leadership",
+          "href": "/sah-human",
+          "entityId": "human"
+        },
+        {
+          "id": "svc-seera",
+          "label": "SEERA",
+          "description": "Identity & reputation",
+          "href": "/seera",
+          "entityId": "seera"
+        },
+        {
+          "id": "svc-nexus",
+          "label": "SAH Nexus",
+          "description": "Business, AI & digital",
+          "href": "/sah-nexus",
+          "entityId": "nexus"
+        },
+        {
+          "id": "svc-sponsor",
+          "label": "SAH Sponsor",
+          "description": "Sponsorships & partnerships",
+          "href": "/sah-sponsor",
+          "entityId": "connect"
+        },
+        {
+          "id": "svc-lego",
+          "label": "LEGO® by SAH",
+          "description": "Experiential learning",
+          "href": "/lego-by-sah",
+          "entityId": "lego"
+        },
+        {
+          "id": "svc-impact",
+          "label": "SAH Impact",
+          "description": "Sustainable impact",
+          "href": "/sah-impact",
+          "entityId": "impact"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "label": "Our Community",
+      "href": "/community/apply"
+    },
+    {
+      "id": "explore",
+      "label": "Know Us",
+      "href": "/",
+      "children": [
+        {
+          "id": "bm-promise",
+          "label": "Our Promise",
+          "href": "#promise"
+        },
+        {
+          "id": "bm-need",
+          "label": "Your Path",
+          "href": "#need"
+        },
+        {
+          "id": "bm-entities",
+          "label": "Who We Are",
+          "href": "#entities"
+        },
+        {
+          "id": "bm-solutions",
+          "label": "How We Help",
+          "href": "#solutions"
+        },
+        {
+          "id": "bm-method",
+          "label": "Our Method",
+          "href": "#method"
+        },
+        {
+          "id": "bm-programs",
+          "label": "Our Programs",
+          "href": "#programs"
+        },
+        {
+          "id": "bm-journeys",
+          "label": "Our Journeys",
+          "href": "#journeys"
+        },
+        {
+          "id": "bm-partners",
+          "label": "Our Partners",
+          "href": "#partners"
+        },
+        {
+          "id": "bm-impact",
+          "label": "Our Impact",
+          "href": "#impact"
+        },
+        {
+          "id": "bm-initiatives",
+          "label": "Our Work",
+          "href": "#initiatives"
+        },
+        {
+          "id": "bm-about",
+          "label": "Our Story",
+          "href": "#about"
+        },
+        {
+          "id": "bm-community",
+          "label": "Our Community",
+          "href": "#community"
+        },
+        {
+          "id": "bm-faq",
+          "label": "FAQ",
+          "href": "#faq"
+        },
+        {
+          "id": "bm-contact",
+          "label": "Talk to Us",
+          "href": "#contact"
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "primary": "Start Your Journey",
+    "header": "Start Your Journey",
+    "path": "Find Your Path",
+    "contact": "Book a Discovery Session",
+    "backToTop": "Back to top"
+  },
+  "hero": {
+    "eyebrow": "SAH GROUP",
+    "titleLines": [
+      "Expand Within"
+    ],
+    "subtitle": "Create Impact Beyond",
+    "body": "SAH Group is an integrated ecosystem of six specialized companies. We combine expertise in people, leadership, business, technology, partnerships, and impact to turn ideas and challenges into clear, measurable, executable pathways.",
+    "primaryCta": {
+      "label": "Start Your Journey",
+      "href": "/discovery"
+    },
+    "secondaryCta": {
+      "label": "SAH Group",
+      "href": "#entities"
+    },
+    "proof": [
+      {
+        "value": "6",
+        "label": "Specialized Companies"
+      },
+      {
+        "value": "1",
+        "label": "Point of Entry"
+      },
+      {
+        "value": "1",
+        "label": "Integrated Journey"
+      }
+    ],
+    "scrollLabel": "Discover",
+    "proofAriaLabel": "Key highlights",
+    "orbitAriaLabel": "SAH Group entity map",
+    "orbitCenterAriaLabel": "SAH Group",
+    "scrollAriaLabel": "Go to the next section"
+  },
+  "promise": {
+    "eyebrow": "The SAH Group Client Journey",
+    "titleLines": [
+      "We understand",
+      "Build",
+      "and execute—for impact that lasts"
+    ],
+    "intro": "At SAH Group, we begin by understanding the current state, design the right pathway, bring together the required expertise, guide execution, and measure what changes.",
+    "steps": [
+      {
+        "id": "analysis",
+        "title": "Analysis",
+        "highlight": "Impact requires clarity about the starting point",
+        "body": "We listen to the challenge, review the evidence, identify priorities, and define what must be designed—creating a clear view that guides the next steps."
+      },
+      {
+        "id": "pathway",
+        "title": "Pathway",
+        "highlight": "We design the pathway and bring together the expertise",
+        "body": "We turn the analysis into an integrated pathway and assemble the right capabilities from across SAH Group to build the most effective solution."
+      },
+      {
+        "id": "execution",
+        "title": "Execution",
+        "highlight": "We turn design into reality",
+        "body": "We activate the pathway with the client and manage execution and enablement so ideas move from planning into tangible outcomes."
+      },
+      {
+        "id": "measurement",
+        "title": "Impact Measurement",
+        "highlight": "We measure what changed",
+        "body": "We track outcomes, measure progress, and ensure that execution leads to clear, sustainable impact."
+      }
+    ],
+    "cta": {
+      "label": "Start the Transformation Journey",
+      "href": "/discovery"
+    }
+  },
+  "need": {
+    "eyebrow": "Start with Your Need",
+    "title": "Find your path in 3 short steps",
+    "intro": "Answer two quick questions and we'll show you the pathway that fits your need.",
+    "stages": {
+      "audience": {
+        "title": "Who is this for?",
+        "hint": "Tap one option to continue.",
+        "individualLabel": "Individual",
+        "organizationLabel": "Organization",
+        "individualIcon": "I",
+        "organizationIcon": "O",
+        "individualHint": "For your personal growth and leadership",
+        "organizationHint": "For your team, company, or institution"
+      },
+      "challenge": {
+        "title": "What do you need help with?",
+        "organizationTitle": "What does your organization need help with?",
+        "hint": "Choose the option closest to your current challenge."
+      },
+      "result": {
+        "title": "Here is your recommended pathway",
+        "intro": "Based on your answers, this is the pathway we recommend.",
+        "outputsLabel": "What You Can Expect to Receive",
+        "engagementLabel": "Engagement Model",
+        "startLabel": "Starting Point",
+        "contactCta": "Find My Path",
+        "backLabel": "Back to Previous Step",
+        "pathwayKicker": "Your pathway"
+      }
+    },
+    "stepLabels": [
+      "Who you are",
+      "Your need",
+      "Your pathway"
+    ],
+    "stepsAriaLabel": "Pathway-building steps",
+    "page": {
+      "heroReassure": "No account needed — just choose, and we'll guide you.",
+      "sectionAriaLabel": "Find your pathway",
+      "breadcrumbTitle": "Discover Your Path",
+      "requestForm": {
+        "message": "Additional message",
+        "submit": "Send request",
+        "success": "Thank you — the SAH team will contact you shortly about this pathway.",
+        "note": "Your request stays on this page — no email app needed."
+      }
+    }
+  },
+  "entitiesSection": {
+    "eyebrow": "SAH Group",
+    "title": "Six Specialized Entities. One Integrated Ecosystem.",
+    "intro": "Each entity has a clear specialization, and the entities integrate whenever a challenge requires more than one perspective or capability.",
+    "openLabel": "Explore the Entity"
+  },
+  "methodIntro": {
+    "titleLines": [
+      "Read the Reality",
+      "Build the Path",
+      "Lead Execution",
+      "Measure What Changed"
+    ],
+    "eyebrow": "Impact starts with clarity about the point of transformation",
+    "indexTitle": "SAH Impact Measurement Index",
+    "indexBody": "An integrated measurement index developed by SAH Group local and international experts to assess the current state, track transformation, and measure program and initiative impact across individuals, teams, and organizations."
+  },
+  "methodSection": {
+    "eyebrow": "SAH Group Methodology",
+    "titleLines": [
+      "One Journey—Starting",
+      "with Understanding and Leading to Impact"
+    ],
+    "intro": "A unified methodology that connects understanding with execution and leads to clear, sustainable impact.",
+    "outputsLabel": "Stage outputs",
+    "controlsAriaLabel": "Methodology stages"
+  },
+  "programsSection": {
+    "eyebrow": "Our Programs",
+    "title": "Every program is designed for a specific need, with clear outcomes and practical deliverables.",
+    "intro": "Explore programs by entity, target audience, and the challenge you want to address.",
+    "searchPlaceholder": "Search by program or outcome…",
+    "audienceAll": "All",
+    "audienceIndividual": "Individuals & Leaders",
+    "audienceOrganization": "Organizations & Teams",
+    "levelAll": "All",
+    "levelLabelTemplate": "{n} | Level {n}",
+    "entityAll": "All",
+    "showing": "Showing {shown} of {total} programs",
+    "empty": "No programs match your filters.",
+    "loadMore": "Show More",
+    "openLabel": "Program Details",
+    "outcomeLabel": "Expected Impact",
+    "problemLabel": "When to use it",
+    "formatLabel": "Format",
+    "durationLabel": "Duration",
+    "deliverablesLabel": "What You Receive",
+    "nextLabel": "Next Pathway",
+    "audienceSelectLabel": "Audience",
+    "levelSelectLabel": "Level",
+    "filterAriaLabel": "Filter programs by entity",
+    "levelNames": [
+      "Foundation & Readiness",
+      "Growth & Application",
+      "Transformation & Impact"
+    ],
+    "askCta": "Ask About This Program",
+    "registerTitle": "Register your interest",
+    "registerLead": "Share your details and our team will contact you about this program.",
+    "registerSubmit": "Submit Request",
+    "registerSubmitting": "Sending…",
+    "registerSuccessTitle": "Thank you for your interest!",
+    "registerSuccessBody": "We've received your request. Our team will contact you within 1–2 business days.",
+    "registerBackLabel": "Browse programs",
+    "registerNameLabel": "Full Name *",
+    "registerEmailLabel": "Email Address *",
+    "registerPhoneLabel": "Phone Number",
+    "registerOrgLabel": "Organisation / Company",
+    "registerMessageLabel": "What do you hope to achieve?",
+    "registerConsent": "By submitting you agree to being contacted by the SAH team.",
+    "registerProgramLabel": "Program",
+    "registerError": "Something went wrong. Please try again.",
+    "entityFilterLabels": {
+      "human": "Human",
+      "seera": "SEERA",
+      "nexus": "Nexus",
+      "connect": "Sponsor",
+      "lego": "LEGO®",
+      "impact": "Impact"
+    },
+    "sectionCta": {
+      "label": "Start Your Journey",
+      "hint": "Answer three questions and we'll design a tailored pathway."
+    },
+    "clearSearchLabel": "Clear search"
+  },
+  "journeysSection": {
+    "eyebrow": "One Journey. Integrated Expertise.",
+    "title": "From Understanding to Achieving and Sustaining Impact",
+    "individualTab": "Individual Example",
+    "organizationTab": "Organization Example",
+    "deliverablesLabel": "Deliverables:",
+    "tabsAriaLabel": "Client journey examples"
+  },
+  "partnersSection": {
+    "eyebrow": "Trust",
+    "title": "Partnerships and Extended Expertise",
+    "intro": "We work with government, private-sector, academic, and professional ecosystems in Saudi Arabia and internationally."
+  },
+  "impact": {
+    "eyebrow": "SAH Impact Measurement Index",
+    "title": "We Measure Impact and Strengthen Its Sustainability",
+    "subtitle": "Measurement that extends to sustainable value",
+    "metricsEyebrow": "Selected Experience Metrics",
+    "note": "Final figures are subject to confirmation before public launch.",
+    "metrics": [
+      {
+        "value": 4000,
+        "suffix": "+",
+        "label": "People Reached"
+      },
+      {
+        "value": 500,
+        "suffix": "+",
+        "label": "Leadership Coaching Engagements"
+      },
+      {
+        "value": 14,
+        "suffix": "+",
+        "label": "Members in an Integrated Team"
+      },
+      {
+        "value": 6,
+        "suffix": "+",
+        "label": "Local Partnerships"
+      },
+      {
+        "value": 2,
+        "suffix": "+",
+        "label": "International Partnerships"
+      },
+      {
+        "value": 25,
+        "suffix": "+",
+        "label": "Experts in Our Network"
+      }
+    ],
+    "chain": [
+      "Baseline",
+      "Outputs",
+      "Adoption",
+      "Outcomes",
+      "Impact"
+    ],
+    "chainAriaLabel": "Impact measurement chain"
+  },
+  "initiatives": {
+    "eyebrow": "Selected Initiatives & Platforms",
+    "title": "Spaces that Create Knowledge and Lead to Impact",
+    "intro": "Initiatives and platforms that turn expertise into dialogue, knowledge, and a professional identity built to extend.",
+    "cards": [
+      {
+        "id": "dialogues",
+        "kind": "link",
+        "owner": "SAH IMPACT",
+        "logo": "/logos/sah-impact.png",
+        "color": "impact",
+        "title": "SAH Dialogues",
+        "body": "A dialogue series hosting experts and leaders to discuss the decisions, transformations, and journeys behind their impact.",
+        "stats": [
+          {
+            "value": "20",
+            "label": "Sessions"
+          },
+          {
+            "value": "20",
+            "label": "Experts"
+          }
+        ],
+        "cta": {
+          "label": "Explore SAH Dialogues",
+          "href": "/discovery"
+        }
+      },
+      {
+        "id": "seera",
+        "kind": "link",
+        "owner": "SEERA",
+        "logo": "/logos/seera.png",
+        "color": "seera",
+        "title": "SEERA",
+        "body": "A journey that turns experience into a clear professional story and identity through which leaders define themselves and are recognized by others.",
+        "cta": {
+          "label": "Explore Seera Story®",
+          "href": "#programs"
+        }
+      }
+    ]
+  },
+  "newsletter": {
+    "eyebrow": "Stay Connected",
+    "title": "Subscribe to Our Newsletter",
+    "body": "Stay up to date with the latest news, insights, and offers from SAH Group.",
+    "firstNameLabel": "First name",
+    "lastNameLabel": "Last name",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "emailLabel": "Email Address",
+    "placeholder": "Your email address",
+    "cta": "Subscribe",
+    "success": "Thanks — you're subscribed to our newsletter.",
+    "error": "Please enter a valid email.",
+    "nameError": "Please enter your first and last name.",
+    "submitError": "Something went wrong. Please try again in a moment.",
+    "hint": "No spam · Unsubscribe anytime"
+  },
+  "about": {
+    "eyebrow": "SAH Group",
+    "titleLines": [
+      "Multiple Specializations",
+      "One Pathway",
+      "Lasting Impact"
+    ],
+    "intro": "SAH Group brings together multiple specializations while maintaining one client journey—from understanding the need to creating lasting impact.",
+    "visionTitle": "Our Vision",
+    "vision": "To be the Kingdom’s leading ecosystem for leadership development and sustainable impact.",
+    "missionTitle": "Our Mission",
+    "mission": "We empower leaders and organizations to transform awareness into purposeful action, decisions into measurable growth, and growth into sustainable impact through one integrated ecosystem.",
+    "beliefs": [
+      {
+        "title": "People First",
+        "body": "We believe the quality of every outcome begins with the quality of the people behind it."
+      },
+      {
+        "title": "Clarity Before Decisions",
+        "body": "We build decisions on clarity—not assumptions."
+      },
+      {
+        "title": "Leadership Before Expansion",
+        "body": "Organizations grow only as far as their leaders grow."
+      },
+      {
+        "title": "Impact Before Activity",
+        "body": "We measure value by lasting change—not activity alone."
+      },
+      {
+        "title": "Integration Before Execution",
+        "body": "We bring expertise and entities around one need to provide an integrated solution—not fragmented services."
+      }
+    ],
+    "foundersTitle": "Founders",
+    "founders": [
+      {
+        "id": "huda",
+        "name": "Dr. Huda Haqawe",
+        "role": "Group Founder & Chief Executive Officer",
+        "bio": "An entrepreneurship and innovation expert with over 14 years of experience, empowering more than 3,000 professionals and leading strategic initiatives across the public and private sectors.",
+        "photo": "/images/founders/dr-huda-haqawi-v4.jpg"
+      },
+      {
+        "id": "ghada",
+        "name": "Ghadah Al-Qarni",
+        "role": "Group Founder & Chief Operating Officer",
+        "bio": "Leads operations and business development, contributing to the design and execution of more than 100 strategic projects and initiatives across diverse sectors.",
+        "photo": "/images/founders/ghada-al-qarni-v2.jpg"
+      }
+    ],
+    "foundersEyebrow": "Founding Leadership",
+    "foundersIntro": "Leadership that brings together vision, rigorous diagnosis, and disciplined execution to build lasting impact.",
+    "mediaMottoLines": [
+      "PEOPLE FIRST",
+      "BUSINESS FOLLOWS"
+    ],
+    "beliefsAriaLabel": "Our beliefs"
+  },
+  "community": {
+    "eyebrow": "SAH Group Communities",
+    "title": "Communities that Grow through Expertise and Participation",
+    "intro": "Join the community that fits you.",
+    "joinCta": "Request to Join",
+    "cards": [
+      {
+        "id": "empathy-ksa",
+        "accent": "impact",
+        "icon": "empathy",
+        "logo": "/logos/empathy-ksa-logo-white.png",
+        "label": "EMPATHY KSA",
+        "title": "Empathy KSA",
+        "body": "A national community creating space for listening and empathy in leadership, work, and the human experience.",
+        "features": [
+          "Meaningful Dialogues",
+          "Applied Knowledge",
+          "Professional Connection"
+        ],
+        "cta": "Request to Join",
+        "whatsappMessage": "I would like to join the Empathy KSA community"
+      },
+      {
+        "id": "lego-community",
+        "accent": "lego",
+        "icon": "lego",
+        "logo": "/logos/lego-community-mark.png",
+        "label": "LEGO BY SAH",
+        "title": "LEGO Community",
+        "body": "A professional community for leaders, experts, and practitioners to build clarity of thought and turn challenges into better dialogue and decisions.",
+        "features": [
+          "Interactive Sessions",
+          "Real Challenges",
+          "Tools & Experiences"
+        ],
+        "cta": "Request to Join",
+        "whatsappMessage": "I would like to request membership in the LEGO by SAH Community"
+      }
+    ],
+    "applyPage": {
+      "breadcrumbCommunity": "Community",
+      "heroTitle": "Join the Community",
+      "heroLead": "Join a community of individuals and organisations who share your vision and support your journey towards impact.",
+      "individualTitle": "Individual Community",
+      "individualBody": "A community for individuals seeking personal and professional growth through continuous learning and peer connection.",
+      "individualFeatures": [
+        "Monthly events",
+        "Peer network",
+        "Exclusive resources"
+      ],
+      "organisationTitle": "Organisational Community",
+      "organisationBody": "A community for organisations eager to exchange expertise and build strategic partnerships with impact.",
+      "organisationFeatures": [
+        "Joint workshops",
+        "Strategic partnerships",
+        "Benchmarking reports"
+      ],
+      "formTitle": "Application Form",
+      "formIntro": "Complete the form below and the SAH team will be in touch to finalise your membership.",
+      "form": {
+        "community": "Community you wish to join *",
+        "communityPlaceholder": "Select a community…",
+        "impactOption": "Impact Community (Individuals)",
+        "legoOption": "Lego Community (Organisations)",
+        "fullName": "Full Name *",
+        "fullNamePlaceholder": "Jane Smith",
+        "email": "Email Address *",
+        "phone": "Phone Number",
+        "profession": "Job Title / Field",
+        "professionPlaceholder": "e.g. Business Manager",
+        "motivation": "Why do you want to join this community? *",
+        "motivationPlaceholder": "Describe your motivation and what you hope to contribute and learn…",
+        "experience": "Relevant experience or achievements?",
+        "experiencePlaceholder": "Mention any relevant experience or outcomes (optional)…",
+        "consent": "Your application will be reviewed by the SAH team before acceptance.",
+        "submit": "Submit Application",
+        "submitting": "Sending…",
+        "successTitle": "Application Received!",
+        "successIntro": "Thank you for your interest in the SAH community. Here's what happens next:",
+        "successStepsAriaLabel": "What happens next",
+        "successSteps": [
+          { "icon": "✓", "label": "Application received" },
+          { "icon": "👁", "label": "SAH team reviews within 2–3 business days" },
+          { "icon": "📬", "label": "You'll receive an email with the decision" },
+          { "icon": "🎉", "label": "If approved, access details and a welcome are sent" }
+        ]
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "Questions Before You Begin",
+    "title": "What You Need to Know Before You Begin",
+    "intro": "Direct answers that explain how we work and help you get started.",
+    "items": [
+      {
+        "id": "faq-1",
+        "question": "Do I need to know the right entity or service before contacting you?",
+        "answer": "No. Start with the challenge or outcome you want, and SAH Group will diagnose the need and identify the lead entity and supporting expertise."
+      },
+      {
+        "id": "faq-2",
+        "question": "Do you work with individuals or only organizations?",
+        "answer": "We work with individuals, leaders, teams, and organizations. The entry point and deliverables differ, while the methodology remains consistent from understanding and design through building, enablement, and measurement."
+      },
+      {
+        "id": "faq-3",
+        "question": "Is the solution an off-the-shelf program or customized?",
+        "answer": "We have core programs and methodologies, and we customize the intervention level, composition, duration, and metrics to the client’s context and stage."
+      },
+      {
+        "id": "faq-4",
+        "question": "What does the client receive after the discovery session?",
+        "answer": "You receive an initial recommendation clarifying the problem, starting point, lead entity, intervention model, expected deliverables, and next step."
+      },
+      {
+        "id": "faq-5",
+        "question": "Do you stop at planning, or do you support execution?",
+        "answer": "The engagement may begin with diagnosis or advisory and extend into a transformation project, execution support, knowledge transfer, or impact measurement as needed."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Start Now",
+    "titleLines": [
+      "Define What You Want to Change",
+      "and We Will Build the Starting Point with You"
+    ],
+    "intro": "Share the context in a few minutes, and we will contact you to define the discovery session and first step.",
+    "note": "Your request stays on this page — no email app needed. The SAH team will follow up shortly.",
+    "individualLabel": "I am an Individual",
+    "organizationLabel": "We are an Organization",
+    "fields": {
+      "name": "Full Name *",
+      "email": "Email Address *",
+      "phone": "Phone Number",
+      "org": "Organization / Title",
+      "message": "What do you want to change? *"
+    },
+    "placeholders": {
+      "message": "Describe the challenge or outcome you are looking for…"
+    },
+    "submit": "Submit Discovery Request",
+    "success": "Thank you — the SAH team will contact you shortly about your discovery request.",
+    "error": "Please complete the required fields.",
+    "whatsappLabel": "Continue on WhatsApp",
+    "emailTo": "info@sah.com.sa",
+    "emailDisplay": "info@sah.com.sa",
+    "location": "Riyadh, Kingdom of Saudi Arabia",
+    "audienceAriaLabel": "Client type",
+    "defaultContext": "General Discovery Session",
+    "mailLabels": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "organization": "Organization / Title",
+      "clientType": "Client Type",
+      "context": "Request Context",
+      "individualValue": "Individual",
+      "organizationValue": "Organization"
+    },
+    "mailSubjectPrefix": "Discovery Session Request",
+    "mailNotProvided": "Not provided",
+    "mailChallengeHeading": "Required challenge or outcome:"
+  },
+  "footer": {
+    "logoAlt": "SAH Group",
+    "blurb": "We start with people, build businesses, and create impact.",
+    "services": {
+      "title": "What We Do",
+      "links": [
+        {
+          "label": "Your Path",
+          "href": "/discovery"
+        },
+        {
+          "label": "1:1 Coaching",
+          "href": "/coaches"
+        },
+        {
+          "label": "Group Coaching",
+          "href": "/coaches/group"
+        },
+        {
+          "label": "Recorded Courses",
+          "href": "/courses"
+        },
+        {
+          "label": "Join Us",
+          "href": "/community/apply"
+        }
+      ]
+    },
+    "explore": {
+      "title": "Know Us",
+      "links": [
+        {
+          "label": "Your Path",
+          "href": "#need"
+        },
+        {
+          "label": "Who We Are",
+          "href": "#entities"
+        },
+        {
+          "label": "Our Programs",
+          "href": "#programs"
+        },
+        {
+          "label": "Our Partners",
+          "href": "#partners"
+        },
+        {
+          "label": "Our Story",
+          "href": "#about"
+        },
+        {
+          "label": "FAQ",
+          "href": "#faq"
+        }
+      ]
+    },
+    "connect": {
+      "title": "Connect",
+      "links": [
+        {
+          "label": "Sign In",
+          "href": "/auth/login"
+        },
+        {
+          "label": "Book Discovery",
+          "href": "/discovery"
+        },
+        {
+          "label": "Talk to Us",
+          "href": "#contact"
+        }
+      ]
+    },
+    "emailAddress": "Email",
+    "locationLabel": "Riyadh, Kingdom of Saudi Arabia",
+    "copyright": "© 2026 SAH Group. All rights reserved.",
+    "motto": "People First Business Follows"
+  },
+  "ui": {
+    "close": "Close",
+    "language": "Language",
+    "menuOpen": "Open Menu",
+    "menuClose": "Close Menu",
+    "skipToContent": "Skip to Content",
+    "backToTop": "Back to top",
+    "backToHome": "Back to Home",
+    "primaryNav": "Primary navigation",
+    "mobileNav": "Mobile navigation",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "dashboard": "Dashboard",
+    "myCourses": "My Courses",
+    "myBookings": "My Bookings",
+    "myProfile": "My Profile",
+    "editProfile": "Edit Profile",
+    "footerNav": "Footer"
+  },
+  "entities": [
+    {
+      "id": "human",
+      "color": "#0F6B46",
+      "name": "SAH HUMAN",
+      "specialty": "People & Leadership Development",
+      "symbol": "H",
+      "tagline": "We develop leaders from within—turning awareness into readiness, readiness into decisions, and decisions into impact across teams and organizations.",
+      "when": "Use SAH Human when the challenge concerns leadership readiness, people development, or stronger team performance.",
+      "audiences": [
+        "Chief Executives",
+        "Executive Leaders",
+        "Managers",
+        "Emerging Leaders",
+        "Founders",
+        "Leadership Teams"
+      ],
+      "services": [
+        "Executive Leadership",
+        "Human Architecture®",
+        "Executive Coaching",
+        "Leadership Journeys",
+        "Leading by Listening & Empathy®",
+        "Leadership Wellbeing"
+      ],
+      "deliverables": [
+        "Readiness assessment or report",
+        "Development and transition map",
+        "Coaching and accountability sessions",
+        "Role-linked application plan",
+        "Behavioral and professional progress metrics"
+      ],
+      "outcomes": [
+        "Greater clarity in role and priorities",
+        "More mature and consistent decisions",
+        "More confident and effective teams",
+        "Sustainable leadership performance without burnout"
+      ],
+      "programs": [
+        "Human Architecture®",
+        "Executive Leadership Readiness",
+        "Emerging Leaders Program",
+        "Leading by Listening®",
+        "Executive Leader Journey",
+        "The Next CEO"
+      ],
+      "cardTitle": "We develop the people who lead impact",
+      "cardText": "We strengthen self-awareness, leadership readiness, and executive capability so people can lead themselves, inspire their teams, and deliver lasting impact.",
+      "cardWhen": "When the challenge involves leadership, capability development, or building stronger, more ready teams.",
+      "featuredPrograms": [
+        {
+          "title": "Leadership Readiness & Transformation",
+          "description": "We prepare leaders to guide organizational transformation or executive transition with confidence and coherence.",
+          "related": [
+            "nexus",
+            "lego"
+          ]
+        }
+      ],
+      "logo": "/logos/sah-human.png"
+    },
+    {
+      "id": "seera",
+      "color": "#280A45",
+      "name": "SEERA",
+      "specialty": "Professional Identity & Leadership Reputation",
+      "symbol": "S",
+      "tagline": "We turn expertise into a clear identity, a trusted voice, and a leadership reputation built with confidence and consistency.",
+      "when": "Use SEERA when the challenge concerns identity, presence, or reputation.",
+      "audiences": [
+        "Executive Leaders",
+        "Founders",
+        "Experts",
+        "Speakers",
+        "Decision-Makers",
+        "Professional Influencers"
+      ],
+      "services": [
+        "Personal Brand Strategy",
+        "Executive Presence",
+        "Thought Leadership",
+        "Media Presence",
+        "LinkedIn & Content",
+        "Professional Speaking"
+      ],
+      "deliverables": [
+        "Positioning, promise, and core messages",
+        "Professional voice and identity guide",
+        "Presence and content plan",
+        "Speaker or thought-leader profile",
+        "Media and executive readiness tools"
+      ],
+      "outcomes": [
+        "A clearer, more consistent identity",
+        "Greater confidence in presence",
+        "Higher-quality opportunities and partnerships",
+        "A reputation aligned with role and purpose"
+      ],
+      "programs": [
+        "Seera Story®",
+        "Executive Presence",
+        "Thought Leadership",
+        "Public Speaking",
+        "LinkedIn Strategy",
+        "Content Strategy"
+      ],
+      "cardTitle": "We build a presence that reflects your value",
+      "cardText": "We turn expertise into a clear professional identity, an influential presence, and a leadership reputation that builds trust and expands opportunity.",
+      "cardWhen": "When you want to build a personal brand, strengthen professional presence, or advance leadership reputation.",
+      "featuredPrograms": [
+        {
+          "title": "Executive Identity & Reputation",
+          "description": "We build a presence that reflects the leader’s value and expertise and aligns with role and organizational goals.",
+          "related": [
+            "human"
+          ]
+        }
+      ],
+      "logo": "/logos/seera.png"
+    },
+    {
+      "id": "nexus",
+      "color": "#0D1B2A",
+      "name": "SAH NEXUS",
+      "specialty": "Business, AI & Digital Transformation",
+      "symbol": "N",
+      "tagline": "We develop business and lead digital and AI transformation by connecting technology with value and people.",
+      "when": "Use SAH Nexus when the challenge concerns business, growth, artificial intelligence, or digital transformation.",
+      "audiences": [
+        "Ministries",
+        "Authorities",
+        "Large Enterprises",
+        "Startups",
+        "Transformation Teams",
+        "Business & Real Estate Sectors"
+      ],
+      "services": [
+        "AI for Business",
+        "Business Model Development",
+        "Growth Strategy",
+        "Service Design",
+        "Executive Digital Transformation",
+        "Real Estate Solutions"
+      ],
+      "deliverables": [
+        "Maturity report and baseline",
+        "Transformation strategy or roadmap",
+        "Use cases and priorities",
+        "Business or operating model",
+        "Adoption and knowledge-transfer plan",
+        "Execution and value dashboard"
+      ],
+      "outcomes": [
+        "Clearer, faster decisions",
+        "Connected technical and human capabilities",
+        "Testable growth models",
+        "Greater sustainability after project completion"
+      ],
+      "programs": [
+        "Business Growth Accelerator",
+        "Business Model Design",
+        "AI Readiness",
+        "AI for Business",
+        "AI Productivity",
+        "Executive Digital Transformation"
+      ],
+      "cardTitle": "We move business toward the future with AI and technology",
+      "cardText": "We help organizations accelerate growth, improve efficiency, and design strategies enabled by artificial intelligence and digital transformation.",
+      "cardWhen": "When you seek growth, digital transformation, or responsible AI adoption in your business.",
+      "featuredPrograms": [
+        {
+          "title": "AI-Enabled Growth",
+          "description": "We turn AI from general interest into use cases, capabilities, and measurable growth.",
+          "related": [
+            "human"
+          ]
+        }
+      ],
+      "logo": "/logos/sah-nexus.png"
+    },
+    {
+      "id": "connect",
+      "color": "#2B2F36",
+      "name": "SAH SPONSOR",
+      "specialty": "Sponsorships & Strategic Partnerships",
+      "symbol": "SP",
+      "tagline": "We connect impact with opportunity and design sponsorship and partnership solutions that strengthen brands, support meaningful initiatives, and create shared value.",
+      "when": "Use SAH Sponsor when sponsorship or partnership is central to an initiative’s success or growth.",
+      "audiences": [
+        "Companies",
+        "Ministries",
+        "Government Entities",
+        "Private Sector",
+        "Organizations",
+        "Events & Initiatives"
+      ],
+      "services": [
+        "Sponsorship Portfolio Development",
+        "Sponsorship & Partnership Strategy",
+        "Sponsor and Partner Acquisition",
+        "Relationship and Commitment Management",
+        "Package and Benefit Design",
+        "ROI and Impact Measurement"
+      ],
+      "deliverables": [
+        "Sponsor and partner map",
+        "Clear value proposition",
+        "Sponsorship portfolio and packages",
+        "Acquisition and outreach plan",
+        "Relationship governance and commitments",
+        "ROI and impact report"
+      ],
+      "outcomes": [
+        "A stronger sponsorship proposition",
+        "Better-fit partners",
+        "Sustainable relationships",
+        "Measurable shared value"
+      ],
+      "programs": [
+        "Sponsorship & Partnership Portfolio Builder",
+        "Strategic Sponsorship Accelerator",
+        "Shared-Value Partnership Design Lab"
+      ],
+      "cardTitle": "We build partnerships that create lasting value",
+      "cardText": "We design sponsorship and partnership strategies, connect opportunity with purpose, and create shared value and long-term impact.",
+      "cardWhen": "When you need sponsors, strategic partners, or a partnership model that supports growth and sustainability.",
+      "featuredPrograms": [
+        {
+          "title": "Sponsorship & Partnership Portfolio Builder",
+          "description": "A professional portfolio that clarifies value and turns participation opportunities into clear, executable packages.",
+          "related": [
+            "impact",
+            "seera"
+          ]
+        },
+        {
+          "title": "Strategic Sponsorship Accelerator",
+          "description": "An applied pathway from opportunity definition to acquisition, negotiation, and long-term relationship management.",
+          "related": [
+            "impact",
+            "nexus"
+          ]
+        },
+        {
+          "title": "Shared-Value Partnership Design Lab",
+          "description": "A customized LEGO® Serious Play® workshop that builds shared understanding and a participant-owned partnership model.",
+          "related": [
+            "lego"
+          ]
+        }
+      ],
+      "logo": "/logos/sah-sponsor.png"
+    },
+    {
+      "id": "lego",
+      "color": "#D4A017",
+      "name": "LEGO® BY SAH",
+      "specialty": "Experiential Learning",
+      "symbol": "L",
+      "tagline": "We turn ideas into clear insights, conversations into decisions, and challenges into executable plans through constructive thinking and equitable participation.",
+      "when": "Use LEGO® by SAH when a challenge is complex and requires shared understanding and a decision participants own.",
+      "audiences": [
+        "Executive Teams",
+        "Strategy Teams",
+        "Innovation Teams",
+        "Government Entities",
+        "Academic Institutions",
+        "Leaders & Managers"
+      ],
+      "services": [
+        "Strategic Thinking",
+        "Organizational Culture Development",
+        "Innovation & Problem-Solving",
+        "Change Readiness",
+        "Business Model Design",
+        "Leading by Listening"
+      ],
+      "deliverables": [
+        "A carefully designed question and challenge",
+        "Visible shared models",
+        "Agreed principles and decisions",
+        "Priority and action roadmap",
+        "Session documentation and next steps"
+      ],
+      "outcomes": [
+        "Broader participation across voices",
+        "Deeper understanding of patterns and relationships",
+        "Clearer shared decisions",
+        "Stronger commitment to execution"
+      ],
+      "programs": [
+        "LEGO® Serious Play®",
+        "Leading by Listening with LEGO®",
+        "Strategy Lab",
+        "Culture Build Lab",
+        "Change Leadership Lab"
+      ],
+      "cardTitle": "We turn ideas into clear decisions",
+      "cardText": "We use LEGO® Serious Play® to turn ideas into shared insight, conversations into decisions, and challenges into executable plans.",
+      "cardWhen": "When a challenge requires shared clarity, team alignment, or collaborative strategic solution design.",
+      "featuredPrograms": [
+        {
+          "title": "Culture, Innovation & Change",
+          "description": "We engage teams in building shared understanding and decisions they own and commit to executing.",
+          "related": [
+            "human",
+            "nexus"
+          ]
+        }
+      ],
+      "logo": "/logos/lego-by-sah.png"
+    },
+    {
+      "id": "impact",
+      "color": "#008A5E",
+      "name": "SAH IMPACT",
+      "specialty": "Sustainable Impact & Social Responsibility",
+      "symbol": "I",
+      "tagline": "We design meaningful community initiatives, build clear measurement models, and turn responsibility into sustainable impact that can be managed and improved.",
+      "when": "Use SAH Impact when you need clear social impact, a sustainable program, or a trusted measurement system.",
+      "audiences": [
+        "Nonprofit Sector",
+        "Grant-Making Institutions",
+        "Companies",
+        "Government Entities",
+        "Community Initiatives",
+        "Sustainability Teams"
+      ],
+      "services": [
+        "Corporate Social Responsibility",
+        "ESG & Sustainability",
+        "Impact Measurement",
+        "Community Development",
+        "Community Partnerships",
+        "Community Design & Operations"
+      ],
+      "deliverables": [
+        "Issue and needs analysis",
+        "Theory of change and impact model",
+        "Program or initiative portfolio",
+        "Metrics and data plan",
+        "Learning and outcomes report",
+        "Sustainability and partnership roadmap"
+      ],
+      "outcomes": [
+        "Resources directed more intelligently",
+        "Deeper initiatives with clearer purpose",
+        "Greater transparency in outcomes",
+        "Decisions that learn from data"
+      ],
+      "programs": [
+        "SAH Dialogues",
+        "Empathy KSA",
+        "LEGO by SAH Community",
+        "CSR Program Design",
+        "ESG Advisory",
+        "Social Impact Measurement"
+      ],
+      "cardTitle": "We build impact that extends into society",
+      "cardText": "We design initiatives, build partnerships, and measure impact—turning social responsibility into sustainable, measurable value.",
+      "cardWhen": "When you aim to launch a meaningful initiative, activate social responsibility, or measure its impact.",
+      "featuredPrograms": [
+        {
+          "title": "Impact & Sustainability",
+          "description": "We design initiatives from issue understanding through theory of change, metrics, data, and continuous improvement.",
+          "related": [
+            "connect",
+            "nexus"
+          ]
+        }
+      ],
+      "logo": "/logos/sah-impact.png"
+    }
+  ],
+  "entityColors": {
+    "group": "#C8A04D",
+    "human": "#0F6B46",
+    "seera": "#280A45",
+    "nexus": "#0D1B2A",
+    "connect": "#2B2F36",
+    "lego": "#D4A017",
+    "impact": "#008A5E"
+  },
+  "programs": [
+    {
+      "id": "human-architecture",
+      "title": "Human Architecture®",
+      "entity": "human",
+      "audience": "individual",
+      "level": 1,
+      "summary": "A journey that reveals personal assets, patterns, and capabilities and connects them with role and choice.",
+      "outcome": "Deeper awareness that changes behavior, decisions, and direction.",
+      "problem": "Experience is present, but direction or the best use of capabilities remains unclear.",
+      "format": "Assessment, one-to-one sessions, and applied exercises",
+      "duration": "Defined according to pathway depth",
+      "deliverables": "Personal asset and capability map, development hypotheses, and an individual application plan",
+      "next": "Executive Leadership Readiness or a SEERA pathway depending on the goal"
+    },
+    {
+      "id": "executive-readiness",
+      "title": "Executive Leadership Readiness",
+      "entity": "human",
+      "audience": "individual",
+      "level": 1,
+      "summary": "Prepare a leader before moving into greater responsibility or a new executive role.",
+      "outcome": "Role clarity, more mature decisions, and a practical transition plan.",
+      "problem": "An upcoming promotion or transition with a gap between current experience and future role requirements.",
+      "format": "Readiness assessment + coaching + 90-day plan",
+      "duration": "Short or extended pathway as needed",
+      "deliverables": "Readiness report, transition map, and priorities for the first 90 days",
+      "next": "Executive Leader Journey or Executive Presence"
+    },
+    {
+      "id": "emerging-leaders",
+      "title": "Emerging Leaders Program",
+      "entity": "human",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Build a leadership pipeline able to move from individual performance to leading people and business.",
+      "outcome": "Leaders better prepared for responsibility and influence.",
+      "problem": "Strong talent without a structured journey that develops behavior, decisions, and leadership.",
+      "format": "Multi-stage cohort journey with application",
+      "duration": "Defined by cohort size and leadership level",
+      "deliverables": "Assessments, learning modules, application challenges, and tools for direct managers",
+      "next": "The Next CEO or specialized leadership pathways"
+    },
+    {
+      "id": "leading-listening",
+      "title": "Leading by Listening®",
+      "entity": "human",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Build listening, dialogue, and trust as leadership capabilities that shape decisions and teams.",
+      "outcome": "Safer, clearer, and more effective teams.",
+      "problem": "Weak dialogue, repeated misunderstanding, or low team participation.",
+      "format": "Workshop or applied pathway with behavioral measurement",
+      "duration": "Customized to the audience",
+      "deliverables": "Listening tools, dialogue practices, and a team application plan",
+      "next": "Leading with Empathy® or a LEGO® team lab"
+    },
+    {
+      "id": "leading-empathy",
+      "title": "Leading with Empathy®",
+      "entity": "human",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Develop the leader’s ability to understand people without compromising clarity or accountability.",
+      "outcome": "Greater trust and more human, effective decisions.",
+      "problem": "A high-pressure or changing environment that requires balance between performance and care.",
+      "format": "Workshop, applied cases, and follow-up",
+      "duration": "Based on the work environment",
+      "deliverables": "Empathetic leadership framework, dialogue scenarios, and team practices",
+      "next": "Performance Culture or Change Leadership Journey"
+    },
+    {
+      "id": "executive-journey",
+      "title": "Executive Leader Journey",
+      "entity": "human",
+      "audience": "individual",
+      "level": 3,
+      "summary": "An integrated pathway that accompanies leaders through role, decision, stakeholder, and impact challenges.",
+      "outcome": "Transformation practiced in reality—not knowledge that is forgotten.",
+      "problem": "Complex executive challenges requiring ongoing space for thinking, application, and accountability.",
+      "format": "Executive coaching + assessments + application",
+      "duration": "Extended partnership",
+      "deliverables": "Goals map, coaching sessions, decision tools, and progress measurement",
+      "next": "Executive Coaching Retainer or annual growth partnership"
+    },
+    {
+      "id": "next-ceo",
+      "title": "The Next CEO",
+      "entity": "human",
+      "audience": "organization",
+      "level": 3,
+      "summary": "Prepare next-line leaders for CEO-level responsibility and enterprise value creation.",
+      "outcome": "A leadership pipeline that thinks from the enterprise perspective, not only the functional one.",
+      "problem": "A need for strong succession or expansion requiring enterprise leaders.",
+      "format": "Assessment, executive learning, simulation, and coaching",
+      "duration": "Advanced enterprise program",
+      "deliverables": "Readiness matrix, applied projects, assessments, and succession recommendations",
+      "next": "Talent Council or one-to-one executive coaching"
+    },
+    {
+      "id": "leadership-wellbeing",
+      "title": "Leadership Wellbeing",
+      "entity": "human",
+      "audience": "individual",
+      "level": 2,
+      "summary": "Connect energy, boundaries, and quality of life with decision effectiveness and sustainable performance.",
+      "outcome": "Effective leadership without chronic depletion.",
+      "problem": "Responsibility rises while energy, balance, or quality of presence declines.",
+      "format": "Assessment + program + coaching",
+      "duration": "Customized pathway",
+      "deliverables": "Baseline, energy and boundaries plan, and sustainability metrics",
+      "next": "Executive Leader Journey or development partnership"
+    },
+    {
+      "id": "seera-story",
+      "title": "Seera Story®",
+      "entity": "seera",
+      "audience": "individual",
+      "level": 1,
+      "summary": "Turn experience into a meaningful, clear professional story and identity.",
+      "outcome": "A coherent message through which leaders define themselves and are recognized by others.",
+      "problem": "Rich experience presented in a fragmented or conventional way that does not differentiate it.",
+      "format": "Discovery sessions and strategic articulation",
+      "duration": "Foundation package",
+      "deliverables": "Professional story, positioning, promise, and core messages",
+      "next": "Executive Presence or Content Strategy"
+    },
+    {
+      "id": "executive-presence-program",
+      "title": "Executive Presence",
+      "entity": "seera",
+      "audience": "individual",
+      "level": 2,
+      "summary": "Build balanced executive presence in meetings, platforms, and high-impact situations.",
+      "outcome": "Greater confidence and clearer communication in moments of decision and visibility.",
+      "problem": "A gap between the leader’s value and how that value is expressed.",
+      "format": "Presence assessment + training + simulation",
+      "duration": "Defined by visibility moments",
+      "deliverables": "Presence report, messages, simulations, and development plan",
+      "next": "Public Speaking or Media Positioning"
+    },
+    {
+      "id": "thought-leadership",
+      "title": "Thought Leadership",
+      "entity": "seera",
+      "audience": "individual",
+      "level": 3,
+      "summary": "Turn knowledge into a clear point of view, content, and a sustainable platform of influence.",
+      "outcome": "A trusted professional voice that creates value, opportunity, and richer dialogue.",
+      "problem": "Strong expertise that does not translate into published ideas or a clear intellectual position.",
+      "format": "Strategy + content development + follow-up",
+      "duration": "Extended pathway",
+      "deliverables": "Thought-leadership platform, content pillars, publishing calendar, and measurement system",
+      "next": "Media Positioning or ongoing content partnership"
+    },
+    {
+      "id": "linkedin-strategy",
+      "title": "LinkedIn Strategy",
+      "entity": "seera",
+      "audience": "individual",
+      "level": 2,
+      "summary": "Turn LinkedIn from a static profile into a professional platform aligned with your objective.",
+      "outcome": "Greater clarity, higher-quality reach, and stronger professional relationships.",
+      "problem": "Irregular activity or content that does not reflect positioning and expertise.",
+      "format": "Review, strategy, and implementation templates",
+      "duration": "Applied package",
+      "deliverables": "Profile optimization, content pillars, calendar, and measurement tools",
+      "next": "Thought Leadership or Content Retainer"
+    },
+    {
+      "id": "public-speaking",
+      "title": "Professional Public Speaking",
+      "entity": "seera",
+      "audience": "individual",
+      "level": 2,
+      "summary": "Build a story, message, and performance suited to the occasion and audience.",
+      "outcome": "A clearer, more confident, and more influential speech or presentation.",
+      "problem": "An important occasion or platform requiring a carefully designed message and performance.",
+      "format": "Message design + training and simulation",
+      "duration": "Based on the occasion",
+      "deliverables": "Speech structure, story, message script, and performance feedback",
+      "next": "Media Positioning or Executive Presence"
+    },
+    {
+      "id": "ai-readiness",
+      "title": "AI Readiness",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 1,
+      "summary": "Assess organizational maturity across data, processes, skills, governance, and opportunity.",
+      "outcome": "A deliberate starting point and clear priorities instead of fragmented experiments.",
+      "problem": "High interest in AI without clarity on where investment should begin.",
+      "format": "Assessment, interviews, and prioritization workshop",
+      "duration": "Diagnostic stage",
+      "deliverables": "Maturity and gap report, use cases, and initial roadmap",
+      "next": "AI Business Design or AI Powered Teams"
+    },
+    {
+      "id": "ai-for-leaders",
+      "title": "AI for Leaders",
+      "entity": "nexus",
+      "audience": "individual",
+      "level": 1,
+      "summary": "Enable leaders to understand the opportunities, risks, and decisions that cannot be delegated to technology.",
+      "outcome": "More informed and responsible AI decisions.",
+      "problem": "Leaders need a practical language that connects AI with strategy and people.",
+      "format": "Executive session or short program",
+      "duration": "Customized to the level",
+      "deliverables": "Decision framework, opportunity map, and responsible-use principles",
+      "next": "AI Business Design or AI Leadership Advisory"
+    },
+    {
+      "id": "ai-productivity",
+      "title": "AI Productivity",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Improve everyday workflows with AI through clear controls and value measurement.",
+      "outcome": "Less time spent on repetitive work and higher-quality outputs.",
+      "problem": "Unstructured individual tool use without standards or clear return.",
+      "format": "Application labs + use cases",
+      "duration": "Applied pathway",
+      "deliverables": "Use-case portfolio, work guides, templates, and productivity measurement",
+      "next": "AI Powered Teams or AI Business Design"
+    },
+    {
+      "id": "ai-powered-teams",
+      "title": "AI Powered Teams",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Build teams that know when and how to use AI in processes, collaboration, and decisions.",
+      "outcome": "Safe collective adoption instead of fragmented dependence on individuals.",
+      "problem": "Uneven skills, practices, and risks across team members.",
+      "format": "Team assessment + training + application",
+      "duration": "Team program",
+      "deliverables": "Skills map, use cases, controls, and AI champions",
+      "next": "AI Transformation Programme"
+    },
+    {
+      "id": "ai-business-design",
+      "title": "AI Business Design",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 3,
+      "summary": "Redesign a service, business model, or process around new value enabled by AI.",
+      "outcome": "A solution or business model ready for testing and scale.",
+      "problem": "A need for new value—not simply automating what already exists.",
+      "format": "Advisory project + design lab",
+      "duration": "Multi-stage project",
+      "deliverables": "Value hypotheses, service model, prototype, and experience roadmap",
+      "next": "Pilot & Scale or transformation project"
+    },
+    {
+      "id": "growth-accelerator",
+      "title": "Business Growth Accelerator",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 3,
+      "summary": "Accelerate growth by developing business models, services, sales, opportunities, and partnerships.",
+      "outcome": "A growth pathway defined by priorities, decisions, and metrics.",
+      "problem": "Stalled growth or expansion without a clear system or sufficient execution capability.",
+      "format": "Diagnosis + design + execution oversight",
+      "duration": "Growth project",
+      "deliverables": "Growth map, initiatives, metrics, and review cadence",
+      "next": "Growth Retainer or Investment Readiness"
+    },
+    {
+      "id": "growth-strategy",
+      "title": "Growth Strategy",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 1,
+      "summary": "Select growth directions, prioritize opportunities, and connect them with the organization’s real capabilities.",
+      "outcome": "Clear growth priorities instead of an unresolved opportunity list.",
+      "problem": "Multiple opportunities, market saturation, or limited clarity on expansion.",
+      "format": "Analysis and strategy workshops",
+      "duration": "Strategic stage",
+      "deliverables": "Growth options, decision criteria, initiative roadmap, and metrics",
+      "next": "Business Growth Accelerator"
+    },
+    {
+      "id": "service-design",
+      "title": "Service Design",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Design a service that connects customer need with experience, process, and operating model.",
+      "outcome": "A service that is clearer, easier to deliver, scale, and measure.",
+      "problem": "A good service that is complex, inconsistent, or difficult to scale.",
+      "format": "Research, design, and prototyping",
+      "duration": "Lab or project",
+      "deliverables": "Customer journey, service blueprint, prototype, and operating requirements",
+      "next": "Pilot & Implementation"
+    },
+    {
+      "id": "real-estate-ai-growth",
+      "title": "AI-Powered Real Estate Growth",
+      "entity": "nexus",
+      "audience": "organization",
+      "level": 3,
+      "summary": "A sector solution connecting AI with growth, customer experience, and real-estate operations.",
+      "outcome": "Use cases with clear commercial and operational value.",
+      "problem": "A need to invest in AI for real estate without starting from technology alone.",
+      "format": "Sector assessment + use-case lab",
+      "duration": "Tailored project",
+      "deliverables": "Opportunity map, use cases, prototype, and scale roadmap",
+      "next": "AI Business Design or Transformation Programme"
+    },
+    {
+      "id": "communities-design",
+      "title": "Professional Community Design",
+      "entity": "impact",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Build membership value, experience, content, and the community operating model.",
+      "outcome": "A community with a reason to join and a mechanism to stay and grow.",
+      "problem": "An audience or network without a clear membership experience or sustainable value.",
+      "format": "Strategy, design, and pilot operations",
+      "duration": "Tailored project",
+      "deliverables": "Value proposition, member segments, journey, content, and governance",
+      "next": "Community Operations Retainer"
+    },
+    {
+      "id": "lego-strategy-lab",
+      "title": "LEGO® Serious Play® Strategy Lab",
+      "entity": "lego",
+      "audience": "organization",
+      "level": 2,
+      "summary": "A lab that makes strategic assumptions, options, and relationships visible and shared.",
+      "outcome": "Faster understanding and alignment on direction and priorities.",
+      "problem": "Strategic discussions dominated by a few voices or remaining at the level of words.",
+      "format": "Designed facilitation session",
+      "duration": "Based on challenge and team size",
+      "deliverables": "Shared models, principles, scenarios, and documented decisions",
+      "next": "Strategy Execution Lab"
+    },
+    {
+      "id": "lego-listening",
+      "title": "Leading by Listening with LEGO®",
+      "entity": "lego",
+      "audience": "organization",
+      "level": 2,
+      "summary": "An experience that makes listening and equitable participation tangible within the team.",
+      "outcome": "More voices heard, deeper dialogue, and greater trust.",
+      "problem": "Low participation or a small number of people dominating dialogue and decisions.",
+      "format": "Facilitation lab + application capture",
+      "duration": "Customized experience",
+      "deliverables": "Models, experiences, dialogue principles, and application plan",
+      "next": "Leading by Listening® Journey"
+    },
+    {
+      "id": "culture-build-lab",
+      "title": "Culture Build Lab",
+      "entity": "lego",
+      "audience": "organization",
+      "level": 3,
+      "summary": "Create a shared picture of current and desired culture, then translate it into behavior and systems.",
+      "outcome": "A shared cultural language and stronger ownership of change.",
+      "problem": "Written values that do not appear in behavior or mean different things across teams.",
+      "format": "Multiple labs + application pathway",
+      "duration": "Culture transformation journey",
+      "deliverables": "Culture map, behaviors, initiatives, and adoption metrics",
+      "next": "Leadership & Culture Enablement"
+    },
+    {
+      "id": "change-leadership-lab",
+      "title": "Change Leadership Lab",
+      "entity": "lego",
+      "audience": "organization",
+      "level": 3,
+      "summary": "Help leaders and teams understand change, shape its story, make decisions, and build shared commitment.",
+      "outcome": "Change that is understood and owned rather than imposed.",
+      "problem": "Resistance, fragmentation, or lack of shared understanding during transformation.",
+      "format": "Labs + change leadership interventions",
+      "duration": "Based on transformation stage",
+      "deliverables": "Stakeholder map, change story, decisions, and adoption plan",
+      "next": "Transformation Enablement"
+    },
+    {
+      "id": "csr-design",
+      "title": "CSR Program Design",
+      "entity": "impact",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Turn social responsibility priorities into programs linked to a clear issue, outcomes, and metrics.",
+      "outcome": "Deeper, clearer, and more measurable initiatives.",
+      "problem": "Fragmented activities without an impact logic or strategic portfolio.",
+      "format": "Strategy and program design",
+      "duration": "Tailored project",
+      "deliverables": "Priorities, theory of change, program design, and metrics",
+      "next": "Impact Measurement or Community Partnerships"
+    },
+    {
+      "id": "esg-advisory",
+      "title": "ESG Advisory",
+      "entity": "impact",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Define priorities, governance, implementation roadmap, and disclosure for the organization’s stage.",
+      "outcome": "A shift from general commitment to manageable decisions and practices.",
+      "problem": "ESG requirements without clarity on priorities, ownership, or data.",
+      "format": "Assessment, advisory, and implementation roadmap",
+      "duration": "Phased",
+      "deliverables": "Gap assessment, priorities, governance, roadmap, and metrics",
+      "next": "ESG Implementation Retainer"
+    },
+    {
+      "id": "impact-measurement",
+      "title": "Social Impact Measurement",
+      "entity": "impact",
+      "audience": "organization",
+      "level": 3,
+      "summary": "Build a theory of change, metrics, data system, and learning cycle connecting resources to outcomes and extended value.",
+      "outcome": "Impact that can be evidenced, improved, and communicated credibly.",
+      "problem": "Activity reports without sufficient evidence of what changed for beneficiaries or society.",
+      "format": "Measurement system design + application",
+      "duration": "Across the program cycle",
+      "deliverables": "Theory of change, metrics framework, data tools, dashboard, and impact report",
+      "next": "Impact Improvement Cycle"
+    },
+    {
+      "id": "community-partnerships",
+      "title": "Community Partnerships",
+      "entity": "impact",
+      "audience": "organization",
+      "level": 2,
+      "summary": "Build community relationships based on need, value, roles, and shared outcomes.",
+      "outcome": "Deeper reach and greater sustainability for initiatives.",
+      "problem": "Short-term community partnerships with unclear roles or value.",
+      "format": "Partnership design + facilitation + governance",
+      "duration": "Project or extended partnership",
+      "deliverables": "Partner map, value model, roles, agreement, and metrics",
+      "next": "Community Development Programme"
+    },
+    {
+      "id": "sponsorship-portfolio-builder",
+      "title": "Sponsorship & Partnership Portfolio Builder",
+      "entity": "connect",
+      "audience": "organization",
+      "level": 1,
+      "summary": "We turn an initiative or project into a compelling sponsorship portfolio that communicates partner value and presents clear, executable participation packages.",
+      "outcome": "A stronger sponsorship portfolio, a clear value proposition, and better-fit partners.",
+      "problem": "A promising initiative whose value is difficult to explain or convert into convincing offers and packages for sponsors and partners.",
+      "format": "Analysis + value proposition design + portfolio and package development",
+      "duration": "Tailored foundation project",
+      "deliverables": "Value proposition, sponsorship portfolio, sponsorship packages, partner prospect map, activation plan, and ROI metrics.",
+      "next": "Strategic Sponsorship Accelerator",
+      "relatedEntities": [
+        "impact",
+        "seera"
+      ]
+    },
+    {
+      "id": "strategic-sponsorship-accelerator",
+      "title": "Strategic Sponsorship Accelerator",
+      "entity": "connect",
+      "audience": "organization",
+      "level": 2,
+      "summary": "An integrated program that moves organizations from searching for sponsors to building long-term strategic partnerships—from opportunity definition through outreach, negotiation, and relationship management.",
+      "outcome": "Scalable strategic partnerships and relationships that create lasting value.",
+      "problem": "Multiple opportunities and relationships without a clear acquisition strategy or a disciplined approach to negotiation, management, and follow-through.",
+      "format": "Strategy + acquisition + negotiation + relationship management",
+      "duration": "Multi-stage applied pathway",
+      "deliverables": "Sponsorship strategy, target partner list, acquisition plan, partner presentation, negotiation framework, and relationship management model.",
+      "next": "Sponsorship & Partnership Management Retainer",
+      "relatedEntities": [
+        "impact",
+        "nexus"
+      ]
+    },
+    {
+      "id": "shared-value-partnership-lab",
+      "title": "Shared-Value Partnership Design Lab",
+      "entity": "connect",
+      "audience": "organization",
+      "level": 2,
+      "summary": "A customized workshop powered by LEGO® Serious Play® to build shared understanding, surface each party’s value, and design a clear, executable partnership model.",
+      "outcome": "A shared partnership vision and a mutual-value model owned by the participants.",
+      "problem": "Parties want to collaborate, but expectations, value, roles, or the delivery model remain unclear.",
+      "format": "Customized Program using LEGO® Serious Play®",
+      "duration": "Customized workshop based on need",
+      "deliverables": "Shared vision, mutual-value map, roles and responsibilities, partnership model, and implementation roadmap.",
+      "next": "Strategic Sponsorship Accelerator",
+      "relatedEntities": [
+        "lego"
+      ]
+    }
+  ],
+  "journeyChallenges": {
+    "individual": [
+      {
+        "id": "leadership-transition",
+        "title": "I am preparing for a new leadership or executive role",
+        "hint": "A transition that requires readiness before day one",
+        "color": "human",
+        "resultTitle": "Conscious Leadership Transition Pathway",
+        "summary": "We connect your internal readiness with the requirements of the new role, then build your presence and first-90-days plan",
+        "path": [
+          {
+            "entity": "group",
+            "title": "Discovery & Assessment",
+            "text": "Understand the role, context, stakeholders, and baseline"
+          },
+          {
+            "entity": "human",
+            "title": "Readiness & Decision",
+            "text": "Transition map, executive coaching, and practice on real challenges"
+          },
+          {
+            "entity": "seera",
+            "title": "Executive Presence",
+            "text": "Messages, identity, and visibility aligned with the new responsibility"
+          },
+          {
+            "entity": "lego",
+            "title": "Collaborative Team Simulation",
+            "text": "A shared session when needed to align expectations and direction"
+          }
+        ],
+        "outputs": [
+          "Readiness report",
+          "Transition map",
+          "Coaching sessions",
+          "Presence strategy",
+          "90-day plan",
+          "Progress metrics"
+        ],
+        "engagement": "Multi-stage development journey",
+        "start": "Readiness assessment + discovery session"
+      },
+      {
+        "id": "executive-presence",
+        "title": "I want stronger executive presence and reputation",
+        "hint": "My experience is greater than the image others receive",
+        "color": "seera",
+        "resultTitle": "Executive Presence & Reputation Pathway",
+        "summary": "We clarify your value, strengthen your presence, and build an executive reputation aligned with your role and goals",
+        "path": [
+          {
+            "entity": "seera",
+            "title": "Identity & Positioning",
+            "text": "Professional story, promise, messages, and differentiation"
+          },
+          {
+            "entity": "seera",
+            "title": "Presence & Visibility",
+            "text": "Executive communication, platforms, and visibility moments"
+          },
+          {
+            "entity": "human",
+            "title": "Leadership Behavior",
+            "text": "Presence grounded in decision, listening, and stakeholder influence"
+          }
+        ],
+        "outputs": [
+          "Positioning statement",
+          "Executive profile",
+          "Core messages",
+          "Presence plan",
+          "Content pillars",
+          "Practice sessions"
+        ],
+        "engagement": "Individual reputation pathway",
+        "start": "Presence and reputation assessment"
+      },
+      {
+        "id": "decision-clarity",
+        "title": "I need greater clarity in decisions and priorities",
+        "hint": "Too many files reduce focus and coherence",
+        "color": "human",
+        "resultTitle": "Decision Clarity & Leadership Effectiveness Pathway",
+        "summary": "We organize complexity, clarify priorities, and build a practical decision and execution rhythm",
+        "path": [
+          {
+            "entity": "group",
+            "title": "Context & Challenge Definition",
+            "text": "Priorities, stakeholders, pressure points, and baseline"
+          },
+          {
+            "entity": "human",
+            "title": "Decision & Leadership Effectiveness",
+            "text": "Decision criteria, thinking space, accountability, and coaching"
+          },
+          {
+            "entity": "nexus",
+            "title": "Translate Decision into a System",
+            "text": "When needed, connect priorities with an operating plan and execution metrics"
+          }
+        ],
+        "outputs": [
+          "Priority map",
+          "Decision framework",
+          "Coaching sessions",
+          "Short execution plan",
+          "Follow-up rhythm"
+        ],
+        "engagement": "Executive advisory and coaching",
+        "start": "Discovery session for the current challenge"
+      },
+      {
+        "id": "career-transition",
+        "title": "I am facing a career transition",
+        "hint": "I need to understand what I bring into the next stage",
+        "color": "human",
+        "resultTitle": "Professional Repositioning Pathway",
+        "summary": "We uncover your assets, capabilities, and value, then reshape direction, identity, and transition plan",
+        "path": [
+          {
+            "entity": "human",
+            "title": "Human Architecture®",
+            "text": "Understand personal assets, patterns, capabilities, and choices"
+          },
+          {
+            "entity": "seera",
+            "title": "Repositioning",
+            "text": "Turn experience into a clear story, message, and professional identity"
+          },
+          {
+            "entity": "human",
+            "title": "Transition Plan",
+            "text": "Decisions, small experiments, and follow-up until the next step is established"
+          }
+        ],
+        "outputs": [
+          "Asset and capability map",
+          "Career hypotheses",
+          "Professional identity and message",
+          "Transition plan",
+          "Follow-up sessions"
+        ],
+        "engagement": "Customized individual journey",
+        "start": "Human Architecture® session"
+      },
+      {
+        "id": "wellbeing",
+        "title": "I want sustainable leadership performance without burnout",
+        "hint": "Success continues while energy declines",
+        "color": "human",
+        "resultTitle": "Leadership Wellbeing & Effectiveness Pathway",
+        "summary": "We redesign the leader’s relationship with energy, boundaries, decisions, and performance without separating wellbeing from work demands",
+        "path": [
+          {
+            "entity": "human",
+            "title": "Leadership Wellbeing Baseline",
+            "text": "Understand sources of depletion, energy, and work patterns"
+          },
+          {
+            "entity": "human",
+            "title": "Design Sustainable Practices",
+            "text": "Boundaries, rhythm, priorities, and healthier leadership conversations"
+          },
+          {
+            "entity": "human",
+            "title": "Embed the Behavior",
+            "text": "Follow-up, accountability, and balance and effectiveness metrics"
+          }
+        ],
+        "outputs": [
+          "Leadership wellbeing assessment",
+          "Energy and boundaries plan",
+          "Weekly practices",
+          "Coaching sessions",
+          "Performance sustainability metrics"
+        ],
+        "engagement": "Program + coaching",
+        "start": "Leadership quality-of-life assessment"
+      },
+      {
+        "id": "ai-business",
+        "title": "I want to understand AI in my work context",
+        "hint": "I do not want scattered tools—I want a clear decision and application",
+        "color": "nexus",
+        "resultTitle": "AI for Leaders Pathway",
+        "summary": "We connect AI awareness with your responsibilities, decisions, and business opportunities, then select a safe, valuable application",
+        "path": [
+          {
+            "entity": "nexus",
+            "title": "Awareness & Readiness",
+            "text": "Understand opportunities, risks, and role-relevant use cases"
+          },
+          {
+            "entity": "nexus",
+            "title": "Design a Personal or Professional Application",
+            "text": "Select a workflow or decision that can be improved"
+          },
+          {
+            "entity": "human",
+            "title": "Responsible Leadership Adoption",
+            "text": "Build habits and controls that support conscious use"
+          }
+        ],
+        "outputs": [
+          "AI opportunity map",
+          "Initial use case",
+          "Decision and risk framework",
+          "Experiment and learning plan",
+          "Selected productivity tools"
+        ],
+        "engagement": "Applied lab or leadership pathway",
+        "start": "Leader AI readiness assessment"
+      },
+      {
+        "id": "complex-team",
+        "title": "I lead a complex challenge with my team",
+        "hint": "There is plenty of discussion, but limited understanding and agreement",
+        "color": "lego",
+        "resultTitle": "Shared Thinking & Decision Lab",
+        "summary": "We make thinking visible, give every voice space, and turn models into a decision and practical commitment",
+        "path": [
+          {
+            "entity": "lego",
+            "title": "Design the Question",
+            "text": "Define the challenge worthy of a shared session"
+          },
+          {
+            "entity": "lego",
+            "title": "Build & Share Models",
+            "text": "Surface assumptions, relationships, and perspectives"
+          },
+          {
+            "entity": "human",
+            "title": "Embed Dialogue & Commitment",
+            "text": "Connect the decision with leadership behavior and follow-up rhythm"
+          }
+        ],
+        "outputs": [
+          "Design question",
+          "Shared models",
+          "Agreed principles and decision",
+          "Action roadmap",
+          "Session documentation"
+        ],
+        "engagement": "Executive facilitation lab",
+        "start": "Challenge design session"
+      },
+      {
+        "id": "long-term-growth",
+        "title": "I want a long-term growth pathway—not a one-off workshop",
+        "hint": "I am looking for a development relationship that grows with me",
+        "color": "group",
+        "resultTitle": "Integrated Individual Growth Partnership",
+        "summary": "We build a multi-level map combining leadership, identity, and business and review it as your role and goals evolve",
+        "path": [
+          {
+            "entity": "group",
+            "title": "Comprehensive Diagnosis",
+            "text": "Leadership, identity, career stage, and future challenges"
+          },
+          {
+            "entity": "human",
+            "title": "Build Readiness & Capability",
+            "text": "Coaching, programs, and role-linked practice"
+          },
+          {
+            "entity": "seera",
+            "title": "Build Identity & Reach",
+            "text": "Presence, reputation, and thought leadership serving the stage"
+          },
+          {
+            "entity": "nexus",
+            "title": "Expand Business & Technology Understanding",
+            "text": "Growth, innovation, and AI support when needed"
+          }
+        ],
+        "outputs": [
+          "Annual growth map",
+          "Periodic assessments",
+          "Coaching sessions",
+          "Selected programs",
+          "Impact and extension reviews"
+        ],
+        "engagement": "Annual development partnership",
+        "start": "Growth-map design session"
+      }
+    ],
+    "organization": [
+      {
+        "id": "leadership-pipeline",
+        "title": "We need a future-ready leadership pipeline",
+        "hint": "Roles are expanding faster than leaders are becoming ready",
+        "color": "human",
+        "resultTitle": "Future Leadership Readiness System",
+        "summary": "We identify critical roles, assess readiness, and build an applied journey linked to business challenges and succession plans",
+        "path": [
+          {
+            "entity": "group",
+            "title": "Leadership Context Diagnosis",
+            "text": "Strategy, critical roles, and success criteria"
+          },
+          {
+            "entity": "human",
+            "title": "Assess & Build Readiness",
+            "text": "Assessments, leadership journeys, and coaching by level"
+          },
+          {
+            "entity": "lego",
+            "title": "Shared Application",
+            "text": "Strategy and culture labs that allow leaders to practice"
+          },
+          {
+            "entity": "impact",
+            "title": "Measure Progress",
+            "text": "Behavior, performance, and transition-readiness metrics"
+          }
+        ],
+        "outputs": [
+          "Competency and readiness framework",
+          "Assessment and baseline",
+          "Level-based journeys",
+          "Direct-manager tools",
+          "Progress and impact dashboard"
+        ],
+        "engagement": "Multi-cohort enterprise program",
+        "start": "Leadership strategy diagnostic workshop"
+      },
+      {
+        "id": "transformation",
+        "title": "We are facing organizational or digital transformation",
+        "hint": "The strategy exists, but execution and adoption are struggling",
+        "color": "nexus",
+        "resultTitle": "Integrated Transformation Pathway",
+        "summary": "We connect strategy with the operating model, leadership readiness, adoption, partnerships, and outcome metrics",
+        "path": [
+          {
+            "entity": "group",
+            "title": "Unified Diagnosis",
+            "text": "Organization, leadership, technology, and stakeholder maturity"
+          },
+          {
+            "entity": "nexus",
+            "title": "Transformation Architecture",
+            "text": "Priorities, operating model, roadmap, and governance"
+          },
+          {
+            "entity": "human",
+            "title": "Leadership Readiness",
+            "text": "Behavior, decisions, communication, and change leadership"
+          },
+          {
+            "entity": "connect",
+            "title": "Partners & Stakeholders",
+            "text": "Build relationships that support execution"
+          },
+          {
+            "entity": "impact",
+            "title": "Measure Outcomes & Sustainability",
+            "text": "Impact dashboard, learning, and continuous improvement"
+          }
+        ],
+        "outputs": [
+          "Maturity report",
+          "Solution architecture",
+          "Execution roadmap",
+          "Readiness program",
+          "Partnership governance",
+          "Impact dashboard",
+          "Knowledge transfer"
+        ],
+        "engagement": "Transformation project or extended partnership",
+        "start": "Transformation discovery session"
+      },
+      {
+        "id": "reputation",
+        "title": "We want a unified leadership identity and reputation",
+        "hint": "Leadership voices do not reflect the organization’s message and direction",
+        "color": "seera",
+        "resultTitle": "Leadership Reputation & Presence System",
+        "summary": "We align messages and build the presence of leaders, spokespeople, and experts in service of trust and organizational goals",
+        "path": [
+          {
+            "entity": "seera",
+            "title": "Reputation & Visibility Assessment",
+            "text": "Messages, audiences, platforms, and gaps"
+          },
+          {
+            "entity": "seera",
+            "title": "Leadership Presence Strategy",
+            "text": "Roles, messages, voice, content, and visibility planning"
+          },
+          {
+            "entity": "human",
+            "title": "Behavior & Communication Readiness",
+            "text": "Training and coaching for leaders in sensitive situations"
+          },
+          {
+            "entity": "connect",
+            "title": "Activate Relationships & Platforms",
+            "text": "Link visibility with meaningful opportunities and partnerships"
+          }
+        ],
+        "outputs": [
+          "Reputation map",
+          "Messaging framework",
+          "Leadership profiles",
+          "Visibility and content calendar",
+          "Media training",
+          "Trust metrics"
+        ],
+        "engagement": "Leadership program + reputation advisory",
+        "start": "Leadership identity and reputation assessment"
+      },
+      {
+        "id": "partnerships",
+        "title": "We need effective sponsorships or partnerships",
+        "hint": "We have an opportunity, but the value proposition and model are unclear",
+        "color": "connect",
+        "resultTitle": "Shared-Value Sponsorship & Partnership Pathway",
+        "summary": "We begin with purpose and shared value, build the proposition and packages, identify the right partner, and establish governance and ROI measurement",
+        "path": [
+          {
+            "entity": "connect",
+            "title": "Partnership Strategy",
+            "text": "Objectives, value, roles, and partner criteria"
+          },
+          {
+            "entity": "connect",
+            "title": "Design & Acquisition",
+            "text": "Value proposition, packages, materials, and outreach plan"
+          },
+          {
+            "entity": "impact",
+            "title": "Measurable Value & Impact",
+            "text": "Connect the partnership with clear commercial or social outcomes"
+          },
+          {
+            "entity": "connect",
+            "title": "Relationship Management & Extension",
+            "text": "Governance, reviews, and post-delivery return"
+          }
+        ],
+        "outputs": [
+          "Partner map",
+          "Value proposition",
+          "Portfolio and packages",
+          "Acquisition plan",
+          "Agreement and governance model",
+          "ROI measurement"
+        ],
+        "engagement": "Partnership design and management project",
+        "start": "Partnership purpose and value session"
+      },
+      {
+        "id": "culture",
+        "title": "We want to build a shared culture or strategy",
+        "hint": "The words exist, but understanding and ownership differ",
+        "color": "lego",
+        "resultTitle": "Shared Culture & Strategy Lab",
+        "summary": "We surface assumptions, build shared language and participant-owned decisions, then connect them with behavior and follow-up systems",
+        "path": [
+          {
+            "entity": "lego",
+            "title": "Design the Question & Experience",
+            "text": "Define the issue, participants, and required outputs"
+          },
+          {
+            "entity": "lego",
+            "title": "Build Shared Meaning",
+            "text": "Models and dialogue reveal current and desired culture"
+          },
+          {
+            "entity": "human",
+            "title": "Translate Meaning into Leadership Behavior",
+            "text": "Practices, role modeling, and team dialogue"
+          },
+          {
+            "entity": "nexus",
+            "title": "Connect Culture with the System",
+            "text": "Processes, incentives, and review cadence that support behavior"
+          }
+        ],
+        "outputs": [
+          "Culture or strategy map",
+          "Principles and behaviors",
+          "Decisions and priorities",
+          "Application roadmap",
+          "Adoption metrics"
+        ],
+        "engagement": "Labs + application pathway",
+        "start": "Cultural challenge design session"
+      },
+      {
+        "id": "social-impact",
+        "title": "We are designing an initiative with measurable impact",
+        "hint": "We want to prove what changed—not only what was delivered",
+        "color": "impact",
+        "resultTitle": "Impact Design & Measurement Pathway",
+        "summary": "We begin with the issue and affected groups, develop a theory of change, then build the program, metrics, data, partnerships, and sustainability",
+        "path": [
+          {
+            "entity": "impact",
+            "title": "Issue & Stakeholder Analysis",
+            "text": "Need, context, assets, and potential partners"
+          },
+          {
+            "entity": "impact",
+            "title": "Theory of Change & Design",
+            "text": "Outcomes, outputs, activities, assumptions, and metrics"
+          },
+          {
+            "entity": "connect",
+            "title": "Community Partnerships",
+            "text": "Identify and build relationships that extend impact"
+          },
+          {
+            "entity": "nexus",
+            "title": "Data & Dashboard",
+            "text": "A collection, analysis, and review system that improves decisions"
+          }
+        ],
+        "outputs": [
+          "Needs analysis",
+          "Theory of change",
+          "Program design",
+          "Metrics and data framework",
+          "Partnership plan",
+          "Impact report"
+        ],
+        "engagement": "Impact project from design through measurement",
+        "start": "Issue and outcome definition workshop"
+      },
+      {
+        "id": "ai-transformation",
+        "title": "We want to use AI responsibly",
+        "hint": "Tools are accelerating, but readiness and governance are incomplete",
+        "color": "nexus",
+        "resultTitle": "AI Readiness & Adoption System",
+        "summary": "We identify valuable use cases and build readiness, governance, capability, and adoption instead of launching fragmented tools",
+        "path": [
+          {
+            "entity": "nexus",
+            "title": "Maturity & Opportunity Assessment",
+            "text": "Data, processes, skills, and risks"
+          },
+          {
+            "entity": "nexus",
+            "title": "Strategy & Use Cases",
+            "text": "Priorities, expected value, experimentation, and scale roadmap"
+          },
+          {
+            "entity": "human",
+            "title": "Leader & Team Readiness",
+            "text": "Responsible decisions, learning, and work-habit change"
+          },
+          {
+            "entity": "impact",
+            "title": "Measure Value",
+            "text": "Productivity, quality, adoption, risk, and business value"
+          }
+        ],
+        "outputs": [
+          "Readiness report",
+          "Use-case portfolio",
+          "Governance framework",
+          "Enablement program",
+          "Prototypes",
+          "Value and adoption dashboard"
+        ],
+        "engagement": "Readiness program or AI transformation project",
+        "start": "Organizational AI readiness assessment"
+      },
+      {
+        "id": "complex",
+        "title": "The challenge is complex and requires more than one discipline",
+        "hint": "We do not want to manage multiple vendors and disconnected tracks",
+        "color": "group",
+        "resultTitle": "SAH Group-Led Solution Architecture",
+        "summary": "We read the challenge through people, organization, relationships, and impact, then define a lead entity, supporting expertise, and one governance model",
+        "path": [
+          {
+            "entity": "group",
+            "title": "Comprehensive Diagnosis",
+            "text": "Problem, parties, dependencies, and baseline"
+          },
+          {
+            "entity": "group",
+            "title": "Solution Architecture & Governance",
+            "text": "Primary owner, entity deliverables, and one execution rhythm"
+          },
+          {
+            "entity": "nexus",
+            "title": "Build the System or Transformation",
+            "text": "Strategy, operations, technology, and growth as needed"
+          },
+          {
+            "entity": "human",
+            "title": "Build Readiness & Adoption",
+            "text": "Leadership, behavior, and capability"
+          },
+          {
+            "entity": "impact",
+            "title": "Embed Outcomes & Extension",
+            "text": "Measure value, learn, and define the next horizon"
+          }
+        ],
+        "outputs": [
+          "Diagnostic report",
+          "Integrated solution architecture",
+          "Execution roadmap",
+          "Unified governance",
+          "Specialist deliverables",
+          "Impact and extension dashboard"
+        ],
+        "engagement": "Multi-entity project",
+        "start": "Executive discovery session"
+      }
+    ]
+  },
+  "methodSteps": [
+    {
+      "id": "see",
+      "number": "01",
+      "title": "Read the Reality",
+      "text": "We read the current reality and context before making recommendations, identify the real challenge, stakeholders, gaps, and opportunities, and establish a baseline for comparison.",
+      "outputs": [
+        "Discovery sessions and interviews",
+        "Readiness or maturity assessment",
+        "Stakeholder map",
+        "Clear problem definition"
+      ],
+      "decision": "Stage decision: agree on the problem worth solving and the right starting point."
+    },
+    {
+      "id": "design",
+      "number": "02",
+      "title": "Design",
+      "text": "We map the client or transformation journey, choose the intervention and its depth, and define the lead entity, supporting expertise, deliverables, and success metrics.",
+      "outputs": [
+        "Solution architecture",
+        "Journey and stage roadmap",
+        "Roles and responsibilities",
+        "Metrics and impact framework"
+      ],
+      "decision": "Stage decision: select the right solution and how its ability to achieve the required outcome will be validated."
+    },
+    {
+      "id": "build",
+      "number": "03",
+      "title": "Build",
+      "text": "We develop the required capabilities, systems, identity, partnerships, or programs and turn the design into usable assets and experiences.",
+      "outputs": [
+        "Programs and learning experiences",
+        "Guides, tools, and templates",
+        "Strategy and execution roadmap",
+        "Prototypes or ready-to-use assets"
+      ],
+      "decision": "Stage decision: confirm that what was designed is ready to be tested and used in the real world."
+    },
+    {
+      "id": "enable",
+      "number": "04",
+      "title": "Enable",
+      "text": "We support application and adoption, accompany leaders and teams, and transfer knowledge and ownership until the solution can continue independently.",
+      "outputs": [
+        "Implementation guidance and follow-up",
+        "Application labs",
+        "Trainer or ambassador enablement",
+        "Governance and review cadence"
+      ],
+      "decision": "Stage decision: confirm that the client uses, owns, and can sustain the solution."
+    },
+    {
+      "id": "prove",
+      "number": "05",
+      "title": "Prove Impact",
+      "text": "We compare results with the baseline, measure adoption, outcomes, and extended value, document what worked and what needs improvement, and define the next horizon.",
+      "outputs": [
+        "Performance dashboard",
+        "Outcomes and impact report",
+        "Documented transformation stories",
+        "Scale or extension recommendation"
+      ],
+      "decision": "Stage decision: verify the value created and decide whether to improve, scale, or extend."
+    }
+  ],
+  "journeyExamples": [
+    {
+      "id": "individual",
+      "title": "A Leader Moving into an Executive Role",
+      "description": "Executive transition requires readiness in decision-making, presence, and behavior—not simply more information.",
+      "badge": "Individual Journey",
+      "steps": [
+        {
+          "entity": "group",
+          "title": "Discovery",
+          "text": "Interview, context, stakeholders, and baseline"
+        },
+        {
+          "entity": "human",
+          "title": "Leadership Readiness",
+          "text": "Readiness map, executive coaching, and role priorities"
+        },
+        {
+          "entity": "seera",
+          "title": "Executive Presence",
+          "text": "Identity, messages, and presence aligned with the new role"
+        },
+        {
+          "entity": "lego",
+          "title": "Shared Simulation",
+          "text": "A simulation or collaborative thinking session with the team when needed"
+        },
+        {
+          "entity": "nexus",
+          "title": "Application",
+          "text": "A 90-day plan, follow-up, and behavioral metrics"
+        },
+        {
+          "entity": "impact",
+          "title": "Extension",
+          "text": "Ongoing coaching or transition to a higher-level challenge"
+        }
+      ],
+      "deliverables": [
+        "Readiness report",
+        "Transition map",
+        "Coaching sessions",
+        "Presence strategy",
+        "90-day plan",
+        "Progress measurement"
+      ]
+    },
+    {
+      "id": "organization",
+      "title": "An Organization Facing an Integrated Transformation",
+      "description": "Complex transformation succeeds when strategy, people, technology, partnerships, and impact move through one coherent pathway.",
+      "badge": "Organization Journey",
+      "steps": [
+        {
+          "entity": "group",
+          "title": "Unified Discovery",
+          "text": "Context, objectives, stakeholders, and baseline"
+        },
+        {
+          "entity": "nexus",
+          "title": "Solution Architecture",
+          "text": "Transformation priorities, operating model, roadmap, and governance"
+        },
+        {
+          "entity": "human",
+          "title": "Leadership & Adoption",
+          "text": "Leadership readiness, communication, behavior, and change capability"
+        },
+        {
+          "entity": "connect",
+          "title": "Partnership Enablement",
+          "text": "Relationships and stakeholders that accelerate execution"
+        },
+        {
+          "entity": "impact",
+          "title": "Impact & Sustainability",
+          "text": "Measurement, learning, and continuous improvement"
+        }
+      ],
+      "deliverables": [
+        "Maturity report",
+        "Integrated solution architecture",
+        "Execution roadmap",
+        "Readiness program",
+        "Unified governance",
+        "Impact dashboard"
+      ]
+    }
+  ],
+  "partners": [
+    {
+      "id": "strategic",
+      "name": "Strategic Partner",
+      "logo": "/logos/strategic-partner.png",
+      "category": "government"
+    },
+    {
+      "id": "elm",
+      "name": "Elm",
+      "logo": "/logos/elm.png",
+      "category": "government"
+    },
+    {
+      "id": "moc",
+      "name": "Ministry of Culture",
+      "logo": "/logos/ministry-of-culture.png",
+      "category": "government"
+    },
+    {
+      "id": "nce",
+      "name": "National Cultural Ecosystem",
+      "logo": "/logos/national-cultural-ecosystem.png",
+      "category": "government"
+    },
+    {
+      "id": "tch",
+      "name": "The Cultural House",
+      "logo": "/logos/the-cultural-house.png",
+      "category": "network"
+    },
+    {
+      "id": "cbs",
+      "name": "Cardiff Business School",
+      "logo": "/logos/cardiff-business-school.png",
+      "category": "academic"
+    },
+    {
+      "id": "cu",
+      "name": "Cardiff University",
+      "logo": "/logos/cardiff-university.png",
+      "category": "academic"
+    },
+    {
+      "id": "mhrsd",
+      "name": "Ministry of Human Resources and Social Development",
+      "logo": "/logos/ministry-of-human-resources-and-social-development.png",
+      "category": "government"
+    },
+    {
+      "id": "lsp",
+      "name": "LEGO® Serious Play® Certified Facilitator",
+      "logo": "/logos/lego-serious-play-certified-facilitator.png",
+      "category": "network"
+    },
+    {
+      "id": "cpd",
+      "name": "Accredited CPD",
+      "logo": "/logos/accredited-cpd.png",
+      "category": "network"
+    },
+    {
+      "id": "teamo",
+      "name": "TEAMO",
+      "logo": "/logos/teamo.png",
+      "category": "network"
+    },
+    {
+      "id": "tvtc",
+      "name": "Technical and Vocational Training Corporation",
+      "logo": "/logos/technical-and-vocational-training-corporation.png",
+      "category": "government"
+    },
+    {
+      "id": "seu",
+      "name": "Saudi Electronic University",
+      "wordmark": "SEU",
+      "category": "academic"
+    },
+    {
+      "id": "sewa",
+      "name": "SEWA Educational Platform",
+      "wordmark": "SEWA",
+      "category": "network"
+    }
+  ],
+  "entityPages": {
+    "human": {
+      "hero": {
+        "eyebrow": "SAH HUMAN",
+        "titleLines": [
+          "We develop the people",
+          "who lead impact"
+        ],
+        "subtitle": "People & Leadership Development",
+        "body": "SAH Human strengthens self-awareness, leadership readiness, and executive capability—so people can lead themselves, inspire their teams, and deliver lasting impact across organizations.",
+        "primaryCta": {
+          "label": "Explore 1:1 Coaching",
+          "href": "/coaches"
+        },
+        "secondaryCta": {
+          "label": "Browse Courses",
+          "href": "/courses"
+        },
+        "proof": [
+          {
+            "value": "1:1",
+            "label": "Coaching"
+          },
+          {
+            "value": "Group",
+            "label": "Cohorts"
+          },
+          {
+            "value": "On-demand",
+            "label": "Courses"
+          }
+        ],
+        "scrollLabel": "Discover",
+        "proofAriaLabel": "SAH Human pathways",
+        "orbitAriaLabel": "SAH Human pathways",
+        "orbitCenterAriaLabel": "SAH Human",
+        "scrollAriaLabel": "Go to the next section"
+      },
+      "promise": {
+        "eyebrow": "The SAH Human Pathway",
+        "titleLines": [
+          "From awareness",
+          "to readiness",
+          "to lasting leadership impact"
+        ],
+        "intro": "We help leaders clarify their role, build readiness for the decisions that matter, and turn growth into consistent behaviour across teams.",
+        "steps": [
+          {
+            "id": "awareness",
+            "title": "Awareness",
+            "highlight": "Clarity about the person and the role",
+            "body": "We surface strengths, blind spots, and role expectations so development starts from a clear, honest baseline."
+          },
+          {
+            "id": "readiness",
+            "title": "Readiness",
+            "highlight": "Capability matched to real decisions",
+            "body": "Through coaching, journeys, and applied practice, leaders build the confidence and skill their context demands."
+          },
+          {
+            "id": "application",
+            "title": "Application",
+            "highlight": "Growth that shows up at work",
+            "body": "Each pathway links learning to role-linked actions, accountability, and measurable behavioural progress."
+          },
+          {
+            "id": "impact",
+            "title": "Impact",
+            "highlight": "Sustainable leadership performance",
+            "body": "Leaders leave with clearer priorities, stronger teams, and performance that holds without burnout."
+          }
+        ],
+        "cta": {
+          "label": "Find your coaching path",
+          "href": "/coaches"
+        }
+      },
+      "offerings": {
+        "eyebrow": "How You Can Work with SAH Human",
+        "title": "Three pathways into leadership growth",
+        "intro": "Choose the format that fits your pace and context—dedicated coaching, peer cohorts, or self-paced courses.",
+        "items": [
+          {
+            "id": "1on1",
+            "href": "/coaches",
+            "title": "1:1 Coaching",
+            "body": "Browse certified coaches and book a session matched to your goals and context."
+          },
+          {
+            "id": "group",
+            "href": "/coaches/group",
+            "title": "Group Coaching",
+            "body": "Register interest in shared growth through curated peer cohorts."
+          },
+          {
+            "id": "courses",
+            "href": "/courses",
+            "title": "Recorded Courses",
+            "body": "Self-paced learning built around real leadership scenarios—lifetime access from your dashboard."
+          }
+        ]
+      },
+      "profile": {
+        "eyebrow": "About SAH Human",
+        "title": "Specialized in people and leadership development",
+        "intro": "Use SAH Human when the challenge concerns leadership readiness, people development, or stronger team performance.",
+        "whenLabel": "When to use SAH Human",
+        "audiencesLabel": "Who We Work With",
+        "servicesLabel": "Services & Solutions",
+        "deliverablesLabel": "What You Receive",
+        "outcomesLabel": "Expected Impact"
+      },
+      "programs": {
+        "eyebrow": "SAH Human Programs",
+        "title": "Programs designed for leadership readiness and lasting capability",
+        "intro": "Explore SAH Human programs by audience and level—each with clear outcomes and practical deliverables."
+      },
+      "journeys": {
+        "eyebrow": "How Growth Unfolds",
+        "title": "Example journeys where SAH Human leads the people pathway"
+      },
+      "faq": {
+        "eyebrow": "Before You Begin",
+        "title": "Common questions about SAH Human",
+        "intro": "Straight answers about coaching, courses, and how to get started with SAH Human.",
+        "items": [
+          {
+            "id": "human-faq-1",
+            "question": "Who is SAH Human for?",
+            "answer": "Chief executives, executive leaders, managers, emerging leaders, founders, and leadership teams who need greater readiness, clearer decisions, and stronger team performance."
+          },
+          {
+            "id": "human-faq-2",
+            "question": "How do I choose between 1:1 coaching, group coaching, and courses?",
+            "answer": "1:1 coaching is best for personalised goals and accountability. Group coaching suits shared growth with peers. Recorded courses fit self-paced learning you can revisit anytime. Start with Discovery if you are unsure."
+          },
+          {
+            "id": "human-faq-3",
+            "question": "Can organizations engage SAH Human for teams?",
+            "answer": "Yes. Many programs and coaching pathways are designed for leadership teams and organizational development, with deliverables tied to role and context."
+          },
+          {
+            "id": "human-faq-4",
+            "question": "How do I get started?",
+            "answer": "Browse coaches to book a session, register interest in group coaching, explore recorded courses, or start a discovery request so the SAH team can recommend the right pathway."
+          }
+        ]
+      },
+      "contactContext": "SAH Human Discovery"
+    },
+    "seera": {
+      "hero": {
+        "eyebrow": "SEERA",
+        "titleLines": [
+          "Turn expertise into",
+          "a trusted leadership voice"
+        ],
+        "subtitle": "Professional Identity & Leadership Reputation",
+        "body": "SEERA builds a clear professional identity, executive presence, and leadership reputation—so expertise becomes visibility, trust, and opportunity.",
+        "primaryCta": {
+          "label": "Explore SEERA Programs",
+          "href": "#programs"
+        },
+        "secondaryCta": {
+          "label": "Start Discovery",
+          "href": "/discovery"
+        },
+        "proof": [
+          {
+            "value": "Identity",
+            "label": "Strategy"
+          },
+          {
+            "value": "Presence",
+            "label": "Executive"
+          },
+          {
+            "value": "Voice",
+            "label": "Thought Leadership"
+          }
+        ],
+        "scrollLabel": "Discover",
+        "proofAriaLabel": "SEERA pathways",
+        "orbitAriaLabel": "SEERA pathways",
+        "orbitCenterAriaLabel": "SEERA",
+        "scrollAriaLabel": "Go to the next section"
+      },
+      "promise": {
+        "eyebrow": "The SEERA Pathway",
+        "titleLines": [
+          "From expertise",
+          "to identity",
+          "to lasting reputation"
+        ],
+        "intro": "We clarify positioning, shape presence, and build a consistent voice that opens higher-quality opportunities.",
+        "steps": [
+          {
+            "id": "position",
+            "title": "Position",
+            "highlight": "A clear professional promise",
+            "body": "We define positioning, core messages, and the value your expertise should be known for."
+          },
+          {
+            "id": "presence",
+            "title": "Presence",
+            "highlight": "Confidence that reads as leadership",
+            "body": "We strengthen executive presence across rooms, media, and digital channels."
+          },
+          {
+            "id": "voice",
+            "title": "Voice",
+            "highlight": "Content and speaking with intent",
+            "body": "We turn expertise into thought leadership, speaking platforms, and a coherent public narrative."
+          },
+          {
+            "id": "reputation",
+            "title": "Reputation",
+            "highlight": "Trust that compounds over time",
+            "body": "We align identity with role and purpose so opportunities match the leader you are becoming."
+          }
+        ],
+        "cta": {
+          "label": "Browse SEERA programs",
+          "href": "#programs"
+        }
+      },
+      "offerings": {
+        "eyebrow": "How You Can Work with SEERA",
+        "title": "Pathways into identity and presence",
+        "intro": "Choose a focused entry point—or start with Discovery and we will recommend the right SEERA pathway.",
+        "items": [
+          {
+            "id": "programs",
+            "href": "#programs",
+            "title": "SEERA Programs",
+            "body": "Explore programs in personal brand, executive presence, and thought leadership."
+          },
+          {
+            "id": "discovery",
+            "href": "/discovery",
+            "title": "Discovery Session",
+            "body": "Tell us your visibility goal and we will design the right identity pathway."
+          },
+          {
+            "id": "contact",
+            "href": "#contact",
+            "title": "Talk to the Team",
+            "body": "Share your context and the SAH team will follow up on SEERA engagements."
+          }
+        ]
+      },
+      "profile": {
+        "eyebrow": "About SEERA",
+        "title": "Specialized in professional identity and leadership reputation",
+        "intro": "Use SEERA when the challenge concerns identity, presence, or reputation.",
+        "whenLabel": "When to use SEERA",
+        "audiencesLabel": "Who We Work With",
+        "servicesLabel": "Services & Solutions",
+        "deliverablesLabel": "What You Receive",
+        "outcomesLabel": "Expected Impact"
+      },
+      "programs": {
+        "eyebrow": "SEERA Programs",
+        "title": "Programs that build presence, voice, and trusted reputation",
+        "intro": "Explore SEERA programs by audience and level—each with clear outcomes and practical deliverables."
+      },
+      "journeys": {
+        "eyebrow": "How Reputation Is Built",
+        "title": "Example journeys where SEERA strengthens identity and presence"
+      },
+      "faq": {
+        "eyebrow": "Before You Begin",
+        "title": "Common questions about SEERA",
+        "intro": "Straight answers about identity, presence, and how to get started with SEERA.",
+        "items": [
+          {
+            "id": "seera-faq-1",
+            "question": "Who is SEERA for?",
+            "answer": "Executive leaders, founders, experts, speakers, decision-makers, and professional influencers who need clearer identity and stronger presence."
+          },
+          {
+            "id": "seera-faq-2",
+            "question": "Is SEERA only personal branding?",
+            "answer": "No. SEERA covers positioning, executive presence, thought leadership, media readiness, content strategy, and professional speaking—aligned to role and purpose."
+          },
+          {
+            "id": "seera-faq-3",
+            "question": "Can organizations engage SEERA for leaders?",
+            "answer": "Yes. SEERA often works with organizations to elevate executive identity and leadership reputation in support of strategic goals."
+          },
+          {
+            "id": "seera-faq-4",
+            "question": "How do I get started?",
+            "answer": "Explore SEERA programs, start a discovery request, or contact the team with your visibility and reputation goals."
+          }
+        ]
+      },
+      "contactContext": "SEERA Discovery"
+    },
+    "nexus": {
+      "hero": {
+        "eyebrow": "SAH NEXUS",
+        "titleLines": [
+          "Move business forward",
+          "with AI and transformation"
+        ],
+        "subtitle": "Business, AI & Digital Transformation",
+        "body": "SAH Nexus connects technology with value and people—helping organizations accelerate growth, improve efficiency, and adopt AI responsibly.",
+        "primaryCta": {
+          "label": "Explore Nexus Programs",
+          "href": "#programs"
+        },
+        "secondaryCta": {
+          "label": "Start Discovery",
+          "href": "/discovery"
+        },
+        "proof": [
+          {
+            "value": "AI",
+            "label": "for Business"
+          },
+          {
+            "value": "Growth",
+            "label": "Strategy"
+          },
+          {
+            "value": "Digital",
+            "label": "Transformation"
+          }
+        ],
+        "scrollLabel": "Discover",
+        "proofAriaLabel": "SAH Nexus pathways",
+        "orbitAriaLabel": "SAH Nexus pathways",
+        "orbitCenterAriaLabel": "SAH Nexus",
+        "scrollAriaLabel": "Go to the next section"
+      },
+      "promise": {
+        "eyebrow": "The SAH Nexus Pathway",
+        "titleLines": [
+          "From maturity",
+          "to roadmap",
+          "to measurable value"
+        ],
+        "intro": "We assess readiness, prioritize use cases, and lead transformation so technology creates durable business outcomes.",
+        "steps": [
+          {
+            "id": "baseline",
+            "title": "Baseline",
+            "highlight": "Clarity on maturity and opportunity",
+            "body": "We assess data, processes, skills, and risks to establish a practical starting point."
+          },
+          {
+            "id": "design",
+            "title": "Design",
+            "highlight": "Strategy tied to value",
+            "body": "We shape business models, growth priorities, and AI use cases worth executing."
+          },
+          {
+            "id": "enable",
+            "title": "Enable",
+            "highlight": "Adoption people can sustain",
+            "body": "We connect technical capability with leadership readiness and operating change."
+          },
+          {
+            "id": "value",
+            "title": "Value",
+            "highlight": "Outcomes you can manage",
+            "body": "We track adoption, efficiency, and business value so transformation continues after launch."
+          }
+        ],
+        "cta": {
+          "label": "Browse Nexus programs",
+          "href": "#programs"
+        }
+      },
+      "offerings": {
+        "eyebrow": "How You Can Work with SAH Nexus",
+        "title": "Pathways into growth and transformation",
+        "intro": "Start with programs, discovery, or a direct conversation about your transformation priority.",
+        "items": [
+          {
+            "id": "programs",
+            "href": "#programs",
+            "title": "Nexus Programs",
+            "body": "Explore AI, growth, service design, and digital transformation programs."
+          },
+          {
+            "id": "discovery",
+            "href": "/discovery",
+            "title": "Discovery Session",
+            "body": "Map your challenge and we will recommend the right Nexus-led pathway."
+          },
+          {
+            "id": "contact",
+            "href": "#contact",
+            "title": "Talk to the Team",
+            "body": "Share your transformation context and the SAH team will follow up."
+          }
+        ]
+      },
+      "profile": {
+        "eyebrow": "About SAH Nexus",
+        "title": "Specialized in business, AI, and digital transformation",
+        "intro": "Use SAH Nexus when the challenge concerns business, growth, artificial intelligence, or digital transformation.",
+        "whenLabel": "When to use SAH Nexus",
+        "audiencesLabel": "Who We Work With",
+        "servicesLabel": "Services & Solutions",
+        "deliverablesLabel": "What You Receive",
+        "outcomesLabel": "Expected Impact"
+      },
+      "programs": {
+        "eyebrow": "SAH Nexus Programs",
+        "title": "Programs that turn technology into growth and capability",
+        "intro": "Explore Nexus programs by audience and level—each with clear outcomes and practical deliverables."
+      },
+      "journeys": {
+        "eyebrow": "How Transformation Unfolds",
+        "title": "Example journeys where SAH Nexus leads business and AI change"
+      },
+      "faq": {
+        "eyebrow": "Before You Begin",
+        "title": "Common questions about SAH Nexus",
+        "intro": "Straight answers about transformation, AI adoption, and how to get started with SAH Nexus.",
+        "items": [
+          {
+            "id": "nexus-faq-1",
+            "question": "Who is SAH Nexus for?",
+            "answer": "Ministries, authorities, large enterprises, startups, transformation teams, and business or real-estate sectors navigating growth and digital change."
+          },
+          {
+            "id": "nexus-faq-2",
+            "question": "Do you implement tools or build readiness?",
+            "answer": "Both—when needed. Nexus focuses on maturity, use cases, governance, adoption, and measurable value rather than fragmented tool launches."
+          },
+          {
+            "id": "nexus-faq-3",
+            "question": "How does Nexus work with other SAH entities?",
+            "answer": "Nexus often leads the technical and business track while SAH Human strengthens leader and team readiness for adoption."
+          },
+          {
+            "id": "nexus-faq-4",
+            "question": "How do I get started?",
+            "answer": "Explore Nexus programs, start Discovery, or contact the team with your growth or AI challenge."
+          }
+        ]
+      },
+      "contactContext": "SAH Nexus Discovery"
+    },
+    "connect": {
+      "hero": {
+        "eyebrow": "SAH SPONSOR",
+        "titleLines": [
+          "Build partnerships",
+          "that create lasting value"
+        ],
+        "subtitle": "Sponsorships & Strategic Partnerships",
+        "body": "SAH Sponsor connects impact with opportunity—designing sponsorship and partnership solutions that strengthen brands, support meaningful initiatives, and create shared value.",
+        "primaryCta": {
+          "label": "Explore Sponsor Programs",
+          "href": "#programs"
+        },
+        "secondaryCta": {
+          "label": "Start Discovery",
+          "href": "/discovery"
+        },
+        "proof": [
+          {
+            "value": "Portfolio",
+            "label": "Design"
+          },
+          {
+            "value": "Partners",
+            "label": "Acquisition"
+          },
+          {
+            "value": "Shared",
+            "label": "Value"
+          }
+        ],
+        "scrollLabel": "Discover",
+        "proofAriaLabel": "SAH Sponsor pathways",
+        "orbitAriaLabel": "SAH Sponsor pathways",
+        "orbitCenterAriaLabel": "SAH Sponsor",
+        "scrollAriaLabel": "Go to the next section"
+      },
+      "promise": {
+        "eyebrow": "The SAH Sponsor Pathway",
+        "titleLines": [
+          "From opportunity",
+          "to partnership",
+          "to measurable shared value"
+        ],
+        "intro": "We clarify value propositions, design packages, and build relationships that sponsors and partners can sustain.",
+        "steps": [
+          {
+            "id": "map",
+            "title": "Map",
+            "highlight": "Who belongs in the portfolio",
+            "body": "We map sponsors, partners, and opportunities against a clear value proposition."
+          },
+          {
+            "id": "design",
+            "title": "Design",
+            "highlight": "Packages partners understand",
+            "body": "We shape portfolios, benefits, and commitments that make participation easy to decide."
+          },
+          {
+            "id": "acquire",
+            "title": "Acquire",
+            "highlight": "Outreach with purpose",
+            "body": "We support acquisition, negotiation, and relationship governance from first conversation onward."
+          },
+          {
+            "id": "measure",
+            "title": "Measure",
+            "highlight": "ROI and impact you can report",
+            "body": "We track shared value so partnerships improve and renew with evidence."
+          }
+        ],
+        "cta": {
+          "label": "Browse Sponsor programs",
+          "href": "#programs"
+        }
+      },
+      "offerings": {
+        "eyebrow": "How You Can Work with SAH Sponsor",
+        "title": "Pathways into sponsorship and partnership",
+        "intro": "Whether you need a portfolio, acquisition support, or a partnership model—start here.",
+        "items": [
+          {
+            "id": "programs",
+            "href": "#programs",
+            "title": "Sponsor Programs",
+            "body": "Explore portfolio builders, accelerators, and partnership design labs."
+          },
+          {
+            "id": "discovery",
+            "href": "/discovery",
+            "title": "Discovery Session",
+            "body": "Describe your sponsorship or partnership goal and we will recommend a path."
+          },
+          {
+            "id": "contact",
+            "href": "#contact",
+            "title": "Talk to the Team",
+            "body": "Share your initiative context and the SAH team will follow up."
+          }
+        ]
+      },
+      "profile": {
+        "eyebrow": "About SAH Sponsor",
+        "title": "Specialized in sponsorships and strategic partnerships",
+        "intro": "Use SAH Sponsor when sponsorship or partnership is central to an initiative’s success or growth.",
+        "whenLabel": "When to use SAH Sponsor",
+        "audiencesLabel": "Who We Work With",
+        "servicesLabel": "Services & Solutions",
+        "deliverablesLabel": "What You Receive",
+        "outcomesLabel": "Expected Impact"
+      },
+      "programs": {
+        "eyebrow": "SAH Sponsor Programs",
+        "title": "Programs that turn opportunities into executable partnerships",
+        "intro": "Explore Sponsor programs by audience and level—each with clear outcomes and practical deliverables."
+      },
+      "journeys": {
+        "eyebrow": "How Partnerships Are Built",
+        "title": "Example journeys where SAH Sponsor leads relationship value"
+      },
+      "faq": {
+        "eyebrow": "Before You Begin",
+        "title": "Common questions about SAH Sponsor",
+        "intro": "Straight answers about sponsorships, partnerships, and how to get started.",
+        "items": [
+          {
+            "id": "sponsor-faq-1",
+            "question": "Who is SAH Sponsor for?",
+            "answer": "Companies, ministries, government entities, private-sector organizations, and initiatives that need sponsors, partners, or a clearer partnership model."
+          },
+          {
+            "id": "sponsor-faq-2",
+            "question": "Do you only find sponsors?",
+            "answer": "No. We also design portfolios, value propositions, relationship governance, and ROI measurement so partnerships last."
+          },
+          {
+            "id": "sponsor-faq-3",
+            "question": "Can Sponsor work with other SAH entities?",
+            "answer": "Yes. Sponsorship often integrates with Impact initiatives, SEERA reputation work, and LEGO® workshops for shared-value design."
+          },
+          {
+            "id": "sponsor-faq-4",
+            "question": "How do I get started?",
+            "answer": "Explore Sponsor programs, start Discovery, or contact the team with your partnership goal."
+          }
+        ]
+      },
+      "contactContext": "SAH Sponsor Discovery"
+    },
+    "lego": {
+      "hero": {
+        "eyebrow": "LEGO® BY SAH",
+        "titleLines": [
+          "Turn ideas into",
+          "clear shared decisions"
+        ],
+        "subtitle": "Experiential Learning",
+        "body": "LEGO® by SAH uses LEGO® Serious Play® to turn ideas into shared insight, conversations into decisions, and challenges into executable plans.",
+        "primaryCta": {
+          "label": "Explore LEGO® Programs",
+          "href": "#programs"
+        },
+        "secondaryCta": {
+          "label": "Start Discovery",
+          "href": "/discovery"
+        },
+        "proof": [
+          {
+            "value": "Serious",
+            "label": "Play®"
+          },
+          {
+            "value": "Shared",
+            "label": "Decisions"
+          },
+          {
+            "value": "Owned",
+            "label": "Action"
+          }
+        ],
+        "scrollLabel": "Discover",
+        "proofAriaLabel": "LEGO® by SAH pathways",
+        "orbitAriaLabel": "LEGO® by SAH pathways",
+        "orbitCenterAriaLabel": "LEGO® by SAH",
+        "scrollAriaLabel": "Go to the next section"
+      },
+      "promise": {
+        "eyebrow": "The LEGO® by SAH Pathway",
+        "titleLines": [
+          "From challenge",
+          "to shared models",
+          "to decisions teams own"
+        ],
+        "intro": "We design the question carefully, facilitate constructive participation, and leave teams with principles and next steps they commit to.",
+        "steps": [
+          {
+            "id": "frame",
+            "title": "Frame",
+            "highlight": "The right question for the room",
+            "body": "We design the challenge so every voice can contribute without losing strategic focus."
+          },
+          {
+            "id": "build",
+            "title": "Build",
+            "highlight": "Insight made visible",
+            "body": "Participants build models that surface patterns, relationships, and unspoken assumptions."
+          },
+          {
+            "id": "decide",
+            "title": "Decide",
+            "highlight": "Agreement that sticks",
+            "body": "We convert dialogue into shared principles, priorities, and decisions the group owns."
+          },
+          {
+            "id": "act",
+            "title": "Act",
+            "highlight": "A roadmap after the workshop",
+            "body": "Teams leave with documentation, next steps, and commitment to execute."
+          }
+        ],
+        "cta": {
+          "label": "Browse LEGO® programs",
+          "href": "#programs"
+        }
+      },
+      "offerings": {
+        "eyebrow": "How You Can Work with LEGO® by SAH",
+        "title": "Pathways into experiential alignment",
+        "intro": "Use workshops and labs when complexity needs shared understanding—not another slide deck.",
+        "items": [
+          {
+            "id": "programs",
+            "href": "#programs",
+            "title": "LEGO® Programs",
+            "body": "Explore Serious Play® labs for strategy, culture, change, and listening."
+          },
+          {
+            "id": "discovery",
+            "href": "/discovery",
+            "title": "Discovery Session",
+            "body": "Describe the decision you need and we will recommend the right lab format."
+          },
+          {
+            "id": "contact",
+            "href": "#contact",
+            "title": "Talk to the Team",
+            "body": "Share your workshop context and the SAH team will follow up."
+          }
+        ]
+      },
+      "profile": {
+        "eyebrow": "About LEGO® by SAH",
+        "title": "Specialized in experiential learning and collaborative decisions",
+        "intro": "Use LEGO® by SAH when a challenge is complex and requires shared understanding and a decision participants own.",
+        "whenLabel": "When to use LEGO® by SAH",
+        "audiencesLabel": "Who We Work With",
+        "servicesLabel": "Services & Solutions",
+        "deliverablesLabel": "What You Receive",
+        "outcomesLabel": "Expected Impact"
+      },
+      "programs": {
+        "eyebrow": "LEGO® by SAH Programs",
+        "title": "Labs that turn complexity into shared, executable clarity",
+        "intro": "Explore LEGO® by SAH programs by audience and level—each with clear outcomes and practical deliverables."
+      },
+      "journeys": {
+        "eyebrow": "How Alignment Happens",
+        "title": "Example journeys where LEGO® by SAH unlocks shared decisions"
+      },
+      "faq": {
+        "eyebrow": "Before You Begin",
+        "title": "Common questions about LEGO® by SAH",
+        "intro": "Straight answers about Serious Play® workshops and how to get started.",
+        "items": [
+          {
+            "id": "lego-faq-1",
+            "question": "Who is LEGO® by SAH for?",
+            "answer": "Executive, strategy, and innovation teams, government entities, academic institutions, and leaders who need shared clarity on complex challenges."
+          },
+          {
+            "id": "lego-faq-2",
+            "question": "Is this a training course or a workshop?",
+            "answer": "Primarily facilitated experiential labs. Participants build, discuss, and decide together—leaving with models, principles, and next steps."
+          },
+          {
+            "id": "lego-faq-3",
+            "question": "Do facilitators need to be certified?",
+            "answer": "Yes. LEGO® by SAH engagements are led with LEGO® Serious Play® certified facilitation standards."
+          },
+          {
+            "id": "lego-faq-4",
+            "question": "How do I get started?",
+            "answer": "Explore programs, start Discovery, or contact the team with the decision or alignment challenge you need to unlock."
+          }
+        ]
+      },
+      "contactContext": "LEGO® by SAH Discovery"
+    },
+    "impact": {
+      "hero": {
+        "eyebrow": "SAH IMPACT",
+        "titleLines": [
+          "Build impact",
+          "that extends into society"
+        ],
+        "subtitle": "Sustainable Impact & Social Responsibility",
+        "body": "SAH Impact designs meaningful community initiatives, builds clear measurement models, and turns responsibility into sustainable impact that can be managed and improved.",
+        "primaryCta": {
+          "label": "Explore Impact Programs",
+          "href": "#programs"
+        },
+        "secondaryCta": {
+          "label": "Start Discovery",
+          "href": "/discovery"
+        },
+        "proof": [
+          {
+            "value": "CSR",
+            "label": "& ESG"
+          },
+          {
+            "value": "Measure",
+            "label": "Impact"
+          },
+          {
+            "value": "Community",
+            "label": "Design"
+          }
+        ],
+        "scrollLabel": "Discover",
+        "proofAriaLabel": "SAH Impact pathways",
+        "orbitAriaLabel": "SAH Impact pathways",
+        "orbitCenterAriaLabel": "SAH Impact",
+        "scrollAriaLabel": "Go to the next section"
+      },
+      "promise": {
+        "eyebrow": "The SAH Impact Pathway",
+        "titleLines": [
+          "From issue",
+          "to theory of change",
+          "to measurable social value"
+        ],
+        "intro": "We analyze needs, design initiatives, and build metrics so responsibility becomes transparent, improvable impact.",
+        "steps": [
+          {
+            "id": "understand",
+            "title": "Understand",
+            "highlight": "The issue and who it serves",
+            "body": "We analyze needs, stakeholders, and the change that would matter most."
+          },
+          {
+            "id": "design",
+            "title": "Design",
+            "highlight": "A model that can be managed",
+            "body": "We build theory of change, program portfolios, and operating clarity."
+          },
+          {
+            "id": "measure",
+            "title": "Measure",
+            "highlight": "Data that improves decisions",
+            "body": "We define metrics, data plans, and learning loops—not vanity reporting."
+          },
+          {
+            "id": "sustain",
+            "title": "Sustain",
+            "highlight": "Partnerships that extend impact",
+            "body": "We strengthen partnerships and roadmaps so initiatives continue beyond a single cycle."
+          }
+        ],
+        "cta": {
+          "label": "Browse Impact programs",
+          "href": "#programs"
+        }
+      },
+      "offerings": {
+        "eyebrow": "How You Can Work with SAH Impact",
+        "title": "Pathways into sustainable social value",
+        "intro": "From CSR design to community initiatives and measurement—choose how you want to begin.",
+        "items": [
+          {
+            "id": "programs",
+            "href": "#programs",
+            "title": "Impact Programs",
+            "body": "Explore CSR, ESG, measurement, and community development programs."
+          },
+          {
+            "id": "discovery",
+            "href": "/discovery",
+            "title": "Discovery Session",
+            "body": "Describe the social outcome you want and we will recommend a pathway."
+          },
+          {
+            "id": "contact",
+            "href": "#contact",
+            "title": "Talk to the Team",
+            "body": "Share your initiative context and the SAH team will follow up."
+          }
+        ]
+      },
+      "profile": {
+        "eyebrow": "About SAH Impact",
+        "title": "Specialized in sustainable impact and social responsibility",
+        "intro": "Use SAH Impact when you need clear social impact, a sustainable program, or a trusted measurement system.",
+        "whenLabel": "When to use SAH Impact",
+        "audiencesLabel": "Who We Work With",
+        "servicesLabel": "Services & Solutions",
+        "deliverablesLabel": "What You Receive",
+        "outcomesLabel": "Expected Impact"
+      },
+      "programs": {
+        "eyebrow": "SAH Impact Programs",
+        "title": "Programs that turn responsibility into measurable impact",
+        "intro": "Explore Impact programs by audience and level—each with clear outcomes and practical deliverables."
+      },
+      "journeys": {
+        "eyebrow": "How Impact Is Built",
+        "title": "Example journeys where SAH Impact leads social value"
+      },
+      "faq": {
+        "eyebrow": "Before You Begin",
+        "title": "Common questions about SAH Impact",
+        "intro": "Straight answers about CSR, measurement, and how to get started with SAH Impact.",
+        "items": [
+          {
+            "id": "impact-faq-1",
+            "question": "Who is SAH Impact for?",
+            "answer": "Nonprofit organizations, grant-makers, companies, government entities, community initiatives, and sustainability teams."
+          },
+          {
+            "id": "impact-faq-2",
+            "question": "Do you only measure impact?",
+            "answer": "No. We also design initiatives, partnerships, and operating models—then build measurement so learning continues."
+          },
+          {
+            "id": "impact-faq-3",
+            "question": "How does Impact work with other SAH entities?",
+            "answer": "Impact often partners with Sponsor on funding relationships and with Nexus or Human when capability and systems are part of the solution."
+          },
+          {
+            "id": "impact-faq-4",
+            "question": "How do I get started?",
+            "answer": "Explore Impact programs, start Discovery, or contact the team with the social outcome you want to achieve."
+          }
+        ]
+      },
+      "contactContext": "SAH Impact Discovery"
+    }
+  },
+  "megaNav": {
+    "servicesEyebrow": "What We Do",
+    "servicesTitle": "Six companies. One pathway.",
+    "servicesBody": "From people and leadership to technology, partnerships, and impact.",
+    "servicesCtaLabel": "Find your path",
+    "servicesCtaHref": "/discovery",
+    "servicesExploreLabel": "Explore",
+    "humanStripLabel": "SAH Human pathways",
+    "humanCoachingLabel": "1:1 Coaching",
+    "humanGroupLabel": "Group Coaching",
+    "humanCoursesLabel": "Recorded Courses",
+    "exploreEyebrow": "Know Us",
+    "exploreTitle": "Explore the SAH journey",
+    "exploreBody": "Jump to how we begin, what we offer, and how to reach us.",
+    "exploreGroups": [
+      {
+        "id": "start",
+        "label": "Start",
+        "itemIds": [
+          "bm-promise",
+          "bm-need",
+          "bm-method",
+          "bm-journeys"
+        ]
+      },
+      {
+        "id": "ecosystem",
+        "label": "Ecosystem",
+        "itemIds": [
+          "bm-entities",
+          "bm-solutions",
+          "bm-programs",
+          "bm-partners",
+          "bm-impact",
+          "bm-initiatives"
+        ]
+      },
+      {
+        "id": "connect",
+        "label": "Connect",
+        "itemIds": [
+          "bm-about",
+          "bm-community",
+          "bm-faq",
+          "bm-contact"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "home": {
+    "title": "مجموعة سعة | من الإنسان إلى الأثر",
+    "description": "مجموعة سعة منظومة متكاملة تضم ست شركات متخصصة، تتكامل خبراتها لفهم الإنسان واحتياجات الأعمال وصناعة أثر مستدام.",
+    "path": "/",
+    "ogTitle": "مجموعة سعة | كل أثر مستدام يبدأ بالإنسان",
+    "ogDescription": "تخصصات متعددة، مسار واحد، وأثر مستدام.",
+    "ogImage": "/og/og-share.png",
+    "absoluteTitle": true
+  },
+  "discovery": {
+    "title": "اكتشف مسارك",
+    "description": "أجب عن بعض الأسئلة وستقوم مجموعة سعة بترشيح المسار المناسب للفرد أو للمنظمة.",
+    "path": "/discovery",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahHuman": {
+    "title": "SAH Human",
+    "description": "بناء الإنسان والقيادة — تدريب فردي وجماعي ودورات مسجلة من سعة هيومن.",
+    "path": "/sah-human",
+    "ogImage": "/og/og-share.png"
+  },
+  "coaches": {
+    "title": "المدربون",
+    "description": "تصفح مدربينا المعتمدين واحجز جلستك الأولى.",
+    "path": "/coaches",
+    "ogImage": "/og/og-share.png"
+  },
+  "coachesGroup": {
+    "title": "التدريب الجماعي",
+    "description": "سجّل اهتمامك بالتدريب الجماعي وسيتواصل معك فريق سعة.",
+    "path": "/coaches/group",
+    "ogImage": "/og/og-share.png"
+  },
+  "courses": {
+    "title": "الدورات المسجلة",
+    "description": "تصفح مكتبة الدورات المسجلة واشتر وصولاً دائماً.",
+    "path": "/courses",
+    "ogImage": "/og/og-share.png"
+  },
+  "communityApply": {
+    "title": "انضم إلى المجتمع",
+    "description": "قدّم طلب انضمام إلى مجتمعات سعة.",
+    "path": "/community/apply",
+    "ogImage": "/og/og-share.png"
+  },
+  "authLogin": {
+    "title": "تسجيل الدخول",
+    "description": "سجّل الدخول إلى حسابك في مجموعة سعة.",
+    "path": "/auth/login",
+    "robots": "noindex"
+  },
+  "authRegister": {
+    "title": "إنشاء حساب",
+    "description": "أنشئ حسابك في مجموعة سعة.",
+    "path": "/auth/register",
+    "robots": "noindex"
+  },
+  "authForgotPassword": {
+    "title": "نسيت كلمة المرور",
+    "description": "أعد تعيين كلمة مرور حسابك.",
+    "path": "/auth/forgot-password",
+    "robots": "noindex"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "description": "لوحة تحكم مجموعة سعة.",
+    "path": "/dashboard",
+    "robots": "noindex"
+  },
+  "dashboardCourses": {
+    "title": "دوراتي",
+    "description": "دوراتك المسجّلة.",
+    "path": "/dashboard/courses",
+    "robots": "noindex"
+  },
+  "dashboardBookings": {
+    "title": "حجوزاتي",
+    "description": "حجوزات التدريب الخاصة بك.",
+    "path": "/dashboard/bookings",
+    "robots": "noindex"
+  },
+  "dashboardProfile": {
+    "title": "ملفي الشخصي",
+    "description": "إدارة ملفك الشخصي.",
+    "path": "/dashboard/profile",
+    "robots": "noindex"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "تعذّر العثور على الصفحة المطلوبة.",
+    "path": "/",
+    "robots": "noindex"
+  },
+  "seera": {
+    "title": "SEERA",
+    "description": "الهوية المهنية والسمعة القيادية — حضور وصوت وظهور موثوق من SEERA.",
+    "path": "/seera",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahNexus": {
+    "title": "SAH Nexus",
+    "description": "الأعمال والذكاء الاصطناعي والتحول الرقمي — استراتيجيات نمو وتبنٍّ مسؤول من سعة نكسس.",
+    "path": "/sah-nexus",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahSponsor": {
+    "title": "SAH Sponsor",
+    "description": "الرعايات والشراكات الاستراتيجية التي تصنع قيمة مشتركة — من سعة سبونسر.",
+    "path": "/sah-sponsor",
+    "ogImage": "/og/og-share.png"
+  },
+  "legoBySah": {
+    "title": "LEGO® by SAH",
+    "description": "تعلّم تجريبي بمنهجية LEGO® Serious Play® — فهم مشترك وقرارات يملكها الفريق.",
+    "path": "/lego-by-sah",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahImpact": {
+    "title": "SAH Impact",
+    "description": "الأثر المستدام والمسؤولية المجتمعية — مبادرات وقياس وقيمة مجتمعية من سعة إمباكت.",
+    "path": "/sah-impact",
+    "ogImage": "/og/og-share.png"
+  }
+}

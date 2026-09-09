@@ -1,0 +1,53 @@
+{
+  "name": "sah-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "seed:coaches": "tsx scripts/seed-coaches-to-sanity.mts",
+    "seed:courses": "tsx scripts/seed-courses-to-sanity.mts",
+    "seed:page-seo": "tsx scripts/seed-page-seo-to-sanity.mts",
+    "seed:marketing": "tsx scripts/seed-marketing-to-sanity.mts",
+    "migrate:translation-metadata": "tsx scripts/migrate-translation-metadata.mts",
+    "validate:marketing": "tsx scripts/validate-marketing-migration.mts"
+  },
+  "dependencies": {
+    "@sanity/document-internationalization": "^6.2.33",
+    "@sanity/image-url": "^2.1.1",
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.112.4",
+    "clsx": "^2.1.1",
+    "motion": "^13.0.0",
+    "next": "^16.2.11",
+    "next-intl": "^4.13.4",
+    "next-sanity": "^13.3.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sanity": "^6.10.1",
+    "sanity-plugin-mux-input": "^5.0.12",
+    "tailwind-merge": "^3.6.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.11",
+    "eslint-config-prettier": "^10.1.8",
+    "postcss": "^8.5.22",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "SAH Group | From People to Impact",
+    "description": "SAH Group is an integrated Saudi ecosystem of six specialized entities that develops people and leadership, transforms business and technology, builds partnerships, and creates sustainable impact."
+  },
+  "nav": {
+    "findYourPath": "Find Your Path",
+    "sahGroup": "SAH Group",
+    "solutions": "Solutions",
+    "programs": "Programs",
+    "initiatives": "Initiatives",
+    "partners": "Partners",
+    "about": "About",
+    "community": "Community",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "startYourJourney": "Start Your Journey",
+    "skipToContent": "Skip to Content",
+    "backToTop": "Back to top",
+    "backToHome": "Back to Home",
+    "primaryNav": "Primary navigation",
+    "mobileNav": "Mobile navigation"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "ar": "العربية",
+    "switchTo": "Switch to {locale}"
+  },
+  "footer": {
+    "logoAlt": "SAH Group",
+    "blurb": "We start with people, build businesses, and create impact.",
+    "startNeed": "Start with Your Need",
+    "forIndividuals": "For Individuals",
+    "forOrganizations": "For Organizations",
+    "clientJourney": "Client Journey",
+    "group": "Group",
+    "entities": "Entities",
+    "programs": "Programs",
+    "contact": "Contact",
+    "emailAddress": "Email Address",
+    "communities": "SAH Communities",
+    "bookDiscovery": "Book a Discovery Session",
+    "copyright": "© 2026 SAH Group. All rights reserved.",
+    "motto": "People First Business Follows"
+  }
+}

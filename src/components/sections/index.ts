@@ -1,0 +1,14 @@
+export { HeroSection } from "@/components/sections/HeroSection";
+export { PromiseSection } from "@/components/sections/PromiseSection";
+export { EntitiesSection } from "@/components/sections/EntitiesSection";
+export { MethodIntroSection } from "@/components/sections/MethodIntroSection";
+export { MethodSection } from "@/components/sections/MethodSection";
+export { ProgramsSection } from "@/components/sections/ProgramsSection";
+export { JourneysSection } from "@/components/sections/JourneysSection";
+export { PartnersSection } from "@/components/sections/PartnersSection";
+export { ImpactSection } from "@/components/sections/ImpactSection";
+export { InitiativesSection } from "@/components/sections/InitiativesSection";
+export { AboutSection } from "@/components/sections/AboutSection";
+export { CommunitySection } from "@/components/sections/CommunitySection";
+export { FaqSection } from "@/components/sections/FaqSection";
+export { ContactSection } from "@/components/sections/ContactSection";

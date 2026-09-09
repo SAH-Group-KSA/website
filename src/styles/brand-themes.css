@@ -1,0 +1,638 @@
+/**
+ * Company brand themes — applied via `html[data-theme="<id>"]`.
+ *
+ * Sheet hex lives on `--brand-*`. Semantic UI (`--deep`, `--gold`, …) derives
+ * from those so you edit the sheet once. Dark-band contrast uses `--on-dark-*`.
+ *
+ * Accent hex for multi-brand UI: `src/lib/brand-themes.ts` (`ENTITY_UI_COLORS`).
+ * Developer guide: `docs/theming.md`. Palette sheets: `COLOR_PALETTE.md`.
+ */
+
+/* ─── Shared: graded hero media (image set per theme via --hero-media-image) ─── */
+html[data-theme="human"] .hero-media,
+html[data-theme="seera"] .hero-media,
+html[data-theme="nexus"] .hero-media,
+html[data-theme="connect"] .hero-media,
+html[data-theme="impact"] .hero-media {
+  background-image:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--deep) 96%, transparent) 0%,
+      color-mix(in srgb, var(--deep) 79%, transparent) 50%,
+      color-mix(in srgb, var(--deep) 45%, transparent) 100%
+    ),
+    var(--hero-media-image);
+}
+
+/*
+ * Shared: dark bands (hero / footer / section-dark) — themes that set
+ * `--on-dark-*` get readable gold/CTAs on deep surfaces.
+ */
+html[data-theme="seera"] .hero,
+html[data-theme="seera"] .entity-home-hero,
+html[data-theme="seera"] .section-dark,
+html[data-theme="seera"] .need-banner,
+html[data-theme="seera"] .site-footer,
+html[data-theme="nexus"] .hero,
+html[data-theme="nexus"] .entity-home-hero,
+html[data-theme="nexus"] .section-dark,
+html[data-theme="nexus"] .need-banner,
+html[data-theme="nexus"] .site-footer,
+html[data-theme="impact"] .hero,
+html[data-theme="impact"] .entity-home-hero,
+html[data-theme="impact"] .section-dark,
+html[data-theme="impact"] .need-banner,
+html[data-theme="impact"] .site-footer {
+  --gold: var(--on-dark-gold);
+  --gold-soft: var(--on-dark-gold-soft);
+  --gold-hover: var(--on-dark-gold-hover);
+  --brand-accent: var(--on-dark-gold);
+}
+
+html[data-theme="seera"] .hero .button-gold,
+html[data-theme="seera"] .entity-home-hero .button-gold,
+html[data-theme="seera"] .section-dark .button-gold,
+html[data-theme="seera"] .need-banner .button-gold,
+html[data-theme="seera"] .site-footer .button-gold,
+html[data-theme="nexus"] .hero .button-gold,
+html[data-theme="nexus"] .entity-home-hero .button-gold,
+html[data-theme="nexus"] .section-dark .button-gold,
+html[data-theme="nexus"] .need-banner .button-gold,
+html[data-theme="nexus"] .site-footer .button-gold,
+html[data-theme="impact"] .hero .button-gold,
+html[data-theme="impact"] .entity-home-hero .button-gold,
+html[data-theme="impact"] .section-dark .button-gold,
+html[data-theme="impact"] .need-banner .button-gold,
+html[data-theme="impact"] .site-footer .button-gold {
+  color: var(--on-dark-cta-fg);
+  background: var(--on-dark-cta-bg);
+}
+
+html[data-theme="seera"] .hero .button-gold:hover,
+html[data-theme="seera"] .entity-home-hero .button-gold:hover,
+html[data-theme="seera"] .section-dark .button-gold:hover,
+html[data-theme="seera"] .need-banner .button-gold:hover,
+html[data-theme="seera"] .site-footer .button-gold:hover,
+html[data-theme="nexus"] .hero .button-gold:hover,
+html[data-theme="nexus"] .entity-home-hero .button-gold:hover,
+html[data-theme="nexus"] .section-dark .button-gold:hover,
+html[data-theme="nexus"] .need-banner .button-gold:hover,
+html[data-theme="nexus"] .site-footer .button-gold:hover,
+html[data-theme="impact"] .hero .button-gold:hover,
+html[data-theme="impact"] .entity-home-hero .button-gold:hover,
+html[data-theme="impact"] .section-dark .button-gold:hover,
+html[data-theme="impact"] .need-banner .button-gold:hover,
+html[data-theme="impact"] .site-footer .button-gold:hover {
+  color: var(--on-dark-cta-fg);
+  background: var(--on-dark-cta-hover-bg);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SAH Human
+   ═══════════════════════════════════════════════════════════ */
+html[data-theme="human"] {
+  --hero-media-image: url("/images/backgrounds/human-hero-media.jpg");
+
+  --white: #ffffff;
+  --brand-primary: #0f6b46; /* Human Green — match ENTITY_UI_COLORS.human */
+  --brand-dark: #0f6b46;
+  --brand-deep: #1e8c5a; /* Deep Green */
+  --brand-medium: var(--brand-deep);
+  --brand-warm: var(--brand-deep);
+  --brand-soft: #e6f3ec; /* Soft Green */
+  --brand-beige: #e5e7eb; /* Neutral Gray */
+  --brand-bg: var(--white);
+  --brand-accent: #c89a31; /* Sah Gold */
+
+  --deep: var(--brand-primary);
+  --deep-2: var(--brand-deep);
+  --deep-3: var(--brand-primary);
+  --cream: var(--white);
+  --cream-2: var(--brand-soft);
+  --gold: var(--brand-accent);
+  --gold-soft: var(--brand-soft);
+  --gold-hover: var(--brand-deep);
+  --ink: var(--brand-primary);
+  --muted: var(--brand-deep);
+  --line: var(--brand-beige);
+  --surface: #f2faf6; /* Light Mint */
+  --footer-bg: var(--brand-primary);
+  --entity-bg: var(--surface);
+  --modal-bg: #fff8f0; /* Warm Ivory */
+  --journey-bg: var(--brand-soft);
+  --success: var(--brand-primary);
+  --warning: var(--brand-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SEERA
+   ═══════════════════════════════════════════════════════════ */
+html[data-theme="seera"] {
+  --hero-media-image: url("/images/backgrounds/seera-hero-media.jpg");
+
+  --white: #faf8fb;
+  --brand-primary: #280a45; /* Primary Purple — match ENTITY_UI_COLORS.seera */
+  --brand-dark: #280a45;
+  --brand-deep: #4b1f75; /* Royal Purple */
+  --brand-medium: var(--brand-deep);
+  --brand-warm: var(--brand-deep);
+  --brand-soft: #e8e3f3; /* Soft Purple */
+  --brand-beige: #d6d1dc; /* Neutral Grey */
+  --brand-bg: #faf8fb; /* Background */
+  --brand-accent: #61308f; /* Accent Purple */
+
+  --deep: var(--brand-primary);
+  --deep-2: var(--brand-deep);
+  --deep-3: var(--brand-primary);
+  --cream: var(--brand-bg);
+  --cream-2: var(--brand-soft);
+  --gold: var(--brand-accent);
+  --gold-soft: var(--brand-soft);
+  --gold-hover: var(--brand-deep);
+  --ink: var(--brand-primary);
+  --muted: var(--brand-deep);
+  --line: var(--brand-beige);
+  --surface: #f1ecf8; /* Light Purple */
+  --footer-bg: var(--brand-primary);
+  --entity-bg: var(--surface);
+  --modal-bg: var(--brand-bg);
+  --journey-bg: var(--brand-soft);
+  --success: var(--brand-deep);
+  --warning: var(--brand-accent);
+
+  /* Accent Purple is too close to Primary on dark bands — Soft Purple for CTAs */
+  --on-dark-gold: var(--brand-soft);
+  --on-dark-gold-soft: var(--brand-bg);
+  --on-dark-gold-hover: #ffffff;
+  --on-dark-cta-fg: var(--brand-primary);
+  --on-dark-cta-bg: var(--brand-soft);
+  --on-dark-cta-hover-bg: var(--brand-bg);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SAH Nexus
+   ═══════════════════════════════════════════════════════════ */
+html[data-theme="nexus"] {
+  --hero-media-image: url("/images/backgrounds/nexus-hero-media.jpg");
+
+  --white: #ffffff;
+  --brand-primary: #0d1b2a; /* Nexus Navy — match ENTITY_UI_COLORS.nexus */
+  --brand-dark: #0d1b2a;
+  --brand-deep: #1e3a5f; /* Deep Blue */
+  --brand-medium: var(--brand-deep);
+  --brand-warm: #41668e; /* Professional Blue */
+  --brand-soft: #c7d4e5; /* Slate Blue */
+  --brand-beige: #e0e6ef; /* Neutral Gray */
+  --brand-bg: var(--white);
+  --brand-accent: #41668e;
+
+  --deep: var(--brand-primary);
+  --deep-2: var(--brand-deep);
+  --deep-3: var(--brand-primary);
+  --cream: var(--white);
+  --cream-2: #eef2f8; /* Light Blue */
+  --gold: var(--brand-accent);
+  --gold-soft: var(--brand-soft);
+  --gold-hover: var(--brand-deep);
+  --ink: var(--brand-primary);
+  --muted: var(--brand-deep);
+  --line: var(--brand-beige);
+  --surface: #f8fafc; /* Off White */
+  --footer-bg: var(--brand-primary);
+  --entity-bg: var(--cream-2);
+  --modal-bg: var(--surface);
+  --journey-bg: var(--brand-soft);
+  --success: var(--brand-deep);
+  --warning: var(--brand-accent);
+
+  /* Professional Blue is too close to Navy on dark bands — Slate Blue for CTAs */
+  --on-dark-gold: var(--brand-soft);
+  --on-dark-gold-soft: var(--cream-2);
+  --on-dark-gold-hover: #ffffff;
+  --on-dark-cta-fg: var(--brand-primary);
+  --on-dark-cta-bg: var(--brand-soft);
+  --on-dark-cta-hover-bg: var(--cream-2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SAH Sponsor (entity id: connect)
+   ═══════════════════════════════════════════════════════════ */
+html[data-theme="connect"] {
+  --hero-media-image: url("/images/backgrounds/connect-hero-media.jpg");
+
+  --white: #ffffff;
+  --brand-primary: #c8c8cc; /* Silver Gray */
+  --brand-dark: #0d0d0f; /* Deep Black */
+  --brand-deep: #2b2f36; /* Dark Slate — match ENTITY_UI_COLORS.connect */
+  --brand-medium: #55585f; /* Charcoal Gray */
+  --brand-warm: #6b7078; /* Medium Gray */
+  --brand-soft: #c8c8cc;
+  --brand-beige: #e6e7ea; /* Light Gray */
+  --brand-bg: var(--white);
+  --brand-accent: #c8a04d; /* Premium Gold */
+
+  /* Dark Slate for chrome; Deep Black for text (Silver is too light for UI text) */
+  --deep: var(--brand-deep);
+  --deep-2: var(--brand-medium);
+  --deep-3: var(--brand-dark);
+  --cream: var(--white);
+  --cream-2: var(--brand-beige);
+  --gold: var(--brand-accent);
+  --gold-soft: var(--brand-soft);
+  --gold-hover: var(--brand-medium);
+  --ink: var(--brand-dark);
+  --muted: var(--brand-warm);
+  --line: var(--brand-beige);
+  --surface: var(--brand-beige);
+  --footer-bg: var(--brand-dark);
+  --entity-bg: var(--brand-beige);
+  --modal-bg: var(--white);
+  --journey-bg: var(--brand-beige);
+  --success: var(--brand-medium);
+  --warning: var(--brand-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEGO by SAH — warm gold / brown / beige (COLOR_PALETTE.md §6)
+   Composition overrides below: gold-led chrome needs extra care.
+   ═══════════════════════════════════════════════════════════ */
+html[data-theme="lego"] {
+  --white: #ffffff;
+  --brand-primary: #d4a017; /* LEGO Gold — match ENTITY_UI_COLORS.lego */
+  --brand-dark: #3a2416; /* Warm Brown */
+  --brand-deep: #3a2416;
+  --brand-medium: #3a2416;
+  --brand-warm: #3a2416;
+  --brand-soft: #f3e9d2; /* Soft Beige */
+  --brand-beige: #e8e3da; /* Neutral Beige */
+  --brand-bg: #fffaf0; /* Warm Ivory */
+  --brand-accent: #f3e9d2; /* Soft Beige CTAs */
+
+  --deep: var(--brand-dark);
+  --deep-2: var(--brand-dark);
+  --deep-3: var(--brand-dark);
+  --cream: var(--brand-bg);
+  --cream-2: #fff7e6; /* Light Cream */
+  --gold: var(--brand-primary); /* Gold for readable links / strong accents */
+  --gold-soft: var(--brand-soft);
+  --gold-hover: var(--brand-dark);
+  --ink: var(--brand-dark);
+  --muted: color-mix(in srgb, var(--brand-dark) 58%, var(--brand-beige));
+  --line: var(--brand-beige);
+  --surface: #f5f5f5; /* Light Gray tinted sections */
+  --footer-bg: var(--brand-primary);
+  --entity-bg: var(--cream-2);
+  --modal-bg: var(--white);
+  --journey-bg: var(--brand-soft);
+  --success: var(--brand-dark);
+  --warning: var(--brand-primary);
+}
+
+/* Warm brown CTAs with white label; gold CTAs on dark bands */
+html[data-theme="lego"] .button-gold {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .button-gold:hover {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .entity-carousel-dot.is-active {
+  background: var(--deep);
+}
+html[data-theme="lego"] .section-dark .button-gold,
+html[data-theme="lego"] .footer .button-gold {
+  color: var(--white);
+  background: var(--brand-primary);
+}
+html[data-theme="lego"] .section-dark .button-gold:hover,
+html[data-theme="lego"] .footer .button-gold:hover {
+  color: var(--white);
+  background: var(--brand-primary);
+}
+
+/*
+ * LEGO dark brown bands: LEGO Gold washes into warm brown / gold media.
+ * Soft Beige keeps proof highlights (e.g. "Serious") legible.
+ */
+html[data-theme="lego"] .hero,
+html[data-theme="lego"] .entity-home-hero,
+html[data-theme="lego"] .section-dark,
+html[data-theme="lego"] .need-banner {
+  --gold: var(--brand-soft);
+  --gold-soft: var(--cream-2);
+  --gold-hover: #ffffff;
+}
+
+/* Footer: golden gradient (same structure as Human, gold-led) */
+html[data-theme="lego"] .site-footer {
+  color: color-mix(in srgb, var(--white) 82%, transparent);
+  background:
+    radial-gradient(ellipse at 12% 0%, color-mix(in srgb, var(--cream-2) 18%, transparent), transparent 42%),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand-primary) 78%, var(--deep)) 0%,
+      var(--brand-primary) 38%,
+      color-mix(in srgb, var(--brand-primary) 72%, var(--deep)) 100%
+    );
+}
+html[data-theme="lego"] .site-footer .footer-subscribe-eyebrow,
+html[data-theme="lego"] .site-footer .footer-subscribe-title,
+html[data-theme="lego"] .site-footer .footer-column-title,
+html[data-theme="lego"] .site-footer .newsletter-success b {
+  color: var(--white);
+}
+html[data-theme="lego"] .site-footer .footer-subscribe-body,
+html[data-theme="lego"] .site-footer .footer-blurb,
+html[data-theme="lego"] .site-footer .footer-meta-location {
+  color: var(--white);
+}
+html[data-theme="lego"] .site-footer .footer-subscribe-hint,
+html[data-theme="lego"] .site-footer .footer-column-list a,
+html[data-theme="lego"] .site-footer .footer-bottom,
+html[data-theme="lego"] .site-footer .footer-motto {
+  color: color-mix(in srgb, var(--white) 82%, transparent);
+}
+html[data-theme="lego"] .site-footer .footer-meta-link,
+html[data-theme="lego"] .site-footer .newsletter-error {
+  color: var(--white);
+}
+html[data-theme="lego"] .site-footer .footer-meta-link:hover,
+html[data-theme="lego"] .site-footer .footer-column-list a:hover {
+  color: var(--gold);
+}
+html[data-theme="lego"] .site-footer .button-gold {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .site-footer .button-gold:hover {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] ::selection {
+  background: var(--brand-primary);
+  color: var(--deep);
+}
+html[data-theme="lego"] .skip-link {
+  background: var(--brand-primary);
+  color: var(--deep);
+}
+html[data-theme="lego"] .journey-step.is-active span {
+  color: var(--deep);
+  background: var(--brand-primary);
+}
+
+/*
+  Smooth section rhythm:
+  ivory → cream → soft gold wash → light gray → gold CTA → white → cream → ivory → brown close
+*/
+html[data-theme="lego"] .entity-home .promise {
+  background: var(--cream-2);
+}
+html[data-theme="lego"] .entity-home .entity-home-offerings-section {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand-primary) 16%, var(--cream-2)) 0%,
+      color-mix(in srgb, var(--brand-primary) 8%, var(--cream)) 100%
+    );
+}
+html[data-theme="lego"] .entity-home .entity-home-profile {
+  background: var(--surface);
+}
+html[data-theme="lego"] .entity-home .need-banner {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brand-primary) 92%, var(--deep)) 0%,
+      var(--brand-primary) 45%,
+      color-mix(in srgb, var(--brand-primary) 72%, var(--cream-2)) 100%
+    );
+}
+html[data-theme="lego"] .entity-home .need-banner-inner {
+  border-color: color-mix(in srgb, var(--white) 22%, transparent);
+  background: color-mix(in srgb, var(--deep) 12%, transparent);
+}
+html[data-theme="lego"] .entity-home .need-banner-eyebrow,
+html[data-theme="lego"] .entity-home .need-banner-title {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .need-banner-sub {
+  color: color-mix(in srgb, var(--white) 78%, transparent);
+}
+html[data-theme="lego"] .entity-home .need-banner-step {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .need-banner-step-n {
+  color: var(--white);
+  border-color: color-mix(in srgb, var(--white) 55%, transparent);
+}
+html[data-theme="lego"] .entity-home .need-banner .button-gold {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .entity-home .need-banner .button-gold:hover {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .entity-home .programs {
+  background: var(--white);
+}
+html[data-theme="lego"] .entity-home .client-journeys {
+  background: var(--cream-2);
+}
+html[data-theme="lego"] .entity-home .cj-header {
+  background: var(--brand-primary);
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .cj-header::before {
+  background: var(--gold-soft);
+}
+html[data-theme="lego"] .entity-home .cj-header-copy,
+html[data-theme="lego"] .entity-home .cj-header-copy .cj-title {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .cj-header-copy .cj-badge {
+  color: var(--white);
+  border-color: color-mix(in srgb, var(--white) 40%, transparent);
+  background: color-mix(in srgb, var(--white) 12%, transparent);
+}
+html[data-theme="lego"] .entity-home .cj-header-copy .cj-desc {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .cj-step {
+  --step-color: var(--brand-primary) !important;
+}
+html[data-theme="lego"] .entity-home .cj-step-node {
+  background: var(--brand-primary);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--brand-primary) 35%, transparent);
+}
+html[data-theme="lego"] .entity-home .cj-step:hover .cj-step-node {
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--brand-primary) 45%, transparent);
+}
+html[data-theme="lego"] .entity-home .cj-step-connector {
+  background: color-mix(in srgb, var(--brand-primary) 55%, var(--line));
+}
+html[data-theme="lego"] .entity-home .cj-step:first-child .cj-step-connector-start,
+html[data-theme="lego"] .entity-home .cj-step:last-child .cj-step-connector-end {
+  background: transparent;
+}
+html[data-theme="lego"] .entity-home .faq {
+  background: var(--cream);
+}
+html[data-theme="lego"] .entity-home .contact {
+  background: var(--brand-primary);
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .contact-copy,
+html[data-theme="lego"] .entity-home .contact-copy .eyebrow,
+html[data-theme="lego"] .entity-home .contact-copy .contact-main-title {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .contact-copy .contact-intro {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home .contact-copy .contact-meta-item {
+  color: var(--white);
+  border-color: color-mix(in srgb, var(--white) 28%, transparent);
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+}
+html[data-theme="lego"] .entity-home .contact-copy .contact-meta-icon {
+  color: inherit;
+}
+html[data-theme="lego"] .entity-home .contact-copy a.contact-meta-item:hover {
+  color: var(--deep);
+}
+html[data-theme="lego"] .entity-home .contact .button-gold {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .entity-home .contact .button-gold:hover {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .entity-home .contact .form-segment input:checked + span {
+  color: var(--white);
+  background: var(--brand-primary);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--brand-primary) 28%, transparent);
+}
+/* Hero: LEGO Gold wash over Serious Play media (brand #D4A017, not brown) */
+html[data-theme="lego"] .hero {
+  color: var(--white);
+  background: var(--brand-primary);
+}
+html[data-theme="lego"] .hero-media {
+  background-image:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--brand-primary) 94%, transparent) 0%,
+      color-mix(in srgb, var(--brand-primary) 72%, transparent) 48%,
+      color-mix(in srgb, var(--brand-primary) 38%, transparent) 100%
+    ),
+    url("/images/backgrounds/lego-hero-media.jpg");
+}
+html[data-theme="lego"] .hero-media::after {
+  background:
+    radial-gradient(circle at 74% 42%, color-mix(in srgb, var(--gold-soft) 22%, transparent), transparent 34%),
+    linear-gradient(180deg, transparent 68%, color-mix(in srgb, var(--brand-primary) 78%, transparent));
+}
+html[data-theme="lego"] .hero .eyebrow,
+html[data-theme="lego"] .hero h1,
+html[data-theme="lego"] .hero-lead {
+  color: var(--white);
+}
+html[data-theme="lego"] .hero h1 span,
+html[data-theme="lego"] #top .hero-copy h1 > span {
+  color: var(--white) !important;
+}
+html[data-theme="lego"] .hero-proof {
+  color: var(--white);
+}
+html[data-theme="lego"] .hero .button-gold {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .hero .button-gold:hover {
+  color: var(--white);
+  background: var(--deep);
+}
+html[data-theme="lego"] .hero .button-ghost {
+  color: var(--white);
+  border-color: color-mix(in srgb, var(--white) 42%, transparent);
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+}
+html[data-theme="lego"] .hero .button-ghost:hover {
+  border-color: var(--white);
+  background: color-mix(in srgb, var(--white) 18%, transparent);
+}
+html[data-theme="lego"] .entity-home-hero-panel-inner {
+  border-color: color-mix(in srgb, var(--white) 28%, transparent);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--brand-primary) 55%, color-mix(in srgb, var(--deep) 50%, transparent)),
+    color-mix(in srgb, var(--deep) 82%, transparent)
+  );
+}
+html[data-theme="lego"] .entity-home-hero-specialty {
+  color: var(--gold-soft);
+}
+html[data-theme="lego"] .entity-home-hero-card-title,
+html[data-theme="lego"] .entity-home-hero-links a {
+  color: var(--white);
+}
+html[data-theme="lego"] .entity-home-hero-tagline {
+  color: color-mix(in srgb, var(--white) 78%, transparent);
+}
+html[data-theme="lego"] .entity-home-hero-links a {
+  border-color: color-mix(in srgb, var(--white) 22%, transparent);
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+}
+html[data-theme="lego"] .entity-home-hero-links a:hover {
+  background: color-mix(in srgb, var(--white) 18%, transparent);
+  border-color: color-mix(in srgb, var(--white) 40%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SAH Impact
+   ═══════════════════════════════════════════════════════════ */
+html[data-theme="impact"] {
+  --hero-media-image: url("/images/backgrounds/impact-hero-media.jpg");
+
+  --white: #ffffff;
+  --brand-primary: #008a5e; /* Impact Green — match ENTITY_UI_COLORS.impact */
+  --brand-dark: #008a5e;
+  --brand-deep: #1dac7a; /* Growth Green */
+  --brand-medium: var(--brand-deep);
+  --brand-warm: var(--brand-deep);
+  --brand-soft: #cfefe3; /* Soft Green */
+  --brand-beige: #e5e7eb; /* Neutral Gray */
+  --brand-bg: var(--white);
+  --brand-accent: #62d196; /* Fresh Green */
+
+  --deep: var(--brand-primary);
+  --deep-2: var(--brand-deep);
+  --deep-3: var(--brand-primary);
+  --cream: var(--white);
+  --cream-2: var(--brand-soft);
+  --gold: var(--brand-accent);
+  --gold-soft: var(--brand-soft);
+  --gold-hover: var(--brand-deep);
+  --ink: var(--brand-primary);
+  --muted: var(--brand-deep);
+  --line: var(--brand-beige);
+  --surface: #e6f7f1; /* Light Mint */
+  --footer-bg: var(--brand-primary);
+  --entity-bg: var(--surface);
+  --modal-bg: #f6faf8; /* Off White */
+  --journey-bg: var(--brand-soft);
+  --success: var(--brand-primary);
+  --warning: var(--brand-accent);
+
+  /* Fresh Green is too close to Impact/Growth on dark bands — Soft Green for CTAs */
+  --on-dark-gold: var(--brand-soft);
+  --on-dark-gold-soft: var(--modal-bg);
+  --on-dark-gold-hover: #ffffff;
+  --on-dark-cta-fg: var(--brand-primary);
+  --on-dark-cta-bg: var(--brand-soft);
+  --on-dark-cta-hover-bg: var(--modal-bg);
+}

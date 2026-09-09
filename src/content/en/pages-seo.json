@@ -1,0 +1,125 @@
+{
+  "home": {
+    "title": "SAH Group | From People to Impact",
+    "description": "SAH Group is an integrated Saudi ecosystem of six specialized entities that develops people and leadership, transforms business and technology, builds partnerships, and creates sustainable impact.",
+    "path": "/",
+    "ogTitle": "SAH Group | From People to Impact",
+    "ogDescription": "Start with your need and let SAH Group design the right pathway for an individual or an organization.",
+    "ogImage": "/og/og-share.png",
+    "absoluteTitle": true
+  },
+  "discovery": {
+    "title": "Discover Your Path",
+    "description": "Answer a few questions and SAH Group will recommend the right pathway for an individual or an organization.",
+    "path": "/discovery",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahHuman": {
+    "title": "SAH Human",
+    "description": "People and leadership development — 1:1 coaching, group coaching, and recorded courses from SAH Human.",
+    "path": "/sah-human",
+    "ogImage": "/og/og-share.png"
+  },
+  "coaches": {
+    "title": "Coaches",
+    "description": "Browse our certified coaches and book your first session.",
+    "path": "/coaches",
+    "ogImage": "/og/og-share.png"
+  },
+  "coachesGroup": {
+    "title": "Group Coaching",
+    "description": "Register your interest in group coaching and the SAH team will contact you.",
+    "path": "/coaches/group",
+    "ogImage": "/og/og-share.png"
+  },
+  "courses": {
+    "title": "Recorded Courses",
+    "description": "Browse our recorded course library and purchase lifetime access.",
+    "path": "/courses",
+    "ogImage": "/og/og-share.png"
+  },
+  "communityApply": {
+    "title": "Join the Community",
+    "description": "Apply to join the SAH Group communities.",
+    "path": "/community/apply",
+    "ogImage": "/og/og-share.png"
+  },
+  "authLogin": {
+    "title": "Sign In",
+    "description": "Sign in to your SAH Group account.",
+    "path": "/auth/login",
+    "robots": "noindex"
+  },
+  "authRegister": {
+    "title": "Create Account",
+    "description": "Create your SAH Group account.",
+    "path": "/auth/register",
+    "robots": "noindex"
+  },
+  "authForgotPassword": {
+    "title": "Forgot Password",
+    "description": "Reset your SAH Group account password.",
+    "path": "/auth/forgot-password",
+    "robots": "noindex"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Your SAH Group dashboard.",
+    "path": "/dashboard",
+    "robots": "noindex"
+  },
+  "dashboardCourses": {
+    "title": "My Courses",
+    "description": "Your enrolled courses.",
+    "path": "/dashboard/courses",
+    "robots": "noindex"
+  },
+  "dashboardBookings": {
+    "title": "My Bookings",
+    "description": "Your coaching bookings.",
+    "path": "/dashboard/bookings",
+    "robots": "noindex"
+  },
+  "dashboardProfile": {
+    "title": "My Profile",
+    "description": "Manage your SAH Group profile.",
+    "path": "/dashboard/profile",
+    "robots": "noindex"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you requested could not be found.",
+    "path": "/",
+    "robots": "noindex"
+  },
+  "seera": {
+    "title": "SEERA",
+    "description": "Professional identity and leadership reputation — presence, voice, and trusted visibility from SEERA.",
+    "path": "/seera",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahNexus": {
+    "title": "SAH Nexus",
+    "description": "Business, AI, and digital transformation — growth strategies and responsible AI adoption from SAH Nexus.",
+    "path": "/sah-nexus",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahSponsor": {
+    "title": "SAH Sponsor",
+    "description": "Sponsorships and strategic partnerships that create shared value — from SAH Sponsor.",
+    "path": "/sah-sponsor",
+    "ogImage": "/og/og-share.png"
+  },
+  "legoBySah": {
+    "title": "LEGO® by SAH",
+    "description": "Experiential learning with LEGO® Serious Play® — shared insight and decisions teams own.",
+    "path": "/lego-by-sah",
+    "ogImage": "/og/og-share.png"
+  },
+  "sahImpact": {
+    "title": "SAH Impact",
+    "description": "Sustainable impact and social responsibility — initiatives, measurement, and community value from SAH Impact.",
+    "path": "/sah-impact",
+    "ogImage": "/og/og-share.png"
+  }
+}

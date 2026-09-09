@@ -1,0 +1,476 @@
+/**
+ * SAH Group — Spacing system
+ * Canonical rhythm for sections, containers, cards, buttons, forms, and grids.
+ * Loads last so it wins over one-off literals in prototype-parity.css.
+ * Do not add arbitrary px margins/paddings elsewhere — use tokens or these rules.
+ */
+
+/* ═══════════════════════════════════════════════════════════
+   1. SECTIONS & CONTAINERS
+   ═══════════════════════════════════════════════════════════ */
+
+.section,
+.ds-section {
+  padding-block: var(--section-pad-y);
+}
+
+/* FAQ previously used a one-off 72/56 — align with section rhythm */
+.faq {
+  padding-block: var(--section-pad-y);
+}
+
+.container,
+.ds-container {
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.section-heading {
+  max-width: var(--section-heading-max);
+}
+
+.section-heading.centered {
+  margin-inline: auto;
+}
+
+.section-heading > .text-link {
+  margin-top: var(--space-6);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2. CARDS — identical internal padding by role
+   ═══════════════════════════════════════════════════════════ */
+
+/* Marketing / interactive cards */
+.question-cluster article,
+.audience-card,
+.recommendation-main,
+.recommendation-side,
+.solution-card,
+.coach-profile-card,
+.coach-section-card {
+  padding: var(--card-pad);
+}
+
+.entity-card {
+  padding: var(--space-8) var(--card-pad) var(--card-pad);
+}
+
+/* Compact horizontal / nested cards (preserve density) */
+.community-card,
+.entity-featured-program,
+.integration-note {
+  padding: var(--space-4) var(--card-pad-sm);
+}
+
+.integration-note {
+  padding: var(--space-6);
+}
+
+/* Compact / list / media-card bodies */
+.program-card-inner {
+  padding: var(--card-pad-sm) var(--card-pad-sm) 0;
+}
+
+.coach-body,
+.course-body {
+  padding: var(--card-pad-sm) var(--card-pad-sm) var(--space-4);
+}
+
+.coach-footer,
+.course-footer {
+  padding: var(--space-4) var(--card-pad-sm);
+}
+
+.stat-card,
+.review-item,
+.enrolled-course-row,
+.booking-row,
+.profile-avatar-row,
+.group-program-option {
+  padding: var(--space-4);
+}
+
+.principles article,
+.vision-mission article,
+.challenge-card,
+.metrics-grid article {
+  padding: var(--card-pad-sm);
+}
+
+.coaches-toolbar,
+.danger-zone {
+  padding: var(--card-pad-sm);
+}
+
+/* Shell / auth / apply cards */
+.auth-card {
+  padding: var(--card-pad-lg) var(--space-8);
+}
+
+.apply-card,
+.group-interest-card {
+  padding: var(--space-8) var(--card-pad-lg);
+}
+
+.contact-form {
+  padding: var(--space-6);
+}
+
+.partners-block {
+  padding: var(--space-8);
+}
+
+.empty-dashboard {
+  padding: var(--space-10) var(--space-6);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3. BUTTONS — already tokenized; reassert
+   ═══════════════════════════════════════════════════════════ */
+
+.button {
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+}
+
+.button-small {
+  padding: var(--btn-pad-y-sm) var(--btn-pad-x-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   4. FORMS — consistent field stack + input padding
+   ═══════════════════════════════════════════════════════════ */
+
+.auth-form,
+.apply-form,
+.newsletter-form {
+  display: grid;
+  gap: var(--form-gap);
+}
+
+.profile-form {
+  gap: var(--form-gap);
+}
+
+.apply-form-row,
+.form-grid {
+  gap: var(--form-gap-sm);
+}
+
+.auth-form input,
+.apply-form input,
+.apply-form select,
+.apply-form textarea,
+.profile-form input,
+.profile-form select,
+.profile-form textarea,
+.ds-input,
+.ds-textarea,
+.ds-select {
+  margin-top: var(--form-label-gap);
+  padding: var(--input-pad-y) var(--input-pad-x);
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-top: var(--form-label-gap);
+  padding: var(--input-contact-pad-y) var(--input-contact-pad-x);
+}
+
+.contact-message {
+  margin-top: var(--space-stack-sm);
+}
+
+.form-segment {
+  gap: var(--space-2);
+  margin-bottom: var(--space-stack-lg);
+}
+
+.form-footer {
+  gap: var(--space-stack);
+  margin-top: var(--space-stack-lg);
+  padding-top: var(--space-stack);
+}
+
+.auth-footer {
+  margin-top: var(--space-5);
+}
+
+.auth-subtitle,
+.auth-logo {
+  margin-bottom: var(--space-7);
+}
+
+.auth-notice {
+  margin: 0 0 var(--space-stack-lg);
+  padding: var(--space-3) var(--space-4);
+}
+
+.auth-error {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   5. GRIDS — standardized gaps + section-content top margin
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-grid {
+  gap: clamp(16px, 2.5vw, var(--grid-gap-xl));
+}
+
+.hero-actions {
+  gap: var(--grid-gap-sm);
+  margin-top: clamp(12px, 2.4svh, var(--space-8));
+}
+
+.hero-proof {
+  gap: var(--space-2);
+  margin-top: clamp(var(--space-6), 4svh, var(--space-10));
+}
+
+.question-cluster,
+.program-grid,
+.dashboard-stats {
+  gap: var(--grid-gap);
+}
+
+.audience-options,
+.entity-grid,
+.coaches-grid,
+.courses-grid {
+  gap: var(--grid-gap-md);
+}
+
+.solution-grid,
+.recommendation {
+  gap: var(--grid-gap-lg);
+}
+
+.challenge-grid,
+.vision-mission,
+.recommendation-path,
+.path-item,
+.principles {
+  gap: var(--grid-gap-sm);
+}
+
+.split-layout,
+.method-layout,
+.about-grid {
+  gap: var(--layout-gap);
+}
+
+.measurement-grid {
+  gap: var(--layout-gap-md);
+}
+
+.partners-block,
+.coach-profile-layout {
+  gap: var(--space-9);
+}
+
+.coaches-toolbar {
+  gap: var(--grid-gap) var(--grid-gap-lg);
+}
+
+.metrics-grid {
+  gap: var(--space-4);
+}
+
+/* Content blocks after section headings */
+.entity-grid,
+.entity-carousel,
+.solution-grid,
+.journey-shell,
+.principles,
+.partners-block,
+.founders-section,
+.coaches-toolbar {
+  margin-top: var(--space-content);
+}
+
+.discovery-intro {
+  margin-bottom: var(--space-content);
+}
+
+.coaches-grid,
+.courses-grid,
+.program-grid {
+  margin-top: var(--space-7);
+}
+
+.founders-section {
+  padding-top: var(--space-9);
+}
+
+.integration-note {
+  margin-top: var(--space-9);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   6. PAGE / DASHBOARD SHELLS
+   ═══════════════════════════════════════════════════════════ */
+
+.page-hero {
+  padding: calc(var(--header-height) + var(--space-10)) 0 var(--space-11); /* was +56 / 64 */
+}
+
+.auth-page {
+  padding: calc(var(--header-height) + var(--space-9)) var(--space-5) var(--space-11);
+}
+
+.minimal-chrome .auth-page {
+  padding-top: var(--space-9);
+}
+
+.dashboard-nav {
+  padding: var(--space-6) var(--space-4) var(--space-4);
+}
+
+.dashboard-content {
+  padding: clamp(var(--space-6), 3.5vw, var(--space-10))
+    clamp(var(--space-5), 3vw, var(--space-9)) var(--space-11);
+}
+
+.dashboard-welcome,
+.dashboard-stats {
+  margin-bottom: var(--space-6);
+}
+
+.dashboard-section {
+  margin-bottom: var(--space-5);
+}
+
+.dashboard-section h3 {
+  margin: 0 0 var(--space-stack-lg);
+}
+
+.danger-zone {
+  margin-top: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   7. RESPONSIVE — keep rhythm, tighten shells only
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 860px) {
+  .faq {
+    padding-block: var(--section-pad-y);
+  }
+
+  .audience-card,
+  .recommendation-main,
+  .recommendation-side {
+    padding: var(--card-pad-sm);
+  }
+
+  .partners-block,
+  .contact-form {
+    padding: var(--card-pad-sm);
+  }
+
+  .dashboard-content {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .auth-card {
+    padding: var(--space-7) var(--space-5);
+  }
+
+  .apply-card,
+  .group-interest-card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .split-layout,
+  .method-layout,
+  .about-grid,
+  .measurement-grid {
+    gap: var(--space-9);
+  }
+}
+
+@media (max-width: 620px) {
+  .entity-card,
+  .solution-card,
+  .coach-profile-card,
+  .coach-section-card {
+    padding: var(--card-pad-sm);
+  }
+
+  .community-card {
+    padding: var(--space-4);
+  }
+
+  .coach-body,
+  .course-body {
+    padding: var(--space-4);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8. UTILITIES — replace inline spacing in product pages
+   ═══════════════════════════════════════════════════════════ */
+
+.dev-notice {
+  margin-bottom: var(--space-6);
+}
+
+.dev-notice-md {
+  max-width: var(--section-heading-max);
+}
+
+.dev-notice-lg {
+  max-width: var(--content-max-lg);
+}
+
+.content-narrow {
+  max-width: var(--section-heading-max);
+  margin-inline: auto;
+}
+
+.content-wide {
+  max-width: var(--content-max-lg);
+  margin-inline: auto;
+  margin-bottom: var(--space-content);
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-gap-sm);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--grid-gap);
+  margin-top: var(--space-5);
+}
+
+.auth-form .button[type="submit"],
+.apply-form .button[type="submit"],
+.profile-form .button[type="submit"] {
+  margin-top: var(--space-2);
+}
+
+/* Coach avatar emoji placeholder — avoid arbitrary TW / inline magic */
+.coach-avatar-placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: color-mix(in srgb, var(--white) 30%, transparent);
+  font-size: 5rem;
+}
+
+.profile-form textarea {
+  min-height: 100px;
+}
+
+.is-disabled-block {
+  opacity: 0.45;
+  pointer-events: none;
+}

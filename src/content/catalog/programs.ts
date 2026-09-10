@@ -7,19 +7,18 @@ import { staticPrograms } from "./programs-static";
 
 /**
  * Program catalog accessors.
- * When FEATURE_CMS=1, reads published programs from Sanity with JSON fallback.
+ * When FEATURE_CMS=1, reads published programs from Sanity only (no JSON fallback).
  */
 
 async function programsFor(locale: Locale): Promise<Program[]> {
-  const fallback = staticPrograms(locale);
-  if (!features.cms) return fallback;
+  if (!features.cms) return staticPrograms(locale);
 
   const docs = await sanityClient.fetch<unknown[]>(
     PROGRAMS_QUERY,
     { locale },
     { next: { tags: ["programs"] } },
   );
-  return mapPrograms(docs ?? [], fallback);
+  return mapPrograms(docs ?? []);
 }
 
 export async function getPrograms(locale: Locale): Promise<Program[]> {

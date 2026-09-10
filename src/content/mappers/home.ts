@@ -110,7 +110,7 @@ function mapCommunitySection(
       ? cmsApply.formDevNotice.trim()
       : "";
 
-  // CMS-only notice: never restore from JSON fallback when Sanity clears/omits it.
+  // CMS-only notice: omit when Sanity clears it (do not restore from base shell).
   const applyPage = {
     ...fallback.applyPage,
     ...(cmsApply ?? {}),
@@ -165,8 +165,8 @@ function mapPartners(
 }
 
 /**
- * Map a CMS home document into `SiteContent`, merged onto JSON fallback.
- * Returns null when the document is missing; callers merge onto JSON fallback.
+ * Map a CMS home document into `SiteContent`, merged onto an empty/base shell.
+ * Returns null when the document is missing; callers keep the base shell.
  */
 export function mapHomeDocument(
   doc: unknown,
@@ -315,19 +315,9 @@ export function mapProgramDocument(doc: unknown): Program | null {
   };
 }
 
-export function mapPrograms(
-  docs: unknown[],
-  fallback: Program[],
-): Program[] {
-  const mapped = docs
+/** Map Sanity program documents only — no static JSON merge. */
+export function mapPrograms(docs: unknown[]): Program[] {
+  return docs
     .map((doc) => mapProgramDocument(doc))
     .filter((program): program is Program => program !== null);
-
-  if (mapped.length === 0) return fallback;
-
-  const byId = new Map(fallback.map((program) => [program.id, program]));
-  for (const program of mapped) {
-    byId.set(program.id, program);
-  }
-  return Array.from(byId.values());
 }

@@ -26,7 +26,8 @@ function pickGlobalSlice(source: Record<string, unknown>): Partial<GlobalSlice> 
 }
 
 /**
- * Merge global chrome from siteSettings (preferred) or legacy homePage fields.
+ * Merge global chrome from siteSettings (preferred) or legacy homePage fields
+ * onto an empty/base shell (no static marketing copy when CMS mode uses emptySiteContent).
  */
 export function mapSiteSettings(
   settingsDoc: unknown,

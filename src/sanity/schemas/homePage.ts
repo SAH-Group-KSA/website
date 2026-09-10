@@ -39,7 +39,7 @@ export const homePage = defineType({
       group: "global",
       initialValue: true,
       description:
-        "When off, homepage/discovery/community sections fall back to static JSON.",
+        "When off, homepage/discovery/community sections are omitted (no static JSON).",
     }),
     defineField({
       name: "meta",

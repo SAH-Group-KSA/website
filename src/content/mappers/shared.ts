@@ -19,7 +19,7 @@ export function resolveImageUrl(
   return url ?? fallback;
 }
 
-/** Deep-merge CMS partials onto JSON fallback (CMS wins when defined). */
+/** Deep-merge CMS partials onto a base shell (CMS wins when defined). */
 export function mergeDefined<T extends object>(
   fallback: T,
   partial: Partial<T> | null | undefined,

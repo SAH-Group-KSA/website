@@ -14,7 +14,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
  */
 export default defineConfig({
   name: "sah",
-  title: "SAH Studio",
+  title: `SAH Studio (${dataset})`,
   projectId,
   dataset,
   basePath: "/studio",

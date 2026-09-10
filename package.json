@@ -16,7 +16,9 @@
     "seed:page-seo": "tsx scripts/seed-page-seo-to-sanity.mts",
     "seed:marketing": "tsx scripts/seed-marketing-to-sanity.mts",
     "migrate:translation-metadata": "tsx scripts/migrate-translation-metadata.mts",
-    "validate:marketing": "tsx scripts/validate-marketing-migration.mts"
+    "validate:marketing": "tsx scripts/validate-marketing-migration.mts",
+    "sync:sanity:staging-to-production": "tsx scripts/sync-sanity-datasets.mts --from staging --to production",
+    "sync:sanity:production-to-staging": "tsx scripts/sync-sanity-datasets.mts --from production --to staging"
   },
   "dependencies": {
     "@sanity/document-internationalization": "^6.2.33",

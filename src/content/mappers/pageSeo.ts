@@ -17,10 +17,7 @@ export type SanityPageSeoDocument = {
   robots?: "index" | "noindex" | null;
 };
 
-export function mapPageSeoDocument(
-  doc: unknown,
-  fallback: PageSeo,
-): PageSeo | null {
+export function mapPageSeoDocument(doc: unknown): PageSeo | null {
   if (!doc || typeof doc !== "object") return null;
   const raw = doc as SanityPageSeoDocument;
   const title = asString(raw.title);
@@ -28,7 +25,7 @@ export function mapPageSeoDocument(
   const path = asString(raw.path);
   if (!title || !description || !path) return null;
 
-  const ogImage = resolveImageUrl(raw.ogImage, fallback.ogImage);
+  const ogImage = resolveImageUrl(raw.ogImage);
 
   return {
     title,
@@ -40,12 +37,10 @@ export function mapPageSeoDocument(
     ogImageAlt:
       typeof raw.ogImage === "object" && raw.ogImage?.alt
         ? asString(raw.ogImage.alt)
-        : fallback.ogImageAlt,
+        : undefined,
     absoluteTitle:
-      typeof raw.absoluteTitle === "boolean"
-        ? raw.absoluteTitle
-        : fallback.absoluteTitle,
-    robots: raw.robots === "noindex" ? "noindex" : fallback.robots,
+      typeof raw.absoluteTitle === "boolean" ? raw.absoluteTitle : undefined,
+    robots: raw.robots === "noindex" ? "noindex" : undefined,
   };
 }
 

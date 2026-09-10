@@ -18,6 +18,7 @@ import {
   catalogPagesAr,
   catalogPagesEn,
 } from "./defaults/catalog-pages";
+import { emptyPageSeo, emptyPagesSeo, emptySiteContent } from "./empty";
 import {
   COMPANY_PAGES_QUERY,
   HOME_PAGE_QUERY,
@@ -105,15 +106,16 @@ async function fetchPrograms(locale: Locale) {
 
 /**
  * Returns the fully-typed site content for a locale.
- * When FEATURE_CMS=1, merges Sanity marketing documents onto static JSON fallback.
+ * When FEATURE_CMS=1, content comes only from Sanity (empty shell if docs missing).
+ * When FEATURE_CMS=0, serves static JSON / catalog defaults.
  * Cached per request so SiteShell + page components share one fetch.
  */
 export const getContent = cache(async function getContent(
   locale: Locale,
 ): Promise<SiteContent> {
-  const fallback = staticContent(locale);
-  if (!features.cms) return fallback;
+  if (!features.cms) return staticContent(locale);
 
+  const base = emptySiteContent(locale);
   const [homeDoc, settingsDoc, companyDocs, programDocs] = await Promise.all([
     fetchHomePage(locale),
     fetchSiteSettings(locale),
@@ -121,35 +123,20 @@ export const getContent = cache(async function getContent(
     fetchPrograms(locale),
   ]);
 
-  const globalChrome = mapSiteSettings(settingsDoc, homeDoc, fallback);
+  const globalChrome = mapSiteSettings(settingsDoc, homeDoc, base);
   const mappedHome =
-    mapHomeDocument(homeDoc, locale, { ...fallback, ...globalChrome }) ??
-    { ...fallback, ...globalChrome };
+    mapHomeDocument(homeDoc, locale, { ...base, ...globalChrome }) ??
+    { ...base, ...globalChrome };
   const entityPages = mapCompanyPagesToEntityPages(
     companyDocs ?? [],
-    fallback.entityPages,
+    base.entityPages,
   );
-  const programs = mapPrograms(programDocs ?? [], fallback.programs);
+  const programs = mapPrograms(programDocs ?? []);
 
   return applyCanonicalEntityColors({
     ...mappedHome,
     ...globalChrome,
-    catalogPages: {
-      ...(fallback.catalogPages ?? catalogPagesEn),
-      ...(mappedHome.catalogPages ?? {}),
-      coaches: {
-        ...(fallback.catalogPages?.coaches ?? catalogPagesEn.coaches),
-        ...(mappedHome.catalogPages?.coaches ?? {}),
-      },
-      coachesGroup: {
-        ...(fallback.catalogPages?.coachesGroup ?? catalogPagesEn.coachesGroup),
-        ...(mappedHome.catalogPages?.coachesGroup ?? {}),
-      },
-      courses: {
-        ...(fallback.catalogPages?.courses ?? catalogPagesEn.courses),
-        ...(mappedHome.catalogPages?.courses ?? {}),
-      },
-    },
+    catalogPages: mappedHome.catalogPages ?? base.catalogPages,
     entityPages,
     programs,
   });
@@ -157,14 +144,15 @@ export const getContent = cache(async function getContent(
 
 /**
  * Per-route SEO strings for the Next.js Metadata API.
- * When FEATURE_CMS=1, reads from Sanity pageSeo documents with JSON fallback.
+ * When FEATURE_CMS=1, reads only from Sanity pageSeo documents (no JSON copy).
  */
 export async function getPageSeo(
   locale: Locale,
   key: PageSeoKey,
 ): Promise<PageSeo> {
-  const fallback = pagesSeo[locale]?.[key] ?? pagesSeo.en[key];
-  if (!features.cms) return fallback;
+  if (!features.cms) {
+    return pagesSeo[locale]?.[key] ?? pagesSeo.en[key];
+  }
 
   const doc = await sanityClient.fetch<unknown | null>(
     PAGE_SEO_QUERY,
@@ -172,13 +160,16 @@ export async function getPageSeo(
     { next: { tags: ["seo"] } },
   );
 
-  return mapPageSeoDocument(doc, fallback) ?? fallback;
+  const mapped = mapPageSeoDocument(doc);
+  if (mapped) return mapped;
+
+  const staticPath = pagesSeo[locale]?.[key]?.path ?? pagesSeo.en[key]?.path ?? "";
+  return emptyPageSeo(staticPath);
 }
 
 /** Bulk SEO fetch for sitemap/validation scripts. */
 export async function getAllPageSeo(locale: Locale): Promise<PagesSeoContent> {
-  const fallback = pagesSeo[locale] ?? pagesSeo.en;
-  if (!features.cms) return fallback;
+  if (!features.cms) return pagesSeo[locale] ?? pagesSeo.en;
 
   const docs = await sanityClient.fetch<unknown[]>(
     PAGE_SEO_ALL_QUERY,
@@ -186,12 +177,12 @@ export async function getAllPageSeo(locale: Locale): Promise<PagesSeoContent> {
     { next: { tags: ["seo"] } },
   );
 
-  const merged = { ...fallback };
+  const merged = emptyPagesSeo();
   for (const doc of docs ?? []) {
     if (!doc || typeof doc !== "object") continue;
     const pageKey = (doc as { pageKey?: string }).pageKey;
     if (!pageKey || !(pageKey in merged)) continue;
-    const mapped = mapPageSeoDocument(doc, merged[pageKey as PageSeoKey]);
+    const mapped = mapPageSeoDocument(doc);
     if (mapped) merged[pageKey as PageSeoKey] = mapped;
   }
   return merged;

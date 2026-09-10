@@ -27,7 +27,7 @@ export const siteSettings = defineType({
       title: "Published",
       type: "boolean",
       initialValue: true,
-      description: "When off, global chrome falls back to static JSON.",
+      description: "When off, global chrome is omitted (no static JSON).",
     }),
     defineField({ name: "meta", title: "Site meta", type: "metaContent" }),
     defineField({

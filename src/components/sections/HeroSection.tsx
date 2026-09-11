@@ -32,7 +32,7 @@ export function HeroSection({ data, entities, motto }: Props) {
             ))}
           </p>
           <h1 id="hero-title">
-            {data.titleLines.map((line, i) => (
+            {data.titleLines?.map((line, i) => (
               <Fragment key={line}>
                 {i > 0 ? <br /> : null}
                 {line}

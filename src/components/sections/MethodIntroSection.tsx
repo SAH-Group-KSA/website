@@ -32,7 +32,7 @@ export function MethodIntroSection({
             </div>
 
             <div className="method-intro-steps" aria-hidden="true">
-              {data.titleLines.map((line, index) => (
+              {data.titleLines?.map((line, index) => (
                 <span key={line} className="method-intro-step">
                   <span className="method-intro-step-number">
                     {String(index + 1).padStart(2, "0")}

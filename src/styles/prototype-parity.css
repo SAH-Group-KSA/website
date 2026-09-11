@@ -8196,6 +8196,10 @@ a.contact-meta-item:hover {
   display: block;
   color: var(--white) !important;
   margin-top: 0.28em;
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0;
+  line-height: var(--lh-snug);
 }
 
 #top .hero-copy .eyebrow {

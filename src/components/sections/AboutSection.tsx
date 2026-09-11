@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { SiteContent } from "@/content/types";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -30,7 +31,12 @@ export function AboutSection({ data }: { data: SiteContent["about"] }) {
           <div className="about-identity">
             <p className="eyebrow">{data.eyebrow}</p>
             <h2 id="about-title" className="about-main-title">
-              {data.titleLines.join(" · ")}
+              {data.titleLines.map((line, i) => (
+                <Fragment key={line}>
+                  {i > 0 ? <br /> : null}
+                  {line}
+                </Fragment>
+              ))}
             </h2>
             <p className="about-intro">{data.intro}</p>
             <div className="about-vm-row">

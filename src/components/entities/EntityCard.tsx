@@ -56,7 +56,9 @@ export function EntityCard({
 
       <span className="entity-card-tag">{entity.specialty}</span>
 
-      <span className="entity-card-desc">{entity.cardText}</span>
+      {entity.cardText?.trim() ? (
+        <span className="entity-card-desc">{entity.cardText}</span>
+      ) : null}
 
       <div className="entity-card-footer">
         <span className="entity-card-cta" aria-hidden="true">

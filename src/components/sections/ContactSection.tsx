@@ -98,7 +98,7 @@ export function ContactSection({ data }: Props) {
           <div className="contact-copy reveal">
             <p className="eyebrow eyebrow-light">{data.eyebrow}</p>
             <h2 id="contact-title" className="contact-main-title">
-              {data.titleLines.map((line, i) => (
+              {data.titleLines?.map((line, i) => (
                 <span key={line}>
                   {i > 0 ? <br /> : null}
                   {line}

@@ -31,7 +31,7 @@ export function AboutSection({ data }: { data: SiteContent["about"] }) {
           <div className="about-identity">
             <p className="eyebrow">{data.eyebrow}</p>
             <h2 id="about-title" className="about-main-title">
-              {data.titleLines.map((line, i) => (
+              {data.titleLines?.map((line, i) => (
                 <Fragment key={line}>
                   {i > 0 ? <br /> : null}
                   {line}

@@ -315,6 +315,14 @@ h4 {
   line-height: clamp(1.45, 0.35svh + 1.35, var(--lh-hero-lead)) !important;
 }
 
+/* Company / page hero subtitle — secondary to H1, above hero-lead */
+#top .hero-copy h1 > span {
+  font-size: var(--fs-xl) !important;
+  font-weight: var(--fw-semibold) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--lh-snug) !important;
+}
+
 .eyebrow {
   font-family: var(--font-sans) !important;
   font-size: var(--fs-eyebrow) !important;

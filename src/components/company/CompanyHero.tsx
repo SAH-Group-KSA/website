@@ -39,7 +39,7 @@ export function CompanyHero({ data, entity, offerings }: Props) {
           ) : null}
           <p className="eyebrow eyebrow-light">{data.eyebrow}</p>
           <h1 id={titleId}>
-            {data.titleLines.map((line, i) => (
+            {data.titleLines?.map((line, i) => (
               <Fragment key={line}>
                 {i > 0 ? <br /> : null}
                 {line}

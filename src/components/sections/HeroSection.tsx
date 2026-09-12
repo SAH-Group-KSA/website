@@ -49,13 +49,6 @@ export function HeroSection({ data, entities, motto }: Props) {
               {data.secondaryCta.label}
             </Button>
           </div>
-          <div role="group" aria-label={data.proofAriaLabel} className="hero-proof">
-            {data.proof.map((item) => (
-              <span key={item.label}>
-                <strong>{item.value}</strong> {item.label}
-              </span>
-            ))}
-          </div>
         </div>
 
         <HeroOrbit
@@ -63,6 +56,18 @@ export function HeroSection({ data, entities, motto }: Props) {
           orbitAriaLabel={data.orbitAriaLabel}
           orbitCenterAriaLabel={data.orbitCenterAriaLabel}
         />
+
+        <div
+          role="group"
+          aria-label={data.proofAriaLabel}
+          className="hero-proof hero-proof--below-orbit reveal is-visible"
+        >
+          {data.proof.map((item) => (
+            <span key={item.label}>
+              <strong>{item.value}</strong> {item.label}
+            </span>
+          ))}
+        </div>
       </Container>
       <VisuallyHidden>{motto}</VisuallyHidden>
     </section>

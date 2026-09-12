@@ -2219,6 +2219,12 @@ html[dir="rtl"] .nav-dropdown-panel {
   color: var(--white);
 }
 
+/* Sibling of copy + orbit in the hero grid (not nested in .hero-copy) */
+.hero-proof--below-orbit {
+  grid-column: 1;
+  margin-top: clamp(var(--space-4), 2.5svh, var(--space-8));
+}
+
 .hero-proof span {
   display: inline-flex;
   align-items: center;
@@ -7092,18 +7098,19 @@ a.contact-meta-item:hover {
   .hero {
     --hero-pad-top: calc(var(--header-height) + 8px);
     --hero-pad-bottom: 42px;
+    padding-top: var(--hero-pad-top);
+    padding-bottom: var(--hero-pad-bottom);
+  }
+  /* Company heroes stay viewport-locked; group homepage grows with orbit */
+  .hero.entity-home-hero {
     height: 100svh;
     min-height: 100svh;
     max-height: 100svh;
-    padding-top: var(--hero-pad-top);
-    padding-bottom: var(--hero-pad-bottom);
   }
   .hero-grid {
     grid-template-columns: 1fr;
     gap: clamp(8px, 1.5svh, 16px);
-    max-height: calc(100svh - var(--hero-pad-top) - var(--hero-pad-bottom));
-    align-content: center;
-    /* Let orbit badges paint; hero still clips the section chrome */
+    align-content: start;
     overflow: visible;
   }
   .hero-copy {
@@ -7114,9 +7121,39 @@ a.contact-meta-item:hover {
   .hero-proof {
     justify-content: center;
   }
-  /* Orbit clips on small stacked layouts — hide until desktop/tablet side-by-side */
+  /*
+   * Stacked hero: keep the orbit visible under the copy.
+   * Use explicit px/vw sizes (not cqmin) — size containment can collapse
+   * cq units to 0 when height only comes from aspect-ratio.
+   */
+  .hero:not(.entity-home-hero) {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    overflow: visible;
+  }
+  .hero:not(.entity-home-hero) .hero-grid {
+    max-height: none;
+  }
   .group-orbit {
-    display: none;
+    --orbit-size: min(360px, 90vw);
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    width: var(--orbit-size);
+    height: var(--orbit-size);
+    max-width: 100%;
+    aspect-ratio: auto;
+    container-type: normal;
+    --orbit-r: calc(var(--orbit-size) * 0.36);
+    --orbit-hub: calc(var(--orbit-size) * 0.34);
+    --orbit-node: calc(var(--orbit-size) * 0.2);
+    margin-inline: auto;
+    margin-block: clamp(12px, 2svh, 20px) 0;
+    flex-shrink: 0;
+  }
+  .hero-proof--below-orbit {
+    margin-top: clamp(var(--space-4), 2svh, var(--space-6));
   }
   .split-layout,
   .method-layout,

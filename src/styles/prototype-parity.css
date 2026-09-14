@@ -1593,19 +1593,19 @@ html[dir="rtl"] .nav-dropdown-panel {
 }
 
 @media (max-width: 980px) {
-  /* Stacked brand panel — keep content-first order. */
+  /* Stacked: copy first, brand panel below (DOM order). */
   .entity-home-hero .hero-grid {
     grid-template-columns: 1fr;
     align-content: start;
-  }
-  .entity-home-hero-panel {
-    order: -1;
   }
   .entity-home-hero-panel-inner {
     width: 100%;
   }
 }
 @media (max-width: 860px) {
+  .entity-home-hero .hero-copy {
+    margin-top: var(--space-4);
+  }
   .entity-home-offerings,
   .entity-home-profile-grid {
     grid-template-columns: 1fr;
@@ -4974,7 +4974,7 @@ html[dir="ltr"] .method-controls button[aria-selected="true"] {
   display: block;
   color: var(--gold);
   font-family: var(--font-sans);
-  font-size: clamp(1.9rem, min(3.2vw, 4.4svh), 2.4rem);
+  font-size: var(--fs-stat);
   line-height: 1.1;
 }
 
@@ -7109,22 +7109,27 @@ a.contact-meta-item:hover {
   .about {
     padding-top: 36px;
   }
+  /*
+   * Stacked heroes: grow with copy + panel/orbit (no max-height lock).
+   * Use overflow: clip (not visible) so scaled .hero-media / orbit AABB
+   * can't force horizontal page scroll on narrow viewports.
+   * Explicit px/vw orbit sizes — cqmin collapses when height is aspect-ratio only.
+   */
   .hero {
     --hero-pad-top: calc(var(--header-height) + 8px);
     --hero-pad-bottom: 42px;
     padding-top: var(--hero-pad-top);
     padding-bottom: var(--hero-pad-bottom);
-  }
-  /* Company heroes stay viewport-locked; group homepage grows with orbit */
-  .hero.entity-home-hero {
-    height: 100svh;
+    height: auto;
     min-height: 100svh;
-    max-height: 100svh;
+    max-height: none;
+    overflow: clip;
   }
   .hero-grid {
     grid-template-columns: 1fr;
     gap: clamp(8px, 1.5svh, 16px);
     align-content: start;
+    max-height: none;
     overflow: visible;
   }
   .hero-copy {
@@ -7134,21 +7139,6 @@ a.contact-meta-item:hover {
   .hero-actions,
   .hero-proof {
     justify-content: center;
-  }
-  /*
-   * Stacked hero: grow with copy + orbit (no max-height lock).
-   * Use overflow: clip (not visible) so the rotating orbit's AABB
-   * can't force horizontal page scroll on narrow viewports.
-   * Explicit px/vw orbit sizes — cqmin collapses when height is aspect-ratio only.
-   */
-  .hero:not(.entity-home-hero) {
-    height: auto;
-    min-height: 100svh;
-    max-height: none;
-    overflow: clip;
-  }
-  .hero:not(.entity-home-hero) .hero-grid {
-    max-height: none;
   }
   .group-orbit {
     --orbit-size: min(360px, 84vw);
@@ -7717,7 +7707,7 @@ a.contact-meta-item:hover {
   display: block;
   color: var(--white);
   font-family: var(--font-sans);
-  font-size: 2.4rem;
+  font-size: var(--fs-stat);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -9147,7 +9137,7 @@ html[data-theme="lego"] .page-hero-media {
   place-items: center;
   height: 100%;
   color: color-mix(in srgb, var(--white) 22%, transparent);
-  font-size: 4rem;
+  font-size: clamp(2.4rem, 8vw, 4rem);
 }
 .coach-body {
   flex: 1;
@@ -9400,7 +9390,7 @@ html[data-theme="lego"] .page-hero-media {
   place-items: center;
   height: 100%;
   color: color-mix(in srgb, var(--white) 18%, transparent);
-  font-size: 3rem;
+  font-size: clamp(2rem, 7vw, 3rem);
 }
 .course-badge {
   position: absolute;
@@ -11280,7 +11270,7 @@ button.dashboard-nav-item-btn {
   display: block;
   color: var(--deep);
   font-family: var(--font-sans);
-  font-size: 2rem;
+  font-size: clamp(1.45rem, min(2.8vw, 3.6svh), 2rem);
   line-height: 1;
 }
 .stat-card-label {
@@ -11930,7 +11920,7 @@ button.dashboard-nav-item-btn {
   padding: var(--space-10) var(--space-6);
 }
 .apply-success-icon {
-  font-size: 3rem;
+  font-size: clamp(2rem, 7vw, 3rem);
   margin-bottom: var(--space-4);
 }
 .apply-success h3 {

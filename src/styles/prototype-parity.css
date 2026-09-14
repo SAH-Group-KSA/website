@@ -13,11 +13,15 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 18px);
+  /* Clip transformed descendants (e.g. rotating orbit) so they can't widen the page */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  max-width: 100%;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--cream);
   font-family: var(--font-sans);
@@ -2298,6 +2302,7 @@ html[dir="rtl"] .nav-dropdown-panel {
   aspect-ratio: 1;
   margin-inline: auto;
   container-type: size;
+  /* Visible so ripples/hover scale aren't clipped; hero/html clip page overflow */
   overflow: visible;
 }
 
@@ -3473,7 +3478,7 @@ html[dir="rtl"] .nav-dropdown-panel {
 .entity-carousel {
   position: relative;
   margin-top: var(--space-content);
-  overflow: visible;
+  overflow: clip;
   padding-inline: 4px;
 }
 
@@ -7131,21 +7136,22 @@ a.contact-meta-item:hover {
     justify-content: center;
   }
   /*
-   * Stacked hero: keep the orbit visible under the copy.
-   * Use explicit px/vw sizes (not cqmin) — size containment can collapse
-   * cq units to 0 when height only comes from aspect-ratio.
+   * Stacked hero: grow with copy + orbit (no max-height lock).
+   * Use overflow: clip (not visible) so the rotating orbit's AABB
+   * can't force horizontal page scroll on narrow viewports.
+   * Explicit px/vw orbit sizes — cqmin collapses when height is aspect-ratio only.
    */
   .hero:not(.entity-home-hero) {
     height: auto;
     min-height: 100svh;
     max-height: none;
-    overflow: visible;
+    overflow: clip;
   }
   .hero:not(.entity-home-hero) .hero-grid {
     max-height: none;
   }
   .group-orbit {
-    --orbit-size: min(360px, 90vw);
+    --orbit-size: min(360px, 84vw);
     display: block;
     visibility: visible;
     opacity: 1;

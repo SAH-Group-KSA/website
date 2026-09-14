@@ -115,7 +115,11 @@ export const getContent = cache(async function getContent(
 ): Promise<SiteContent> {
   if (!features.cms) return staticContent(locale);
 
+  const staticBase = staticContent(locale);
   const base = emptySiteContent(locale);
+  // Chrome UI labels fall back to static JSON when Sanity omits newer fields
+  // (emptySiteContent blanks every string, which hid labels like editProfile).
+  const chromeBase: SiteContent = { ...base, ui: staticBase.ui };
   const [homeDoc, settingsDoc, companyDocs, programDocs] = await Promise.all([
     fetchHomePage(locale),
     fetchSiteSettings(locale),
@@ -123,7 +127,7 @@ export const getContent = cache(async function getContent(
     fetchPrograms(locale),
   ]);
 
-  const globalChrome = mapSiteSettings(settingsDoc, homeDoc, base);
+  const globalChrome = mapSiteSettings(settingsDoc, homeDoc, chromeBase);
   const mappedHome =
     mapHomeDocument(homeDoc, locale, { ...base, ...globalChrome }) ??
     { ...base, ...globalChrome };

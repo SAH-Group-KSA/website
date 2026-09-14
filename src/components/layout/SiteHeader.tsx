@@ -633,7 +633,9 @@ export function SiteHeader({
               <HeaderUserMenu
                 displayName={user?.displayName ?? ""}
                 email={user?.email ?? ""}
-                dashboardLabel={ui.editProfile}
+                dashboardLabel={
+                  ui.editProfile || ui.myProfile || ui.dashboard
+                }
                 signOutLabel={ui.signOut}
                 inverted={!scrolled}
                 onSignOut={() => void handleSignOut()}
@@ -800,7 +802,9 @@ export function SiteHeader({
               <HeaderUserMenu
                 displayName={user?.displayName ?? ""}
                 email={user?.email ?? ""}
-                dashboardLabel={ui.editProfile}
+                dashboardLabel={
+                  ui.editProfile || ui.myProfile || ui.dashboard
+                }
                 signOutLabel={ui.signOut}
                 variant="mobile"
                 onSignOut={() => void handleSignOut()}

@@ -1,4 +1,4 @@
-import type { Entity, SiteContent } from "@/content/types";
+import type { Entity, SiteContent, UiContent } from "@/content/types";
 import { mergeDefined } from "@/content/mappers/shared";
 import { mapEntities } from "@/content/mappers/home";
 
@@ -20,6 +20,27 @@ function pickGlobalSlice(source: Record<string, unknown>): Partial<GlobalSlice> 
   for (const key of GLOBAL_KEYS) {
     if (source[key] !== undefined) {
       (out as Record<string, unknown>)[key] = source[key];
+    }
+  }
+  return out;
+}
+
+/**
+ * Merge CMS UI chrome onto fallback labels.
+ * Skip blank strings so missing/unfilled Sanity fields keep JSON defaults
+ * (e.g. editProfile added after the siteSettings docs were seeded).
+ */
+function mergeUiChrome(
+  fallback: UiContent,
+  partial: Partial<UiContent> | undefined,
+): UiContent {
+  if (!partial) return fallback;
+  const out: UiContent = { ...fallback };
+  for (const [key, value] of Object.entries(partial) as Array<
+    [keyof UiContent, UiContent[keyof UiContent] | undefined]
+  >) {
+    if (typeof value === "string" && value.trim()) {
+      out[key] = value;
     }
   }
   return out;
@@ -63,6 +84,9 @@ export function mapSiteSettings(
     }
   }
 
+  const cmsUi = partial.ui;
+  delete partial.ui;
+
   const merged = mergeDefined(
     {
       meta: fallback.meta,
@@ -77,5 +101,8 @@ export function mapSiteSettings(
     partial,
   );
 
-  return merged;
+  return {
+    ...merged,
+    ui: mergeUiChrome(fallback.ui, cmsUi as Partial<UiContent> | undefined),
+  };
 }

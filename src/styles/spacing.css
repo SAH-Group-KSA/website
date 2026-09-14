@@ -463,7 +463,7 @@
   place-items: center;
   height: 100%;
   color: color-mix(in srgb, var(--white) 30%, transparent);
-  font-size: 5rem;
+  font-size: clamp(2.8rem, 10vw, 5rem);
 }
 
 .profile-form textarea {

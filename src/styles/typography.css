@@ -66,13 +66,6 @@ h4 {
   margin-bottom: var(--space-2);
 }
 
-@media (max-width: 620px) {
-  :root {
-    --fs-h2: clamp(1.75rem, 9vw, 2.5rem);
-    --fs-hero: clamp(2rem, min(11vw, 6svh), 3.4rem);
-  }
-}
-
 /* ── Body / paragraph ───────────────────────────────────────── */
 
 p {
@@ -274,7 +267,7 @@ h3 {
 }
 
 .method-panel h3 {
-  font-size: 3.25rem !important;
+  font-size: var(--fs-display) !important;
   line-height: 1.1 !important;
 }
 

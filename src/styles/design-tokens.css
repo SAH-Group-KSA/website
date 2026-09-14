@@ -77,7 +77,10 @@
   --font-serif: "Thmanyah Serif Text", "Thmanyah Sans", Georgia, serif;
   --font-mono-num: "Thmanyah Sans", Arial, sans-serif;
 
-  /* Type scale (extracted) */
+  /* Type scale
+     Body / UI (micro → base): static — readability stays consistent.
+     Mid → display (md → hero, plus stats): fluid clamp — desktop max
+     preserved, mobile floors prevent overflow / cramped wrapping. */
   --fs-micro: 0.68rem; /* chips, scroll hint */
   --fs-xs: 0.74rem; /* captions */
   --fs-eyebrow: 0.76rem; /* eyebrows, small buttons */
@@ -85,9 +88,9 @@
   --fs-base: 1rem; /* body */
   --fs-md: clamp(1rem, 0.96rem + 0.28vw, 1.12rem); /* lead */
   --fs-lg: clamp(1.2rem, 1.12rem + 0.42vw, 1.35rem); /* card titles */
-  --fs-xl: 1.6rem; /* page/auth titles, subtitles */
-  --fs-h4: 1.05rem;
-  --fs-h3: 1.22rem;
+  --fs-xl: clamp(1.28rem, 1.1rem + 0.55vw, 1.6rem); /* page/auth titles, subtitles */
+  --fs-h4: 1.05rem; /* near-body; keep stable */
+  --fs-h3: clamp(1.1rem, 1.02rem + 0.28vw, 1.22rem);
   --fs-h2: clamp(1.9rem, min(3.6vw, 4.9svh), 3.35rem);
   --fs-h1: clamp(1.9rem, min(4.2vw, 5.4svh), 3.2rem); /* all page H1s */
   --fs-hero: clamp(
@@ -95,6 +98,16 @@
     min(5.3vw, 6svh),
     5rem
   ); /* homepage hero H1 — width + height aware */
+  --fs-display: clamp(
+    1.85rem,
+    min(4.5vw, 5svh),
+    3.25rem
+  ); /* method / marketing display titles */
+  --fs-stat: clamp(
+    1.55rem,
+    min(3vw, 4svh),
+    2.4rem
+  ); /* large metric / stat numerals */
 
   /* Weights (as used) */
   --fw-regular: 400;
@@ -392,6 +405,8 @@
     --fs-hero: clamp(2rem, min(4.8vw, 5.2svh), 4.2rem);
     --fs-h1: clamp(1.8rem, min(3.8vw, 4.6svh), 2.9rem);
     --fs-h2: clamp(1.75rem, min(3.2vw, 4.1svh), 2.8rem);
+    --fs-display: clamp(1.7rem, min(3.8vw, 4.6svh), 2.85rem);
+    --fs-stat: clamp(1.45rem, min(2.6vw, 3.6svh), 2.1rem);
   }
 }
 
@@ -399,7 +414,11 @@
   :root {
     --container: var(--container-sm);
     --fs-base: 0.9375rem; /* 15px — previous body @620 */
+    --fs-h1: clamp(1.7rem, min(7.5vw, 5.2svh), 2.4rem);
     --fs-h2: clamp(1.75rem, 9vw, 2.5rem);
     --fs-hero: clamp(2rem, min(11vw, 6svh), 3.4rem);
+    --fs-display: clamp(1.65rem, min(8vw, 5.5svh), 2.4rem);
+    --fs-stat: clamp(1.4rem, min(6vw, 4.5svh), 2rem);
+    --fs-xl: clamp(1.2rem, 4.2vw, 1.45rem);
   }
 }

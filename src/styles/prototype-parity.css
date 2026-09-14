@@ -2344,8 +2344,9 @@ html[dir="rtl"] .nav-dropdown-panel {
 }
 
 @keyframes orbitRingDrift {
+  /* Rotate dashed rings instead of mutating stroke-dashoffset */
   to {
-    stroke-dashoffset: -100;
+    transform: rotate(360deg);
   }
 }
 
@@ -2360,14 +2361,13 @@ html[dir="rtl"] .nav-dropdown-panel {
 }
 
 @keyframes orbitHubRingPulse {
+  /* Opacity-only so the pulse stays GPU-composited */
   0%,
   100% {
     opacity: 0.65;
-    stroke-width: 0.26;
   }
   50% {
     opacity: 1;
-    stroke-width: 0.48;
   }
 }
 
@@ -2469,20 +2469,18 @@ html[dir="rtl"] .nav-dropdown-panel {
 }
 
 @keyframes orbitRippleExpand {
+  /* Transform + opacity only (avoid animating stroke-width) */
   0% {
     opacity: 0;
     transform: scale(0.42);
-    stroke-width: 0.22;
   }
   12% {
     opacity: 0.4;
     transform: scale(0.5);
-    stroke-width: 0.28;
   }
   100% {
     opacity: 0;
     transform: scale(1);
-    stroke-width: 0.08;
   }
 }
 
@@ -2520,7 +2518,7 @@ html[dir="rtl"] .nav-dropdown-panel {
 
 @keyframes orbitHaloSpin {
   to {
-    stroke-dashoffset: -100;
+    transform: rotate(360deg);
   }
 }
 
@@ -2536,6 +2534,7 @@ html[dir="rtl"] .nav-dropdown-panel {
   stroke-dasharray: 8 12 4 16;
   stroke-linecap: round;
   animation: orbitHaloSpin 18s linear infinite;
+  transform-box: fill-box;
   transform-origin: center;
 }
 
@@ -2576,6 +2575,8 @@ html[dir="rtl"] .nav-dropdown-panel {
 .orbit-ring-arc {
   stroke: color-mix(in srgb, var(--orbit-gold) 55%, transparent);
   stroke-width: 0.18;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .orbit-ring-outer {
@@ -2612,6 +2613,8 @@ html[dir="rtl"] .nav-dropdown-panel {
   stroke-linecap: round;
   stroke-dasharray: 16 84;
   animation: orbitRingDrift 18s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .orbit-ring-sweep-alt {
@@ -8795,26 +8798,53 @@ html[dir="rtl"] .select-chevron {
       color-mix(in srgb, var(--deep) 79%, transparent) 50%,
       color-mix(in srgb, var(--deep) 45%, transparent) 100%
     ),
-    url("/images/backgrounds/hero-media.png");
+    image-set(
+      url("/images/backgrounds/hero-media.webp") type("image/webp"),
+      url("/images/backgrounds/hero-media.png") type("image/png")
+    );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 .hero-media--video {
-  background-image: none;
+  /* Static poster while video defers — same asset as mobile fallback */
+  background-image: image-set(
+    url("/images/backgrounds/hero-media.webp") type("image/webp"),
+    url("/images/backgrounds/hero-media.png") type("image/png")
+  );
+  background-size: cover;
+  background-position: center;
   background-color: var(--deep-3);
   background-attachment: scroll;
 }
+/* Drop the poster once the video is on — avoids double-framing */
+.hero-media--video:has(.hero-media-video.is-ready) {
+  background-image: none;
+}
 .hero-media-video {
-  position: fixed;
+  /*
+   * Absolute (not fixed) + cover: fills the hero on ultrawide / tall viewports.
+   * Fixed+cover sized to the viewport then clip-path cropped again (looked zoomed).
+   * Absolute sizes to the hero box so cover crops once and stays edge-to-edge.
+   */
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.55s var(--ease);
+}
+.hero-media-video.is-ready {
   opacity: 0.68;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-media-video {
+    transition: none;
+  }
 }
 .hero-media::after {
   content: "";
@@ -8858,7 +8888,10 @@ html[dir="rtl"] .select-chevron {
     background-attachment: scroll;
   }
   .hero-media--video {
-    background-image: url("/images/backgrounds/hero-media.png");
+    background-image: image-set(
+      url("/images/backgrounds/hero-media.webp") type("image/webp"),
+      url("/images/backgrounds/hero-media.png") type("image/png")
+    );
     background-position: center;
     background-size: cover;
   }
@@ -8874,21 +8907,36 @@ html[dir="rtl"] .select-chevron {
   position: absolute;
   inset: 0;
   opacity: 0.13;
-  background: url("/images/backgrounds/journey-builder-bg.png") center/cover;
+  background:
+    image-set(
+      url("/images/backgrounds/journey-builder-bg.webp") type("image/webp"),
+      url("/images/backgrounds/journey-builder-bg.png") type("image/png")
+    )
+    center / cover;
 }
 .method::before {
   content: "";
   position: absolute;
   inset: 0;
   opacity: 0.12;
-  background: url("/images/backgrounds/method-bg.png") center/cover;
+  background:
+    image-set(
+      url("/images/backgrounds/method-bg.webp") type("image/webp"),
+      url("/images/backgrounds/method-bg.png") type("image/png")
+    )
+    center / cover;
 }
 .measurement::before {
   content: "";
   position: absolute;
   inset: 0;
   opacity: 0.14;
-  background: url("/images/backgrounds/measurement-bg.png") center/cover;
+  background:
+    image-set(
+      url("/images/backgrounds/measurement-bg.webp") type("image/webp"),
+      url("/images/backgrounds/measurement-bg.png") type("image/png")
+    )
+    center / cover;
 }
 .contact::before {
   content: none;
@@ -8904,7 +8952,11 @@ html[dir="rtl"] .select-chevron {
       color-mix(in srgb, var(--deep) 8%, transparent),
       color-mix(in srgb, var(--deep) 76%, transparent)
     ),
-    url("/images/backgrounds/about-media.png") center/cover;
+    image-set(
+      url("/images/backgrounds/about-media.webp") type("image/webp"),
+      url("/images/backgrounds/about-media.png") type("image/png")
+    )
+      center / cover;
   box-shadow: var(--shadow-md);
 }
 

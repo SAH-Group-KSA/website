@@ -13,7 +13,7 @@ Nothing was redesigned. Existing files are never overwritten.
 | `images/founders/` | Founder portraits |
 | `og/` | Open Graph share image |
 | `fonts/` | Empty — prototypes embed no `@font-face` files |
-| `videos/` | Hero / section videos (e.g. `leading-by-listening.m4v`) |
+| `videos/` | Hero decorative video (`hero-background.mp4`, ~2–3 MB compressed delivery) |
 
 ## Inventory
 

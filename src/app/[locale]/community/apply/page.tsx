@@ -81,7 +81,6 @@ export default async function CommunityApplyPage({
                     width={160}
                     height={80}
                     sizes="112px"
-                    unoptimized
                   />
                 </div>
               ) : null}
@@ -108,7 +107,6 @@ export default async function CommunityApplyPage({
                     width={160}
                     height={80}
                     sizes="112px"
-                    unoptimized
                   />
                 </div>
               ) : null}

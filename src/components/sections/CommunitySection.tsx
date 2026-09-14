@@ -60,7 +60,6 @@ export function CommunitySection({ data }: Props) {
                     width={160}
                     height={80}
                     sizes="112px"
-                    unoptimized
                   />
                 </div>
 

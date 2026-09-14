@@ -84,6 +84,31 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async headers() {
+    const immutableYear = "public, max-age=31536000, immutable";
+    return [
+      {
+        source: "/videos/:path*",
+        headers: [{ key: "Cache-Control", value: immutableYear }],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [{ key: "Cache-Control", value: immutableYear }],
+      },
+      {
+        source: "/images/:path*",
+        headers: [{ key: "Cache-Control", value: immutableYear }],
+      },
+      {
+        source: "/logos/:path*",
+        headers: [{ key: "Cache-Control", value: immutableYear }],
+      },
+      {
+        source: "/icons/:path*",
+        headers: [{ key: "Cache-Control", value: immutableYear }],
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

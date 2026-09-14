@@ -54,6 +54,7 @@ export type SiteHeaderProps = {
     signIn: string;
     signOut: string;
     dashboard: string;
+    myProfile: string;
     editProfile: string;
     menuOpen: string;
     menuClose: string;

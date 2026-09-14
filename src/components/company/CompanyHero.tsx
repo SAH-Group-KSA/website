@@ -24,7 +24,7 @@ export function CompanyHero({ data, entity, offerings }: Props) {
     >
       <div aria-hidden="true" className="hero-media" />
       <Container className="hero-grid">
-        <div className="hero-copy reveal">
+        <div className="hero-copy reveal is-visible">
           {entity.logo ? (
             <div className="entity-home-hero-brand">
               <AppImage
@@ -66,7 +66,7 @@ export function CompanyHero({ data, entity, offerings }: Props) {
         </div>
 
         <aside
-          className="entity-home-hero-panel reveal"
+          className="entity-home-hero-panel reveal is-visible"
           data-delay="120"
           aria-label={entity.name}
         >

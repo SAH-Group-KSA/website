@@ -3,6 +3,7 @@ import {
   programsFromParamForPath,
   type CompanyEntityId,
 } from "@/lib/companies";
+import { motionSafeScrollBehavior } from "@/lib/motion-preferences";
 import { localePath, type Locale } from "@/types/locale";
 
 /** Custom events mirroring prototype click delegation. */
@@ -25,7 +26,9 @@ function normalizePath(pathname: string, locale: Locale): string {
 export function openEntity(id: string) {
   const path = companyPath(id as CompanyEntityId);
   if (path === "/") {
-    document.getElementById("entities")?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById("entities")
+      ?.scrollIntoView({ behavior: motionSafeScrollBehavior() });
     return;
   }
   window.location.assign(localePath(detectLocale(), path));
@@ -45,7 +48,9 @@ export function filterProgramsByEntity(entityId: string) {
   window.dispatchEvent(
     new CustomEvent(SAH_FILTER_PROGRAMS, { detail: { entityId } }),
   );
-  document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" });
+  document
+    .getElementById("programs")
+    ?.scrollIntoView({ behavior: motionSafeScrollBehavior() });
 }
 
 export function openContact(context?: string) {
@@ -54,5 +59,7 @@ export function openContact(context?: string) {
       detail: { context: context ?? "General Discovery Session" },
     }),
   );
-  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  document
+    .getElementById("contact")
+    ?.scrollIntoView({ behavior: motionSafeScrollBehavior() });
 }

@@ -3,6 +3,13 @@ import type { SiteContent } from "@/content/types";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AppImage } from "@/components/ui/AppImage";
+
+function founderImageDimensions(src: string) {
+  return src.includes("ghada-al-qarni")
+    ? { width: 1024, height: 682 }
+    : { width: 1200, height: 880 };
+}
 
 export function AboutSection({ data }: { data: SiteContent["about"] }) {
   return (
@@ -79,28 +86,27 @@ export function AboutSection({ data }: { data: SiteContent["about"] }) {
             intro={data.foundersIntro}
           />
           <div className="founders-grid">
-            {data.founders.map((founder, index) => (
-              <article
-                key={founder.id}
-                className="founder-card"
-                style={{
-                  transitionDelay: `${index * 60}ms`,
-                }}
-              >
-                <div className="founder-photo">
-                  <img
-                    className="founder-photo-media"
-                    src={founder.photo}
-                    alt={founder.name}
-                  />
-                </div>
-                <div className="founder-copy">
-                  <strong>{founder.role}</strong>
-                  <h4>{founder.name}</h4>
-                  <p>{founder.bio}</p>
-                </div>
-              </article>
-            ))}
+            {data.founders.map((founder) => {
+              const dimensions = founderImageDimensions(founder.photo);
+              return (
+                <article key={founder.id} className="founder-card">
+                  <div className="founder-photo">
+                    <AppImage
+                      className="founder-photo-media"
+                      src={founder.photo}
+                      alt={founder.name}
+                      sizes="(max-width: 860px) 100vw, 450px"
+                      {...dimensions}
+                    />
+                  </div>
+                  <div className="founder-copy">
+                    <strong>{founder.role}</strong>
+                    <h4>{founder.name}</h4>
+                    <p>{founder.bio}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
 

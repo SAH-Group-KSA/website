@@ -5,10 +5,6 @@ import { useEffect } from "react";
 const REVEAL_SELECTOR =
   ".reveal, .reveal-fade, .reveal-scale, .reveal-left, .reveal-right";
 
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
 /**
  * Prototype reveal observer.
  *
@@ -25,8 +21,8 @@ export function ObserveReveals() {
     let cancelled = false;
     let bootTimer = 0;
     let raf = 0;
-
-    const reduced = prefersReducedMotion();
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduced = motionQuery.matches;
 
     const markVisible = (el: HTMLElement) => {
       revealed.add(el);
@@ -67,10 +63,8 @@ export function ObserveReveals() {
       });
     };
 
-    const boot = () => {
-      if (cancelled) return;
-
-      if (!reduced && "IntersectionObserver" in window) {
+    const createObserver = () => {
+      if (!reduced && !observer && "IntersectionObserver" in window) {
         observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -83,6 +77,25 @@ export function ObserveReveals() {
           { threshold: 0.12, rootMargin: "0px 0px -4% 0px" },
         );
       }
+    };
+
+    const onMotionPreferenceChange = (event: MediaQueryListEvent) => {
+      reduced = event.matches;
+      if (reduced) {
+        observer?.disconnect();
+        observer = null;
+        document
+          .querySelectorAll<HTMLElement>(REVEAL_SELECTOR)
+          .forEach(markVisible);
+      } else {
+        createObserver();
+      }
+    };
+
+    const boot = () => {
+      if (cancelled) return;
+
+      createObserver();
 
       observeNewReveals(document);
 
@@ -96,6 +109,7 @@ export function ObserveReveals() {
         attributes: true,
         attributeFilter: ["class"],
       });
+      motionQuery.addEventListener("change", onMotionPreferenceChange);
     };
 
     // Two frames + short timeout: let streamed client segments finish hydrating
@@ -110,6 +124,7 @@ export function ObserveReveals() {
       cancelled = true;
       window.cancelAnimationFrame(raf);
       window.clearTimeout(bootTimer);
+      motionQuery.removeEventListener("change", onMotionPreferenceChange);
       mo?.disconnect();
       observer?.disconnect();
     };

@@ -9,6 +9,7 @@ import { DiscoveryRequestForm } from "@/components/discovery/DiscoveryRequestFor
 import { JourneyStage } from "@/components/journey/JourneyStage";
 import { resolveEntityColor } from "@/lib/utils/entity";
 import { cn } from "@/lib/utils";
+import { motionSafeScrollBehavior } from "@/lib/motion-preferences";
 
 type Audience = "individual" | "organization";
 
@@ -99,7 +100,7 @@ export function JourneyWizard({
     if (rect.top < headerH || rect.top > window.innerHeight * 0.55) {
       window.scrollTo({
         top: window.scrollY + rect.top - headerH - 12,
-        behavior: "smooth",
+        behavior: motionSafeScrollBehavior(),
       });
     }
   }, [stageIndex]);

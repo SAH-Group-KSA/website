@@ -8,6 +8,7 @@ import {
   companyPath,
   type CompanyEntityId,
 } from "@/lib/companies";
+import { motionSafeScrollBehavior } from "@/lib/motion-preferences";
 import { cn } from "@/lib/utils";
 
 /**
@@ -255,16 +256,16 @@ export function HeroOrbit({
                   <span className="orbit-node-face">
                     <span className="orbit-node-logo-wrap">
                       {/*
-                        fill + CSS transform scale — display size is CSS-only.
-                        unoptimized: Vercel Sharp/WebP must not change intrinsic
-                        aspect vs localhost (was causing padding/overflow diffs).
+                        fill + object-fit preserve each logo's intrinsic ratio;
+                        responsive optimization avoids shipping full-size PNGs
+                        into the above-the-fold orbit.
                       */}
                       <AppImage
                         src={ORBIT_WHITE_LOGOS[id]}
                         alt=""
                         fill
                         sizes="96px"
-                        unoptimized
+                        loading="eager"
                         className="orbit-node-logo"
                       />
                     </span>
@@ -298,7 +299,7 @@ export function HeroOrbit({
         onClick={() =>
           document
             .getElementById("entities")
-            ?.scrollIntoView({ behavior: "smooth" })
+            ?.scrollIntoView({ behavior: motionSafeScrollBehavior() })
         }
       >
         <span className="orbit-center-core">

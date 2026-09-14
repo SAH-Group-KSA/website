@@ -50,6 +50,7 @@ export async function SiteShell({ children }: SiteShellProps) {
               signIn: content.ui.signIn,
               signOut: content.ui.signOut,
               dashboard: content.ui.dashboard,
+              myProfile: content.ui.myProfile,
               editProfile: content.ui.editProfile,
               menuOpen: content.ui.menuOpen,
               menuClose: content.ui.menuClose,

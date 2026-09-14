@@ -158,7 +158,10 @@ export function ContactSection({ data }: Props) {
 
           {/* Right form */}
           {status === "success" ? (
-            <div className="contact-form contact-success reveal" role="status">
+            <div
+              className="contact-form contact-success reveal-scale"
+              role="status"
+            >
               <span className="contact-success-check" aria-hidden="true">
                 ✓
               </span>
@@ -171,7 +174,8 @@ export function ContactSection({ data }: Props) {
                 {nextSteps.map((step, i) => (
                   <li
                     key={step.label}
-                    className={`contact-next-step${i === 0 ? " is-done" : ""}`}
+                    className={`contact-next-step reveal-fade${i === 0 ? " is-done" : ""}`}
+                    data-delay={80 + i * 60}
                   >
                     <span className="contact-next-icon" aria-hidden="true">
                       {step.icon}

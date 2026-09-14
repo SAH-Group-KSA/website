@@ -214,9 +214,12 @@ p {
 
 .scroll-progress span {
   display: block;
-  width: 0;
+  width: 100%;
   height: 100%;
   background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
 }
 
 /* ══════════════════════════════════════════════
@@ -3616,6 +3619,9 @@ html[dir="rtl"] .nav-dropdown-panel {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir="rtl"] .entity-card-accent {
+  transform-origin: right;
 }
 .entity-card:hover .entity-card-accent {
   transform: scaleX(1);
@@ -8209,7 +8215,7 @@ a.contact-meta-item:hover {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .community {
     padding-block: 48px;
   }
@@ -8851,7 +8857,13 @@ html[dir="rtl"] .select-chevron {
   .hero-media {
     background-attachment: scroll;
   }
+  .hero-media--video {
+    background-image: url("/images/backgrounds/hero-media.png");
+    background-position: center;
+    background-size: cover;
+  }
   .hero-media-video {
+    display: none;
     position: absolute;
     width: 100%;
     height: 100%;

@@ -3,11 +3,11 @@
 import { useScrollUI } from "@/hooks/useScrollUI";
 
 export function ScrollProgress() {
-  const { progress } = useScrollUI();
+  const progress = useScrollUI((state) => state.progress);
 
   return (
     <div aria-hidden="true" className="scroll-progress">
-      <span style={{ width: `${progress}%` }} />
+      <span style={{ transform: `scaleX(${progress / 100})` }} />
     </div>
   );
 }

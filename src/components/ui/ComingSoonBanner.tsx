@@ -11,7 +11,7 @@ export function ComingSoonBanner({ title, body }: Props) {
   return (
     <Section tone="tinted">
       <Container>
-        <div className="coming-soon-banner reveal" role="status">
+        <div className="coming-soon-banner" role="status">
           <span className="coming-soon-banner-eyebrow" aria-hidden="true">
             ★
           </span>

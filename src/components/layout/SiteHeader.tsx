@@ -17,6 +17,10 @@ import { LocaleLink } from "@/components/ui/LocaleLink";
 import { ExploreMegaPanel, ServicesMegaPanel } from "@/components/layout/NavMegaMenus";
 import { openContact } from "@/lib/interactions";
 import {
+  motionSafeScrollBehavior,
+  prefersReducedMotion,
+} from "@/lib/motion-preferences";
+import {
   companyPath,
   isCompanyPath,
   isHumanProductPath,
@@ -97,7 +101,7 @@ function scrollToHash(hash: string) {
   const id = hash.replace(/^#/, "");
   const el = document.getElementById(id);
   if (!el) return;
-  el.scrollIntoView({ behavior: "smooth" });
+  el.scrollIntoView({ behavior: motionSafeScrollBehavior() });
   window.history.pushState(null, "", hash);
 }
 
@@ -488,7 +492,7 @@ export function SiteHeader({
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const path = normalizePath(pathname, locale);
-  const { scrolled } = useScrollUI();
+  const scrolled = useScrollUI((state) => state.scrolled);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -503,7 +507,7 @@ export function SiteHeader({
       setMenuOpen(false);
       setMenuClosing(false);
       menuToggleRef.current?.focus();
-    }, 320);
+    }, prefersReducedMotion() ? 0 : 280);
   }, []);
 
   const toggleMenu = useCallback(() => {

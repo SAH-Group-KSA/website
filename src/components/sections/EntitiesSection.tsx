@@ -8,6 +8,7 @@ import { EntityCard } from "@/components/entities/EntityCard";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { motionSafeScrollBehavior } from "@/lib/motion-preferences";
 
 type Props = {
   data: SiteContent["entitiesSection"];
@@ -100,7 +101,7 @@ export function EntitiesSection({ data, entities }: Props) {
         : Math.max(current - 1, 0);
     const target = Math.min(nextPage * step, maxScroll);
     setActiveIdx(nextPage);
-    el.scrollTo({ left: target, behavior: "smooth" });
+    el.scrollTo({ left: target, behavior: motionSafeScrollBehavior() });
   };
 
   const scrollTo = (idx: number) => {
@@ -110,7 +111,7 @@ export function EntitiesSection({ data, entities }: Props) {
     const page = Math.max(0, Math.min(idx, pages - 1));
     const target = Math.min(page * step, maxScroll);
     setActiveIdx(page);
-    el.scrollTo({ left: target, behavior: "smooth" });
+    el.scrollTo({ left: target, behavior: motionSafeScrollBehavior() });
   };
 
   return (

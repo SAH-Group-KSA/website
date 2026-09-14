@@ -12,6 +12,7 @@ import {
   mapHomeDocument,
   mapPrograms,
 } from "./mappers/home";
+import { mergeFilled } from "./mappers/shared";
 import { mapSiteSettings } from "./mappers/siteSettings";
 import { mapPageSeoDocument } from "./mappers/pageSeo";
 import {
@@ -140,7 +141,10 @@ export const getContent = cache(async function getContent(
   return applyCanonicalEntityColors({
     ...mappedHome,
     ...globalChrome,
-    catalogPages: mappedHome.catalogPages ?? base.catalogPages,
+    catalogPages: mergeFilled(
+      staticBase.catalogPages!,
+      mappedHome.catalogPages ?? base.catalogPages,
+    ),
     entityPages,
     programs,
   });

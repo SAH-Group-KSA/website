@@ -48,6 +48,41 @@ export function mergeDefined<T extends object>(
   return out;
 }
 
+/**
+ * Like mergeDefined, but empty strings and empty arrays are treated as missing
+ * so static defaults survive partial CMS documents.
+ */
+export function mergeFilled<T extends object>(
+  fallback: T,
+  partial: Partial<T> | null | undefined,
+): T {
+  if (!partial) return fallback;
+  const out = { ...fallback } as T;
+  for (const [key, value] of Object.entries(partial)) {
+    if (value === undefined || value === null) continue;
+    if (typeof value === "string" && value.trim() === "") continue;
+    if (Array.isArray(value) && value.length === 0) continue;
+
+    const existing = out[key as keyof T];
+    if (
+      value &&
+      typeof value === "object" &&
+      !Array.isArray(value) &&
+      existing &&
+      typeof existing === "object" &&
+      !Array.isArray(existing)
+    ) {
+      out[key as keyof T] = mergeFilled(
+        existing as object,
+        value as object,
+      ) as T[keyof T];
+    } else {
+      out[key as keyof T] = value as T[keyof T];
+    }
+  }
+  return out;
+}
+
 export function asString(value: unknown, fallback = ""): string {
   return typeof value === "string" ? value : fallback;
 }

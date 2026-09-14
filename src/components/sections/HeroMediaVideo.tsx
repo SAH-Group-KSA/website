@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const HERO_VIDEO_SRC = "/videos/leading-by-listening-faces-blurred.mp4";
+const HERO_VIDEO_SRC = "/videos/hero-background.mp4";
 const HERO_POSTER = "/images/backgrounds/hero-media.webp";
 
 /**

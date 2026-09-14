@@ -8818,12 +8818,17 @@ html[dir="rtl"] .select-chevron {
   background-color: var(--deep-3);
   background-attachment: scroll;
 }
-/* Drop the 4:3 still once the 16:9 video is on — avoids double-framing / “zoomed” look */
+/* Drop the poster once the video is on — avoids double-framing */
 .hero-media--video:has(.hero-media-video.is-ready) {
   background-image: none;
 }
 .hero-media-video {
-  position: fixed;
+  /*
+   * Absolute (not fixed) + cover: fills the hero on ultrawide / tall viewports.
+   * Fixed+cover sized to the viewport then clip-path cropped again (looked zoomed).
+   * Absolute sizes to the hero box so cover crops once and stays edge-to-edge.
+   */
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;

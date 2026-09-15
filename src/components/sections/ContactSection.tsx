@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SAH_OPEN_CONTACT } from "@/lib/interactions";
+import { isValidEmail } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
 type Audience = "individual" | "organization";
@@ -41,11 +43,7 @@ export function ContactSection({ data }: Props) {
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (
-      !name.trim() ||
-      !message.trim() ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
-    ) {
+    if (!name.trim() || !message.trim() || !isValidEmail(email)) {
       setStatus("error");
       return;
     }
@@ -223,7 +221,7 @@ export function ContactSection({ data }: Props) {
 
               <div className="form-grid">
                 <label>
-                  {data.fields.name}
+                  {requiredLabel(data.fields.name)}
                   <input
                     autoComplete="name"
                     name="name"
@@ -238,7 +236,7 @@ export function ContactSection({ data }: Props) {
                   />
                 </label>
                 <label>
-                  {data.fields.email}
+                  {requiredLabel(data.fields.email)}
                   <input
                     autoComplete="email"
                     name="email"
@@ -277,7 +275,7 @@ export function ContactSection({ data }: Props) {
               </div>
 
               <label className="contact-message">
-                {data.fields.message}
+                {requiredLabel(data.fields.message)}
                 <textarea
                   name="challenge"
                   placeholder={data.placeholders.message}

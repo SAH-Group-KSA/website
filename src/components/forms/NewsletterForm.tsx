@@ -5,6 +5,8 @@ import { useId, useState } from "react";
 import type { NewsletterContent } from "@/content/types";
 import { Button } from "@/components/ui/Button";
 import { VisuallyHidden } from "@/components/ui/VisuallyHidden";
+import { isValidEmail } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 import { cn } from "@/lib/utils";
 import { useLocale } from "next-intl";
 import type { Locale } from "@/types/locale";
@@ -17,10 +19,6 @@ type Props = {
 };
 
 type ValidationError = "name" | "email" | null;
-
-function isValidEmail(value: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
 
 export function NewsletterForm({
   data,
@@ -105,13 +103,13 @@ export function NewsletterForm({
         }}
       >
         <VisuallyHidden as="label" htmlFor={firstNameId}>
-          {data.firstNameLabel}
+          {requiredLabel(data.firstNameLabel)}
         </VisuallyHidden>
         <input
           autoComplete="given-name"
           id={firstNameId}
           name="newsletterFirstName"
-          placeholder={data.firstNamePlaceholder}
+          placeholder={requiredLabel(data.firstNamePlaceholder)}
           required
           type="text"
           value={firstName}
@@ -121,13 +119,13 @@ export function NewsletterForm({
           }}
         />
         <VisuallyHidden as="label" htmlFor={lastNameId}>
-          {data.lastNameLabel}
+          {requiredLabel(data.lastNameLabel)}
         </VisuallyHidden>
         <input
           autoComplete="family-name"
           id={lastNameId}
           name="newsletterLastName"
-          placeholder={data.lastNamePlaceholder}
+          placeholder={requiredLabel(data.lastNamePlaceholder)}
           required
           type="text"
           value={lastName}
@@ -138,13 +136,13 @@ export function NewsletterForm({
         />
         <div className="newsletter-form-email-row">
           <VisuallyHidden as="label" htmlFor={emailId}>
-            {data.emailLabel}
+            {requiredLabel(data.emailLabel)}
           </VisuallyHidden>
           <input
             autoComplete="email"
             id={emailId}
             name="newsletterEmail"
-            placeholder={data.placeholder}
+            placeholder={requiredLabel(data.placeholder)}
             required
             type="email"
             value={email}

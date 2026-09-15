@@ -5,6 +5,8 @@ import { resetPassword } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { LocaleLink } from "@/components/ui/LocaleLink";
+import { getEmailError } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 
 type FormState = "idle" | "submitting" | "sent";
 type Props = { isAr: boolean; logoAlt: string };
@@ -16,10 +18,19 @@ export function ForgotPasswordFormClient({ isAr, logoAlt }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailError = getEmailError(email, isAr);
+    if (emailError) {
+      setState("idle");
+      setError(emailError);
+      return;
+    }
+
     setState("submitting");
     setError("");
-    const result = await resetPassword({ email });
+    const trimmedEmail = email.trim();
+    const result = await resetPassword({ email: trimmedEmail });
     if (result.ok) {
+      setEmail(trimmedEmail);
       setState("sent");
     } else {
       setState("idle");
@@ -82,7 +93,7 @@ export function ForgotPasswordFormClient({ isAr, logoAlt }: Props) {
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <label>
-            {isAr ? "البريد الإلكتروني" : "Email Address"}
+            {requiredLabel(isAr ? "البريد الإلكتروني" : "Email Address")}
             <input
               type="email"
               value={email}

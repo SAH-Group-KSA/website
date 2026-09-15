@@ -1,4 +1,5 @@
 import type { FormEvent, LabelHTMLAttributes, ReactNode } from "react";
+import { requiredLabel } from "@/lib/form-labels";
 import { cn } from "@/lib/utils";
 
 type FormFieldProps = LabelHTMLAttributes<HTMLLabelElement> & {
@@ -7,6 +8,8 @@ type FormFieldProps = LabelHTMLAttributes<HTMLLabelElement> & {
   error?: ReactNode;
   hint?: ReactNode;
   className?: string;
+  /** When true and `label` is a string, appends a trailing ` *`. */
+  required?: boolean;
 };
 
 /**
@@ -19,11 +22,15 @@ export function FormField({
   error,
   hint,
   className,
+  required,
   ...rest
 }: FormFieldProps) {
+  const displayLabel =
+    required && typeof label === "string" ? requiredLabel(label) : label;
+
   return (
     <label className={cn("form-field", className)} {...rest}>
-      {label}
+      {displayLabel}
       {children}
       {hint ? <span className="field-hint text-small">{hint}</span> : null}
       {error ? (

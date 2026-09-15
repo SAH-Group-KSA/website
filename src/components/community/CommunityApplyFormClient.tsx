@@ -4,6 +4,8 @@ import { useState } from "react";
 import { submitCommunityApplication } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import type { CommunityApplyFormLabels } from "@/content/types";
+import { getEmailError } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -14,6 +16,7 @@ type Props = {
 };
 
 export function CommunityApplyFormClient({ labels, locale }: Props) {
+  const isAr = locale === "ar";
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -24,6 +27,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
     experience: "",
   });
   const [state, setState] = useState<FormState>("idle");
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
@@ -33,11 +37,19 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailError = getEmailError(form.email, isAr);
+    if (emailError) {
+      setState("error");
+      setError(emailError);
+      return;
+    }
+
     setState("submitting");
+    setError("");
 
     const result = await submitCommunityApplication({
-      name: form.name,
-      email: form.email,
+      name: form.name.trim(),
+      email: form.email.trim(),
       phone: form.phone || undefined,
       communityId: form.community as "impact" | "lego",
       profession: form.profession || undefined,
@@ -50,6 +62,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
       setState("success");
     } else {
       setState("error");
+      setError("");
     }
   };
 
@@ -81,7 +94,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
   return (
     <form className="apply-form" onSubmit={handleSubmit} noValidate>
       <label>
-        {labels.community}
+        {requiredLabel(labels.community)}
         <select name="community" value={form.community} onChange={handleChange} required>
           <option value="">{labels.communityPlaceholder}</option>
           <option value="impact">{labels.impactOption}</option>
@@ -91,7 +104,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
 
       <div className="apply-form-row">
         <label>
-          {labels.fullName}
+          {requiredLabel(labels.fullName)}
           <input
             type="text"
             name="name"
@@ -102,7 +115,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
           />
         </label>
         <label>
-          {labels.email}
+          {requiredLabel(labels.email)}
           <input
             type="email"
             name="email"
@@ -138,7 +151,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
       </div>
 
       <label>
-        {labels.motivation}
+        {requiredLabel(labels.motivation)}
         <textarea
           name="motivation"
           value={form.motivation}
@@ -160,6 +173,17 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
 
       <div className="form-footer">
         <p>{labels.consent}</p>
+        {error ? (
+          <p className="program-interest-error" role="alert">
+            {error}
+          </p>
+        ) : state === "error" ? (
+          <p className="program-interest-error" role="alert">
+            {isAr
+              ? "حدث خطأ. يرجى المحاولة مرة أخرى."
+              : "Something went wrong. Please try again."}
+          </p>
+        ) : null}
         <Button type="submit" variant="primary" disabled={state === "submitting"}>
           {state === "submitting" ? labels.submitting : labels.submit}
         </Button>

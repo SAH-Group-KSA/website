@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { submitDiscoveryLead } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
+import { isValidEmail } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
 type Labels = {
@@ -45,7 +47,7 @@ export function DiscoveryRequestForm({
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    if (!name.trim() || !isValidEmail(email)) {
       setStatus("error");
       return;
     }
@@ -110,7 +112,7 @@ export function DiscoveryRequestForm({
       </p>
 
       <label className="dreq-label">
-        <span>{labels.name}</span>
+        <span>{requiredLabel(labels.name)}</span>
         <input
           autoComplete="name"
           name="name"
@@ -123,7 +125,7 @@ export function DiscoveryRequestForm({
       </label>
 
       <label className="dreq-label">
-        <span>{labels.email}</span>
+        <span>{requiredLabel(labels.email)}</span>
         <input
           autoComplete="email"
           name="email"

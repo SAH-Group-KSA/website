@@ -5,6 +5,14 @@ import { signUp } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { LocaleLink } from "@/components/ui/LocaleLink";
+import { getEmailError } from "@/lib/email";
+import {
+  isStrongPassword,
+  PASSWORD_MIN_LENGTH,
+  passwordPlaceholder,
+  passwordRequirementsMessage,
+} from "@/lib/password";
+import { requiredLabel } from "@/lib/form-labels";
 
 type FormState = "idle" | "submitting" | "error" | "sent";
 type Props = { isAr: boolean; siteName: string; logoAlt: string };
@@ -20,16 +28,20 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailError = getEmailError(form.email, isAr);
+    if (emailError) {
+      setState("error");
+      setError(emailError);
+      return;
+    }
     if (form.password !== form.confirm) {
       setState("error");
       setError(isAr ? "كلمتا المرور غير متطابقتين." : "Passwords do not match.");
       return;
     }
-    if (form.password.length < 8) {
+    if (!isStrongPassword(form.password)) {
       setState("error");
-      setError(
-        isAr ? "كلمة المرور يجب أن تكون 8 أحرف على الأقل." : "Password must be at least 8 characters.",
-      );
+      setError(passwordRequirementsMessage(isAr));
       return;
     }
 
@@ -121,7 +133,7 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <label>
-            {isAr ? "الاسم الكامل" : "Full Name"}
+            {requiredLabel(isAr ? "الاسم الكامل" : "Full Name")}
             <input
               type="text"
               name="name"
@@ -134,7 +146,7 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
           </label>
 
           <label>
-            {isAr ? "البريد الإلكتروني" : "Email Address"}
+            {requiredLabel(isAr ? "البريد الإلكتروني" : "Email Address")}
             <input
               type="email"
               name="email"
@@ -147,7 +159,7 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
           </label>
 
           <label>
-            {isAr ? "كلمة المرور" : "Password"}
+            {requiredLabel(isAr ? "كلمة المرور" : "Password")}
             <input
               type="password"
               name="password"
@@ -155,13 +167,13 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
               onChange={handleChange}
               required
               autoComplete="new-password"
-              minLength={8}
-              placeholder={isAr ? "8 أحرف على الأقل" : "At least 8 characters"}
+              minLength={PASSWORD_MIN_LENGTH}
+              placeholder={passwordPlaceholder(isAr)}
             />
           </label>
 
           <label>
-            {isAr ? "تأكيد كلمة المرور" : "Confirm Password"}
+            {requiredLabel(isAr ? "تأكيد كلمة المرور" : "Confirm Password")}
             <input
               type="password"
               name="confirm"
@@ -169,6 +181,7 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
               onChange={handleChange}
               required
               autoComplete="new-password"
+              minLength={PASSWORD_MIN_LENGTH}
               placeholder={isAr ? "أعد كتابة كلمة المرور" : "Re-enter password"}
               className={error && error.includes("match") ? "is-invalid" : ""}
             />

@@ -15,7 +15,7 @@ export type ContactLead = {
   email: string;
   phone?: string;
   organization?: string;
-  message?: string;
+  message: string;
   context?: string;
   locale: "ar" | "en";
 };
@@ -25,7 +25,7 @@ export type GroupInterestLead = {
   email: string;
   phone?: string;
   organization?: string;
-  programId?: string;
+  programId: string;
   message?: string;
   locale: "ar" | "en";
 };

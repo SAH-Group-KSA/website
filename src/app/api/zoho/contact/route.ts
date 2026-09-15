@@ -10,11 +10,11 @@ import {
 import { createCrmLead, splitName } from "@/lib/zoho";
 
 const schema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
+  name: z.string().trim().min(1),
+  email: z.string().trim().email(),
   phone: z.string().optional(),
   organization: z.string().optional(),
-  message: z.string().optional(),
+  message: z.string().trim().min(1),
   context: z.string().optional(),
   locale: z.enum(["ar", "en"]),
 });

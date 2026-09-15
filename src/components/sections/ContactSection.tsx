@@ -9,7 +9,11 @@ import { Container } from "@/components/ui/Container";
 import { FormError } from "@/components/ui/FormField";
 import { Section } from "@/components/ui/Section";
 import { SAH_OPEN_CONTACT } from "@/lib/interactions";
-import { isValidEmail } from "@/lib/email";
+import {
+  getFormSubmitError,
+  getLeadValidationError,
+  getMessageError,
+} from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -23,6 +27,7 @@ type Props = {
 export function ContactSection({ data }: Props) {
   const locale = useLocale() as Locale;
   const isRTL = locale === "ar";
+  const isAr = isRTL;
 
   const [audience, setAudience] = useState<Audience>("individual");
   const [name, setName] = useState("");
@@ -32,6 +37,7 @@ export function ContactSection({ data }: Props) {
   const [message, setMessage] = useState("");
   const [context, setContext] = useState(data.defaultContext);
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const onOpen = (event: Event) => {
@@ -42,14 +48,27 @@ export function ContactSection({ data }: Props) {
     return () => window.removeEventListener(SAH_OPEN_CONTACT, onOpen);
   }, []);
 
+  const clearError = () => {
+    if (status === "error") {
+      setStatus("idle");
+      setErrorMessage("");
+    }
+  };
+
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!name.trim() || !message.trim() || !isValidEmail(email)) {
+    const fieldError =
+      getLeadValidationError({ name, email }, isAr, [
+        getMessageError(message, isAr),
+      ]);
+    if (fieldError) {
       setStatus("error");
+      setErrorMessage(fieldError);
       return;
     }
 
     setStatus("submitting");
+    setErrorMessage("");
 
     const result = await submitContactLead({
       name: name.trim(),
@@ -65,6 +84,7 @@ export function ContactSection({ data }: Props) {
       setStatus("success");
     } else {
       setStatus("error");
+      setErrorMessage(getFormSubmitError(result, isAr, data.error));
     }
   };
 
@@ -191,7 +211,7 @@ export function ContactSection({ data }: Props) {
               noValidate
               onSubmit={onSubmit}
             >
-              {status === "error" ? <FormError>{data.error}</FormError> : null}
+              {errorMessage ? <FormError>{errorMessage}</FormError> : null}
 
               <div
                 aria-label={data.audienceAriaLabel}
@@ -234,7 +254,7 @@ export function ContactSection({ data }: Props) {
                     disabled={status === "submitting"}
                     onChange={(e) => {
                       setName(e.target.value);
-                      setStatus("idle");
+                      clearError();
                     }}
                   />
                 </label>
@@ -249,7 +269,7 @@ export function ContactSection({ data }: Props) {
                     disabled={status === "submitting"}
                     onChange={(e) => {
                       setEmail(e.target.value);
-                      setStatus("idle");
+                      clearError();
                     }}
                   />
                 </label>
@@ -288,7 +308,7 @@ export function ContactSection({ data }: Props) {
                   disabled={status === "submitting"}
                   onChange={(e) => {
                     setMessage(e.target.value);
-                    setStatus("idle");
+                    clearError();
                   }}
                 />
               </label>

@@ -9,12 +9,12 @@ import {
 import { createCrmApplication } from "@/lib/zoho";
 
 const schema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
+  name: z.string().trim().min(1),
+  email: z.string().trim().email(),
   phone: z.string().optional(),
   communityId: z.enum(["impact", "lego"]),
   profession: z.string().optional(),
-  motivation: z.string().min(1),
+  motivation: z.string().trim().min(1),
   experience: z.string().optional(),
   locale: z.enum(["ar", "en"]),
 });

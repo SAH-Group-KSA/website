@@ -8,7 +8,10 @@ import type {
   GroupInterestFormLabels,
   GroupProgramOption,
 } from "@/content/types";
-import { getEmailError } from "@/lib/email";
+import {
+  getFormSubmitError,
+  getLeadValidationError,
+} from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -30,20 +33,30 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (state === "error" || selectionError) {
+      setState("idle");
+      setError("");
+      setSelectionError(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selected) {
       setSelectionError(true);
+      setState("idle");
+      setError("");
       return;
     }
     setSelectionError(false);
 
-    const emailError = getEmailError(form.email, isAr);
-    if (emailError) {
+    const fieldError = getLeadValidationError(
+      { name: form.name, email: form.email },
+      isAr,
+    );
+    if (fieldError) {
       setState("error");
-      setError(emailError);
+      setError(fieldError);
       return;
     }
 
@@ -64,7 +77,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
       setState("success");
     } else {
       setState("error");
-      setError("");
+      setError(getFormSubmitError(result, isAr));
     }
   };
 
@@ -82,13 +95,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
   }
 
   const errorMessage =
-    error ||
-    (state === "error"
-      ? isAr
-        ? "حدث خطأ. يرجى المحاولة مرة أخرى."
-        : "Something went wrong. Please try again."
-      : "") ||
-    (selectionError ? labels.programRequired : "");
+    (selectionError ? labels.programRequired : "") || error;
 
   return (
     <form className="apply-form" onSubmit={handleSubmit} noValidate>

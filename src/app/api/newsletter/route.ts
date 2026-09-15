@@ -11,7 +11,7 @@ import { subscribeToCampaignsList } from "@/lib/zoho";
 const schema = z.object({
   firstName: z.string().trim().min(1).max(100),
   lastName: z.string().trim().min(1).max(100),
-  email: z.string().email(),
+  email: z.string().trim().email(),
   locale: z.enum(["ar", "en"]),
   source: z.enum(["footer", "inline", "default"]).optional(),
 });

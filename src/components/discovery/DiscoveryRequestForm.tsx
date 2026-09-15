@@ -4,7 +4,10 @@ import { useState } from "react";
 import { submitDiscoveryLead } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
-import { isValidEmail } from "@/lib/email";
+import {
+  getFormSubmitError,
+  getLeadValidationError,
+} from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -41,18 +44,30 @@ export function DiscoveryRequestForm({
   locale = "en",
   onSuccess,
 }: Props) {
+  const isAr = isRTL || locale === "ar";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const clearError = () => {
+    if (status === "error") {
+      setStatus("idle");
+      setErrorMessage("");
+    }
+  };
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!name.trim() || !isValidEmail(email)) {
+    const fieldError = getLeadValidationError({ name, email }, isAr);
+    if (fieldError) {
       setStatus("error");
+      setErrorMessage(fieldError);
       return;
     }
     setStatus("submitting");
+    setErrorMessage("");
 
     const result = await submitDiscoveryLead({
       name: name.trim(),
@@ -69,6 +84,7 @@ export function DiscoveryRequestForm({
       onSuccess?.();
     } else {
       setStatus("error");
+      setErrorMessage(getFormSubmitError(result, isAr, labels.error));
     }
   };
 
@@ -106,7 +122,7 @@ export function DiscoveryRequestForm({
 
   return (
     <form className="dreq-form" noValidate onSubmit={onSubmit}>
-      {status === "error" ? <FormError>{labels.error}</FormError> : null}
+      {errorMessage ? <FormError>{errorMessage}</FormError> : null}
 
       <p className="dreq-intro">
         {isRTL
@@ -123,7 +139,7 @@ export function DiscoveryRequestForm({
           type="text"
           value={name}
           disabled={status === "submitting"}
-          onChange={(e) => { setName(e.target.value); setStatus("idle"); }}
+          onChange={(e) => { setName(e.target.value); clearError(); }}
         />
       </label>
 
@@ -136,7 +152,7 @@ export function DiscoveryRequestForm({
           type="email"
           value={email}
           disabled={status === "submitting"}
-          onChange={(e) => { setEmail(e.target.value); setStatus("idle"); }}
+          onChange={(e) => { setEmail(e.target.value); clearError(); }}
         />
       </label>
 

@@ -5,7 +5,12 @@ import { submitCommunityApplication } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
 import type { CommunityApplyFormLabels } from "@/content/types";
-import { getEmailError } from "@/lib/email";
+import {
+  getCommunityRequiredError,
+  getFormSubmitError,
+  getLeadValidationError,
+  getMotivationError,
+} from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -34,14 +39,24 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (state === "error") {
+      setState("idle");
+      setError("");
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const emailError = getEmailError(form.email, isAr);
-    if (emailError) {
+    const fieldError =
+      getCommunityRequiredError(form.community, isAr) ||
+      getLeadValidationError(
+        { name: form.name, email: form.email },
+        isAr,
+        [getMotivationError(form.motivation, isAr)],
+      );
+    if (fieldError) {
       setState("error");
-      setError(emailError);
+      setError(fieldError);
       return;
     }
 
@@ -54,7 +69,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
       phone: form.phone || undefined,
       communityId: form.community as "impact" | "lego",
       profession: form.profession || undefined,
-      motivation: form.motivation,
+      motivation: form.motivation.trim(),
       experience: form.experience || undefined,
       locale,
     });
@@ -63,7 +78,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
       setState("success");
     } else {
       setState("error");
-      setError("");
+      setError(getFormSubmitError(result, isAr));
     }
   };
 
@@ -92,13 +107,7 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
     );
   }
 
-  const errorMessage =
-    error ||
-    (state === "error"
-      ? isAr
-        ? "حدث خطأ. يرجى المحاولة مرة أخرى."
-        : "Something went wrong. Please try again."
-      : "");
+  const errorMessage = error;
 
   return (
     <form className="apply-form" onSubmit={handleSubmit} noValidate>

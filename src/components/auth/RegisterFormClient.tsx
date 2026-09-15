@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { getEmailError } from "@/lib/email";
+import { getNameError, getPasswordRequiredError } from "@/lib/form-validation";
 import {
   isStrongPassword,
   PASSWORD_MIN_LENGTH,
@@ -29,10 +30,22 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const nameError = getNameError(form.name, isAr);
+    if (nameError) {
+      setState("error");
+      setError(nameError);
+      return;
+    }
     const emailError = getEmailError(form.email, isAr);
     if (emailError) {
       setState("error");
       setError(emailError);
+      return;
+    }
+    const passwordRequired = getPasswordRequiredError(form.password, isAr);
+    if (passwordRequired) {
+      setState("error");
+      setError(passwordRequired);
       return;
     }
     if (form.password !== form.confirm) {

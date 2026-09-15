@@ -10,6 +10,7 @@ import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRouter } from "@/i18n/routing";
 import { postAuthDestination, stripLocalePrefix } from "@/lib/dashboard-availability";
 import { getEmailError } from "@/lib/email";
+import { getPasswordRequiredError } from "@/lib/form-validation";
 
 type FormState = "idle" | "submitting" | "error";
 
@@ -82,6 +83,13 @@ export function LoginFormClient({ isAr, siteName, logoAlt }: Props) {
     if (emailError) {
       setState("error");
       setError(emailError);
+      setShowForgotHint(false);
+      return;
+    }
+    const passwordError = getPasswordRequiredError(password, isAr);
+    if (passwordError) {
+      setState("error");
+      setError(passwordError);
       setShowForgotHint(false);
       return;
     }

@@ -5,7 +5,10 @@ import { submitProgramInterest } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
 import type { ProgramsSectionContent } from "@/content/types";
-import { getEmailError } from "@/lib/email";
+import {
+  getFormSubmitError,
+  getLeadValidationError,
+} from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -62,14 +65,21 @@ export function ProgramInterestFormClient({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (state === "error") {
+      setState("idle");
+      setValidationError("");
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const emailError = getEmailError(form.email, isAr);
-    if (emailError) {
+    const fieldError = getLeadValidationError(
+      { name: form.name, email: form.email },
+      isAr,
+    );
+    if (fieldError) {
       setState("error");
-      setValidationError(emailError);
+      setValidationError(fieldError);
       return;
     }
 
@@ -91,7 +101,9 @@ export function ProgramInterestFormClient({
       setState("success");
     } else {
       setState("error");
-      setValidationError("");
+      setValidationError(
+        getFormSubmitError(result, isAr, labels.registerError),
+      );
     }
   };
 
@@ -119,14 +131,7 @@ export function ProgramInterestFormClient({
     );
   }
 
-  const errorMessage =
-    state === "error"
-      ? validationError ||
-        labels.registerError ||
-        (isAr
-          ? "حدث خطأ. يرجى المحاولة مرة أخرى."
-          : "Something went wrong. Please try again.")
-      : "";
+  const errorMessage = state === "error" ? validationError : "";
 
   return (
     <form

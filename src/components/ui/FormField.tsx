@@ -1,4 +1,12 @@
-import type { FormEvent, LabelHTMLAttributes, ReactNode } from "react";
+"use client";
+
+import {
+  useEffect,
+  useRef,
+  type FormEvent,
+  type LabelHTMLAttributes,
+  type ReactNode,
+} from "react";
 import { requiredLabel } from "@/lib/form-labels";
 import { cn } from "@/lib/utils";
 
@@ -39,6 +47,29 @@ export function FormField({
         </span>
       ) : null}
     </label>
+  );
+}
+
+type FormErrorProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+/**
+ * Form-level error banner. Place near the top of the form so it stays visible.
+ * Scrolls into view when the message appears or changes.
+ */
+export function FormError({ children, className }: FormErrorProps) {
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [children]);
+
+  return (
+    <p ref={ref} className={cn("form-error", className)} role="alert">
+      {children}
+    </p>
   );
 }
 

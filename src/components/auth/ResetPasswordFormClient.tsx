@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { updatePassword } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import {
   isStrongPassword,
@@ -94,9 +95,7 @@ export function ResetPasswordFormClient({ isAr, logoAlt }: Props) {
           </p>
         ) : state === "invalid" ? (
           <>
-            <div className="auth-error" role="alert">
-              {error}
-            </div>
+            <FormError>{error}</FormError>
             <Button href="/auth/forgot-password" variant="primary" className="w-full">
               {isAr ? "طلب رابط جديد" : "Request a new link"}
             </Button>
@@ -112,11 +111,7 @@ export function ResetPasswordFormClient({ isAr, logoAlt }: Props) {
           </>
         ) : (
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
-            {error && (
-              <div className="auth-error" role="alert">
-                {error}
-              </div>
-            )}
+            {error ? <FormError>{error}</FormError> : null}
             <label>
               {requiredLabel(isAr ? "كلمة المرور الجديدة" : "New Password")}
               <input

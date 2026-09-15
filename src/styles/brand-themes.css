@@ -27,7 +27,15 @@ html[data-theme="impact"] .hero-media {
 /*
  * Shared: dark bands (hero / footer / section-dark) — themes that set
  * `--on-dark-*` get readable gold/CTAs on deep surfaces.
+ * Error tokens stay fixed red on every skin (never theme-tinted).
  */
+html[data-theme] {
+  --error: #b42318;
+  --error-on-dark: #f97066;
+  --error-soft: color-mix(in srgb, var(--error) 12%, transparent);
+  --focus-ring-error: 0 0 0 3px color-mix(in srgb, var(--error) 22%, transparent);
+}
+
 html[data-theme="seera"] .hero,
 html[data-theme="seera"] .entity-home-hero,
 html[data-theme="seera"] .section-dark,
@@ -353,8 +361,7 @@ html[data-theme="lego"] .site-footer .footer-bottom,
 html[data-theme="lego"] .site-footer .footer-motto {
   color: color-mix(in srgb, var(--white) 82%, transparent);
 }
-html[data-theme="lego"] .site-footer .footer-meta-link,
-html[data-theme="lego"] .site-footer .newsletter-error {
+html[data-theme="lego"] .site-footer .footer-meta-link {
   color: var(--white);
 }
 html[data-theme="lego"] .site-footer .footer-meta-link:hover,

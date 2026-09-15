@@ -5735,12 +5735,14 @@ a.contact-meta-item:hover {
 
 .form-status {
   min-height: 24px;
-  margin: 10px 0 0;
+  margin: 0 0 var(--space-3);
   color: var(--deep);
   font-size: var(--fs-eyebrow);
 }
 .form-status-error {
+  /* Banner chrome comes from design-system `.form-status.form-status-error` */
   color: var(--error);
+  font-weight: 600;
 }
 
 .contact-success {
@@ -5913,8 +5915,12 @@ a.contact-meta-item:hover {
 .footer-subscribe .newsletter-success b {
   color: var(--white);
 }
-.footer-subscribe .newsletter-error {
-  color: var(--gold);
+.footer-subscribe .newsletter-error,
+.footer-subscribe .form-error {
+  color: var(--error-on-dark);
+  border-color: color-mix(in srgb, var(--error-on-dark) 40%, transparent);
+  background: color-mix(in srgb, var(--error-on-dark) 16%, transparent);
+  font-weight: 600;
 }
 
 /* Main brand + nav */
@@ -6832,11 +6838,7 @@ a.contact-meta-item:hover {
   color: var(--deep);
   font-weight: 700;
 }
-.program-interest-error {
-  margin: 0;
-  color: #b42318;
-  font-size: var(--fs-sm);
-}
+/* `.program-interest-error` banner styles live in design-system.css */
 .program-register-lead {
   margin: 0 0 var(--space-6);
   color: var(--muted);
@@ -10095,9 +10097,6 @@ button.discovery-step-btn:hover .discovery-step-index {
 }
 .discovery-request-error,
 .dreq-error {
-  margin: 0;
-  color: var(--error);
-  font-size: var(--fs-sm);
   text-align: center;
 }
 .discovery-request-success,
@@ -10269,6 +10268,7 @@ button.discovery-step-btn:hover .discovery-step-index {
   margin: 8px 0 0;
   color: var(--error);
   font-size: var(--fs-sm);
+  font-weight: 600;
 }
 
 /* Discovery page hero — extends page-hero (legacy step strip removed) */
@@ -10637,15 +10637,7 @@ button.discovery-step-btn:hover .discovery-step-index {
   background: color-mix(in srgb, var(--gold) 8%, transparent);
   font-size: var(--fs-sm);
 }
-.auth-error {
-  margin: 0 0 10px;
-  padding: 10px 14px;
-  color: var(--error);
-  border: 1px solid color-mix(in srgb, var(--deep-3) 25%, transparent);
-  border-radius: var(--radius-xs);
-  background: color-mix(in srgb, var(--deep-3) 6%, transparent);
-  font-size: var(--fs-sm);
-}
+/* `.auth-error` banner styles live in design-system.css */
 .auth-forgot {
   text-align: end;
   margin-top: -6px;

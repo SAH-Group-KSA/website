@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import { useRouter } from "@/i18n/routing";
 
 type Props = {
@@ -149,6 +150,7 @@ export function ProfileFormClient({ isAr, initialProfile }: Props) {
           </div>
 
           <div className="profile-form">
+            {error ? <FormError>{error}</FormError> : null}
             <label>
               {isAr ? "الاسم الكامل" : "Full Name"}
               <input
@@ -207,11 +209,6 @@ export function ProfileFormClient({ isAr, initialProfile }: Props) {
             {saved && (
               <span className="profile-save-success">
                 ✓ {isAr ? "تم حفظ التغييرات" : "Changes saved"}
-              </span>
-            )}
-            {error && (
-              <span className="auth-error" role="alert">
-                {error}
               </span>
             )}
           </div>

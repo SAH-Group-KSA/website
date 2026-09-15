@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { submitGroupInterest } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import type {
   GroupInterestFormLabels,
   GroupProgramOption,
@@ -80,8 +81,19 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
     );
   }
 
+  const errorMessage =
+    error ||
+    (state === "error"
+      ? isAr
+        ? "حدث خطأ. يرجى المحاولة مرة أخرى."
+        : "Something went wrong. Please try again."
+      : "") ||
+    (selectionError ? labels.programRequired : "");
+
   return (
     <form className="apply-form" onSubmit={handleSubmit} noValidate>
+      {errorMessage ? <FormError>{errorMessage}</FormError> : null}
+
       <div
         role="radiogroup"
         aria-labelledby="group-program-legend"
@@ -109,11 +121,6 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
             </label>
           ))}
         </div>
-        {selectionError ? (
-          <p className="mt-2 text-small text-error" role="alert">
-            {labels.programRequired}
-          </p>
-        ) : null}
       </div>
 
       <div className="apply-form-row">
@@ -176,17 +183,6 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
 
       <div className="form-footer">
         <p>{labels.consent}</p>
-        {error ? (
-          <p className="program-interest-error" role="alert">
-            {error}
-          </p>
-        ) : state === "error" ? (
-          <p className="program-interest-error" role="alert">
-            {isAr
-              ? "حدث خطأ. يرجى المحاولة مرة أخرى."
-              : "Something went wrong. Please try again."}
-          </p>
-        ) : null}
         <Button
           type="submit"
           variant="primary"

@@ -6,6 +6,7 @@ import { submitContactLead } from "@/adapters/zoho/forms";
 import type { SiteContent } from "@/content/types";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { FormError } from "@/components/ui/FormField";
 import { Section } from "@/components/ui/Section";
 import { SAH_OPEN_CONTACT } from "@/lib/interactions";
 import { isValidEmail } from "@/lib/email";
@@ -190,6 +191,8 @@ export function ContactSection({ data }: Props) {
               noValidate
               onSubmit={onSubmit}
             >
+              {status === "error" ? <FormError>{data.error}</FormError> : null}
+
               <div
                 aria-label={data.audienceAriaLabel}
                 className="form-segment"
@@ -306,11 +309,6 @@ export function ContactSection({ data }: Props) {
                     : data.submit}
                 </Button>
               </div>
-              {status === "error" ? (
-                <p className="form-status form-status-error" role="alert">
-                  {data.error}
-                </p>
-              ) : null}
             </form>
           )}
         </div>

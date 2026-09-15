@@ -4,6 +4,7 @@ import { useState } from "react";
 import { resetPassword } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { getEmailError } from "@/lib/email";
 import { requiredLabel } from "@/lib/form-labels";
@@ -85,11 +86,7 @@ export function ForgotPasswordFormClient({ isAr, logoAlt }: Props) {
             : "Enter your email and we'll send you a reset link."}
         </p>
 
-        {error && (
-          <div className="auth-error" role="alert">
-            {error}
-          </div>
-        )}
+        {error ? <FormError>{error}</FormError> : null}
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <label>

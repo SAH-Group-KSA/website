@@ -47,9 +47,12 @@
   --lego: #d4a017;
   --impact: #008a5e;
 
-  /* Semantic surfaces */
-  --error: var(--deep-3);
-  --error-soft: color-mix(in srgb, var(--deep) 12%, transparent);
+  /* Semantic surfaces
+     --error is a fixed red (not theme-tinted) so validation copy stays
+     readable on every company skin. */
+  --error: #b42318;
+  --error-on-dark: #f97066;
+  --error-soft: color-mix(in srgb, var(--error) 12%, transparent);
   --success: var(--brand-primary);
   --success-soft: color-mix(in srgb, var(--brand-primary) 12%, transparent);
   --warning: var(--brand-medium);
@@ -64,7 +67,7 @@
   /* Focus / interaction */
   --focus-ring: 0 0 0 3px color-mix(in srgb, var(--gold) 14%, transparent);
   --focus-ring-strong: 0 0 0 4px color-mix(in srgb, var(--gold) 12%, transparent);
-  --focus-ring-error: 0 0 0 3px color-mix(in srgb, var(--deep) 14%, transparent);
+  --focus-ring-error: 0 0 0 3px color-mix(in srgb, var(--error) 22%, transparent);
   --focus-ring-on-dark: inset 0 0 0 2px color-mix(in srgb, var(--gold) 70%, transparent);
   --focus-border: var(--gold);
 

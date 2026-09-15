@@ -4,6 +4,8 @@ import { useState } from "react";
 import { submitProgramInterest } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import type { ProgramsSectionContent } from "@/content/types";
+import { getEmailError } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
 type Props = {
@@ -53,6 +55,7 @@ export function ProgramInterestFormClient({
     message: "",
   });
   const [state, setState] = useState<FormState>("idle");
+  const [validationError, setValidationError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -62,11 +65,19 @@ export function ProgramInterestFormClient({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailError = getEmailError(form.email, isAr);
+    if (emailError) {
+      setState("error");
+      setValidationError(emailError);
+      return;
+    }
+
     setState("submitting");
+    setValidationError("");
 
     const result = await submitProgramInterest({
-      name: form.name,
-      email: form.email,
+      name: form.name.trim(),
+      email: form.email.trim(),
       phone: form.phone || undefined,
       organization: form.org || undefined,
       programId,
@@ -79,6 +90,7 @@ export function ProgramInterestFormClient({
       setState("success");
     } else {
       setState("error");
+      setValidationError("");
     }
   };
 
@@ -123,7 +135,9 @@ export function ProgramInterestFormClient({
 
       <div className="apply-form-row">
         <label>
-          {labels.registerNameLabel ?? (isAr ? "الاسم الكامل *" : "Full Name *")}
+          {requiredLabel(
+            labels.registerNameLabel ?? (isAr ? "الاسم الكامل" : "Full Name"),
+          )}
           <input
             type="text"
             name="name"
@@ -134,8 +148,10 @@ export function ProgramInterestFormClient({
           />
         </label>
         <label>
-          {labels.registerEmailLabel ??
-            (isAr ? "البريد الإلكتروني *" : "Email Address *")}
+          {requiredLabel(
+            labels.registerEmailLabel ??
+              (isAr ? "البريد الإلكتروني" : "Email Address"),
+          )}
           <input
             type="email"
             name="email"
@@ -190,7 +206,8 @@ export function ProgramInterestFormClient({
 
       {state === "error" ? (
         <p className="program-interest-error" role="alert">
-          {labels.registerError ??
+          {validationError ||
+            labels.registerError ||
             (isAr
               ? "حدث خطأ. يرجى المحاولة مرة أخرى."
               : "Something went wrong. Please try again.")}

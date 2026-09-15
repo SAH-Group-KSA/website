@@ -9,6 +9,7 @@ import { FormField, FormShell } from "@/components/ui/FormField";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRouter } from "@/i18n/routing";
 import { postAuthDestination, stripLocalePrefix } from "@/lib/dashboard-availability";
+import { getEmailError } from "@/lib/email";
 
 type FormState = "idle" | "submitting" | "error";
 
@@ -77,11 +78,19 @@ export function LoginFormClient({ isAr, siteName, logoAlt }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailError = getEmailError(email, isAr);
+    if (emailError) {
+      setState("error");
+      setError(emailError);
+      setShowForgotHint(false);
+      return;
+    }
+
     setState("submitting");
     setError("");
     setShowForgotHint(false);
 
-    const result = await signIn({ email, password });
+    const result = await signIn({ email: email.trim(), password });
     if (result.ok) {
       const next = searchParams.get("next");
       const destination = stripLocalePrefix(
@@ -134,7 +143,7 @@ export function LoginFormClient({ isAr, siteName, logoAlt }: Props) {
         )}
 
         <FormShell className="auth-form" onSubmit={handleSubmit}>
-          <FormField label={isAr ? "البريد الإلكتروني" : "Email Address"}>
+          <FormField label={isAr ? "البريد الإلكتروني" : "Email Address"} required>
             <input
               type="email"
               value={email}
@@ -146,7 +155,7 @@ export function LoginFormClient({ isAr, siteName, logoAlt }: Props) {
             />
           </FormField>
 
-          <FormField label={isAr ? "كلمة المرور" : "Password"}>
+          <FormField label={isAr ? "كلمة المرور" : "Password"} required>
             <input
               type="password"
               value={password}

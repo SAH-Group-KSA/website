@@ -5,6 +5,13 @@ import { updatePassword } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { LocaleLink } from "@/components/ui/LocaleLink";
+import {
+  isStrongPassword,
+  PASSWORD_MIN_LENGTH,
+  passwordPlaceholder,
+  passwordRequirementsMessage,
+} from "@/lib/password";
+import { requiredLabel } from "@/lib/form-labels";
 import { createSupabaseBrowserClient } from "@/lib/supabase";
 
 type Props = { isAr: boolean; logoAlt: string };
@@ -46,6 +53,11 @@ export function ResetPasswordFormClient({ isAr, logoAlt }: Props) {
     if (password !== confirm) {
       setState("error");
       setError(isAr ? "كلمتا المرور غير متطابقتين." : "Passwords do not match.");
+      return;
+    }
+    if (!isStrongPassword(password)) {
+      setState("error");
+      setError(passwordRequirementsMessage(isAr));
       return;
     }
 
@@ -99,32 +111,34 @@ export function ResetPasswordFormClient({ isAr, logoAlt }: Props) {
             </Button>
           </>
         ) : (
-          <form className="auth-form" onSubmit={handleSubmit}>
+          <form className="auth-form" onSubmit={handleSubmit} noValidate>
             {error && (
               <div className="auth-error" role="alert">
                 {error}
               </div>
             )}
             <label>
-              {isAr ? "كلمة المرور الجديدة" : "New Password"}
+              {requiredLabel(isAr ? "كلمة المرور الجديدة" : "New Password")}
               <input
                 type="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                minLength={8}
+                minLength={PASSWORD_MIN_LENGTH}
                 required
                 autoComplete="new-password"
+                placeholder={passwordPlaceholder(isAr)}
               />
             </label>
             <label>
-              {isAr ? "تأكيد كلمة المرور" : "Confirm Password"}
+              {requiredLabel(isAr ? "تأكيد كلمة المرور" : "Confirm Password")}
               <input
                 type="password"
                 value={confirm}
                 onChange={(event) => setConfirm(event.target.value)}
-                minLength={8}
+                minLength={PASSWORD_MIN_LENGTH}
                 required
                 autoComplete="new-password"
+                placeholder={isAr ? "أعد كتابة كلمة المرور" : "Re-enter password"}
               />
             </label>
             <Button

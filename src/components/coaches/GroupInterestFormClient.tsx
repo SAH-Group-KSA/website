@@ -7,6 +7,8 @@ import type {
   GroupInterestFormLabels,
   GroupProgramOption,
 } from "@/content/types";
+import { getEmailError } from "@/lib/email";
+import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
 type Props = {
@@ -18,10 +20,12 @@ type Props = {
 type FormState = "idle" | "submitting" | "success" | "error";
 
 export function GroupInterestFormClient({ labels, programs, locale }: Props) {
+  const isAr = locale === "ar";
   const [selected, setSelected] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", org: "", message: "" });
   const [state, setState] = useState<FormState>("idle");
   const [selectionError, setSelectionError] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -34,11 +38,20 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
       return;
     }
     setSelectionError(false);
+
+    const emailError = getEmailError(form.email, isAr);
+    if (emailError) {
+      setState("error");
+      setError(emailError);
+      return;
+    }
+
     setState("submitting");
+    setError("");
 
     const result = await submitGroupInterest({
-      name: form.name,
-      email: form.email,
+      name: form.name.trim(),
+      email: form.email.trim(),
       phone: form.phone || undefined,
       organization: form.org || undefined,
       programId: selected,
@@ -50,6 +63,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
       setState("success");
     } else {
       setState("error");
+      setError("");
     }
   };
 
@@ -74,7 +88,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
         aria-invalid={selectionError || undefined}
       >
         <p className="mb-3 text-small text-muted" id="group-program-legend">
-          {labels.programLegend}
+          {requiredLabel(labels.programLegend)}
         </p>
         <div className="group-programs-grid">
           {programs.map((p) => (
@@ -104,7 +118,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
 
       <div className="apply-form-row">
         <label>
-          {labels.fullName}
+          {requiredLabel(labels.fullName)}
           <input
             type="text"
             name="name"
@@ -115,7 +129,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
           />
         </label>
         <label>
-          {labels.email}
+          {requiredLabel(labels.email)}
           <input
             type="email"
             name="email"
@@ -162,6 +176,17 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
 
       <div className="form-footer">
         <p>{labels.consent}</p>
+        {error ? (
+          <p className="program-interest-error" role="alert">
+            {error}
+          </p>
+        ) : state === "error" ? (
+          <p className="program-interest-error" role="alert">
+            {isAr
+              ? "حدث خطأ. يرجى المحاولة مرة أخرى."
+              : "Something went wrong. Please try again."}
+          </p>
+        ) : null}
         <Button
           type="submit"
           variant="primary"

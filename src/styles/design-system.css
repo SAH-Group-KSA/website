@@ -460,12 +460,59 @@ html[dir="rtl"] .ds-toast {
   margin-inline: 0 auto;
 }
 
-/* FormField feedback */
+/* Form-level error banner — fixed red, beats theme / .form-footer p */
+.form-error,
+.auth-error,
+.program-interest-error,
+.form-status.form-status-error,
+.dreq-error,
+.discovery-request-error {
+  display: block;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin: 0 0 var(--space-3);
+  padding: 10px 14px;
+  color: var(--error);
+  border: 1px solid color-mix(in srgb, var(--error) 28%, transparent);
+  border-radius: var(--radius-xs);
+  background: var(--error-soft);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Higher specificity so theme label / footer muted text cannot win */
+.form-footer .form-error,
+.form-footer p.form-error,
+.form-footer .program-interest-error,
+.form-footer p.program-interest-error,
+.apply-form .form-error,
+.apply-form .program-interest-error,
+.apply-form p.program-interest-error,
+.contact-form .form-status.form-status-error,
+.contact-form p.form-status-error,
+.dreq-form .dreq-error,
+.auth-form .auth-error,
+label .field-error,
+.form-field .field-error,
+p.text-error,
+.text-error {
+  color: var(--error);
+  max-width: none;
+}
+
+/* Field-level feedback (under an input) */
 .field-error {
   display: block;
   margin-top: var(--space-1);
+  padding: 0;
+  border: none;
+  background: transparent;
   color: var(--error);
   font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.4;
 }
 .field-hint {
   display: block;

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signUp } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { getEmailError } from "@/lib/email";
 import {
@@ -125,11 +126,7 @@ export function RegisterFormClient({ isAr, siteName, logoAlt }: Props) {
             : `Join ${siteName} for full access`}
         </p>
 
-        {error && (
-          <div className="auth-error" role="alert">
-            {error}
-          </div>
-        )}
+        {error ? <FormError>{error}</FormError> : null}
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <label>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { submitCommunityApplication } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import type { CommunityApplyFormLabels } from "@/content/types";
 import { getEmailError } from "@/lib/email";
 import { requiredLabel } from "@/lib/form-labels";
@@ -91,8 +92,18 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
     );
   }
 
+  const errorMessage =
+    error ||
+    (state === "error"
+      ? isAr
+        ? "حدث خطأ. يرجى المحاولة مرة أخرى."
+        : "Something went wrong. Please try again."
+      : "");
+
   return (
     <form className="apply-form" onSubmit={handleSubmit} noValidate>
+      {errorMessage ? <FormError>{errorMessage}</FormError> : null}
+
       <label>
         {requiredLabel(labels.community)}
         <select name="community" value={form.community} onChange={handleChange} required>
@@ -173,17 +184,6 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
 
       <div className="form-footer">
         <p>{labels.consent}</p>
-        {error ? (
-          <p className="program-interest-error" role="alert">
-            {error}
-          </p>
-        ) : state === "error" ? (
-          <p className="program-interest-error" role="alert">
-            {isAr
-              ? "حدث خطأ. يرجى المحاولة مرة أخرى."
-              : "Something went wrong. Please try again."}
-          </p>
-        ) : null}
         <Button type="submit" variant="primary" disabled={state === "submitting"}>
           {state === "submitting" ? labels.submitting : labels.submit}
         </Button>

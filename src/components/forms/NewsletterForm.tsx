@@ -4,6 +4,7 @@ import { subscribeNewsletter } from "@/adapters/zoho/forms";
 import { useId, useState } from "react";
 import type { NewsletterContent } from "@/content/types";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import { VisuallyHidden } from "@/components/ui/VisuallyHidden";
 import { isValidEmail } from "@/lib/email";
 import { requiredLabel } from "@/lib/form-labels";
@@ -62,6 +63,15 @@ export function NewsletterForm({
 
   return (
     <div className={cn("newsletter-form-wrap", className)}>
+      {status === "error" ? (
+        <FormError className="newsletter-error">
+          {errorType === "submit"
+            ? data.submitError
+            : errorType === "name"
+              ? data.nameError
+              : data.error}
+        </FormError>
+      ) : null}
       <form
         className={cn(
           "newsletter-form",
@@ -156,15 +166,6 @@ export function NewsletterForm({
           </Button>
         </div>
       </form>
-      {status === "error" ? (
-        <p className="newsletter-status newsletter-error" role="alert">
-          {errorType === "submit"
-            ? data.submitError
-            : errorType === "name"
-              ? data.nameError
-              : data.error}
-        </p>
-      ) : null}
     </div>
   );
 }

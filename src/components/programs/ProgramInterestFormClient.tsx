@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { submitProgramInterest } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import type { ProgramsSectionContent } from "@/content/types";
 import { getEmailError } from "@/lib/email";
 import { requiredLabel } from "@/lib/form-labels";
@@ -118,12 +119,23 @@ export function ProgramInterestFormClient({
     );
   }
 
+  const errorMessage =
+    state === "error"
+      ? validationError ||
+        labels.registerError ||
+        (isAr
+          ? "حدث خطأ. يرجى المحاولة مرة أخرى."
+          : "Something went wrong. Please try again.")
+      : "";
+
   return (
     <form
       className={compact ? "apply-form apply-form-compact" : "apply-form"}
       onSubmit={handleSubmit}
       noValidate
     >
+      {errorMessage ? <FormError>{errorMessage}</FormError> : null}
+
       {!compact ? (
         <div className="program-interest-locked">
           <p className="text-small" style={{ margin: "0 0 4px", color: "var(--muted)" }}>
@@ -203,16 +215,6 @@ export function ProgramInterestFormClient({
           }
         />
       </label>
-
-      {state === "error" ? (
-        <p className="program-interest-error" role="alert">
-          {validationError ||
-            labels.registerError ||
-            (isAr
-              ? "حدث خطأ. يرجى المحاولة مرة أخرى."
-              : "Something went wrong. Please try again.")}
-        </p>
-      ) : null}
 
       <div className="form-footer">
         <p>

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { signIn } from "@/adapters/supabase/auth";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
-import { FormField, FormShell } from "@/components/ui/FormField";
+import { FormField, FormError, FormShell } from "@/components/ui/FormField";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRouter } from "@/i18n/routing";
 import { postAuthDestination, stripLocalePrefix } from "@/lib/dashboard-availability";
@@ -128,8 +128,8 @@ export function LoginFormClient({ isAr, siteName, logoAlt }: Props) {
           {isAr ? `مرحباً بك في ${siteName}` : `Welcome back to ${siteName}`}
         </p>
 
-        {error && (
-          <div className="auth-error" role="alert">
+        {error ? (
+          <FormError>
             {error}
             {showForgotHint ? (
               <>
@@ -139,8 +139,8 @@ export function LoginFormClient({ isAr, siteName, logoAlt }: Props) {
                 </LocaleLink>
               </>
             ) : null}
-          </div>
-        )}
+          </FormError>
+        ) : null}
 
         <FormShell className="auth-form" onSubmit={handleSubmit}>
           <FormField label={isAr ? "البريد الإلكتروني" : "Email Address"} required>

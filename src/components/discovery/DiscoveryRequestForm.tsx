@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { submitDiscoveryLead } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
+import { FormError } from "@/components/ui/FormField";
 import { isValidEmail } from "@/lib/email";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
@@ -105,6 +106,8 @@ export function DiscoveryRequestForm({
 
   return (
     <form className="dreq-form" noValidate onSubmit={onSubmit}>
+      {status === "error" ? <FormError>{labels.error}</FormError> : null}
+
       <p className="dreq-intro">
         {isRTL
           ? "أترك بياناتك وسيتواصل معك فريق سعة."
@@ -169,12 +172,6 @@ export function DiscoveryRequestForm({
           ? isRTL ? "جارٍ الإرسال…" : "Sending…"
           : labels.submit}
       </Button>
-
-      {status === "error" ? (
-        <p className="dreq-error" role="alert">
-          {labels.error}
-        </p>
-      ) : null}
     </form>
   );
 }

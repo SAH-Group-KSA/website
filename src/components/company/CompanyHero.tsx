@@ -56,13 +56,6 @@ export function CompanyHero({ data, entity, offerings }: Props) {
               {data.secondaryCta.label}
             </Button>
           </div>
-          <div role="group" aria-label={data.proofAriaLabel} className="hero-proof">
-            {data.proof.map((item) => (
-              <span key={item.label}>
-                <strong>{item.value}</strong> {item.label}
-              </span>
-            ))}
-          </div>
         </div>
 
         <aside

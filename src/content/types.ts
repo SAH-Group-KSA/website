@@ -52,11 +52,6 @@ export interface MetaContent {
   motto: string;
 }
 
-export interface HeroProofItem {
-  value: string;
-  label: string;
-}
-
 export interface HeroContent {
   eyebrow: string;
   titleLines: string[];
@@ -64,9 +59,7 @@ export interface HeroContent {
   body: string;
   primaryCta: LinkCta;
   secondaryCta: LinkCta;
-  proof: HeroProofItem[];
   scrollLabel: string;
-  proofAriaLabel: string;
   orbitAriaLabel: string;
   orbitCenterAriaLabel: string;
   scrollAriaLabel: string;

@@ -47,16 +47,6 @@ export const faqContent = defineType({
   ],
 });
 
-export const heroProofItem = defineType({
-  name: "heroProofItem",
-  title: "Hero proof item",
-  type: "object",
-  fields: [
-    defineField({ name: "value", type: "string" }),
-    defineField({ name: "label", type: "string" }),
-  ],
-});
-
 export const heroContent = defineType({
   name: "heroContent",
   title: "Hero",
@@ -68,9 +58,7 @@ export const heroContent = defineType({
     defineField({ name: "body", type: "text", rows: 4 }),
     defineField({ name: "primaryCta", type: "linkCta" }),
     defineField({ name: "secondaryCta", type: "linkCta" }),
-    defineField({ name: "proof", type: "array", of: [{ type: "heroProofItem" }] }),
     defineField({ name: "scrollLabel", type: "string" }),
-    defineField({ name: "proofAriaLabel", type: "string" }),
     defineField({ name: "orbitAriaLabel", type: "string" }),
     defineField({ name: "orbitCenterAriaLabel", type: "string" }),
     defineField({ name: "scrollAriaLabel", type: "string" }),
@@ -354,7 +342,6 @@ export const marketingObjectTypes = [
   imageWithAlt,
   faqItem,
   faqContent,
-  heroProofItem,
   heroContent,
   promiseStep,
   promiseContent,

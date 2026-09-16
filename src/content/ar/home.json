@@ -175,22 +175,7 @@
       "label": "مجموعة سعة",
       "href": "#entities"
     },
-    "proof": [
-      {
-        "value": "6",
-        "label": "شركات متخصصة"
-      },
-      {
-        "value": "1",
-        "label": "نقطة دخول"
-      },
-      {
-        "value": "1",
-        "label": "رحلة متكاملة"
-      }
-    ],
     "scrollLabel": "اكتشف",
-    "proofAriaLabel": "نقاط تعريفية",
     "orbitAriaLabel": "خريطة كيانات مجموعة سعة",
     "orbitCenterAriaLabel": "مجموعة سعة",
     "scrollAriaLabel": "انتقل إلى القسم التالي"
@@ -629,10 +614,22 @@
         "successIntro": "شكراً لاهتمامك بمجتمع سعة. إليك ما سيحدث بعد ذلك:",
         "successStepsAriaLabel": "الخطوات التالية",
         "successSteps": [
-          { "icon": "✓", "label": "تم استلام طلبك" },
-          { "icon": "👁", "label": "يراجع فريق سعة طلبك خلال 2-3 أيام عمل" },
-          { "icon": "📬", "label": "ستتلقى إشعاراً بقرار القبول بالبريد الإلكتروني" },
-          { "icon": "🎉", "label": "عند القبول، تصلك تفاصيل الوصول وترحيب المجتمع" }
+          {
+            "icon": "✓",
+            "label": "تم استلام طلبك"
+          },
+          {
+            "icon": "👁",
+            "label": "يراجع فريق سعة طلبك خلال 2-3 أيام عمل"
+          },
+          {
+            "icon": "📬",
+            "label": "ستتلقى إشعاراً بقرار القبول بالبريد الإلكتروني"
+          },
+          {
+            "icon": "🎉",
+            "label": "عند القبول، تصلك تفاصيل الوصول وترحيب المجتمع"
+          }
         ]
       }
     }
@@ -2566,22 +2563,7 @@
           "label": "تصفّح الدورات",
           "href": "/courses"
         },
-        "proof": [
-          {
-            "value": "فردي",
-            "label": "تدريب"
-          },
-          {
-            "value": "جماعي",
-            "label": "مجموعات"
-          },
-          {
-            "value": "ذاتي",
-            "label": "دورات"
-          }
-        ],
         "scrollLabel": "اكتشف",
-        "proofAriaLabel": "مسارات سعة هيومن",
         "orbitAriaLabel": "مسارات سعة هيومن",
         "orbitCenterAriaLabel": "سعة هيومن",
         "scrollAriaLabel": "الانتقال إلى القسم التالي"
@@ -2715,22 +2697,7 @@
           "label": "ابدأ اكتشاف المسار",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "هوية",
-            "label": "واضحة"
-          },
-          {
-            "value": "حضور",
-            "label": "تنفيذي"
-          },
-          {
-            "value": "صوت",
-            "label": "فكري"
-          }
-        ],
         "scrollLabel": "اكتشف",
-        "proofAriaLabel": "مسارات SEERA",
         "orbitAriaLabel": "مسارات SEERA",
         "orbitCenterAriaLabel": "SEERA",
         "scrollAriaLabel": "الانتقال إلى القسم التالي"
@@ -2864,22 +2831,7 @@
           "label": "ابدأ اكتشاف المسار",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "ذكاء",
-            "label": "اصطناعي"
-          },
-          {
-            "value": "نمو",
-            "label": "استراتيجي"
-          },
-          {
-            "value": "تحول",
-            "label": "رقمي"
-          }
-        ],
         "scrollLabel": "اكتشف",
-        "proofAriaLabel": "مسارات سعة نكسس",
         "orbitAriaLabel": "مسارات سعة نكسس",
         "orbitCenterAriaLabel": "سعة نكسس",
         "scrollAriaLabel": "الانتقال إلى القسم التالي"
@@ -3013,22 +2965,7 @@
           "label": "ابدأ اكتشاف المسار",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "ملفات",
-            "label": "رعاية"
-          },
-          {
-            "value": "شركاء",
-            "label": "استقطاب"
-          },
-          {
-            "value": "قيمة",
-            "label": "مشتركة"
-          }
-        ],
         "scrollLabel": "اكتشف",
-        "proofAriaLabel": "مسارات سعة سبونسر",
         "orbitAriaLabel": "مسارات سعة سبونسر",
         "orbitCenterAriaLabel": "سعة سبونسر",
         "scrollAriaLabel": "الانتقال إلى القسم التالي"
@@ -3162,22 +3099,7 @@
           "label": "ابدأ اكتشاف المسار",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "لعب",
-            "label": "جاد"
-          },
-          {
-            "value": "قرارات",
-            "label": "مشتركة"
-          },
-          {
-            "value": "التزام",
-            "label": "بالتنفيذ"
-          }
-        ],
         "scrollLabel": "اكتشف",
-        "proofAriaLabel": "مسارات LEGO® by SAH",
         "orbitAriaLabel": "مسارات LEGO® by SAH",
         "orbitCenterAriaLabel": "LEGO® by SAH",
         "scrollAriaLabel": "الانتقال إلى القسم التالي"
@@ -3311,22 +3233,7 @@
           "label": "ابدأ اكتشاف المسار",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "CSR",
-            "label": "وESG"
-          },
-          {
-            "value": "قياس",
-            "label": "الأثر"
-          },
-          {
-            "value": "مجتمع",
-            "label": "وتشغيل"
-          }
-        ],
         "scrollLabel": "اكتشف",
-        "proofAriaLabel": "مسارات سعة إمباكت",
         "orbitAriaLabel": "مسارات سعة إمباكت",
         "orbitCenterAriaLabel": "سعة إمباكت",
         "scrollAriaLabel": "الانتقال إلى القسم التالي"

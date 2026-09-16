@@ -8786,7 +8786,7 @@ html[dir="rtl"] .select-chevron {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  /* Clips fixed video/bg descendants to the hero as it scrolls away */
+  /* Clips fixed bg descendants to the hero as it scrolls away */
   clip-path: inset(0);
   pointer-events: none;
   background-image:
@@ -8796,53 +8796,11 @@ html[dir="rtl"] .select-chevron {
       color-mix(in srgb, var(--deep) 79%, transparent) 50%,
       color-mix(in srgb, var(--deep) 45%, transparent) 100%
     ),
-    image-set(
-      url("/images/backgrounds/hero-media.webp") type("image/webp"),
-      url("/images/backgrounds/hero-media.png") type("image/png")
-    );
+    url("/images/backgrounds/IMG_9155.JPG.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-.hero-media--video {
-  /* Static poster while video defers — same asset as mobile fallback */
-  background-image: image-set(
-    url("/images/backgrounds/hero-media.webp") type("image/webp"),
-    url("/images/backgrounds/hero-media.png") type("image/png")
-  );
-  background-size: cover;
-  background-position: center;
-  background-color: var(--deep-3);
-  background-attachment: scroll;
-}
-/* Drop the poster once the video is on — avoids double-framing */
-.hero-media--video:has(.hero-media-video.is-ready) {
-  background-image: none;
-}
-.hero-media-video {
-  /*
-   * Absolute (not fixed) + cover: fills the hero on ultrawide / tall viewports.
-   * Fixed+cover sized to the viewport then clip-path cropped again (looked zoomed).
-   * Absolute sizes to the hero box so cover crops once and stays edge-to-edge.
-   */
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.55s var(--ease);
-}
-.hero-media-video.is-ready {
-  opacity: 0.68;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-media-video {
-    transition: none;
-  }
 }
 .hero-media::after {
   content: "";
@@ -8862,42 +8820,15 @@ html[dir="rtl"] .select-chevron {
       color-mix(in srgb, var(--deep) 82%, transparent)
     );
 }
-.hero-media--video::after {
-  background: color-mix(in srgb, var(--deep) 88%, transparent);
-}
 @media (prefers-reduced-motion: reduce) {
   .hero-media {
     background-attachment: scroll;
-  }
-  .hero-media-video {
-    display: none;
-  }
-  .hero-media--video {
-    background-image: none;
-    background-color: var(--deep-3);
-  }
-  .hero-media--video::after {
-    background: color-mix(in srgb, var(--deep) 88%, transparent);
   }
 }
 /* iOS / coarse pointers: fixed attachment is unreliable — fall back to scroll */
 @media (max-width: 860px) {
   .hero-media {
     background-attachment: scroll;
-  }
-  .hero-media--video {
-    background-image: image-set(
-      url("/images/backgrounds/hero-media.webp") type("image/webp"),
-      url("/images/backgrounds/hero-media.png") type("image/png")
-    );
-    background-position: center;
-    background-size: cover;
-  }
-  .hero-media-video {
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
   }
 }
 .journey-builder::before {

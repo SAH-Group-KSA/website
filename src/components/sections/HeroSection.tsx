@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { VisuallyHidden } from "@/components/ui/VisuallyHidden";
 import { HeroOrbit } from "@/components/sections/HeroOrbit";
-import { HeroMediaVideo } from "@/components/sections/HeroMediaVideo";
 
 type Props = {
   data: SiteContent["hero"];
@@ -18,9 +17,7 @@ export function HeroSection({ data, entities, motto }: Props) {
 
   return (
     <section aria-labelledby="hero-title" className="hero" id="top">
-      <div aria-hidden="true" className="hero-media hero-media--video">
-        <HeroMediaVideo />
-      </div>
+      <div aria-hidden="true" className="hero-media" />
       <Container className="hero-grid">
         <div className="hero-copy reveal is-visible">
           <p className="eyebrow eyebrow-light">
@@ -56,18 +53,6 @@ export function HeroSection({ data, entities, motto }: Props) {
           orbitAriaLabel={data.orbitAriaLabel}
           orbitCenterAriaLabel={data.orbitCenterAriaLabel}
         />
-
-        <div
-          role="group"
-          aria-label={data.proofAriaLabel}
-          className="hero-proof hero-proof--below-orbit reveal is-visible"
-        >
-          {data.proof.map((item) => (
-            <span key={item.label}>
-              <strong>{item.value}</strong> {item.label}
-            </span>
-          ))}
-        </div>
       </Container>
       <VisuallyHidden>{motto}</VisuallyHidden>
     </section>

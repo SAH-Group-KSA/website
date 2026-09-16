@@ -175,22 +175,7 @@
       "label": "SAH Group",
       "href": "#entities"
     },
-    "proof": [
-      {
-        "value": "6",
-        "label": "Specialized Companies"
-      },
-      {
-        "value": "1",
-        "label": "Point of Entry"
-      },
-      {
-        "value": "1",
-        "label": "Integrated Journey"
-      }
-    ],
     "scrollLabel": "Discover",
-    "proofAriaLabel": "Key highlights",
     "orbitAriaLabel": "SAH Group entity map",
     "orbitCenterAriaLabel": "SAH Group",
     "scrollAriaLabel": "Go to the next section"
@@ -629,10 +614,22 @@
         "successIntro": "Thank you for your interest in the SAH community. Here's what happens next:",
         "successStepsAriaLabel": "What happens next",
         "successSteps": [
-          { "icon": "✓", "label": "Application received" },
-          { "icon": "👁", "label": "SAH team reviews within 2–3 business days" },
-          { "icon": "📬", "label": "You'll receive an email with the decision" },
-          { "icon": "🎉", "label": "If approved, access details and a welcome are sent" }
+          {
+            "icon": "✓",
+            "label": "Application received"
+          },
+          {
+            "icon": "👁",
+            "label": "SAH team reviews within 2–3 business days"
+          },
+          {
+            "icon": "📬",
+            "label": "You'll receive an email with the decision"
+          },
+          {
+            "icon": "🎉",
+            "label": "If approved, access details and a welcome are sent"
+          }
         ]
       }
     }
@@ -2561,22 +2558,7 @@
           "label": "Browse Courses",
           "href": "/courses"
         },
-        "proof": [
-          {
-            "value": "1:1",
-            "label": "Coaching"
-          },
-          {
-            "value": "Group",
-            "label": "Cohorts"
-          },
-          {
-            "value": "On-demand",
-            "label": "Courses"
-          }
-        ],
         "scrollLabel": "Discover",
-        "proofAriaLabel": "SAH Human pathways",
         "orbitAriaLabel": "SAH Human pathways",
         "orbitCenterAriaLabel": "SAH Human",
         "scrollAriaLabel": "Go to the next section"
@@ -2710,22 +2692,7 @@
           "label": "Start Discovery",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "Identity",
-            "label": "Strategy"
-          },
-          {
-            "value": "Presence",
-            "label": "Executive"
-          },
-          {
-            "value": "Voice",
-            "label": "Thought Leadership"
-          }
-        ],
         "scrollLabel": "Discover",
-        "proofAriaLabel": "SEERA pathways",
         "orbitAriaLabel": "SEERA pathways",
         "orbitCenterAriaLabel": "SEERA",
         "scrollAriaLabel": "Go to the next section"
@@ -2859,22 +2826,7 @@
           "label": "Start Discovery",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "AI",
-            "label": "for Business"
-          },
-          {
-            "value": "Growth",
-            "label": "Strategy"
-          },
-          {
-            "value": "Digital",
-            "label": "Transformation"
-          }
-        ],
         "scrollLabel": "Discover",
-        "proofAriaLabel": "SAH Nexus pathways",
         "orbitAriaLabel": "SAH Nexus pathways",
         "orbitCenterAriaLabel": "SAH Nexus",
         "scrollAriaLabel": "Go to the next section"
@@ -3008,22 +2960,7 @@
           "label": "Start Discovery",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "Portfolio",
-            "label": "Design"
-          },
-          {
-            "value": "Partners",
-            "label": "Acquisition"
-          },
-          {
-            "value": "Shared",
-            "label": "Value"
-          }
-        ],
         "scrollLabel": "Discover",
-        "proofAriaLabel": "SAH Sponsor pathways",
         "orbitAriaLabel": "SAH Sponsor pathways",
         "orbitCenterAriaLabel": "SAH Sponsor",
         "scrollAriaLabel": "Go to the next section"
@@ -3157,22 +3094,7 @@
           "label": "Start Discovery",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "Serious",
-            "label": "Play®"
-          },
-          {
-            "value": "Shared",
-            "label": "Decisions"
-          },
-          {
-            "value": "Owned",
-            "label": "Action"
-          }
-        ],
         "scrollLabel": "Discover",
-        "proofAriaLabel": "LEGO® by SAH pathways",
         "orbitAriaLabel": "LEGO® by SAH pathways",
         "orbitCenterAriaLabel": "LEGO® by SAH",
         "scrollAriaLabel": "Go to the next section"
@@ -3306,22 +3228,7 @@
           "label": "Start Discovery",
           "href": "/discovery"
         },
-        "proof": [
-          {
-            "value": "CSR",
-            "label": "& ESG"
-          },
-          {
-            "value": "Measure",
-            "label": "Impact"
-          },
-          {
-            "value": "Community",
-            "label": "Design"
-          }
-        ],
         "scrollLabel": "Discover",
-        "proofAriaLabel": "SAH Impact pathways",
         "orbitAriaLabel": "SAH Impact pathways",
         "orbitCenterAriaLabel": "SAH Impact",
         "scrollAriaLabel": "Go to the next section"

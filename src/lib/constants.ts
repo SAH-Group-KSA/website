@@ -8,7 +8,7 @@ export const siteConfig: SiteConfig = {
   location: "Riyadh, Kingdom of Saudi Arabia",
   defaultLocale,
   /** Default Open Graph / Twitter image — override per page via `PageSeo.ogImage`. */
-  ogImage: "/og/og-share.png",
+  ogImage: "/images/backgrounds/IMG_9155.JPG.jpeg",
   // twitterHandle: "@sahgroup", // enables Twitter card site/creator attribution
   // Populate when social profiles are confirmed — feeds Organization JSON-LD `sameAs`.
   sameAs: [],

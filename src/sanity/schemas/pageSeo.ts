@@ -103,6 +103,8 @@ export const pageSeo = defineType({
         ],
         layout: "radio",
       },
+      initialValue: "index",
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

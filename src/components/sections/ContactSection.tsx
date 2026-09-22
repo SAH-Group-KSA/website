@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { submitContactLead } from "@/adapters/zoho/forms";
+import { track } from "@/adapters/analytics/track";
 import type { SiteContent } from "@/content/types";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -127,7 +128,16 @@ export function ContactSection({ data }: Props) {
             <p className="contact-intro">{data.intro}</p>
 
             <div className="contact-meta">
-              <a className="contact-meta-item" href={`mailto:${emailDisplay}`}>
+              <a
+                className="contact-meta-item"
+                href={`mailto:${emailDisplay}`}
+                onClick={() =>
+                  track("cta_click", {
+                    id: "contact-section-email",
+                    href: `mailto:${emailDisplay}`,
+                  })
+                }
+              >
                 <span className="contact-meta-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <rect

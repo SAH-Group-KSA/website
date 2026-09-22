@@ -848,3 +848,37 @@ export interface SiteContent {
   /** Copy for coaches/courses catalog routes and coach profile chrome. */
   catalogPages?: CatalogPagesContent;
 }
+
+/** One paragraph or bullet list inside a policy section. */
+export type PolicyBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[] };
+
+export interface PolicySection {
+  /** Stable anchor id — keep identical across locales so links survive a switch. */
+  id: string;
+  heading: string;
+  blocks: PolicyBlock[];
+}
+
+/**
+ * Privacy policy page copy. Static-only (no Sanity schema) — resolved through
+ * `getPrivacyPolicy()` in `src/content/index.ts` like all other content.
+ */
+export interface PrivacyPolicyContent {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  breadcrumbCurrent: string;
+  /** ISO date for <time datetime>, plus a pre-localized display string. */
+  lastUpdatedIso: string;
+  lastUpdatedLabel: string;
+  sections: PolicySection[];
+  /** "Cookie settings" control that clears the stored consent choice. */
+  cookieSettings: {
+    heading: string;
+    body: string;
+    resetLabel: string;
+    resetConfirmation: string;
+  };
+}

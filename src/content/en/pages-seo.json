@@ -86,6 +86,12 @@
     "path": "/dashboard/profile",
     "robots": "noindex"
   },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "description": "How SAH Group collects, uses and protects your information, and the cookies and analytics tools used on this website.",
+    "path": "/privacy-policy",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you requested could not be found.",

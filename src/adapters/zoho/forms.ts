@@ -7,6 +7,10 @@ import type {
   ProgramInterestLead,
   AdapterResult,
 } from "@/domain/lead";
+import type {
+  AnalyticsEvent,
+  AnalyticsEventMap,
+} from "@/adapters/analytics/events";
 import { track } from "@/adapters/analytics/track";
 
 /**
@@ -49,51 +53,73 @@ async function postZohoForm(
   }
 }
 
+/**
+ * POST, then fire the analytics event only if the submission succeeded.
+ * Firing on attempt would count validation failures, upstream errors and
+ * offline submissions as conversions.
+ */
+async function postAndTrack<E extends AnalyticsEvent>(
+  path: string,
+  body: unknown,
+  event: E,
+  props: AnalyticsEventMap[E],
+): Promise<AdapterResult> {
+  const result = await postZohoForm(path, body);
+  if (result.ok) track(event, props);
+  return result;
+}
+
 export async function submitDiscoveryLead(
   payload: DiscoveryLead,
 ): Promise<AdapterResult> {
-  track("lead_submitted", { kind: "discovery", locale: payload.locale });
-  return postZohoForm("/api/zoho/discovery", payload);
+  return postAndTrack("/api/zoho/discovery", payload, "lead_submitted", {
+    kind: "discovery",
+    locale: payload.locale,
+  });
 }
 
 export async function submitContactLead(
   payload: ContactLead,
 ): Promise<AdapterResult> {
-  track("lead_submitted", { kind: "contact", locale: payload.locale });
-  return postZohoForm("/api/zoho/contact", payload);
+  return postAndTrack("/api/zoho/contact", payload, "lead_submitted", {
+    kind: "contact",
+    locale: payload.locale,
+  });
 }
 
 export async function submitGroupInterest(
   payload: GroupInterestLead,
 ): Promise<AdapterResult> {
-  track("lead_submitted", { kind: "group", locale: payload.locale });
-  return postZohoForm("/api/zoho/group", payload);
+  return postAndTrack("/api/zoho/group", payload, "lead_submitted", {
+    kind: "group",
+    locale: payload.locale,
+  });
 }
 
 export async function submitProgramInterest(
   payload: ProgramInterestLead,
 ): Promise<AdapterResult> {
-  track("lead_submitted", {
+  return postAndTrack("/api/zoho/program", payload, "lead_submitted", {
     kind: "program",
     locale: payload.locale,
     programId: payload.programId,
   });
-  return postZohoForm("/api/zoho/program", payload);
 }
 
 export async function submitCommunityApplication(
   payload: CommunityApplication,
 ): Promise<AdapterResult> {
-  track("lead_submitted", { kind: "community", locale: payload.locale });
-  return postZohoForm("/api/zoho/community", payload);
+  return postAndTrack("/api/zoho/community", payload, "lead_submitted", {
+    kind: "community",
+    locale: payload.locale,
+  });
 }
 
 export async function subscribeNewsletter(
   payload: NewsletterSubscribe,
 ): Promise<AdapterResult> {
-  track("newsletter_subscribed", {
+  return postAndTrack("/api/newsletter", payload, "newsletter_subscribed", {
     locale: payload.locale,
     source: payload.source,
   });
-  return postZohoForm("/api/newsletter", payload);
 }

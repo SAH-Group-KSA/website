@@ -1,4 +1,4 @@
-import type { Locale, SiteContent } from "./types";
+import type { Locale, PrivacyPolicyContent, SiteContent } from "./types";
 import type { PageSeo, PageSeoKey, PagesSeoContent } from "./seo-types";
 import { cache } from "react";
 import { applyCanonicalEntityColors } from "@/lib/brand-themes";
@@ -19,6 +19,10 @@ import {
   catalogPagesAr,
   catalogPagesEn,
 } from "./defaults/catalog-pages";
+import {
+  privacyPolicyAr,
+  privacyPolicyEn,
+} from "./defaults/privacy-policy";
 import { emptyPageSeo, emptyPagesSeo, emptySiteContent } from "./empty";
 import {
   COMPANY_PAGES_QUERY,
@@ -173,6 +177,17 @@ export async function getPageSeo(
 
   const staticPath = pagesSeo[locale]?.[key]?.path ?? pagesSeo.en[key]?.path ?? "";
   return emptyPageSeo(staticPath);
+}
+
+/**
+ * Privacy policy copy. Static in both flag states — there is no Sanity schema
+ * for it, mirroring how `catalogPages` keeps a static source even under
+ * FEATURE_CMS. Pages must call this rather than importing the defaults module.
+ */
+export async function getPrivacyPolicy(
+  locale: Locale,
+): Promise<PrivacyPolicyContent> {
+  return locale === "ar" ? privacyPolicyAr : privacyPolicyEn;
 }
 
 /** Bulk SEO fetch for sitemap/validation scripts. */

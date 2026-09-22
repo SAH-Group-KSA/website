@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
+import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { getPageSeo, getProgramEntityMap } from "@/content";
 import {
   getCompanyThemeSlugMap,
@@ -93,6 +96,16 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SiteShell key={locale}>{children}</SiteShell>
+          {/*
+            Consent + tracking sit OUTSIDE SiteShell so they survive /auth and
+            /dashboard, where SiteShellClient swaps the whole marketing subtree
+            out — but INSIDE NextIntlClientProvider, because the banner's
+            LocaleLink needs the intl context.
+            Nothing here loads a script until consent is accepted.
+          */}
+          <CookieConsentBanner locale={locale} />
+          <AnalyticsScripts locale={locale} />
+          <PageViewTracker />
         </NextIntlClientProvider>
       </body>
     </html>

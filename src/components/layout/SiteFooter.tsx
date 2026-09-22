@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { getContent } from "@/content";
+import { getContent, getPrivacyPolicy } from "@/content";
 import type { FooterLink } from "@/content/types";
 import type { Locale } from "@/types/locale";
 import { siteConfig } from "@/lib/constants";
@@ -7,6 +7,7 @@ import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { AppImage } from "@/components/ui/AppImage";
 import { Container } from "@/components/ui/Container";
 import { LocaleLink } from "@/components/ui/LocaleLink";
+import { TrackedMailtoLink } from "@/components/consent/TrackedMailtoLink";
 
 function resolveHashHref(href: string, locale: Locale): string {
   if (!href.startsWith("#")) return href;
@@ -34,7 +35,10 @@ function FooterNavLink({
 
 export async function SiteFooter() {
   const locale = (await getLocale()) as Locale;
-  const { footer, newsletter, ui } = await getContent(locale);
+  const [{ footer, newsletter, ui }, privacy] = await Promise.all([
+    getContent(locale),
+    getPrivacyPolicy(locale),
+  ]);
   const columns = [footer.services, footer.explore, footer.connect];
 
   return (
@@ -69,9 +73,13 @@ export async function SiteFooter() {
             </LocaleLink>
             <p className="footer-blurb">{footer.blurb}</p>
             <div className="footer-meta">
-              <a href={`mailto:${siteConfig.email}`} className="footer-meta-link">
+              <TrackedMailtoLink
+                email={siteConfig.email}
+                id="footer-email"
+                className="footer-meta-link"
+              >
                 {siteConfig.email}
-              </a>
+              </TrackedMailtoLink>
               <span className="footer-meta-location">{footer.locationLabel}</span>
             </div>
           </div>
@@ -94,7 +102,18 @@ export async function SiteFooter() {
 
         {/* Bottom bar */}
         <div className="footer-bottom">
-          <span>{footer.copyright}</span>
+          {/*
+            The privacy link is rendered structurally, not as a footer content
+            link: it is a legal requirement, so it must survive FEATURE_CMS
+            being on (where the columns come from Sanity and would omit it)
+            and must not be removable by accident in the CMS.
+          */}
+          <span className="footer-legal">
+            <span>{footer.copyright}</span>
+            <LocaleLink href="/privacy-policy" className="footer-legal-link">
+              {privacy.title}
+            </LocaleLink>
+          </span>
           <span className="footer-motto" dir="ltr">
             {footer.motto}
           </span>

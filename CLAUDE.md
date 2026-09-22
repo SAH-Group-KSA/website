@@ -297,6 +297,7 @@ values only) in the same change.
 - Deploys go through `main` on GitHub (confirmed: current production state matches `main`).
   Don't push directly to `main`; work on `dev` (or a feature branch) and let the user merge/push,
   unless explicitly told otherwise for a given change.
+- Don't create git commits or push to remote unless explicitly requested.
 
 ## Important Business Rules
 
@@ -342,6 +343,25 @@ values only) in the same change.
   change complete, and mention explicitly if you were not able to manually verify a UI change in
   the browser.
 
+### Self-Validation Loop
+
+Because there's no CI to catch mistakes, treat verification as a loop you run yourself after
+**every** change, not a one-off check at the end:
+
+1. Make the change.
+2. Run `npm run typecheck` and `npm run lint` (add `npm run format:check` if the change touched
+   formatting-sensitive files, and the relevant `npm run validate:*` script if the change touched
+   Sanity content/schemas).
+3. If any of those fail, fix the root cause and go back to step 2 — don't move on with a known
+   failure, and don't reach for `--no-verify`/suppressions/`@ts-ignore` to silence it instead of
+   fixing it.
+4. Only once typecheck/lint/format are clean, do the applicable manual checks from this section
+   (both locales/RTL-LTR for UI, both flag states for adapters/API routes) before calling the
+   change complete.
+5. If a manual check surfaces a problem, fix it and repeat from step 2 — the loop ends only when
+   a change is both statically clean and manually verified (or you've explicitly told me which
+   manual check you couldn't perform).
+
 ## Common Commands
 
 ```bash
@@ -364,64 +384,3 @@ npm run validate:marketing
 npm run sync:sanity:staging-to-production
 npm run sync:sanity:production-to-staging
 ```
-
----
-
-# SAH Group Website — Quick-Reference Rules
-
-## Project
-
-SAH Group corporate website for Saudi Arabia.
-
-The website supports:
-- Arabic
-- English
-- RTL Arabic layouts
-- Sanity CMS
-- Supabase
-- Vercel
-
-## Core Stack
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- Sanity
-- Supabase
-- Vercel
-
-## Development Rules
-
-- Use Next.js App Router.
-- Use TypeScript.
-- Use Tailwind CSS for styling.
-- Reuse existing components before creating new ones.
-- Do not introduce a new UI library without approval.
-- Do not rewrite working architecture unnecessarily.
-- Do not modify production configuration without asking.
-- Do not expose secrets.
-- Do not hardcode CMS content when the content belongs in Sanity.
-- Preserve Arabic RTL behavior.
-- Preserve English/Arabic parity where applicable.
-- Follow existing project patterns before introducing new patterns.
-
-## Before Making Changes
-
-- Inspect relevant existing code first.
-- Identify dependencies between components/routes.
-- Explain the proposed approach for significant changes.
-- Avoid unrelated refactoring.
-
-## After Making Changes
-
-- Run relevant lint/type checks.
-- Run tests if available.
-- Check the affected routes.
-- Report exactly what changed.
-- Report any issues that could not be verified.
-
-## Git
-
-Do not create commits unless explicitly requested.
-Do not push to remote unless explicitly requested.

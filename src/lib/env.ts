@@ -86,8 +86,23 @@ export const env = {
   },
   vimeoAccessToken: () => read("VIMEO_ACCESS_TOKEN"),
 
-  // Analytics
+  // Analytics — all public (these IDs ship in the page source by design).
+  // Every one is additionally gated by `features.analytics` + cookie consent
+  // in `src/lib/analytics-config.ts`; presence here is not enough to load.
   gtmId: () => clean(process.env.NEXT_PUBLIC_GTM_ID),
+  ga4MeasurementId: () => clean(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID),
+  posthogKey: () => clean(process.env.NEXT_PUBLIC_POSTHOG_KEY),
+  /** Defaults to the EU cloud — keep data out of the US unless told otherwise. */
+  posthogHost: () =>
+    clean(process.env.NEXT_PUBLIC_POSTHOG_HOST) ?? "https://eu.i.posthog.com",
+  metaPixelId: () => clean(process.env.NEXT_PUBLIC_META_PIXEL_ID),
+  linkedInPartnerId: () => clean(process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID),
+  /**
+   * Full PageSense CDN script URL — the host is data-centre specific
+   * (`.sa` / `.com` / `.eu`), so we store the whole URL rather than assembling
+   * it. Validated before injection in `analytics-config.ts`.
+   */
+  zohoPageSenseSrc: () => clean(process.env.NEXT_PUBLIC_ZOHO_PAGESENSE_SRC),
 } as const;
 
 export type PublicEnvKey = keyof typeof env;

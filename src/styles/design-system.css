@@ -519,3 +519,233 @@ p.text-error,
   margin-top: var(--space-1);
   color: var(--muted);
 }
+
+/* ==========================================================================
+   Cookie consent notice
+   Bottom-anchored, non-blocking. Sits above modals/toasts but below the skip
+   link so keyboard users can always reach "skip to content" first.
+   Logical properties throughout so it mirrors under dir="rtl".
+   ========================================================================== */
+.ds-consent {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: calc(var(--z-toast) + 1);
+  padding: var(--space-4) var(--space-5);
+  color: var(--white);
+  background: var(--deep-3);
+  border-top: 1px solid color-mix(in srgb, var(--gold) 26%, transparent);
+  box-shadow: var(--shadow-dark);
+  font-family: var(--font-sans);
+}
+
+.ds-consent-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.ds-consent-copy {
+  min-width: 0;
+}
+
+.ds-consent-title {
+  margin: 0 0 var(--space-1);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+}
+
+.ds-consent-body {
+  margin: 0;
+  max-width: 68ch;
+  color: color-mix(in srgb, var(--white) 78%, transparent);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+
+.ds-consent-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ds-consent-link:hover {
+  color: var(--gold-hover);
+}
+
+.ds-consent-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* .button-outline is tuned for light backgrounds — lift it onto the dark bar. */
+.ds-consent .ds-consent-decline {
+  color: var(--white);
+  border-color: color-mix(in srgb, var(--white) 42%, transparent);
+  background: transparent;
+}
+
+.ds-consent .ds-consent-decline:hover {
+  border-color: var(--white);
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+}
+
+@media (max-width: 860px) {
+  .ds-consent-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .ds-consent-actions {
+    justify-content: stretch;
+  }
+
+  .ds-consent-actions > .button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-consent {
+    animation: ds-consent-rise var(--duration-base) var(--ease) both;
+  }
+}
+
+@keyframes ds-consent-rise {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Long-form prose (privacy policy and future legal/editorial pages)
+   ========================================================================== */
+.ds-prose {
+  max-width: 72ch;
+  color: var(--ink);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+}
+
+/* Applies inside the per-heading <section> wrappers as well as at top level. */
+.ds-prose > * + *,
+.ds-prose section > * + * {
+  margin-top: var(--space-4);
+}
+
+/* Section gap carries the heading rhythm, so h2 itself needs no top margin. */
+.ds-prose > section + section {
+  margin-top: var(--space-10);
+}
+
+.ds-prose h2 {
+  margin-top: 0;
+  font-size: var(--fs-lg);
+}
+
+.ds-prose h3 {
+  margin-top: var(--space-7);
+  font-size: var(--fs-md);
+}
+
+.ds-prose ul {
+  margin-inline-start: var(--space-5);
+  list-style: disc;
+}
+
+.ds-prose li + li {
+  margin-top: var(--space-2);
+}
+
+.ds-prose a {
+  color: var(--deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ds-prose a:hover {
+  color: var(--gold);
+}
+
+.ds-prose-updated {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+/* ==========================================================================
+   Zoho SalesIQ cookie bar suppression — WORKAROUND FOR A ZOHO BUG
+   --------------------------------------------------------------------------
+   SalesIQ renders its own cookie banner (#zcb-banner, injected by
+   zcookiebar.js) even though the brand is configured not to. Verified from
+   the config SalesIQ itself serves to the browser:
+
+     privacy.cookie_policy.preference = "custom"        (Manage cookies on my own)
+     privacy.cookie_policy.type       = "do_not_notify"
+     privacy.enabled                  = false
+
+   All three say "no banner"; the widget shows one regardless.
+
+   This is safe to suppress, not a consent bypass: SalesIQ only loads after
+   the visitor accepts OUR banner, and `AnalyticsScripts` forwards that
+   consent via `privacy.updateCookieConsent(["analytics","performance"])` —
+   the API Zoho's own settings page points to for self-managed cookies.
+   A second prompt is redundant, and it is English-only so it breaks the
+   Arabic page.
+
+   REMOVE THIS once Zoho honours the setting. If the duplicate banner ever
+   reappears, they have renamed the id — check `#zcb-banner` first.
+   ========================================================================== */
+#zcb-banner,
+.zcb-bar.zcb-banner-bottom {
+  display: none !important;
+}
+
+/* Legal row in the footer bottom bar (copyright + privacy policy link).
+   Wrapped in one flex child so .footer-bottom stays a two-column layout. */
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.footer-legal-link {
+  color: color-mix(in srgb, var(--white) 72%, transparent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-legal-link:hover {
+  color: var(--gold);
+}
+
+/* Consent reset control at the foot of the privacy policy. */
+.ds-cookie-settings {
+  margin-top: var(--space-11);
+}
+
+.ds-cookie-settings h2 {
+  margin-top: 0;
+}
+
+.ds-cookie-settings-status {
+  min-height: 1.5em;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.ds-cookie-settings-status:empty {
+  margin-top: 0;
+}

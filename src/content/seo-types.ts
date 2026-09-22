@@ -37,6 +37,7 @@ export type PageSeoKey =
   | "dashboardCourses"
   | "dashboardBookings"
   | "dashboardProfile"
+  | "privacyPolicy"
   | "notFound";
 
 export type PageSeoRobots = "index" | "noindex";

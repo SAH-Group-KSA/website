@@ -86,6 +86,12 @@
     "path": "/dashboard/profile",
     "robots": "noindex"
   },
+  "privacyPolicy": {
+    "title": "سياسة الخصوصية",
+    "description": "كيف تجمع مجموعة سعة معلوماتك وتستخدمها وتحميها، وملفات تعريف الارتباط وأدوات التحليلات المستخدمة في هذا الموقع.",
+    "path": "/privacy-policy",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "الصفحة غير موجودة",
     "description": "تعذّر العثور على الصفحة المطلوبة.",

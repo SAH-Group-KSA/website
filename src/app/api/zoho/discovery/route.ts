@@ -5,8 +5,11 @@ import {
   handleCrmResult,
   parseJsonBody,
   validationError,
+  attributionSchema,
+  attributionFields,
+  withAttributionNote,
 } from "@/app/api/zoho/_helpers";
-import { createCrmLead, splitName } from "@/lib/zoho";
+import { createCrmLeadWithOptionalFields, splitName } from "@/lib/zoho";
 
 const schema = z.object({
   name: z.string().trim().min(1),
@@ -16,6 +19,7 @@ const schema = z.object({
   audienceLabel: z.string().trim().min(1),
   needLabel: z.string().trim().min(1),
   locale: z.enum(["ar", "en"]),
+  attribution: attributionSchema,
 });
 
 export async function POST(req: NextRequest) {
@@ -29,18 +33,22 @@ export async function POST(req: NextRequest) {
   const d = parsed.data;
   const { firstName, lastName } = splitName(d.name);
 
-  const result = await createCrmLead({
-    First_Name: firstName,
-    Last_Name: lastName,
-    Email: d.email,
-    Phone: d.phone,
-    Lead_Source: "Discovery",
-    Source_Page: "/discovery",
-    Locale: d.locale,
-    Pathway_Title: d.pathwayTitle,
-    Audience_Label: d.audienceLabel,
-    Need_Label: d.needLabel,
-  });
+  const result = await createCrmLeadWithOptionalFields(
+    {
+      First_Name: firstName,
+      Last_Name: lastName,
+      Email: d.email,
+      Phone: d.phone,
+      Description: withAttributionNote(undefined, d.attribution),
+      Lead_Source: "Discovery",
+      Source_Page: "/discovery",
+      Locale: d.locale,
+      Pathway_Title: d.pathwayTitle,
+      Audience_Label: d.audienceLabel,
+      Need_Label: d.needLabel,
+    },
+    attributionFields(d.attribution),
+  );
 
   return handleCrmResult(result);
 }

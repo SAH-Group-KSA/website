@@ -6,8 +6,11 @@ import {
   joinDescription,
   parseJsonBody,
   validationError,
+  attributionSchema,
+  attributionFields,
+  withAttributionNote,
 } from "@/app/api/zoho/_helpers";
-import { createCrmLead, splitName } from "@/lib/zoho";
+import { createCrmLeadWithOptionalFields, splitName } from "@/lib/zoho";
 
 const schema = z.object({
   name: z.string().trim().min(1),
@@ -17,6 +20,7 @@ const schema = z.object({
   message: z.string().trim().min(1),
   context: z.string().optional(),
   locale: z.enum(["ar", "en"]),
+  attribution: attributionSchema,
 });
 
 export async function POST(req: NextRequest) {
@@ -31,17 +35,20 @@ export async function POST(req: NextRequest) {
   const { firstName, lastName } = splitName(d.name);
   const description = joinDescription(d.message, d.context);
 
-  const result = await createCrmLead({
-    First_Name: firstName,
-    Last_Name: lastName,
-    Email: d.email,
-    Phone: d.phone,
-    Company: d.organization,
-    Description: description,
-    Lead_Source: "Contact Form",
-    Source_Page: "/",
-    Locale: d.locale,
-  });
+  const result = await createCrmLeadWithOptionalFields(
+    {
+      First_Name: firstName,
+      Last_Name: lastName,
+      Email: d.email,
+      Phone: d.phone,
+      Company: d.organization,
+      Description: withAttributionNote(description, d.attribution),
+      Lead_Source: "Contact Form",
+      Source_Page: "/",
+      Locale: d.locale,
+    },
+    attributionFields(d.attribution),
+  );
 
   return handleCrmResult(result);
 }

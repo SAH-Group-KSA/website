@@ -12,6 +12,7 @@ import type {
   AnalyticsEventMap,
 } from "@/adapters/analytics/events";
 import { track } from "@/adapters/analytics/track";
+import { getAttribution } from "@/lib/attribution";
 
 /**
  * Zoho CRM / Campaigns submissions via Route Handlers.
@@ -60,11 +61,17 @@ async function postZohoForm(
  */
 async function postAndTrack<E extends AnalyticsEvent>(
   path: string,
-  body: unknown,
+  body: object,
   event: E,
   props: AnalyticsEventMap[E],
 ): Promise<AdapterResult> {
-  const result = await postZohoForm(path, body);
+  // First-touch acquisition, when the visitor consented and arrived with a
+  // campaign or referrer. `getAttribution()` returns undefined otherwise, so
+  // the key is simply absent and the payload is unchanged.
+  const attribution = getAttribution();
+  const payload = attribution ? { ...body, attribution } : body;
+
+  const result = await postZohoForm(path, payload);
   if (result.ok) track(event, props);
   return result;
 }

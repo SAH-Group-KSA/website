@@ -55,6 +55,14 @@ export const env = {
   zohoCampaignsListKey: () => read("ZOHO_CAMPAIGNS_LIST_KEY"),
   zohoBookingsOrgId: () => read("ZOHO_BOOKINGS_ORG_ID"),
   zohoSalesIqWidgetCode: () => clean(process.env.NEXT_PUBLIC_ZOHO_SALESIQ_WIDGET),
+  /**
+   * Map lead attribution to dedicated CRM custom fields (UTM_Source, etc).
+   * Server-only. OFF by default: Zoho rejects records containing unknown field
+   * API names, so this must not be enabled until those fields exist on the
+   * Leads and Applications modules. Attribution still reaches CRM via the
+   * Description note regardless of this flag.
+   */
+  zohoAttributionFieldsEnabled: () => read("ZOHO_ATTRIBUTION_FIELDS") === "1",
 
   // Payments (KSA)
   moyasarPublishableKey: () => clean(process.env.NEXT_PUBLIC_MOYASAR_PUBLISHABLE_KEY),

@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { AttributionTracker } from "@/components/analytics/AttributionTracker";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { getPageSeo, getProgramEntityMap } from "@/content";
 import {
@@ -106,6 +107,7 @@ export default async function LocaleLayout({
           <CookieConsentBanner locale={locale} />
           <AnalyticsScripts locale={locale} />
           <PageViewTracker />
+          <AttributionTracker />
         </NextIntlClientProvider>
       </body>
     </html>

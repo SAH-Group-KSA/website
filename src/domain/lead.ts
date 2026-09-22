@@ -1,5 +1,14 @@
 /** Lead / application payloads — Zoho Forms / CRM contracts. */
 
+import type { LeadAttribution } from "@/lib/attribution";
+
+/**
+ * First-touch acquisition data attached to every lead when the visitor has
+ * accepted cookies and arrived with a campaign / referrer. Always optional —
+ * direct traffic and declined-consent visitors submit without it.
+ */
+export type { LeadAttribution };
+
 export type DiscoveryLead = {
   name: string;
   email: string;
@@ -8,6 +17,7 @@ export type DiscoveryLead = {
   audienceLabel: string;
   needLabel: string;
   locale: "ar" | "en";
+  attribution?: LeadAttribution;
 };
 
 export type ContactLead = {
@@ -18,6 +28,7 @@ export type ContactLead = {
   message: string;
   context?: string;
   locale: "ar" | "en";
+  attribution?: LeadAttribution;
 };
 
 export type GroupInterestLead = {
@@ -28,6 +39,7 @@ export type GroupInterestLead = {
   programId: string;
   message?: string;
   locale: "ar" | "en";
+  attribution?: LeadAttribution;
 };
 
 export type ProgramInterestLead = {
@@ -39,6 +51,7 @@ export type ProgramInterestLead = {
   programTitle?: string;
   message?: string;
   locale: "ar" | "en";
+  attribution?: LeadAttribution;
 };
 
 export type CommunityApplication = {
@@ -50,6 +63,7 @@ export type CommunityApplication = {
   motivation: string;
   experience?: string;
   locale: "ar" | "en";
+  attribution?: LeadAttribution;
 };
 
 export type NewsletterSubscribe = {

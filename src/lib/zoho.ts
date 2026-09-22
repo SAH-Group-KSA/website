@@ -9,7 +9,8 @@ const ZOHO_ACCOUNTS_URL = "https://accounts.zoho.sa/oauth/v2/token";
 
 let cachedToken: { token: string; expiresAt: number; scope?: string } | null = null;
 
-export type ZohoCrmResult = { ok: true; id?: string } | { ok: false; error: string };
+export type ZohoCrmResult =
+  { ok: true; id?: string } | { ok: false; error: string; code?: string };
 
 export type ZohoCampaignsResult = { ok: true } | { ok: false; error: string };
 
@@ -154,6 +155,7 @@ async function createCrmRecord(
     return {
       ok: false,
       error: record?.message ?? "Unexpected CRM response",
+      code: record?.code,
     };
   } catch (err) {
     console.error(`[zoho] CRM ${module} request error:`, err);
@@ -167,6 +169,45 @@ async function createCrmRecord(
 export async function createCrmLead(
   fields: Record<string, unknown>,
 ): Promise<ZohoCrmResult> {
+  return createCrmRecord("Leads", fields);
+}
+
+/** Zoho codes that mean "a field in this payload is wrong or unknown". */
+const FIELD_ERROR_CODES = new Set([
+  "INVALID_DATA",
+  "INVALID_FIELD",
+  "MANDATORY_NOT_FOUND",
+]);
+
+/**
+ * Create a Lead with optional extra fields, retrying WITHOUT them if Zoho
+ * rejects the payload over a field problem.
+ *
+ * Attribution fields are configured by hand in the CRM, so an API name can be
+ * wrong or a field can be renamed or deleted later. Losing the marketing
+ * metadata on a lead is an acceptable cost; losing the lead is not. This makes
+ * enabling ZOHO_ATTRIBUTION_FIELDS unable to break lead capture.
+ */
+export async function createCrmLeadWithOptionalFields(
+  fields: Record<string, unknown>,
+  optionalFields: Record<string, unknown>,
+): Promise<ZohoCrmResult> {
+  const hasOptional = Object.values(optionalFields).some((v) => v !== undefined);
+  if (!hasOptional) return createCrmRecord("Leads", fields);
+
+  const result = await createCrmRecord("Leads", {
+    ...optionalFields,
+    ...fields,
+  });
+  if (result.ok || !result.code || !FIELD_ERROR_CODES.has(result.code)) {
+    return result;
+  }
+
+  console.warn(
+    "[zoho] Lead rejected with attribution fields (%s) — retrying without them. " +
+      "Check the UTM_* field API names on the Leads module.",
+    result.code,
+  );
   return createCrmRecord("Leads", fields);
 }
 

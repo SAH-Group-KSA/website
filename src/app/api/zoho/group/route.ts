@@ -5,8 +5,11 @@ import {
   handleCrmResult,
   parseJsonBody,
   validationError,
+  attributionSchema,
+  attributionFields,
+  withAttributionNote,
 } from "@/app/api/zoho/_helpers";
-import { createCrmLead, splitName } from "@/lib/zoho";
+import { createCrmLeadWithOptionalFields, splitName } from "@/lib/zoho";
 
 const schema = z.object({
   name: z.string().trim().min(1),
@@ -16,6 +19,7 @@ const schema = z.object({
   programId: z.string().trim().min(1),
   message: z.string().optional(),
   locale: z.enum(["ar", "en"]),
+  attribution: attributionSchema,
 });
 
 export async function POST(req: NextRequest) {
@@ -29,18 +33,21 @@ export async function POST(req: NextRequest) {
   const d = parsed.data;
   const { firstName, lastName } = splitName(d.name);
 
-  const result = await createCrmLead({
-    First_Name: firstName,
-    Last_Name: lastName,
-    Email: d.email,
-    Phone: d.phone,
-    Company: d.organization,
-    Description: d.message,
-    Lead_Source: "Group Coaching",
-    Source_Page: "/coaches/group",
-    Locale: d.locale,
-    Program_Interest: d.programId,
-  });
+  const result = await createCrmLeadWithOptionalFields(
+    {
+      First_Name: firstName,
+      Last_Name: lastName,
+      Email: d.email,
+      Phone: d.phone,
+      Company: d.organization,
+      Description: withAttributionNote(d.message, d.attribution),
+      Lead_Source: "Group Coaching",
+      Source_Page: "/coaches/group",
+      Locale: d.locale,
+      Program_Interest: d.programId,
+    },
+    attributionFields(d.attribution),
+  );
 
   return handleCrmResult(result);
 }

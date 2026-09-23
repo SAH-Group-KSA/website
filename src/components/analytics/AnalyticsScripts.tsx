@@ -2,9 +2,15 @@
 
 import Script from "next/script";
 import { useEffect, useMemo } from "react";
-import { getAnalyticsConfig } from "@/lib/analytics-config";
+import {
+  getAnalyticsConfig,
+  PAGESENSE_CONSENT_ACCEPTED,
+  PAGESENSE_CONSENT_COOKIE_MAX_AGE,
+  PAGESENSE_CONSENT_COOKIE_PREFIX,
+  PAGESENSE_CONSENT_DECLINED,
+} from "@/lib/analytics-config";
 import { useConsent } from "@/lib/use-consent";
-import type { Locale } from "@/types/locale";
+import { localeDirections, type Locale } from "@/types/locale";
 
 /**
  * The single gate in front of every third-party tracking script.
@@ -23,7 +29,20 @@ export function AnalyticsScripts({ locale }: { locale: Locale }) {
   const config = useMemo(() => getAnalyticsConfig(), []);
   const accepted = hydrated && consent === "accepted";
 
-  const { posthogKey, posthogHost } = config;
+  const { posthogKey, posthogHost, pageSenseProjectKey } = config;
+  const localeDirection = localeDirections[locale];
+
+  /**
+   * A visitor who accepted and later declined would otherwise be left holding
+   * PageSense's "consent granted" cookie for a year. The tag is not loaded
+   * after a decline either way, so this is hygiene rather than gating.
+   */
+  useEffect(() => {
+    if (!hydrated || consent !== "declined" || !pageSenseProjectKey) return;
+    document.cookie =
+      `${PAGESENSE_CONSENT_COOKIE_PREFIX}${pageSenseProjectKey}=${PAGESENSE_CONSENT_DECLINED}` +
+      `; path=/; max-age=0; SameSite=Lax`;
+  }, [hydrated, consent, pageSenseProjectKey]);
 
   useEffect(() => {
     if (!accepted || !posthogKey) return;
@@ -131,16 +150,29 @@ s.parentNode.insertBefore(b,s);})(window.lintrk);
 
       {/* ---------------------------------------------------- Zoho PageSense */}
       {config.pageSenseSrc ? (
-        <>
-          <Script id="zoho-pagesense-init" strategy="afterInteractive">
-            {`window._ps_conf = window._ps_conf || { version: "1.0" };`}
-          </Script>
-          <Script
-            id="zoho-pagesense"
-            strategy="afterInteractive"
-            src={config.pageSenseSrc}
-          />
-        </>
+        <Script id="zoho-pagesense" strategy="afterInteractive">
+          {`
+window._ps_conf = window._ps_conf || { version: "1.0" };
+${pageSenseConsentJs(pageSenseProjectKey)}
+// The command queue. PageSense drains it on init and then replaces its \`push\`
+// so later commands run immediately. Creating it here — inside the consent gate,
+// before the tag — is what lets a conversion fired during those first seconds
+// still be recorded, and what makes every PageSense call a no-op after a
+// decline (see \`push()\` in adapters/zoho/pagesense.ts).
+window.pagesense = window.pagesense || [];
+window.pagesense.push(["trackUser", {
+  locale: ${JSON.stringify(locale)},
+  direction: ${JSON.stringify(localeDirection)},
+  brand: document.documentElement.getAttribute("data-theme") || "human"
+}]);
+(function(d){
+  var s = d.createElement("script");
+  s.async = true;
+  s.src = ${JSON.stringify(config.pageSenseSrc)};
+  (d.head || d.getElementsByTagName("head")[0]).appendChild(s);
+})(document);
+          `.trim()}
+        </Script>
       ) : null}
       {/*
         Zoho's own PageSense snippet wraps this in an "anti-flicker" loader that
@@ -193,5 +225,38 @@ window.$zoho.salesiq.afterReady = function(){
         </>
       ) : null}
     </>
+  );
+}
+
+/**
+ * JS that tells PageSense the visitor has consented, emitted immediately before
+ * the tag is injected.
+ *
+ * A PageSense project configured with "ask for consent" (`privacy_value: 3`)
+ * never calls its internal `startTracking()` — so it sends no pageview, heatmap,
+ * funnel or recording data at all — unless the cookie `zpc<projectKey>` already
+ * records an answer. Left to itself it instead injects Zoho's own cookie bar
+ * (`zcookiebar.js`) and waits for a click on that: a second banner asking a
+ * question our banner has already asked, and the reason the PageSense dashboard
+ * stayed empty.
+ *
+ * This is emitted only in the accepted branch, so it writes that same answer in
+ * the exact cookie shape PageSense writes itself (`2` = accepted, 365 days).
+ * PageSense then takes its "consent already given" branch, starts tracking
+ * straight away, and never loads the duplicate bar.
+ *
+ * It is inlined into the same <script> that appends the tag — rather than run
+ * from an effect or a preceding <Script> — because the cookie must exist before
+ * the tag executes, and next/script does not guarantee order between two tags.
+ *
+ * Returns "" when the project key could not be parsed out of the script URL, so
+ * a non-standard URL degrades to the previous behaviour rather than breaking.
+ */
+function pageSenseConsentJs(projectKey: string | undefined): string {
+  if (!projectKey) return "";
+  const cookie = `${PAGESENSE_CONSENT_COOKIE_PREFIX}${projectKey}=${PAGESENSE_CONSENT_ACCEPTED}; path=/; max-age=${PAGESENSE_CONSENT_COOKIE_MAX_AGE}; SameSite=Lax`;
+  return (
+    `document.cookie = ${JSON.stringify(cookie)}` +
+    ` + (location.protocol === "https:" ? "; Secure" : "");`
   );
 }

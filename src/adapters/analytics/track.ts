@@ -1,4 +1,5 @@
 import type { AnalyticsEvent, AnalyticsEventMap } from "@/adapters/analytics/events";
+import { pageSenseTagRecording, pageSenseTrackGoal } from "@/adapters/zoho/pagesense";
 import { features } from "@/lib/features";
 
 /**
@@ -25,6 +26,22 @@ const GA4_EVENT_NAMES: Record<AnalyticsEvent, string> = {
   wizard_step: "wizard_step",
   cta_click: "cta_click",
 };
+
+/**
+ * Events worth finding a session recording for.
+ *
+ * Tagging is cheap, but a tag on every event is the same as no tags at all —
+ * these are the outcomes where watching what the visitor actually did pays for
+ * the time. High-frequency signals (`cta_click`, `wizard_step`) are deliberately
+ * absent: they still become goals and funnel steps, just not recording tags.
+ */
+const PAGESENSE_RECORDING_TAGS: ReadonlySet<AnalyticsEvent> = new Set([
+  "lead_submitted",
+  "newsletter_subscribed",
+  "auth_sign_up",
+  "checkout_started",
+  "booking_confirmed",
+]);
 
 /** Meta standard events. Anything absent is not sent to the Pixel. */
 const META_EVENT_NAMES: Partial<Record<AnalyticsEvent, string>> = {
@@ -71,4 +88,10 @@ export function track<E extends AnalyticsEvent>(
   } catch {
     /* ignore */
   }
+
+  // PageSense takes the event name only — it has no property bag. The name is
+  // what a dashboard Goal and a funnel step match on, so it must stay stable;
+  // renaming an event here silently detaches it from its Goal.
+  pageSenseTrackGoal(event);
+  if (PAGESENSE_RECORDING_TAGS.has(event)) pageSenseTagRecording(event);
 }

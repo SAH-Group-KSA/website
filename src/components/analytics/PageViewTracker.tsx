@@ -11,6 +11,11 @@ import { useConsent } from "@/lib/use-consent";
  * on script load, so without this an App Router soft navigation records
  * nothing. PostHog handles its own SPA pageviews and is deliberately absent.
  *
+ * PageSense is absent for the same reason: its tag patches `history.pushState`
+ * / `replaceState` / `popstate` itself and, on each URL change, re-evaluates
+ * goals, re-binds its click/submit listeners and re-targets the heatmap to the
+ * new URL. Firing anything here would double-count it.
+ *
  * Uses `usePathname` from `next/navigation`, NOT `@/i18n/routing` — the
  * next-intl version strips the locale prefix, which would make `/courses`
  * (Arabic) and `/en/courses` (English) indistinguishable in every report.

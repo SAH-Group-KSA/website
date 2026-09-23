@@ -15,6 +15,23 @@ interface PostHogLike {
 }
 
 declare global {
+  /** Values PageSense accepts for a visitor/activity attribute. */
+  type PageSenseAttributes = Record<string, string | number | boolean>;
+
+  /**
+   * The PageSense command vocabulary, as implemented by the tag's queue
+   * processor. `trackGoal` is an alias of `trackEvent`.
+   */
+  type PageSenseCommand =
+    | ["trackEvent", string]
+    | ["trackGoal", string]
+    | ["trackRevenue", string, number]
+    | ["identifyUser", string]
+    | ["tagRecording", string]
+    | ["trackUser", PageSenseAttributes]
+    | ["trackActivity", string, PageSenseAttributes]
+    | ["setTracking", boolean];
+
   interface Window {
     dataLayer?: unknown[];
     gtag?: (command: GtagCommand, ...args: unknown[]) => void;
@@ -54,7 +71,18 @@ declare global {
       version?: string;
       pauseRenderForManualActivation?: boolean;
     };
-    pagesense?: unknown[];
+    /**
+     * Zoho PageSense command queue.
+     *
+     * Before the tag loads this is a plain array that PageSense drains on init;
+     * afterwards PageSense replaces `push` so commands run immediately. Pushing
+     * works in both states, so callers never need to know which one they are in.
+     *
+     * It is created by the consent-gated inline script in `AnalyticsScripts`,
+     * never by a helper — its absence is what makes every PageSense call a
+     * no-op for a visitor who declined.
+     */
+    pagesense?: PageSenseCommand[];
   }
 }
 

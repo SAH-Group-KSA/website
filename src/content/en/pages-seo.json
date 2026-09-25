@@ -44,48 +44,6 @@
     "path": "/community/apply",
     "ogImage": "/og/og-share.png"
   },
-  "authLogin": {
-    "title": "Sign In",
-    "description": "Sign in to your SAH Group account.",
-    "path": "/auth/login",
-    "robots": "noindex"
-  },
-  "authRegister": {
-    "title": "Create Account",
-    "description": "Create your SAH Group account.",
-    "path": "/auth/register",
-    "robots": "noindex"
-  },
-  "authForgotPassword": {
-    "title": "Forgot Password",
-    "description": "Reset your SAH Group account password.",
-    "path": "/auth/forgot-password",
-    "robots": "noindex"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "description": "Your SAH Group dashboard.",
-    "path": "/dashboard",
-    "robots": "noindex"
-  },
-  "dashboardCourses": {
-    "title": "My Courses",
-    "description": "Your enrolled courses.",
-    "path": "/dashboard/courses",
-    "robots": "noindex"
-  },
-  "dashboardBookings": {
-    "title": "My Bookings",
-    "description": "Your coaching bookings.",
-    "path": "/dashboard/bookings",
-    "robots": "noindex"
-  },
-  "dashboardProfile": {
-    "title": "My Profile",
-    "description": "Manage your SAH Group profile.",
-    "path": "/dashboard/profile",
-    "robots": "noindex"
-  },
   "privacyPolicy": {
     "title": "Privacy Policy",
     "description": "How SAH Group collects, uses and protects your information, and the cookies and analytics tools used on this website.",

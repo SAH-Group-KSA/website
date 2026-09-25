@@ -25,10 +25,10 @@ export async function generateMetadata({
     getPrivacyPolicy(locale as Locale),
   ]);
 
-  // Under FEATURE_CMS=1 `getPageSeo` reads only from Sanity, and there is no
-  // `pageSeo` document for this route (the policy is static-only by design),
-  // so it returns an empty record. Fall back to the page's own static copy
-  // rather than shipping an untitled page.
+  // `privacyPolicy` has a `pageSeo` document in both flag states, but the page
+  // body itself stays static (no Sanity schema for the policy copy). Keep the
+  // fallback to the page's own title/lead so an unpublished or cleared SEO
+  // document can never ship this route untitled.
   return buildMetadataFromPageSeo(locale as Locale, seo, {
     title: seo.title || page.title,
     description: seo.description || page.lead,

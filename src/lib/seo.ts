@@ -191,6 +191,75 @@ export function buildMetadataFromPageSeo(
   });
 }
 
+/**
+ * Browser-tab title + share-link description for private routes (auth +
+ * dashboard).
+ *
+ * These pages are disallowed in `robots.ts`, absent from the sitemap and
+ * never indexed, so they deliberately have **no** `pageSeo` record in the
+ * CMS — this copy is tab chrome and link-preview text, not SEO. The values
+ * mirror the last content of the now-deleted `pageSeo` documents for these
+ * keys. Add a key here (not to `PageSeoKey`) when a new private route needs
+ * metadata.
+ */
+export const PRIVATE_PAGE_COPY = {
+  authLogin: {
+    ar: { title: "تسجيل الدخول", description: "سجّل الدخول إلى حسابك في مجموعة سعة." },
+    en: { title: "Sign In", description: "Sign in to your SAH Group account." },
+  },
+  authRegister: {
+    ar: { title: "إنشاء حساب", description: "أنشئ حسابك في مجموعة سعة." },
+    en: { title: "Create Account", description: "Create your SAH Group account." },
+  },
+  authForgotPassword: {
+    ar: { title: "نسيت كلمة المرور", description: "أعد تعيين كلمة مرور حسابك." },
+    en: {
+      title: "Forgot Password",
+      description: "Reset your SAH Group account password.",
+    },
+  },
+  authResetPassword: {
+    ar: { title: "إعادة تعيين كلمة المرور", description: "أنشئ كلمة مرور جديدة لحسابك." },
+    en: {
+      title: "Reset Password",
+      description: "Set a new password for your SAH Group account.",
+    },
+  },
+  dashboard: {
+    ar: { title: "لوحة التحكم", description: "لوحة تحكم مجموعة سعة." },
+    en: { title: "Dashboard", description: "Your SAH Group dashboard." },
+  },
+  dashboardCourses: {
+    ar: { title: "دوراتي", description: "دوراتك المسجّلة." },
+    en: { title: "My Courses", description: "Your enrolled courses." },
+  },
+  dashboardBookings: {
+    ar: { title: "حجوزاتي", description: "حجوزات التدريب الخاصة بك." },
+    en: { title: "My Bookings", description: "Your coaching bookings." },
+  },
+  dashboardProfile: {
+    ar: { title: "ملفي الشخصي", description: "إدارة ملفك الشخصي." },
+    en: { title: "My Profile", description: "Manage your SAH Group profile." },
+  },
+} as const;
+
+export type PrivatePageKey = keyof typeof PRIVATE_PAGE_COPY;
+
+/** Metadata for a private route: noindex, titled and described, no CMS lookup. */
+export function buildPrivatePageMetadata(
+  locale: Locale,
+  key: PrivatePageKey,
+  path = "",
+): Metadata {
+  const copy = PRIVATE_PAGE_COPY[key][locale];
+  return buildNoIndexMetadata({
+    locale,
+    title: copy.title,
+    description: copy.description,
+    path,
+  });
+}
+
 /** Auth / dashboard / 404 — noindex, still provides a clear browser title. */
 export function buildNoIndexMetadata({
   locale,

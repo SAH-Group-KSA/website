@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getContent, getPageSeo } from "@/content";
+import { getContent } from "@/content";
 import { isLocale, type Locale } from "@/types/locale";
-import { buildMetadataFromPageSeo } from "@/lib/seo";
+import { buildPrivatePageMetadata } from "@/lib/seo";
 import { Button } from "@/components/ui/Button";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { features } from "@/lib/features";
@@ -70,10 +70,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return buildMetadataFromPageSeo(
-    locale as Locale,
-    await getPageSeo(locale as Locale, "dashboard"),
-  );
+  return buildPrivatePageMetadata(locale as Locale, "dashboard", "/dashboard");
 }
 
 export default async function DashboardHomePage({

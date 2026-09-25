@@ -30,13 +30,6 @@ export type PageSeoKey =
   | "coachesGroup"
   | "courses"
   | "communityApply"
-  | "authLogin"
-  | "authRegister"
-  | "authForgotPassword"
-  | "dashboard"
-  | "dashboardCourses"
-  | "dashboardBookings"
-  | "dashboardProfile"
   | "privacyPolicy"
   | "notFound";
 

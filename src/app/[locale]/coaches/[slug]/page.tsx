@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { getContent, getCoachBySlug, getCoachSlugs } from "@/content";
@@ -15,6 +16,25 @@ import { COACHES_COMING_SOON } from "@/lib/coaches-availability";
 import { features } from "@/lib/features";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 
+/**
+ * Deduped for the lifetime of one request: both `generateMetadata` and the page
+ * body need the slug list, and under FEATURE_CMS each call is a Sanity fetch.
+ */
+const coachSlugs = cache(getCoachSlugs);
+
+/**
+ * Is this a real coach slug, or an invented URL?
+ *
+ * An empty list means the catalog source is unavailable — a Sanity outage or an
+ * unseeded dataset — not that every coach was deleted. Treat that as
+ * "unknown" and let the placeholder render, so a CMS hiccup can never 404 the
+ * whole /coaches tree at once.
+ */
+async function isKnownCoachSlug(slug: string): Promise<boolean> {
+  const slugs = await coachSlugs();
+  return slugs.length === 0 || slugs.includes(slug);
+}
+
 export async function generateStaticParams() {
   const slugs = await getCoachSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -28,6 +48,8 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
   if (COACHES_COMING_SOON) {
+    // Unknown slug → no metadata, so the locale layout's 404 record applies.
+    if (!(await isKnownCoachSlug(slug))) return {};
     const content = await getContent(locale as Locale);
     const page = content.catalogPages!.coaches;
     return buildPageMetadata({
@@ -35,6 +57,10 @@ export async function generateMetadata({
       title: page.comingSoon.title,
       description: page.comingSoon.body,
       path: `/coaches/${slug}`,
+      // Every coach slug renders the same "coming soon" placeholder while the
+      // catalog is gated, so these are thin duplicates — keep them out of the
+      // index until real profiles ship.
+      noIndex: true,
     });
   }
   const coach = await getCoachBySlug(locale as Locale, slug);
@@ -62,6 +88,9 @@ export default async function CoachProfilePage({
   const homeCrumb = breadcrumbHomeLabel(content, locale as Locale);
 
   if (COACHES_COMING_SOON) {
+    // Only real coach slugs resolve; anything else is a 404 rather than another
+    // copy of the placeholder.
+    if (!(await isKnownCoachSlug(slug))) notFound();
     return (
       <div id="coach-profile-main">
         <JsonLd

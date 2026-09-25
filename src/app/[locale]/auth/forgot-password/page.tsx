@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getContent, getPageSeo } from "@/content";
+import { getContent } from "@/content";
 import { isLocale, type Locale } from "@/types/locale";
-import { buildMetadataFromPageSeo } from "@/lib/seo";
+import { buildPrivatePageMetadata } from "@/lib/seo";
 import { ForgotPasswordFormClient } from "@/components/auth/ForgotPasswordFormClient";
 
 export async function generateMetadata({
@@ -13,9 +13,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return buildMetadataFromPageSeo(
+  return buildPrivatePageMetadata(
     locale as Locale,
-    await getPageSeo(locale as Locale, "authForgotPassword"),
+    "authForgotPassword",
+    "/auth/forgot-password",
   );
 }
 

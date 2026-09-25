@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { getLocale } from "next-intl/server";
-import { getContent, getPageSeo } from "@/content";
+import { getContent } from "@/content";
 import type { Locale } from "@/types/locale";
-import { buildMetadataFromPageSeo } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = (await getLocale()) as Locale;
-  return buildMetadataFromPageSeo(locale, await getPageSeo(locale, "notFound"));
-}
-
+/**
+ * Next ignores `metadata` / `generateMetadata` exports in `not-found.tsx`, so
+ * this file cannot set its own title. The 404 title, description and
+ * `noindex` come from the `notFound` page SEO record via the fallback
+ * `generateMetadata` in `[locale]/layout.tsx` — edit it there.
+ */
 export default async function NotFound() {
   const locale = (await getLocale()) as Locale;
   const { ui, cta } = await getContent(locale);

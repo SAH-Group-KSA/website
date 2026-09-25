@@ -13,7 +13,7 @@ import {
   GROUP_THEME_COLOR,
 } from "@/lib/brand-themes";
 import { routing } from "@/i18n/routing";
-import { buildMetadataFromPageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/constants";
 import { isLocale, localeDirections, type Locale } from "@/types/locale";
 import "../globals.css";
 import "@/styles/fonts.css";
@@ -43,9 +43,24 @@ export async function generateMetadata({
   const { locale: localeParam } = await params;
   if (!isLocale(localeParam)) return {};
 
-  // Default document metadata for this locale tree (overridden by child routes).
-  // Home SEO is owned by `pages-seo.json` → `getPageSeo("home")` only — not `home.json` meta.
-  return buildMetadataFromPageSeo(localeParam, await getPageSeo(localeParam, "home"));
+  // Fallback document metadata for this locale tree. Every real page defines
+  // its own `generateMetadata` and overrides this, so in practice the only
+  // thing that renders it is the 404 — Next ignores metadata exports in
+  // `not-found.tsx`, and dynamic routes return `{}` for an unknown slug before
+  // calling `notFound()`. Serving the `notFound` record here is therefore what
+  // puts the right title on the 404 page. Deliberately emits no canonical or
+  // hreflang: a 404 URL must not claim one.
+  const seo = await getPageSeo(localeParam, "notFound");
+  return {
+    title: seo.title,
+    description: seo.description,
+    metadataBase: new URL(siteConfig.url),
+    robots: {
+      index: false,
+      follow: false,
+      googleBot: { index: false, follow: false },
+    },
+  };
 }
 
 /**

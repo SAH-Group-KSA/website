@@ -14,13 +14,7 @@ const PAGE_KEYS = [
   "coachesGroup",
   "courses",
   "communityApply",
-  "authLogin",
-  "authRegister",
-  "authForgotPassword",
-  "dashboard",
-  "dashboardCourses",
-  "dashboardBookings",
-  "dashboardProfile",
+  "privacyPolicy",
   "notFound",
 ] as const;
 

@@ -44,48 +44,6 @@
     "path": "/community/apply",
     "ogImage": "/og/og-share.png"
   },
-  "authLogin": {
-    "title": "تسجيل الدخول",
-    "description": "سجّل الدخول إلى حسابك في مجموعة سعة.",
-    "path": "/auth/login",
-    "robots": "noindex"
-  },
-  "authRegister": {
-    "title": "إنشاء حساب",
-    "description": "أنشئ حسابك في مجموعة سعة.",
-    "path": "/auth/register",
-    "robots": "noindex"
-  },
-  "authForgotPassword": {
-    "title": "نسيت كلمة المرور",
-    "description": "أعد تعيين كلمة مرور حسابك.",
-    "path": "/auth/forgot-password",
-    "robots": "noindex"
-  },
-  "dashboard": {
-    "title": "لوحة التحكم",
-    "description": "لوحة تحكم مجموعة سعة.",
-    "path": "/dashboard",
-    "robots": "noindex"
-  },
-  "dashboardCourses": {
-    "title": "دوراتي",
-    "description": "دوراتك المسجّلة.",
-    "path": "/dashboard/courses",
-    "robots": "noindex"
-  },
-  "dashboardBookings": {
-    "title": "حجوزاتي",
-    "description": "حجوزات التدريب الخاصة بك.",
-    "path": "/dashboard/bookings",
-    "robots": "noindex"
-  },
-  "dashboardProfile": {
-    "title": "ملفي الشخصي",
-    "description": "إدارة ملفك الشخصي.",
-    "path": "/dashboard/profile",
-    "robots": "noindex"
-  },
   "privacyPolicy": {
     "title": "سياسة الخصوصية",
     "description": "كيف تجمع مجموعة سعة معلوماتك وتستخدمها وتحميها، وملفات تعريف الارتباط وأدوات التحليلات المستخدمة في هذا الموقع.",

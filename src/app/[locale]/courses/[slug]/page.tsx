@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getContent, getCourseBySlug, getCourseSlugs } from "@/content";
@@ -11,6 +12,25 @@ import { breadcrumbHomeLabel } from "@/lib/content-labels";
 import { COURSES_COMING_SOON } from "@/lib/courses-availability";
 import { buildBreadcrumbJsonLd, buildCourseJsonLd, buildPageMetadata } from "@/lib/seo";
 import { isLocale, type Locale } from "@/types/locale";
+
+/**
+ * Deduped for the lifetime of one request: both `generateMetadata` and the page
+ * body need the slug list, and under FEATURE_CMS each call is a Sanity fetch.
+ */
+const courseSlugs = cache(getCourseSlugs);
+
+/**
+ * Is this a real course slug, or an invented URL?
+ *
+ * An empty list means the catalog source is unavailable — a Sanity outage or an
+ * unseeded dataset — not that every course was deleted. Treat that as
+ * "unknown" and let the placeholder render, so a CMS hiccup can never 404 the
+ * whole /courses tree at once.
+ */
+async function isKnownCourseSlug(slug: string): Promise<boolean> {
+  const slugs = await courseSlugs();
+  return slugs.length === 0 || slugs.includes(slug);
+}
 
 export async function generateStaticParams() {
   const slugs = await getCourseSlugs();
@@ -26,6 +46,8 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
 
   if (COURSES_COMING_SOON) {
+    // Unknown slug → no metadata, so the locale layout's 404 record applies.
+    if (!(await isKnownCourseSlug(slug))) return {};
     const content = await getContent(locale as Locale);
     const page = content.catalogPages!.courses;
     return buildPageMetadata({
@@ -33,6 +55,9 @@ export async function generateMetadata({
       title: page.comingSoon.title,
       description: page.comingSoon.body,
       path: `/courses/${slug}`,
+      // Same placeholder for every course slug while the catalog is gated —
+      // thin duplicates, so keep them out of the index until real courses ship.
+      noIndex: true,
     });
   }
 
@@ -61,6 +86,9 @@ export default async function CourseDetailPage({
   const homeLabel = breadcrumbHomeLabel(content, locale as Locale);
 
   if (COURSES_COMING_SOON) {
+    // Only real course slugs resolve; anything else is a 404 rather than
+    // another copy of the placeholder.
+    if (!(await isKnownCourseSlug(slug))) notFound();
     const page = catalog.courses;
     return (
       <div id="course-detail-main">

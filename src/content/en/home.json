@@ -472,6 +472,8 @@
     "error": "Please enter a valid email.",
     "nameError": "Please enter your first and last name.",
     "submitError": "Something went wrong. Please try again in a moment.",
+    "consentLabel": "I agree to receive news, invitations and promotional communications from SAH Group. I can unsubscribe at any time.",
+    "consentError": "Please tick the box to agree to receive communications.",
     "hint": "No spam · Unsubscribe anytime"
   },
   "about": {

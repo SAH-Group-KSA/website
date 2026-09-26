@@ -163,6 +163,10 @@ export const getContent = cache(async function getContent(
       staticBase.catalogPages!,
       mappedHome.catalogPages ?? base.catalogPages,
     ),
+    // Same static fallback as `ui`/`catalogPages`: the marketing-consent label
+    // is legally load-bearing, so a Sanity newsletter block predating those
+    // fields must not render an empty checkbox label.
+    newsletter: mergeFilled(staticBase.newsletter, mappedHome.newsletter),
     entityPages,
     programs,
   });

@@ -277,6 +277,8 @@ export interface NewsletterContent {
   error: string;
   nameError: string;
   submitError: string;
+  consentLabel: string;
+  consentError: string;
   hint?: string;
 }
 

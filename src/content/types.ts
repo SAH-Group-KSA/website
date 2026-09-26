@@ -882,3 +882,19 @@ export interface PrivacyPolicyContent {
     resetConfirmation: string;
   };
 }
+
+/**
+ * Terms & Conditions page copy. Static-only (no Sanity schema) — resolved
+ * through `getTermsConditions()` in `src/content/index.ts` like all other
+ * content.
+ */
+export interface TermsConditionsContent {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  breadcrumbCurrent: string;
+  /** ISO date for <time datetime>, plus a pre-localized display string. */
+  lastUpdatedIso: string;
+  lastUpdatedLabel: string;
+  sections: PolicySection[];
+}

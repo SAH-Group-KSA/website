@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { getContent, getPrivacyPolicy } from "@/content";
+import { getContent, getPrivacyPolicy, getTermsConditions } from "@/content";
 import type { FooterLink } from "@/content/types";
 import type { Locale } from "@/types/locale";
 import { siteConfig } from "@/lib/constants";
@@ -35,9 +35,10 @@ function FooterNavLink({
 
 export async function SiteFooter() {
   const locale = (await getLocale()) as Locale;
-  const [{ footer, newsletter, ui }, privacy] = await Promise.all([
+  const [{ footer, newsletter, ui }, privacy, terms] = await Promise.all([
     getContent(locale),
     getPrivacyPolicy(locale),
+    getTermsConditions(locale),
   ]);
   const columns = [footer.services, footer.explore, footer.connect];
 
@@ -103,15 +104,18 @@ export async function SiteFooter() {
         {/* Bottom bar */}
         <div className="footer-bottom">
           {/*
-            The privacy link is rendered structurally, not as a footer content
-            link: it is a legal requirement, so it must survive FEATURE_CMS
-            being on (where the columns come from Sanity and would omit it)
-            and must not be removable by accident in the CMS.
+            The privacy/terms links are rendered structurally, not as footer
+            content links: they are a legal requirement, so they must survive
+            FEATURE_CMS being on (where the columns come from Sanity and would
+            omit them) and must not be removable by accident in the CMS.
           */}
           <span className="footer-legal">
             <span>{footer.copyright}</span>
             <LocaleLink href="/privacy-policy" className="footer-legal-link">
               {privacy.title}
+            </LocaleLink>
+            <LocaleLink href="/terms-conditions" className="footer-legal-link">
+              {terms.title}
             </LocaleLink>
           </span>
           <span className="footer-motto" dir="ltr">

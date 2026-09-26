@@ -31,6 +31,7 @@ export type PageSeoKey =
   | "courses"
   | "communityApply"
   | "privacyPolicy"
+  | "termsConditions"
   | "notFound";
 
 export type PageSeoRobots = "index" | "noindex";

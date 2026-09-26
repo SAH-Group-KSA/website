@@ -15,6 +15,7 @@ const PAGE_KEYS = [
   "courses",
   "communityApply",
   "privacyPolicy",
+  "termsConditions",
   "notFound",
 ] as const;
 

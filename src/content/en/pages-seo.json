@@ -50,6 +50,12 @@
     "path": "/privacy-policy",
     "ogImage": "/og/og-share.png"
   },
+  "termsConditions": {
+    "title": "Terms & Conditions",
+    "description": "The terms that govern your access to and use of the SAH Group website.",
+    "path": "/terms-conditions",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you requested could not be found.",

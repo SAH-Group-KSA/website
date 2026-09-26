@@ -50,6 +50,12 @@
     "path": "/privacy-policy",
     "ogImage": "/og/og-share.png"
   },
+  "termsConditions": {
+    "title": "الشروط والأحكام",
+    "description": "الشروط التي تحكم دخولك إلى موقع مجموعة سعة واستخدامه له.",
+    "path": "/terms-conditions",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "الصفحة غير موجودة",
     "description": "تعذّر العثور على الصفحة المطلوبة.",

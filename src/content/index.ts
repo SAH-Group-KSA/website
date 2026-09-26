@@ -1,4 +1,9 @@
-import type { Locale, PrivacyPolicyContent, SiteContent } from "./types";
+import type {
+  Locale,
+  PrivacyPolicyContent,
+  SiteContent,
+  TermsConditionsContent,
+} from "./types";
 import type { PageSeo, PageSeoKey, PagesSeoContent } from "./seo-types";
 import { cache } from "react";
 import { applyCanonicalEntityColors } from "@/lib/brand-themes";
@@ -23,6 +28,10 @@ import {
   privacyPolicyAr,
   privacyPolicyEn,
 } from "./defaults/privacy-policy";
+import {
+  termsConditionsAr,
+  termsConditionsEn,
+} from "./defaults/terms-conditions";
 import { emptyPageSeo, emptyPagesSeo, emptySiteContent } from "./empty";
 import {
   COMPANY_PAGES_QUERY,
@@ -188,6 +197,17 @@ export async function getPrivacyPolicy(
   locale: Locale,
 ): Promise<PrivacyPolicyContent> {
   return locale === "ar" ? privacyPolicyAr : privacyPolicyEn;
+}
+
+/**
+ * Terms & Conditions copy. Static in both flag states — there is no Sanity
+ * schema for it, mirroring `getPrivacyPolicy`. Pages must call this rather
+ * than importing the defaults module.
+ */
+export async function getTermsConditions(
+  locale: Locale,
+): Promise<TermsConditionsContent> {
+  return locale === "ar" ? termsConditionsAr : termsConditionsEn;
 }
 
 /** Bulk SEO fetch for sitemap/validation scripts. */

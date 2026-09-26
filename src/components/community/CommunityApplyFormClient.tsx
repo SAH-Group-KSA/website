@@ -4,6 +4,7 @@ import { useState } from "react";
 import { submitCommunityApplication } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import type { CommunityApplyFormLabels } from "@/content/types";
 import {
   getCommunityRequiredError,
@@ -49,11 +50,9 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
     e.preventDefault();
     const fieldError =
       getCommunityRequiredError(form.community, isAr) ||
-      getLeadValidationError(
-        { name: form.name, email: form.email },
-        isAr,
-        [getMotivationError(form.motivation, isAr)],
-      );
+      getLeadValidationError({ name: form.name, email: form.email }, isAr, [
+        getMotivationError(form.motivation, isAr),
+      ]);
     if (fieldError) {
       setState("error");
       setError(fieldError);
@@ -85,20 +84,17 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
   if (state === "success") {
     return (
       <div className="apply-success" role="status">
-        <div className="apply-success-icon" aria-hidden="true">🎉</div>
+        <div className="apply-success-icon" aria-hidden="true">
+          🎉
+        </div>
         <h3>{labels.successTitle}</h3>
         <p>{labels.successIntro}</p>
-        <ol
-          className="dreq-next-steps"
-          aria-label={labels.successStepsAriaLabel}
-        >
+        <ol className="dreq-next-steps" aria-label={labels.successStepsAriaLabel}>
           {labels.successSteps.map((step, i) => (
-            <li
-              key={i}
-              className="dreq-next-step"
-              data-done={i === 0 ? "" : undefined}
-            >
-              <span className="dreq-next-icon" aria-hidden="true">{step.icon}</span>
+            <li key={i} className="dreq-next-step" data-done={i === 0 ? "" : undefined}>
+              <span className="dreq-next-icon" aria-hidden="true">
+                {step.icon}
+              </span>
               <span>{step.label}</span>
             </li>
           ))}
@@ -192,7 +188,13 @@ export function CommunityApplyFormClient({ labels, locale }: Props) {
       </label>
 
       <div className="form-footer">
-        <p>{labels.consent}</p>
+        <p>
+          {labels.consent} {isAr ? "اطلع على " : "Read our "}
+          <LocaleLink href="/privacy-policy">
+            {isAr ? "سياسة الخصوصية" : "Privacy Policy"}
+          </LocaleLink>
+          .
+        </p>
         <Button type="submit" variant="primary" disabled={state === "submitting"}>
           {state === "submitting" ? labels.submitting : labels.submit}
         </Button>

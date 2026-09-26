@@ -4,14 +4,9 @@ import { useState } from "react";
 import { submitGroupInterest } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
-import type {
-  GroupInterestFormLabels,
-  GroupProgramOption,
-} from "@/content/types";
-import {
-  getFormSubmitError,
-  getLeadValidationError,
-} from "@/lib/form-validation";
+import { LocaleLink } from "@/components/ui/LocaleLink";
+import type { GroupInterestFormLabels, GroupProgramOption } from "@/content/types";
+import { getFormSubmitError, getLeadValidationError } from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -26,7 +21,13 @@ type FormState = "idle" | "submitting" | "success" | "error";
 export function GroupInterestFormClient({ labels, programs, locale }: Props) {
   const isAr = locale === "ar";
   const [selected, setSelected] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", org: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    org: "",
+    message: "",
+  });
   const [state, setState] = useState<FormState>("idle");
   const [selectionError, setSelectionError] = useState(false);
   const [error, setError] = useState("");
@@ -84,7 +85,9 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
   if (state === "success") {
     return (
       <div className="apply-success" role="status">
-        <div className="apply-success-icon" aria-hidden="true">✅</div>
+        <div className="apply-success-icon" aria-hidden="true">
+          ✅
+        </div>
         <h3>{labels.successTitle}</h3>
         <p>{labels.successBody}</p>
         <Button href="/coaches" variant="outline-dark" size="sm">
@@ -94,8 +97,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
     );
   }
 
-  const errorMessage =
-    (selectionError ? labels.programRequired : "") || error;
+  const errorMessage = (selectionError ? labels.programRequired : "") || error;
 
   return (
     <form className="apply-form" onSubmit={handleSubmit} noValidate>
@@ -106,7 +108,7 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
         aria-labelledby="group-program-legend"
         aria-invalid={selectionError || undefined}
       >
-        <p className="mb-3 text-small text-muted" id="group-program-legend">
+        <p className="text-small mb-3 text-muted" id="group-program-legend">
           {requiredLabel(labels.programLegend)}
         </p>
         <div className="group-programs-grid">
@@ -189,7 +191,13 @@ export function GroupInterestFormClient({ labels, programs, locale }: Props) {
       </label>
 
       <div className="form-footer">
-        <p>{labels.consent}</p>
+        <p>
+          {labels.consent} {isAr ? "اطلع على " : "Read our "}
+          <LocaleLink href="/privacy-policy">
+            {isAr ? "سياسة الخصوصية" : "Privacy Policy"}
+          </LocaleLink>
+          .
+        </p>
         <Button
           type="submit"
           variant="primary"

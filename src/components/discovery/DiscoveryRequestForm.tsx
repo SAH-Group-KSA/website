@@ -4,10 +4,8 @@ import { useState } from "react";
 import { submitDiscoveryLead } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
-import {
-  getFormSubmitError,
-  getLeadValidationError,
-} from "@/lib/form-validation";
+import { LocaleLink } from "@/components/ui/LocaleLink";
+import { getFormSubmitError, getLeadValidationError } from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -48,7 +46,9 @@ export function DiscoveryRequestForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
+    "idle",
+  );
   const [errorMessage, setErrorMessage] = useState("");
 
   const clearError = () => {
@@ -105,13 +105,20 @@ export function DiscoveryRequestForm({
   if (status === "success") {
     return (
       <div className="dreq-success" role="status">
-        <span className="dreq-success-check" aria-hidden="true">✓</span>
+        <span className="dreq-success-check" aria-hidden="true">
+          ✓
+        </span>
         <b>{isRTL ? "تم استلام طلبك" : "Request received"}</b>
         <p>{labels.success}</p>
-        <ol className="dreq-next-steps" aria-label={isRTL ? "الخطوات التالية" : "What happens next"}>
+        <ol
+          className="dreq-next-steps"
+          aria-label={isRTL ? "الخطوات التالية" : "What happens next"}
+        >
           {nextSteps.map((step, i) => (
             <li key={i} className="dreq-next-step" data-done={i === 0 ? "" : undefined}>
-              <span className="dreq-next-icon" aria-hidden="true">{step.icon}</span>
+              <span className="dreq-next-icon" aria-hidden="true">
+                {step.icon}
+              </span>
               <span>{step.label}</span>
             </li>
           ))}
@@ -139,7 +146,10 @@ export function DiscoveryRequestForm({
           type="text"
           value={name}
           disabled={status === "submitting"}
-          onChange={(e) => { setName(e.target.value); clearError(); }}
+          onChange={(e) => {
+            setName(e.target.value);
+            clearError();
+          }}
         />
       </label>
 
@@ -152,16 +162,17 @@ export function DiscoveryRequestForm({
           type="email"
           value={email}
           disabled={status === "submitting"}
-          onChange={(e) => { setEmail(e.target.value); clearError(); }}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            clearError();
+          }}
         />
       </label>
 
       <label className="dreq-label">
         <span>
           {labels.phone}
-          <span className="dreq-optional">
-            {isRTL ? " (اختياري)" : " (optional)"}
-          </span>
+          <span className="dreq-optional">{isRTL ? " (اختياري)" : " (optional)"}</span>
         </span>
         <input
           autoComplete="tel"
@@ -178,15 +189,21 @@ export function DiscoveryRequestForm({
       <input type="hidden" name="audience" value={audienceLabel} />
       <input type="hidden" name="need" value={needLabel} />
 
+      <p className="discovery-request-note">
+        {isRTL ? "اطلع على " : "Read our "}
+        <LocaleLink className="prose-link" href="/privacy-policy">
+          {isRTL ? "سياسة الخصوصية" : "Privacy Policy"}
+        </LocaleLink>
+        .
+      </p>
+
       <Button
         type="submit"
         variant="gold"
         className="dreq-submit"
         disabled={status === "submitting"}
       >
-        {status === "submitting"
-          ? isRTL ? "جارٍ الإرسال…" : "Sending…"
-          : labels.submit}
+        {status === "submitting" ? (isRTL ? "جارٍ الإرسال…" : "Sending…") : labels.submit}
       </Button>
     </form>
   );

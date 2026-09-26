@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getContent, getPageSeo, getTermsConditions } from "@/content";
+import { getContent, getCookiePolicy, getPageSeo } from "@/content";
 import type { PolicyBlock } from "@/content/types";
 import { isLocale, type Locale } from "@/types/locale";
 import { breadcrumbHomeLabel } from "@/lib/content-labels";
@@ -20,18 +20,18 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
 
   const [seo, page] = await Promise.all([
-    getPageSeo(locale as Locale, "termsConditions"),
-    getTermsConditions(locale as Locale),
+    getPageSeo(locale as Locale, "cookiePolicy"),
+    getCookiePolicy(locale as Locale),
   ]);
 
-  // `termsConditions` has a `pageSeo` document in both flag states, but the
-  // page body itself stays static (no Sanity schema for the policy copy).
-  // Keep the fallback to the page's own title/lead so an unpublished or
-  // cleared SEO document can never ship this route untitled.
+  // `cookiePolicy` has a `pageSeo` document in both flag states, but the page
+  // body itself stays static (no Sanity schema for the policy copy). Keep the
+  // fallback to the page's own title/lead so an unpublished or cleared SEO
+  // document can never ship this route untitled.
   return buildMetadataFromPageSeo(locale as Locale, seo, {
     title: seo.title || page.title,
     description: seo.description || page.lead,
-    path: seo.path || "/terms-conditions",
+    path: seo.path || "/cookie-policy",
   });
 }
 
@@ -76,7 +76,7 @@ function PolicyBlocks({ blocks }: { blocks: PolicyBlock[] }) {
   );
 }
 
-export default async function TermsConditionsPage({
+export default async function CookiePolicyPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -87,16 +87,16 @@ export default async function TermsConditionsPage({
 
   const [content, page] = await Promise.all([
     getContent(locale as Locale),
-    getTermsConditions(locale as Locale),
+    getCookiePolicy(locale as Locale),
   ]);
   const homeCrumb = breadcrumbHomeLabel(content, locale as Locale);
 
   return (
-    <div id="terms-conditions-main">
+    <div id="cookie-policy-main">
       <JsonLd
         data={buildBreadcrumbJsonLd(locale as Locale, [
           { name: homeCrumb, path: "/" },
-          { name: page.breadcrumbCurrent, path: "/terms-conditions" },
+          { name: page.breadcrumbCurrent, path: "/cookie-policy" },
         ])}
       />
       <PageHero

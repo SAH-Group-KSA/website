@@ -56,6 +56,12 @@
     "path": "/terms-conditions",
     "ogImage": "/og/og-share.png"
   },
+  "cookiePolicy": {
+    "title": "Cookie Policy",
+    "description": "How SAH Group uses cookies and similar technologies on this website, and your choices.",
+    "path": "/cookie-policy",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you requested could not be found.",

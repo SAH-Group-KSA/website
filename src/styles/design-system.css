@@ -522,30 +522,49 @@ p.text-error,
 
 /* ==========================================================================
    Cookie consent notice
-   Bottom-anchored, non-blocking. Sits above modals/toasts but below the skip
-   link so keyboard users can always reach "skip to content" first.
-   Logical properties throughout so it mirrors under dir="rtl".
+   Bottom-anchored, non-blocking floating card. Sits above modals/toasts but
+   below the skip link so keyboard users can always reach "skip to content"
+   first. Logical properties throughout so it mirrors under dir="rtl".
    ========================================================================== */
 .ds-consent {
   position: fixed;
-  inset-inline: 0;
-  bottom: 0;
+  inset-block-end: var(--space-5);
+  inset-inline-end: var(--space-5);
+  inset-inline-start: var(--space-5);
   z-index: calc(var(--z-toast) + 1);
-  padding: var(--space-4) var(--space-5);
-  color: var(--white);
-  background: var(--deep-3);
-  border-top: 1px solid color-mix(in srgb, var(--gold) 26%, transparent);
-  box-shadow: var(--shadow-dark);
+  display: flex;
+  justify-content: flex-end;
   font-family: var(--font-sans);
 }
 
 .ds-consent-inner {
   display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 420px;
+  padding: var(--space-5);
+  color: var(--white);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--deep-3) 96%, var(--gold) 4%),
+    var(--deep-3)
+  );
+  border: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+  border-radius: var(--radius-modal);
+  box-shadow: var(--shadow-modal);
+}
+
+.ds-consent-icon {
+  display: flex;
+  flex-shrink: 0;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-6);
-  width: var(--container);
-  margin-inline: auto;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  border-radius: var(--radius-pill);
 }
 
 .ds-consent-copy {
@@ -562,8 +581,7 @@ p.text-error,
 }
 
 .ds-consent-body {
-  margin: 0;
-  max-width: 68ch;
+  margin: 0 0 var(--space-4);
   color: color-mix(in srgb, var(--white) 78%, transparent);
   font-size: var(--fs-sm);
   line-height: var(--lh-base);
@@ -581,36 +599,42 @@ p.text-error,
 
 .ds-consent-actions {
   display: flex;
-  flex-shrink: 0;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3);
 }
 
-/* .button-outline is tuned for light backgrounds — lift it onto the dark bar. */
+.ds-consent-actions > .button-gold {
+  flex: 1 1 auto;
+}
+
+/* .button-ghost defaults to a subtle white-on-dark treatment — a quieter,
+   text-like affordance so the accept action reads as the primary path. */
 .ds-consent .ds-consent-decline {
-  color: var(--white);
-  border-color: color-mix(in srgb, var(--white) 42%, transparent);
+  padding-inline: var(--space-2);
+  color: color-mix(in srgb, var(--white) 70%, transparent);
+  border-color: transparent;
   background: transparent;
 }
 
 .ds-consent .ds-consent-decline:hover {
-  border-color: var(--white);
-  background: color-mix(in srgb, var(--white) 10%, transparent);
+  color: var(--white);
+  background: color-mix(in srgb, var(--white) 8%, transparent);
 }
 
-@media (max-width: 860px) {
-  .ds-consent-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-4);
-  }
-
-  .ds-consent-actions {
+@media (max-width: 640px) {
+  .ds-consent {
+    inset-inline: var(--space-3);
+    inset-block-end: var(--space-3);
     justify-content: stretch;
   }
 
-  .ds-consent-actions > .button {
-    flex: 1;
+  .ds-consent-inner {
+    max-width: none;
+  }
+
+  .ds-consent-actions {
+    justify-content: flex-end;
   }
 }
 
@@ -622,10 +646,12 @@ p.text-error,
 
 @keyframes ds-consent-rise {
   from {
-    transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
   }
   to {
-    transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -684,6 +710,25 @@ p.text-error,
   font-size: var(--fs-sm);
 }
 
+.ds-prose-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.ds-prose-table th,
+.ds-prose-table td {
+  border: 1px solid var(--line);
+  padding: var(--space-3);
+  text-align: start;
+  vertical-align: top;
+}
+
+.ds-prose-table th {
+  background: var(--surface);
+  font-weight: 600;
+}
+
 /* ==========================================================================
    Zoho SalesIQ cookie bar suppression — WORKAROUND FOR A ZOHO BUG
    --------------------------------------------------------------------------
@@ -712,8 +757,9 @@ p.text-error,
   display: none !important;
 }
 
-/* Legal row in the footer bottom bar (copyright + privacy policy link).
-   Wrapped in one flex child so .footer-bottom stays a two-column layout. */
+/* Legal links row (privacy/terms/cookie policy) in the footer bottom bar —
+   the start-side flex child, so .footer-bottom stays a two-column layout
+   with .footer-copyright at the end. */
 .footer-legal {
   display: flex;
   flex-wrap: wrap;
@@ -729,6 +775,14 @@ p.text-error,
 
 .footer-legal-link:hover {
   color: var(--gold);
+}
+
+/* Copyright + motto row — the end-side flex child of .footer-bottom. */
+.footer-copyright {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
 }
 
 /* Consent reset control at the foot of the privacy policy. */

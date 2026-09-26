@@ -32,6 +32,7 @@ export type PageSeoKey =
   | "communityApply"
   | "privacyPolicy"
   | "termsConditions"
+  | "cookiePolicy"
   | "notFound";
 
 export type PageSeoRobots = "index" | "noindex";

@@ -39,17 +39,40 @@ export async function generateMetadata({
 function PolicyBlocks({ blocks }: { blocks: PolicyBlock[] }) {
   return (
     <>
-      {blocks.map((block, index) =>
-        block.type === "paragraph" ? (
-          <p key={index}>{block.text}</p>
-        ) : (
+      {blocks.map((block, index) => {
+        if (block.type === "paragraph") {
+          return <p key={index}>{block.text}</p>;
+        }
+        if (block.type === "table") {
+          return (
+            <table key={index} className="ds-prose-table">
+              <thead>
+                <tr>
+                  {block.headers.map((header) => (
+                    <th key={header}>{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => (
+                      <td key={cellIndex}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          );
+        }
+        return (
           <ul key={index}>
             {block.items.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-        ),
-      )}
+        );
+      })}
     </>
   );
 }

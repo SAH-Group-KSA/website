@@ -1,4 +1,5 @@
 import type {
+  CookiePolicyContent,
   Locale,
   PrivacyPolicyContent,
   SiteContent,
@@ -32,6 +33,10 @@ import {
   termsConditionsAr,
   termsConditionsEn,
 } from "./defaults/terms-conditions";
+import {
+  cookiePolicyAr,
+  cookiePolicyEn,
+} from "./defaults/cookie-policy";
 import { emptyPageSeo, emptyPagesSeo, emptySiteContent } from "./empty";
 import {
   COMPANY_PAGES_QUERY,
@@ -208,6 +213,17 @@ export async function getTermsConditions(
   locale: Locale,
 ): Promise<TermsConditionsContent> {
   return locale === "ar" ? termsConditionsAr : termsConditionsEn;
+}
+
+/**
+ * Cookie policy copy. Static in both flag states — there is no Sanity schema
+ * for it, mirroring `getPrivacyPolicy`. Pages must call this rather than
+ * importing the defaults module.
+ */
+export async function getCookiePolicy(
+  locale: Locale,
+): Promise<CookiePolicyContent> {
+  return locale === "ar" ? cookiePolicyAr : cookiePolicyEn;
 }
 
 /** Bulk SEO fetch for sitemap/validation scripts. */

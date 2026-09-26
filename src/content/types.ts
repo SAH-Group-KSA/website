@@ -849,10 +849,11 @@ export interface SiteContent {
   catalogPages?: CatalogPagesContent;
 }
 
-/** One paragraph or bullet list inside a policy section. */
+/** One paragraph, bullet list, or table inside a policy section. */
 export type PolicyBlock =
   | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] };
+  | { type: "list"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] };
 
 export interface PolicySection {
   /** Stable anchor id — keep identical across locales so links survive a switch. */
@@ -889,6 +890,21 @@ export interface PrivacyPolicyContent {
  * content.
  */
 export interface TermsConditionsContent {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  breadcrumbCurrent: string;
+  /** ISO date for <time datetime>, plus a pre-localized display string. */
+  lastUpdatedIso: string;
+  lastUpdatedLabel: string;
+  sections: PolicySection[];
+}
+
+/**
+ * Cookie Policy page copy. Static-only (no Sanity schema) — resolved through
+ * `getCookiePolicy()` in `src/content/index.ts` like all other content.
+ */
+export interface CookiePolicyContent {
   eyebrow: string;
   title: string;
   lead: string;

@@ -8,6 +8,7 @@ import type { SiteContent } from "@/content/types";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { FormError } from "@/components/ui/FormField";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { Section } from "@/components/ui/Section";
 import { SAH_OPEN_CONTACT } from "@/lib/interactions";
 import {
@@ -326,7 +327,17 @@ export function ContactSection({ data }: Props) {
               <input name="context" type="hidden" value={context} />
 
               <div className="form-footer">
-                <p>{data.note}</p>
+                <p>
+                  {isRTL
+                    ? "بإرسال هذا النموذج، فإنك تقر بأنك اطلعت على "
+                    : "By submitting this form, you acknowledge that you have read the "}
+                  <LocaleLink className="prose-link" href="/privacy-policy">
+                    {isRTL ? "سياسة الخصوصية" : "Privacy Policy"}
+                  </LocaleLink>
+                  {isRTL
+                    ? ". وستعالج مجموعة سعة المعلومات التي تقدمها للرد على استفسارك أو طلبك."
+                    : ". SAH Group will process the information you provide to respond to your enquiry or request."}
+                </p>
                 <Button
                   variant="gold"
                   type="submit"

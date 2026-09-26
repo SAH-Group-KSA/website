@@ -56,6 +56,12 @@
     "path": "/terms-conditions",
     "ogImage": "/og/og-share.png"
   },
+  "cookiePolicy": {
+    "title": "سياسة ملفات تعريف الارتباط",
+    "description": "كيف تستخدم مجموعة سعة ملفات تعريف الارتباط والتقنيات المشابهة في هذا الموقع، وخياراتك بشأنها.",
+    "path": "/cookie-policy",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "الصفحة غير موجودة",
     "description": "تعذّر العثور على الصفحة المطلوبة.",

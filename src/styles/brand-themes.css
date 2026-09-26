@@ -357,8 +357,7 @@ html[data-theme="lego"] .site-footer .footer-meta-location {
 }
 html[data-theme="lego"] .site-footer .footer-subscribe-hint,
 html[data-theme="lego"] .site-footer .footer-column-list a,
-html[data-theme="lego"] .site-footer .footer-bottom,
-html[data-theme="lego"] .site-footer .footer-motto {
+html[data-theme="lego"] .site-footer .footer-bottom {
   color: color-mix(in srgb, var(--white) 82%, transparent);
 }
 html[data-theme="lego"] .site-footer .footer-meta-link {

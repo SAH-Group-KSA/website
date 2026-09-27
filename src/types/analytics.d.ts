@@ -32,6 +32,61 @@ declare global {
     | ["trackActivity", string, PageSenseAttributes]
     | ["setTracking", boolean];
 
+  /**
+   * Key/value pairs shown to the operator beside the conversation, and
+   * readable by a bot as `%visitor.custominfo.<key>%`.
+   *
+   * Keys are referenced verbatim in bot scripts and trigger rules, so they
+   * must stay lowercase, snake_case and stable — renaming one silently
+   * detaches every rule that reads it.
+   */
+  type SalesIqVisitorInfo = Record<string, string | number | boolean>;
+
+  /**
+   * The subset of the SalesIQ JS API this site uses.
+   *
+   * Every member is optional because the whole object is built up in stages:
+   * our bootstrap creates `$zoho.salesiq` with only `ready`/`afterReady`, and
+   * the widget script fills in `visitor`, `chat`, `chatbutton` and the rest
+   * when it loads. Nothing below `ready` exists before then — which is why all
+   * calls go through `whenSalesIqReady()` in `adapters/zoho/salesiq.ts`.
+   */
+  interface SalesIqApi {
+    widgetcode?: string;
+    values?: Record<string, unknown>;
+    ready?: () => void;
+    afterReady?: () => void;
+    language?: (code: string) => void;
+    visitor?: {
+      name?: (value: string) => void;
+      email?: (value: string) => void;
+      contactnumber?: (value: string) => void;
+      /** Stable cross-device id. Max 100 chars; a wrong id leaks chat history. */
+      id?: (value: string) => void;
+      /** Pre-fills the visitor's opening question before `chat.start()`. */
+      question?: (value: string) => void;
+      info?: (attributes: SalesIqVisitorInfo) => void;
+      /** Appends a line to the visitor's activity feed. Max 250 chars. */
+      customaction?: (label: string) => void;
+    };
+    chat?: {
+      /** Opens the chat window. Must be called from a user gesture. */
+      start?: () => void;
+      /** Departments offered in the pre-chat form. */
+      department?: (departments: string[]) => void;
+    };
+    chatbutton?: {
+      /** Registers a handler fired when the visitor clicks the float button. */
+      click?: (handler: () => void) => void;
+    };
+    floatbutton?: {
+      visible?: (state: "show" | "hide") => void;
+    };
+    privacy?: {
+      updateCookieConsent?: (types: string[]) => void;
+    };
+  }
+
   interface Window {
     dataLayer?: unknown[];
     gtag?: (command: GtagCommand, ...args: unknown[]) => void;
@@ -54,16 +109,26 @@ declare global {
 
     /** Zoho SalesIQ widget bootstrap object. */
     $zoho?: {
-      salesiq?: {
-        widgetcode?: string;
-        values?: Record<string, unknown>;
-        ready?: () => void;
-        afterReady?: () => void;
-        language?: (code: string) => void;
-        privacy?: {
-          updateCookieConsent?: (types: string[]) => void;
-        };
-      };
+      salesiq?: SalesIqApi;
+    };
+
+    /**
+     * Bridge between the consent-gated SalesIQ bootstrap and the adapter.
+     *
+     * `$zoho.salesiq.ready` is a single assignable property, not an event
+     * emitter — a second assignment silently replaces the first. So exactly one
+     * `ready` handler is installed (by `AnalyticsScripts`), and everything else
+     * that needs the API registers through this queue instead.
+     *
+     * Created only inside the consent gate, like `window.pagesense`: its
+     * absence is what makes every SalesIQ call a no-op for a visitor who
+     * declined, without any component having to read consent itself.
+     */
+    __sahSalesIq?: {
+      /** True once the widget has loaded and the queue has been drained. */
+      ready: boolean;
+      /** Callbacks registered before the widget finished loading. */
+      queue: Array<() => void>;
     };
 
     /** Zoho PageSense bootstrap config. */

@@ -1,5 +1,6 @@
 import type { AnalyticsEvent, AnalyticsEventMap } from "@/adapters/analytics/events";
 import { pageSenseTagRecording, pageSenseTrackGoal } from "@/adapters/zoho/pagesense";
+import { salesIqCustomAction } from "@/adapters/zoho/salesiq";
 import { features } from "@/lib/features";
 
 /**
@@ -25,6 +26,7 @@ const GA4_EVENT_NAMES: Record<AnalyticsEvent, string> = {
   booking_confirmed: "purchase",
   wizard_step: "wizard_step",
   cta_click: "cta_click",
+  chat_opened: "chat_opened",
 };
 
 /**
@@ -41,7 +43,51 @@ const PAGESENSE_RECORDING_TAGS: ReadonlySet<AnalyticsEvent> = new Set([
   "auth_sign_up",
   "checkout_started",
   "booking_confirmed",
+  // Worth replaying for a different reason than the others: the recording shows
+  // what the visitor was stuck on immediately before they asked for a human.
+  "chat_opened",
 ]);
+
+/**
+ * Events an operator should see in the visitor's live activity feed.
+ *
+ * Only outcomes that change how you'd handle the conversation. Everything else
+ * is omitted on purpose: SalesIQ already records navigation, and a feed padded
+ * with page views and CTA clicks is one an operator stops reading.
+ *
+ * `chat_opened` is absent because the operator is looking at the feed *because*
+ * the chat opened — restating it would be noise.
+ */
+const SALESIQ_ACTIONS: Partial<Record<AnalyticsEvent, string>> = {
+  lead_submitted: "Submitted a lead form",
+  newsletter_subscribed: "Subscribed to the newsletter",
+  auth_sign_up: "Created an account",
+  auth_sign_in: "Signed in",
+  checkout_started: "Started checkout",
+  booking_confirmed: "Confirmed a booking",
+};
+
+/**
+ * The operator-facing sentence for an event, sharpened with whichever property
+ * identifies *which* form or product — "Submitted the discovery form" is
+ * actionable in a way that "Submitted a lead form" is not.
+ */
+function salesIqActionLabel(
+  event: AnalyticsEvent,
+  properties: Record<string, unknown>,
+): string | undefined {
+  const base = SALESIQ_ACTIONS[event];
+  if (!base) return undefined;
+
+  const detail =
+    event === "lead_submitted"
+      ? (properties.programId ?? properties.kind)
+      : event === "checkout_started" || event === "booking_confirmed"
+        ? (properties.productId ?? properties.kind)
+        : undefined;
+
+  return typeof detail === "string" && detail ? `${base}: ${detail}` : base;
+}
 
 /** Meta standard events. Anything absent is not sent to the Pixel. */
 const META_EVENT_NAMES: Partial<Record<AnalyticsEvent, string>> = {
@@ -94,4 +140,10 @@ export function track<E extends AnalyticsEvent>(
   // renaming an event here silently detaches it from its Goal.
   pageSenseTrackGoal(event);
   if (PAGESENSE_RECORDING_TAGS.has(event)) pageSenseTagRecording(event);
+
+  // Puts the conversion on the visitor's SalesIQ timeline, so an operator who
+  // picks the chat up mid-journey can see what they already did instead of
+  // asking. No-ops unless the widget is configured and consent was given.
+  const action = salesIqActionLabel(event, properties);
+  if (action) salesIqCustomAction(action);
 }

@@ -34,6 +34,12 @@ export type AnalyticsConfig = {
    * and `AnalyticsScripts` also calls `$zoho.salesiq.language(locale)`.
    */
   salesIqWidget?: string;
+  /**
+   * Brand id (`<html data-theme>`) → SalesIQ department name, parsed from
+   * `NEXT_PUBLIC_ZOHO_SALESIQ_DEPARTMENTS`. Empty when unset, which leaves the
+   * pre-chat form exactly as the SalesIQ console configures it.
+   */
+  salesIqDepartments: Record<string, string>;
 };
 
 /**
@@ -58,6 +64,45 @@ function safePageSenseSrc(raw: string | undefined): string | undefined {
     host.endsWith(".pagesense.zoho.sa") ||
     host.endsWith(".pagesense.zoho.eu");
   return allowed ? url.toString() : undefined;
+}
+
+/**
+ * Parse `brand:Department,brand:Department` into a lookup.
+ *
+ * Tolerant by design: a malformed pair is skipped rather than throwing, since
+ * a typo in an env var must not take the site down — the worst case is that one
+ * brand falls back to the console's default departments.
+ */
+function parseSalesIqDepartments(raw: string | undefined): Record<string, string> {
+  if (!raw) return {};
+  const map: Record<string, string> = {};
+  for (const pair of raw.split(",")) {
+    const separator = pair.indexOf(":");
+    if (separator < 1) continue;
+    const brand = pair.slice(0, separator).trim().toLowerCase();
+    const department = pair.slice(separator + 1).trim();
+    if (brand && department) map[brand] = department;
+  }
+  return map;
+}
+
+/**
+ * Catch the two ways this env var is actually mistyped: a whole widget URL
+ * pasted in instead of the code, and a value that still carries whitespace or
+ * markup from a copy/paste.
+ *
+ * Deliberately a rejection list, not an allowlist of characters: Zoho has
+ * changed the shape of this token before, and an allowlist that guessed wrong
+ * would silently switch off a working chat widget. The value is
+ * `encodeURIComponent`-ed at the injection site regardless, so this is a
+ * misconfiguration guard rather than a security boundary.
+ */
+function safeSalesIqWidgetCode(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  if (raw.length > 512) return undefined;
+  if (/[\s<>"'`?&#]/.test(raw)) return undefined;
+  if (raw.includes("//")) return undefined;
+  return raw;
 }
 
 /**
@@ -102,7 +147,12 @@ export function getAnalyticsConfig(): AnalyticsConfig {
     pageSenseProjectKey: pageSenseProjectKeyFrom(pageSenseSrc),
     // Chat keeps its own flag — it is a support tool, not an analytics tool,
     // and may be wanted independently.
-    salesIqWidget: features.salesIq ? env.zohoSalesIqWidgetCode() : undefined,
+    salesIqWidget: features.salesIq
+      ? safeSalesIqWidgetCode(env.zohoSalesIqWidgetCode())
+      : undefined,
+    salesIqDepartments: features.salesIq
+      ? parseSalesIqDepartments(env.zohoSalesIqDepartments())
+      : {},
   };
 }
 

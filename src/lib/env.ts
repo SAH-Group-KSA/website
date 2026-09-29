@@ -56,6 +56,17 @@ export const env = {
   zohoBookingsOrgId: () => read("ZOHO_BOOKINGS_ORG_ID"),
   zohoSalesIqWidgetCode: () => clean(process.env.NEXT_PUBLIC_ZOHO_SALESIQ_WIDGET),
   /**
+   * Optional brand → SalesIQ department map, as `brand:Department` pairs
+   * separated by commas, e.g. `human:SAH Human,seera:Seera`.
+   *
+   * Kept as a plain env var rather than derived from `COMPANY_ROUTES` because
+   * the strings must match department names typed into the SalesIQ console
+   * exactly; an invented name would leave the pre-chat form with nothing to
+   * offer. Unset (the default) means the pre-chat form keeps whatever the
+   * console already shows.
+   */
+  zohoSalesIqDepartments: () => clean(process.env.NEXT_PUBLIC_ZOHO_SALESIQ_DEPARTMENTS),
+  /**
    * Map lead attribution to dedicated CRM custom fields (UTM_Source, etc).
    * Server-only. OFF by default: Zoho rejects records containing unknown field
    * API names, so this must not be enabled until those fields exist on the

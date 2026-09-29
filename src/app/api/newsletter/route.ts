@@ -14,6 +14,9 @@ const schema = z.object({
   email: z.string().trim().email(),
   locale: z.enum(["ar", "en"]),
   source: z.enum(["footer", "inline", "default"]).optional(),
+  // Rejects a missing or false value, so a caller bypassing the UI cannot
+  // subscribe anyone who has not granted marketing consent.
+  marketingConsent: z.literal(true),
 });
 
 export async function POST(req: NextRequest) {

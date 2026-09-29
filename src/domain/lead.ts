@@ -72,6 +72,11 @@ export type NewsletterSubscribe = {
   email: string;
   locale: "ar" | "en";
   source?: "footer" | "inline" | "default";
+  /**
+   * Literal `true`: a subscription without granted marketing consent is not a
+   * representable payload. The API route re-checks with `z.literal(true)`.
+   */
+  marketingConsent: true;
 };
 
 export type AdapterResult =

@@ -4,11 +4,9 @@ import { useState } from "react";
 import { submitProgramInterest } from "@/adapters/zoho/forms";
 import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/ui/FormField";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import type { ProgramsSectionContent } from "@/content/types";
-import {
-  getFormSubmitError,
-  getLeadValidationError,
-} from "@/lib/form-validation";
+import { getFormSubmitError, getLeadValidationError } from "@/lib/form-validation";
 import { requiredLabel } from "@/lib/form-labels";
 import type { Locale } from "@/types/locale";
 
@@ -61,9 +59,7 @@ export function ProgramInterestFormClient({
   const [state, setState] = useState<FormState>("idle");
   const [validationError, setValidationError] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
     if (state === "error") {
       setState("idle");
@@ -101,9 +97,7 @@ export function ProgramInterestFormClient({
       setState("success");
     } else {
       setState("error");
-      setValidationError(
-        getFormSubmitError(result, isAr, labels.registerError),
-      );
+      setValidationError(getFormSubmitError(result, isAr, labels.registerError));
     }
   };
 
@@ -124,8 +118,7 @@ export function ProgramInterestFormClient({
               : "We've received your request. Our team will contact you within 1–2 business days.")}
         </p>
         <a href={programsHref} className="button button-outline-dark button-small">
-          {labels.registerBackLabel ??
-            (isAr ? "استعرض البرامج" : "Browse programs")}
+          {labels.registerBackLabel ?? (isAr ? "استعرض البرامج" : "Browse programs")}
         </a>
       </div>
     );
@@ -166,8 +159,7 @@ export function ProgramInterestFormClient({
         </label>
         <label>
           {requiredLabel(
-            labels.registerEmailLabel ??
-              (isAr ? "البريد الإلكتروني" : "Email Address"),
+            labels.registerEmailLabel ?? (isAr ? "البريد الإلكتروني" : "Email Address"),
           )}
           <input
             type="email"
@@ -199,9 +191,7 @@ export function ProgramInterestFormClient({
             name="org"
             value={form.org}
             onChange={handleChange}
-            placeholder={
-              isAr ? "اسم جهتك (اختياري)" : "Your employer (optional)"
-            }
+            placeholder={isAr ? "اسم جهتك (اختياري)" : "Your employer (optional)"}
           />
         </label>
       </div>
@@ -213,11 +203,7 @@ export function ProgramInterestFormClient({
           name="message"
           value={form.message}
           onChange={handleChange}
-          placeholder={
-            isAr
-              ? "شاركنا أهدافك بشكل مختصر..."
-              : "Share your goals briefly…"
-          }
+          placeholder={isAr ? "شاركنا أهدافك بشكل مختصر..." : "Share your goals briefly…"}
         />
       </label>
 
@@ -226,14 +212,17 @@ export function ProgramInterestFormClient({
           {labels.registerConsent ??
             (isAr
               ? "بإرسال هذا النموذج توافق على التواصل معك من قبل فريق سعة."
-              : "By submitting you agree to being contacted by the SAH team.")}
+              : "By submitting you agree to being contacted by the SAH team.")}{" "}
+          {isAr ? "اطلع على " : "Read our "}
+          <LocaleLink href="/privacy-policy">
+            {isAr ? "سياسة الخصوصية" : "Privacy Policy"}
+          </LocaleLink>
+          .
         </p>
         <Button type="submit" variant="primary" disabled={state === "submitting"}>
           {state === "submitting"
-            ? (labels.registerSubmitting ??
-              (isAr ? "جارٍ الإرسال..." : "Sending…"))
-            : (labels.registerSubmit ??
-              (isAr ? "أرسل طلبي" : "Submit Request"))}
+            ? (labels.registerSubmitting ?? (isAr ? "جارٍ الإرسال..." : "Sending…"))
+            : (labels.registerSubmit ?? (isAr ? "أرسل طلبي" : "Submit Request"))}
         </Button>
       </div>
     </form>

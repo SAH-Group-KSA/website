@@ -1,4 +1,10 @@
-import type { Locale, PrivacyPolicyContent, SiteContent } from "./types";
+import type {
+  CookiePolicyContent,
+  Locale,
+  PrivacyPolicyContent,
+  SiteContent,
+  TermsConditionsContent,
+} from "./types";
 import type { PageSeo, PageSeoKey, PagesSeoContent } from "./seo-types";
 import { cache } from "react";
 import { applyCanonicalEntityColors } from "@/lib/brand-themes";
@@ -23,6 +29,14 @@ import {
   privacyPolicyAr,
   privacyPolicyEn,
 } from "./defaults/privacy-policy";
+import {
+  termsConditionsAr,
+  termsConditionsEn,
+} from "./defaults/terms-conditions";
+import {
+  cookiePolicyAr,
+  cookiePolicyEn,
+} from "./defaults/cookie-policy";
 import { emptyPageSeo, emptyPagesSeo, emptySiteContent } from "./empty";
 import {
   COMPANY_PAGES_QUERY,
@@ -149,6 +163,10 @@ export const getContent = cache(async function getContent(
       staticBase.catalogPages!,
       mappedHome.catalogPages ?? base.catalogPages,
     ),
+    // Same static fallback as `ui`/`catalogPages`: the marketing-consent label
+    // is legally load-bearing, so a Sanity newsletter block predating those
+    // fields must not render an empty checkbox label.
+    newsletter: mergeFilled(staticBase.newsletter, mappedHome.newsletter),
     entityPages,
     programs,
   });
@@ -188,6 +206,28 @@ export async function getPrivacyPolicy(
   locale: Locale,
 ): Promise<PrivacyPolicyContent> {
   return locale === "ar" ? privacyPolicyAr : privacyPolicyEn;
+}
+
+/**
+ * Terms & Conditions copy. Static in both flag states — there is no Sanity
+ * schema for it, mirroring `getPrivacyPolicy`. Pages must call this rather
+ * than importing the defaults module.
+ */
+export async function getTermsConditions(
+  locale: Locale,
+): Promise<TermsConditionsContent> {
+  return locale === "ar" ? termsConditionsAr : termsConditionsEn;
+}
+
+/**
+ * Cookie policy copy. Static in both flag states — there is no Sanity schema
+ * for it, mirroring `getPrivacyPolicy`. Pages must call this rather than
+ * importing the defaults module.
+ */
+export async function getCookiePolicy(
+  locale: Locale,
+): Promise<CookiePolicyContent> {
+  return locale === "ar" ? cookiePolicyAr : cookiePolicyEn;
 }
 
 /** Bulk SEO fetch for sitemap/validation scripts. */

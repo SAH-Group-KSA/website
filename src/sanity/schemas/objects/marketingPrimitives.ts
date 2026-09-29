@@ -264,6 +264,14 @@ export const newsletterContent = defineType({
     defineField({ name: "error", type: "string" }),
     defineField({ name: "nameError", type: "string" }),
     defineField({ name: "submitError", type: "string" }),
+    defineField({
+      name: "consentLabel",
+      type: "text",
+      rows: 2,
+      description:
+        "Marketing consent checkbox label. Legally reviewed copy — confirm changes before publishing. Left empty, the built-in default is used.",
+    }),
+    defineField({ name: "consentError", type: "string" }),
     defineField({ name: "hint", type: "string" }),
   ],
 });

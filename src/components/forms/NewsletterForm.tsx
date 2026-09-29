@@ -19,7 +19,7 @@ type Props = {
   variant?: "default" | "inline" | "footer";
 };
 
-type ValidationError = "name" | "email" | null;
+type ValidationError = "name" | "email" | "consent" | null;
 
 export function NewsletterForm({
   data,
@@ -30,9 +30,12 @@ export function NewsletterForm({
   const firstNameId = useId();
   const lastNameId = useId();
   const emailId = useId();
+  const consentId = useId();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  // Must start unticked — consent is only valid when actively given.
+  const [consented, setConsented] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorType, setErrorType] = useState<ValidationError | "submit">(null);
 
@@ -69,7 +72,9 @@ export function NewsletterForm({
             ? data.submitError
             : errorType === "name"
               ? data.nameError
-              : data.error}
+              : errorType === "consent"
+                ? data.consentError
+                : data.error}
         </FormError>
       ) : null}
       <form
@@ -95,6 +100,11 @@ export function NewsletterForm({
             setStatus("error");
             return;
           }
+          if (!consented) {
+            setErrorType("consent");
+            setStatus("error");
+            return;
+          }
 
           void subscribeNewsletter({
             firstName: trimmedFirst,
@@ -102,6 +112,7 @@ export function NewsletterForm({
             email: trimmedEmail,
             locale,
             source: variant,
+            marketingConsent: true,
           }).then((result) => {
             if (result.ok) {
               setStatus("success");
@@ -161,10 +172,23 @@ export function NewsletterForm({
               resetErrors();
             }}
           />
-          <Button variant="gold" type="submit">
-            {data.cta}
-          </Button>
         </div>
+        <label className="newsletter-consent" htmlFor={consentId}>
+          <input
+            checked={consented}
+            id={consentId}
+            name="newsletterMarketingConsent"
+            type="checkbox"
+            onChange={(event) => {
+              setConsented(event.target.checked);
+              resetErrors();
+            }}
+          />
+          <span>{data.consentLabel}</span>
+        </label>
+        <Button className="newsletter-submit" variant="gold" type="submit">
+          {data.cta}
+        </Button>
       </form>
     </div>
   );

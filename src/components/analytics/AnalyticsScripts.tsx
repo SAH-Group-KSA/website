@@ -9,6 +9,7 @@ import {
   PAGESENSE_CONSENT_COOKIE_PREFIX,
   PAGESENSE_CONSENT_DECLINED,
 } from "@/lib/analytics-config";
+import { SalesIqVisitorContext } from "@/components/analytics/SalesIqVisitorContext";
 import { useConsent } from "@/lib/use-consent";
 import { localeDirections, type Locale } from "@/types/locale";
 
@@ -163,7 +164,9 @@ window.pagesense = window.pagesense || [];
 window.pagesense.push(["trackUser", {
   locale: ${JSON.stringify(locale)},
   direction: ${JSON.stringify(localeDirection)},
-  brand: document.documentElement.getAttribute("data-theme") || "human"
+  // No data-theme means the un-themed group site, not SAH Human — the old
+  // fallback filed every group-homepage session under the wrong brand.
+  brand: document.documentElement.getAttribute("data-theme") || "group"
 }]);
 (function(d){
   var s = d.createElement("script");
@@ -204,10 +207,26 @@ window.pagesense.push(["trackUser", {
             {`
 window.$zoho = window.$zoho || {};
 window.$zoho.salesiq = window.$zoho.salesiq || {};
-// Belt-and-braces: the brand already carries the right language, but this also
-// covers a brand that has several languages enabled.
+// The bridge every SalesIQ call in the app goes through
+// (\`adapters/zoho/salesiq.ts\`). Created here, inside the consent gate and
+// before the widget, for two reasons:
+//   1. the widget loads lazily, so calls made in the meantime — a lead
+//      submitted on the landing page — must be held rather than dropped;
+//   2. its absence is what makes every SalesIQ call a structural no-op after a
+//      decline, so no component has to read consent itself.
+window.__sahSalesIq = window.__sahSalesIq || { ready: false, queue: [] };
+// \`ready\` is a single assignable property, not an event: a second assignment
+// would silently replace this one. So this is the only handler, and everything
+// else registers through the queue it drains.
 window.$zoho.salesiq.ready = function(){
+  // Belt-and-braces: the brand already carries the right language, but this
+  // also covers a brand that has several languages enabled.
   try { window.$zoho.salesiq.language(${JSON.stringify(locale)}); } catch(e){}
+  var bridge = window.__sahSalesIq;
+  bridge.ready = true;
+  var queued = bridge.queue;
+  bridge.queue = [];
+  for (var i = 0; i < queued.length; i++) { try { queued[i](); } catch(e){} }
 };
 // SalesIQ ships its own cookie banner. The visitor has already consented via
 // our banner — which is the only reason this script is loading at all — so
@@ -217,10 +236,27 @@ window.$zoho.salesiq.afterReady = function(){
 };
             `.trim()}
           </Script>
+          {/*
+            `lazyOnload`, not `afterInteractive`: the widget is by far the
+            heaviest third party here, and it has no job to do until the page is
+            usable. This waits for `load` and then browser idle, so it competes
+            with neither LCP nor hydration. Chat appears a moment later, and
+            anything the app asks of it in that window is queued by the bridge
+            above rather than lost.
+          */}
           <Script
             id={`zoho-salesiq-src-${locale}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             src={`https://salesiq.zohopublic.sa/widget?wc=${encodeURIComponent(config.salesIqWidget)}`}
+          />
+          {/*
+            Feeds the widget brand / locale / campaign / identity. Mounted here
+            rather than in the layout so it inherits this component's consent
+            gate and never renders when chat is unconfigured.
+          */}
+          <SalesIqVisitorContext
+            locale={locale}
+            departments={config.salesIqDepartments}
           />
         </>
       ) : null}

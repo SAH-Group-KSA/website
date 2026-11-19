@@ -10,7 +10,15 @@ const ZOHO_ACCOUNTS_URL = "https://accounts.zoho.sa/oauth/v2/token";
 let cachedToken: { token: string; expiresAt: number; scope?: string } | null = null;
 
 export type ZohoCrmResult =
-  { ok: true; id?: string } | { ok: false; error: string; code?: string };
+  | { ok: true; id?: string }
+  | {
+      ok: false;
+      error: string;
+      /** Zoho's record-level code, e.g. `DUPLICATE_DATA`, `INVALID_DATA`. */
+      code?: string;
+      /** API name of the field the code refers to, when Zoho reports one. */
+      field?: string;
+    };
 
 export type ZohoCampaignsResult = { ok: true } | { ok: false; error: string };
 
@@ -118,7 +126,7 @@ async function getTokenScope(): Promise<string | undefined> {
 type ZohoRecordResponse = {
   data?: Array<{
     code?: string;
-    details?: { id?: string };
+    details?: { id?: string; api_name?: string };
     message?: string;
     status?: string;
   }>;
@@ -141,12 +149,20 @@ async function createCrmRecord(
 
     const body = (await res.json()) as ZohoRecordResponse;
 
+    const record = body.data?.[0];
+
     if (!res.ok) {
       console.error(`[zoho] CRM ${module} POST failed:`, res.status, body);
-      return { ok: false, error: `CRM API error (${res.status})` };
+      // Zoho reports record-level failures (duplicate, invalid field) as an
+      // HTTP 400 with the reason in data[0] — keep it so callers can react.
+      return {
+        ok: false,
+        error: `CRM API error (${res.status})`,
+        code: record?.code,
+        field: record?.details?.api_name,
+      };
     }
 
-    const record = body.data?.[0];
     if (record?.status === "success" || record?.code === "SUCCESS") {
       return { ok: true, id: record.details?.id };
     }
@@ -215,6 +231,13 @@ export async function createCrmApplication(
   fields: Record<string, unknown>,
 ): Promise<ZohoCrmResult> {
   return createCrmRecord("Applications", fields);
+}
+
+/** "Apply as Coach" submissions — custom module, API name from env. */
+export async function createCrmCoachApplication(
+  fields: Record<string, unknown>,
+): Promise<ZohoCrmResult> {
+  return createCrmRecord(env.zohoCoachApplicationsModule(), fields);
 }
 
 export async function createCrmContact(

@@ -62,6 +62,12 @@
     "path": "/cookie-policy",
     "ogImage": "/og/og-share.png"
   },
+  "applyAsCoach": {
+    "title": "Apply as a Coach",
+    "description": "Apply to join SAH Group's network of professional coaches.",
+    "path": "/apply-as-coach",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you requested could not be found.",

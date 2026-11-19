@@ -33,6 +33,7 @@ export type PageSeoKey =
   | "privacyPolicy"
   | "termsConditions"
   | "cookiePolicy"
+  | "applyAsCoach"
   | "notFound";
 
 export type PageSeoRobots = "index" | "noindex";

@@ -4,6 +4,11 @@ export type AnalyticsEventMap = {
     locale: string;
     programId?: string;
   };
+  /**
+   * "Apply as Coach" form accepted by the server. Its own event rather than a
+   * `lead_submitted` kind so each vendor can count it as a separate conversion.
+   */
+  coach_application_submitted: { locale: string };
   newsletter_subscribed: { locale: string; source?: string };
   auth_sign_in: { emailDomain?: string };
   auth_sign_up: { emailDomain?: string };

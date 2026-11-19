@@ -46,6 +46,7 @@ export const PUBLIC_SITEMAP_PATHS: readonly string[] = [
   "/privacy-policy",
   "/terms-conditions",
   "/cookie-policy",
+  "/apply-as-coach",
   ...COMPANY_ROUTES.map((route) => `/${route.slug}`),
 ];
 

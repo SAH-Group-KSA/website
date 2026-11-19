@@ -1,4 +1,5 @@
 import type {
+  ApplyAsCoachContent,
   CookiePolicyContent,
   Locale,
   PrivacyPolicyContent,
@@ -33,6 +34,10 @@ import {
   termsConditionsAr,
   termsConditionsEn,
 } from "./defaults/terms-conditions";
+import {
+  applyAsCoachAr,
+  applyAsCoachEn,
+} from "./defaults/apply-as-coach";
 import {
   cookiePolicyAr,
   cookiePolicyEn,
@@ -228,6 +233,17 @@ export async function getCookiePolicy(
   locale: Locale,
 ): Promise<CookiePolicyContent> {
   return locale === "ar" ? cookiePolicyAr : cookiePolicyEn;
+}
+
+/**
+ * "Apply as Coach" page copy. Static in both flag states — there is no Sanity
+ * schema for it, mirroring `getTermsConditions`. Pages must call this rather
+ * than importing the defaults module.
+ */
+export async function getApplyAsCoach(
+  locale: Locale,
+): Promise<ApplyAsCoachContent> {
+  return locale === "ar" ? applyAsCoachAr : applyAsCoachEn;
 }
 
 /** Bulk SEO fetch for sitemap/validation scripts. */

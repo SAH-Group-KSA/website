@@ -7,6 +7,8 @@
  * bilingual copy; everything flows through `SiteContent`.
  */
 
+import type { CoachLanguageId, CoachSpecialisationId } from "@/lib/coach-application";
+
 export type Locale = "en" | "ar";
 export type Dir = "ltr" | "rtl";
 
@@ -915,4 +917,84 @@ export interface CookiePolicyContent {
   lastUpdatedIso: string;
   lastUpdatedLabel: string;
   sections: PolicySection[];
+}
+
+/** One option in a coach-application select or radio group. */
+export interface ApplyAsCoachOption<Id extends string = string> {
+  id: Id;
+  label: string;
+}
+
+/**
+ * "Apply as Coach" form copy. Error strings are per field so the form can show
+ * them inline next to the control they refer to.
+ */
+export interface ApplyAsCoachFormLabels {
+  fullName: string;
+  fullNamePlaceholder: string;
+  email: string;
+  phone: string;
+  /** Accessible name for the country calling-code picker. */
+  phoneCountry: string;
+  /** Placeholder when Saudi Arabia (+966) is selected. */
+  phonePlaceholder: string;
+  /** Placeholder for any other country. */
+  phonePlaceholderIntl: string;
+  phoneHint: string;
+  city: string;
+  cityPlaceholder: string;
+  specialisation: string;
+  specialisationPlaceholder: string;
+  specialisationOptions: ApplyAsCoachOption<CoachSpecialisationId>[];
+  yearsExperience: string;
+  yearsExperiencePlaceholder: string;
+  certifications: string;
+  certificationsPlaceholder: string;
+  linkedinUrl: string;
+  linkedinUrlPlaceholder: string;
+  language: string;
+  languageOptions: ApplyAsCoachOption<CoachLanguageId>[];
+  bio: string;
+  bioPlaceholder: string;
+  /** Text before the privacy-policy link in the consent checkbox label. */
+  consent: string;
+  privacyPolicyLink: string;
+  /** Honeypot label — read only by bots and screen readers that ignore aria-hidden. */
+  honeypotLabel: string;
+  submit: string;
+  submitting: string;
+  retry: string;
+  successTitle: string;
+  successBody: string;
+  errors: {
+    fullName: string;
+    email: string;
+    phone: string;
+    city: string;
+    specialisation: string;
+    yearsExperience: string;
+    linkedinUrl: string;
+    language: string;
+    bio: string;
+    consent: string;
+    /** An application already exists with this email. */
+    duplicateEmail: string;
+    /** An application already exists with this mobile number. */
+    duplicatePhone: string;
+    /** Duplicate on some other unique CRM field. */
+    duplicate: string;
+  };
+}
+
+/**
+ * "Apply as Coach" page copy. Static-only (no Sanity schema) — resolved through
+ * `getApplyAsCoach()` in `src/content/index.ts` like all other content.
+ */
+export interface ApplyAsCoachContent {
+  title: string;
+  lead: string;
+  breadcrumbCurrent: string;
+  formTitle: string;
+  formIntro: string;
+  form: ApplyAsCoachFormLabels;
 }

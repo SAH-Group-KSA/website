@@ -74,6 +74,13 @@ export const env = {
    * Description note regardless of this flag.
    */
   zohoAttributionFieldsEnabled: () => read("ZOHO_ATTRIBUTION_FIELDS") === "1",
+  /**
+   * API name of the custom CRM module that receives "Apply as Coach"
+   * submissions. Server-only. SAH creates the module in Zoho; set this when
+   * its API name differs from the default.
+   */
+  zohoCoachApplicationsModule: () =>
+    read("ZOHO_COACH_APPLICATIONS_MODULE") ?? "Coach_Applications",
 
   // Payments (KSA)
   moyasarPublishableKey: () => clean(process.env.NEXT_PUBLIC_MOYASAR_PUBLISHABLE_KEY),

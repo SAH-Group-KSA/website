@@ -736,6 +736,10 @@
         {
           "label": "انضم إلى المجتمع",
           "href": "/community/apply"
+        },
+        {
+          "label": "انضم كمدرب",
+          "href": "/apply-as-coach"
         }
       ]
     },

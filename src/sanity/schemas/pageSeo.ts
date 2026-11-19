@@ -17,6 +17,7 @@ const PAGE_KEYS = [
   "privacyPolicy",
   "termsConditions",
   "cookiePolicy",
+  "applyAsCoach",
   "notFound",
 ] as const;
 

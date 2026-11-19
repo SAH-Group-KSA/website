@@ -5,7 +5,7 @@ import { isNewsletterConfigured, isZohoConfigured } from "@/lib/zoho";
 import { features } from "@/lib/features";
 import { env } from "@/lib/env";
 
-export type ApiErrorCode = "validation" | "upstream" | "not_configured";
+export type ApiErrorCode = "validation" | "upstream" | "not_configured" | "duplicate";
 
 export function validationError(): NextResponse {
   return NextResponse.json(
@@ -22,6 +22,17 @@ export function upstreamError(message?: string): NextResponse {
       message: message ?? "Upstream error",
     },
     { status: 500 },
+  );
+}
+
+/**
+ * A unique CRM field (e.g. Email) already holds this value. `field` is the
+ * Zoho API name so the form can point at the right input.
+ */
+export function duplicateError(field?: string): NextResponse {
+  return NextResponse.json(
+    { ok: false as const, code: "duplicate" as const, field },
+    { status: 409 },
   );
 }
 

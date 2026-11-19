@@ -17,6 +17,7 @@ import { features } from "@/lib/features";
 /** GA4 event names, mapped from our vendor-neutral event vocabulary. */
 const GA4_EVENT_NAMES: Record<AnalyticsEvent, string> = {
   lead_submitted: "generate_lead",
+  coach_application_submitted: "coach_application_submitted",
   newsletter_subscribed: "sign_up",
   auth_sign_in: "login",
   auth_sign_up: "sign_up",
@@ -39,6 +40,7 @@ const GA4_EVENT_NAMES: Record<AnalyticsEvent, string> = {
  */
 const PAGESENSE_RECORDING_TAGS: ReadonlySet<AnalyticsEvent> = new Set([
   "lead_submitted",
+  "coach_application_submitted",
   "newsletter_subscribed",
   "auth_sign_up",
   "checkout_started",
@@ -60,6 +62,7 @@ const PAGESENSE_RECORDING_TAGS: ReadonlySet<AnalyticsEvent> = new Set([
  */
 const SALESIQ_ACTIONS: Partial<Record<AnalyticsEvent, string>> = {
   lead_submitted: "Submitted a lead form",
+  coach_application_submitted: "Submitted a coach application",
   newsletter_subscribed: "Subscribed to the newsletter",
   auth_sign_up: "Created an account",
   auth_sign_in: "Signed in",
@@ -92,6 +95,7 @@ function salesIqActionLabel(
 /** Meta standard events. Anything absent is not sent to the Pixel. */
 const META_EVENT_NAMES: Partial<Record<AnalyticsEvent, string>> = {
   lead_submitted: "Contact",
+  coach_application_submitted: "SubmitApplication",
   newsletter_subscribed: "Lead",
   auth_sign_up: "CompleteRegistration",
   checkout_started: "InitiateCheckout",

@@ -1,4 +1,5 @@
 import type {
+  CoachApplication,
   CommunityApplication,
   ContactLead,
   DiscoveryLead,
@@ -24,8 +25,9 @@ type ApiResponse =
   | { ok: true; id?: string }
   | {
       ok: false;
-      code: "validation" | "upstream" | "not_configured";
+      code: "validation" | "upstream" | "not_configured" | "duplicate";
       message?: string;
+      field?: string;
     };
 
 async function postZohoForm(
@@ -44,6 +46,7 @@ async function postZohoForm(
       ok: false,
       code: data.code ?? "upstream",
       message: data.message ?? "Submission failed",
+      field: data.field,
     };
   } catch {
     return {
@@ -118,6 +121,14 @@ export async function submitCommunityApplication(
 ): Promise<AdapterResult> {
   return postAndTrack("/api/zoho/community", payload, "lead_submitted", {
     kind: "community",
+    locale: payload.locale,
+  });
+}
+
+export async function submitCoachApplication(
+  payload: CoachApplication,
+): Promise<AdapterResult> {
+  return postAndTrack("/api/zoho/coach", payload, "coach_application_submitted", {
     locale: payload.locale,
   });
 }

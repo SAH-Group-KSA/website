@@ -8,6 +8,7 @@ const config = [
       ".next/**",
       "node_modules/**",
       "prototypes/**",
+      "video-course-platform/**",
       "public/**",
       "next-env.d.ts",
     ],

@@ -18,6 +18,14 @@ export type NavItem = {
   labelKey: string;
 };
 
+export type SocialNetwork = "instagram" | "facebook";
+
+export type SocialProfile = {
+  network: SocialNetwork;
+  /** Full https URL of the official profile. Leave "" until confirmed. */
+  url: string;
+};
+
 export type SiteConfig = {
   name: string;
   url: string;
@@ -30,6 +38,8 @@ export type SiteConfig = {
   twitterHandle?: string;
   /** Organization social profile URLs for JSON-LD `sameAs`. */
   sameAs?: string[];
+  /** Official social profiles, linked from the footer. Empty URL = not shown. */
+  socialProfiles?: SocialProfile[];
   /** Search Console / Bing verification tokens (wire into metadata.verification later). */
   verification?: {
     google?: string;

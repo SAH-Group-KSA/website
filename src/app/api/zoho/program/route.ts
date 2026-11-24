@@ -8,6 +8,8 @@ import {
   attributionSchema,
   attributionFields,
   withAttributionNote,
+  reportConversion,
+  trackingSchema,
 } from "@/app/api/zoho/_helpers";
 import { createCrmLeadWithOptionalFields, splitName } from "@/lib/zoho";
 
@@ -21,6 +23,7 @@ const schema = z.object({
   message: z.string().optional(),
   locale: z.enum(["ar", "en"]),
   attribution: attributionSchema,
+  tracking: trackingSchema,
 });
 
 export async function POST(req: NextRequest) {
@@ -49,6 +52,16 @@ export async function POST(req: NextRequest) {
     },
     attributionFields(d.attribution),
   );
+
+  if (result.ok) {
+    reportConversion(req, {
+      event: "lead_submitted",
+      props: { kind: "program", locale: d.locale, programId: d.programId },
+      tracking: d.tracking,
+      attribution: d.attribution,
+      user: { email: d.email, phone: d.phone, firstName, lastName },
+    });
+  }
 
   return handleCrmResult(result);
 }

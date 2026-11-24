@@ -1,5 +1,19 @@
-import type { NavItem, SiteConfig } from "@/types";
+import type { NavItem, SiteConfig, SocialProfile } from "@/types";
 import { defaultLocale } from "@/types/locale";
+
+/**
+ * Official SAH Group profiles. Fill in the URL once confirmed — an empty URL
+ * renders nothing in the footer and is left out of the Organization JSON-LD.
+ * Instagram must be the account connected to the Meta Business portfolio.
+ */
+const SOCIAL_PROFILES: SocialProfile[] = [
+  { network: "instagram", url: "" },
+  { network: "facebook", url: "" },
+];
+
+const socialProfiles = SOCIAL_PROFILES.filter((profile) =>
+  /^https:\/\//.test(profile.url),
+);
 
 export const siteConfig: SiteConfig = {
   name: "SAH Group",
@@ -10,8 +24,9 @@ export const siteConfig: SiteConfig = {
   /** Default Open Graph / Twitter image — override per page via `PageSeo.ogImage`. */
   ogImage: "/images/backgrounds/IMG_9155.JPG.jpeg",
   // twitterHandle: "@sahgroup", // enables Twitter card site/creator attribution
-  // Populate when social profiles are confirmed — feeds Organization JSON-LD `sameAs`.
-  sameAs: [],
+  // Feeds Organization JSON-LD `sameAs` — populate via `socialProfiles` above.
+  sameAs: socialProfiles.map((profile) => profile.url),
+  socialProfiles,
   // verification: { google: "", bing: "" }, // Search Console / Bing — wired in buildPageMetadata
 };
 

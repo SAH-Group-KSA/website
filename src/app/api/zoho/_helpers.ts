@@ -1,5 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import type { AnalyticsEvent, AnalyticsEventMap } from "@/adapters/analytics/events";
+import { META_EVENTS, metaCustomData } from "@/adapters/analytics/meta";
+import { isMetaCapiConfigured, sendMetaServerEvent } from "@/adapters/meta/capi";
 import type { ZohoCrmResult, ZohoCampaignsResult } from "@/lib/zoho";
 import { isNewsletterConfigured, isZohoConfigured } from "@/lib/zoho";
 import { features } from "@/lib/features";
@@ -190,4 +193,120 @@ export function attributionFields(
     UTM_Medium: attribution.utmMedium,
     UTM_Campaign: attribution.utmCampaign,
   };
+}
+
+/* -------------------------------------------------------------------------
+   Server-side conversions (Meta Conversions API)
+
+   The browser Pixel fires after a successful submission; this sends the same
+   event from the server with the same event id, so Meta still sees leads the
+   browser lost (ad blockers, iOS, closed tabs) without counting any twice.
+   ------------------------------------------------------------------------- */
+
+/**
+ * Sent by the client only when analytics is on and the visitor accepted
+ * cookies (`createTrackingContext()`), so its presence is the consent signal.
+ *
+ * `.catch(undefined)`: a malformed value drops tracking for that request — it
+ * must never fail validation and lose the lead itself.
+ */
+export const trackingSchema = z
+  .object({
+    eventId: z.string().regex(/^[A-Za-z0-9-]{8,64}$/),
+    brand: z
+      .string()
+      .regex(/^[a-z]{1,32}$/)
+      .optional(),
+  })
+  .optional()
+  .catch(undefined);
+
+export type TrackingInput = z.infer<typeof trackingSchema>;
+
+type ConversionUser = {
+  email?: string;
+  phone?: string;
+  firstName?: string;
+  lastName?: string;
+};
+
+/** First hop of `x-forwarded-for` — the visitor, as set by Vercel's edge. */
+function clientIp(req: NextRequest): string | undefined {
+  const forwarded = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwarded || req.headers.get("x-real-ip") || undefined;
+}
+
+/**
+ * `_fbc` when the Pixel set it; otherwise built from the `fbclid` the
+ * attribution tracker captured. The fallback matters: a visitor who lands from
+ * an ad and accepts cookies on a later page has no `_fbc` (the Pixel loaded
+ * after the `fbclid` left the URL), but first-touch attribution kept it.
+ */
+function clickIdCookie(
+  req: NextRequest,
+  attribution: AttributionInput,
+): string | undefined {
+  const cookie = req.cookies.get("_fbc")?.value;
+  if (cookie) return cookie;
+  const clickId = attribution?.clickId;
+  if (!clickId?.startsWith("fbclid:")) return undefined;
+  const fbclid = clickId.slice("fbclid:".length);
+  return fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined;
+}
+
+/** The page the form was submitted from. Same-origin fetches send it in full. */
+function sourceUrl(req: NextRequest): string | undefined {
+  const referer = req.headers.get("referer");
+  return referer && /^https?:\/\//.test(referer) ? referer : undefined;
+}
+
+/**
+ * Report a confirmed conversion to Meta from the server.
+ *
+ * Call ONLY after the CRM / Campaigns write succeeded. Pass the same `props`
+ * the client passes to `track()` for this event, so both sides build the same
+ * Meta event. Runs after the response is sent (`after()`), so it adds no
+ * latency, and every failure is logged and swallowed — a Meta outage can never
+ * affect a submission.
+ */
+export function reportConversion<E extends AnalyticsEvent>(
+  req: NextRequest,
+  input: {
+    event: E;
+    props: AnalyticsEventMap[E];
+    tracking: TrackingInput;
+    attribution?: AttributionInput;
+    user: ConversionUser;
+  },
+): void {
+  try {
+    const { event, props, tracking, attribution, user } = input;
+    // No tracking context = no consent (or analytics off): send nothing.
+    if (!tracking) return;
+    const spec = META_EVENTS[event];
+    if (!spec || !isMetaCapiConfigured()) return;
+
+    const payload = {
+      eventName: spec.name,
+      eventId: tracking.eventId,
+      eventSourceUrl: sourceUrl(req),
+      customData: metaCustomData(event, props as Record<string, unknown>, tracking.brand),
+      user: {
+        ...user,
+        clientIp: clientIp(req),
+        userAgent: req.headers.get("user-agent") ?? undefined,
+        fbp: req.cookies.get("_fbp")?.value,
+        fbc: clickIdCookie(req, attribution),
+      },
+    };
+
+    after(async () => {
+      const result = await sendMetaServerEvent(payload);
+      if (!result.ok) {
+        console.error(`[meta] ${spec.name} not sent:`, result.message);
+      }
+    });
+  } catch (error) {
+    console.error("[meta] conversion not scheduled:", error);
+  }
 }

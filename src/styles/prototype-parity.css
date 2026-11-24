@@ -5967,6 +5967,33 @@ a.contact-meta-item:hover {
   color: var(--white);
   font-size: var(--fs-eyebrow);
 }
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  margin-block-start: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border: 1px solid color-mix(in srgb, var(--white) 35%, transparent);
+  border-radius: 999px;
+  color: var(--white);
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  color: var(--gold);
+  border-color: var(--gold);
+}
 
 .footer-nav {
   display: grid;

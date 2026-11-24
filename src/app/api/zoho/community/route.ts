@@ -7,8 +7,10 @@ import {
   validationError,
   attributionSchema,
   withAttributionNote,
+  reportConversion,
+  trackingSchema,
 } from "@/app/api/zoho/_helpers";
-import { createCrmApplication } from "@/lib/zoho";
+import { createCrmApplication, splitName } from "@/lib/zoho";
 
 const schema = z.object({
   name: z.string().trim().min(1),
@@ -20,6 +22,7 @@ const schema = z.object({
   experience: z.string().optional(),
   locale: z.enum(["ar", "en"]),
   attribution: attributionSchema,
+  tracking: trackingSchema,
 });
 
 export async function POST(req: NextRequest) {
@@ -48,6 +51,17 @@ export async function POST(req: NextRequest) {
     Locale: d.locale,
     Status: "Pending Review",
   });
+
+  if (result.ok) {
+    const { firstName, lastName } = splitName(d.name);
+    reportConversion(req, {
+      event: "lead_submitted",
+      props: { kind: "community", locale: d.locale },
+      tracking: d.tracking,
+      attribution: d.attribution,
+      user: { email: d.email, phone: d.phone, firstName, lastName },
+    });
+  }
 
   return handleCrmResult(result);
 }

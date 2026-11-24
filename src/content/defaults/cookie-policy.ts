@@ -19,7 +19,7 @@ import type { CookiePolicyContent } from "@/content/types";
  * the "cookies" section of the Privacy Policy should be reviewed together.
  */
 
-const LAST_UPDATED_ISO = "2026-09-26";
+const LAST_UPDATED_ISO = "2026-11-23";
 
 export const cookiePolicyEn: CookiePolicyContent = {
   eyebrow: "Legal",
@@ -27,7 +27,7 @@ export const cookiePolicyEn: CookiePolicyContent = {
   lead: "How SAH Group uses cookies and similar technologies on this website, and your choices.",
   breadcrumbCurrent: "Cookie Policy",
   lastUpdatedIso: LAST_UPDATED_ISO,
-  lastUpdatedLabel: "Last updated: September 2026",
+  lastUpdatedLabel: "Last updated: November 2026",
   sections: [
     {
       id: "what-are-cookies",
@@ -61,7 +61,7 @@ export const cookiePolicyEn: CookiePolicyContent = {
             ],
             [
               "Marketing",
-              "Where enabled, used to personalize content or measure the effectiveness of communications.",
+              "Where enabled, used to measure the effectiveness of our advertising and communications and to show relevant advertising, including through the Meta Pixel on Facebook and Instagram.",
             ],
           ],
         },
@@ -95,6 +95,10 @@ export const cookiePolicyEn: CookiePolicyContent = {
           type: "paragraph",
           text: "Some website functions may rely on third-party services, such as analytics, live chat, embedded media, maps, forms or social media features. These third parties may use cookies or similar technologies in accordance with their own policies. Where such technologies are not strictly necessary, they are loaded only after you accept cookies through the cookie notice.",
         },
+        {
+          type: "paragraph",
+          text: "Where marketing technologies are enabled and you have accepted cookies, the website uses the Meta Pixel, provided by Meta Platforms, to measure the effectiveness of SAH Group's advertising on Facebook and Instagram. When you submit a form after accepting cookies, SAH Group may also notify Meta of that submission directly from its servers. Your email address, phone number and name are converted into an irreversible coded form (hashed) before they are sent, so that Meta can match the submission to its advertising without receiving them in readable form. If you decline cookies, neither the Meta Pixel nor this server-side notification is used. Meta processes this information in accordance with its own privacy policy.",
+        },
       ],
     },
     {
@@ -126,7 +130,7 @@ export const cookiePolicyAr: CookiePolicyContent = {
   lead: "كيف تستخدم مجموعة سعة ملفات تعريف الارتباط والتقنيات المشابهة في هذا الموقع، وخياراتك بشأنها.",
   breadcrumbCurrent: "سياسة ملفات تعريف الارتباط",
   lastUpdatedIso: LAST_UPDATED_ISO,
-  lastUpdatedLabel: "آخر تحديث: سبتمبر 2026",
+  lastUpdatedLabel: "آخر تحديث: نوفمبر 2026",
   sections: [
     {
       id: "what-are-cookies",
@@ -160,7 +164,7 @@ export const cookiePolicyAr: CookiePolicyContent = {
             ],
             [
               "التسويقية",
-              "تُستخدم، عند تفعيلها، لتخصيص المحتوى أو قياس فعالية الرسائل التسويقية.",
+              "تُستخدم، عند تفعيلها، لقياس فعالية إعلاناتنا ورسائلنا التسويقية وعرض إعلانات ملائمة، بما في ذلك من خلال بكسل Meta على فيسبوك وإنستغرام.",
             ],
           ],
         },
@@ -193,6 +197,10 @@ export const cookiePolicyAr: CookiePolicyContent = {
         {
           type: "paragraph",
           text: "قد تعتمد بعض وظائف الموقع على خدمات مقدمة من جهات خارجية، مثل أدوات التحليل أو الدردشة المباشرة أو الوسائط المضمنة أو الخرائط أو النماذج أو مزايا وسائل التواصل الاجتماعي. وقد تستخدم هذه الجهات ملفات تعريف الارتباط أو تقنيات مشابهة وفق سياساتها الخاصة. وعندما لا تكون هذه التقنيات ضرورية لتشغيل الموقع، فلا يتم تحميلها إلا بعد قبولك عبر إشعار ملفات تعريف الارتباط.",
+        },
+        {
+          type: "paragraph",
+          text: "عند تفعيل تقنيات التسويق وقبولك لملفات تعريف الارتباط، يستخدم الموقع بكسل Meta المقدم من شركة Meta Platforms لقياس فعالية إعلانات مجموعة سعة على فيسبوك وإنستغرام. وعند إرسالك نموذجًا بعد قبول ملفات تعريف الارتباط، قد تُبلغ مجموعة سعة شركة Meta بذلك الإرسال مباشرةً من خوادمها، على أن يُحوَّل بريدك الإلكتروني ورقم هاتفك واسمك إلى صيغة مشفرة لا يمكن عكسها (تجزئة) قبل إرسالها، لتتمكن Meta من مطابقة الإرسال مع إعلاناتها دون أن تتلقى هذه البيانات بصيغة مقروءة. وفي حال رفضك لملفات تعريف الارتباط، لا يُستخدم بكسل Meta ولا هذا الإبلاغ من الخوادم. وتعالج Meta هذه المعلومات وفق سياسة الخصوصية الخاصة بها.",
         },
       ],
     },

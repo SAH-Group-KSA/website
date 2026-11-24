@@ -13,6 +13,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { Container } from "@/components/ui/Container";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { TrackedMailtoLink } from "@/components/consent/TrackedMailtoLink";
+import { FooterSocialLinks } from "@/components/layout/FooterSocialLinks";
 
 function resolveHashHref(href: string, locale: Locale): string {
   if (!href.startsWith("#")) return href;
@@ -81,6 +82,7 @@ export async function SiteFooter() {
               </TrackedMailtoLink>
               <span className="footer-meta-location">{footer.locationLabel}</span>
             </div>
+            <FooterSocialLinks profiles={siteConfig.socialProfiles} locale={locale} />
           </div>
 
           <nav

@@ -1,7 +1,9 @@
 import type { AnalyticsEvent, AnalyticsEventMap } from "@/adapters/analytics/events";
 import { pageSenseTagRecording, pageSenseTrackGoal } from "@/adapters/zoho/pagesense";
 import { salesIqCustomAction } from "@/adapters/zoho/salesiq";
+import { META_EVENTS, metaCustomData } from "@/adapters/analytics/meta";
 import { features } from "@/lib/features";
+import { currentBrand } from "@/lib/tracking-context";
 
 /**
  * Typed analytics sink. No-op until FEATURE_ANALYTICS + a provider are enabled.
@@ -92,20 +94,20 @@ function salesIqActionLabel(
   return typeof detail === "string" && detail ? `${base}: ${detail}` : base;
 }
 
-/** Meta standard events. Anything absent is not sent to the Pixel. */
-const META_EVENT_NAMES: Partial<Record<AnalyticsEvent, string>> = {
-  lead_submitted: "Contact",
-  coach_application_submitted: "SubmitApplication",
-  newsletter_subscribed: "Lead",
-  auth_sign_up: "CompleteRegistration",
-  checkout_started: "InitiateCheckout",
-  booking_confirmed: "Purchase",
-  cta_click: "Contact",
+export type TrackOptions = {
+  /**
+   * Shared with the server-side Conversions API event so Meta counts the pair
+   * once. Set by form submissions (`postAndTrack`); absent everywhere else.
+   */
+  eventId?: string;
+  /** Sub-brand override; defaults to the current page's `<html data-theme>`. */
+  brand?: string;
 };
 
 export function track<E extends AnalyticsEvent>(
   event: E,
   props: AnalyticsEventMap[E],
+  options?: TrackOptions,
 ): void {
   if (!features.analytics) {
     if (process.env.NODE_ENV === "development") {
@@ -127,8 +129,16 @@ export function track<E extends AnalyticsEvent>(
   }
 
   try {
-    const metaEvent = META_EVENT_NAMES[event];
-    if (metaEvent) window.fbq?.("track", metaEvent, properties);
+    const meta = META_EVENTS[event];
+    if (meta && window.fbq) {
+      const data = metaCustomData(event, properties, options?.brand ?? currentBrand());
+      const method = meta.custom ? "trackCustom" : "track";
+      if (options?.eventId) {
+        window.fbq(method, meta.name, data, { eventID: options.eventId });
+      } else {
+        window.fbq(method, meta.name, data);
+      }
+    }
   } catch {
     /* ignore */
   }

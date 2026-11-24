@@ -10,6 +10,8 @@ import {
   validationError,
   attributionSchema,
   withAttributionNote,
+  reportConversion,
+  trackingSchema,
 } from "@/app/api/zoho/_helpers";
 import {
   COACH_FIELD_LIMITS,
@@ -21,7 +23,7 @@ import {
   isLinkedInUrl,
 } from "@/lib/coach-application";
 import { normalizeSaudiMobile } from "@/lib/phone";
-import { createCrmCoachApplication } from "@/lib/zoho";
+import { createCrmCoachApplication, splitName } from "@/lib/zoho";
 
 const optionalText = (max: number) =>
   z
@@ -52,6 +54,7 @@ const schema = z.object({
   consent: z.literal(true),
   locale: z.enum(["ar", "en"]),
   attribution: attributionSchema,
+  tracking: trackingSchema,
   // Spam signals — see the check below.
   website: z.string().optional(),
   startedAt: z.number().optional(),
@@ -103,6 +106,17 @@ export async function POST(req: NextRequest) {
     // Generic message: the raw CRM error is for the logs, not the applicant.
     return upstreamError();
   }
+
+  // Below the spam check on purpose: a dropped bot submission returns early
+  // above and is never reported as a conversion.
+  const { firstName, lastName } = splitName(d.name);
+  reportConversion(req, {
+    event: "coach_application_submitted",
+    props: { locale: d.locale },
+    tracking: d.tracking,
+    attribution: d.attribution,
+    user: { email: d.email, phone: d.phone, firstName, lastName },
+  });
 
   return handleCrmResult(result);
 }

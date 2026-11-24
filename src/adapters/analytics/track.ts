@@ -1,7 +1,9 @@
 import type { AnalyticsEvent, AnalyticsEventMap } from "@/adapters/analytics/events";
 import { pageSenseTagRecording, pageSenseTrackGoal } from "@/adapters/zoho/pagesense";
 import { salesIqCustomAction } from "@/adapters/zoho/salesiq";
+import { META_EVENTS, metaCustomData } from "@/adapters/analytics/meta";
 import { features } from "@/lib/features";
+import { currentBrand } from "@/lib/tracking-context";
 
 /**
  * Typed analytics sink. No-op until FEATURE_ANALYTICS + a provider are enabled.
@@ -17,6 +19,7 @@ import { features } from "@/lib/features";
 /** GA4 event names, mapped from our vendor-neutral event vocabulary. */
 const GA4_EVENT_NAMES: Record<AnalyticsEvent, string> = {
   lead_submitted: "generate_lead",
+  coach_application_submitted: "coach_application_submitted",
   newsletter_subscribed: "sign_up",
   auth_sign_in: "login",
   auth_sign_up: "sign_up",
@@ -39,6 +42,7 @@ const GA4_EVENT_NAMES: Record<AnalyticsEvent, string> = {
  */
 const PAGESENSE_RECORDING_TAGS: ReadonlySet<AnalyticsEvent> = new Set([
   "lead_submitted",
+  "coach_application_submitted",
   "newsletter_subscribed",
   "auth_sign_up",
   "checkout_started",
@@ -60,6 +64,7 @@ const PAGESENSE_RECORDING_TAGS: ReadonlySet<AnalyticsEvent> = new Set([
  */
 const SALESIQ_ACTIONS: Partial<Record<AnalyticsEvent, string>> = {
   lead_submitted: "Submitted a lead form",
+  coach_application_submitted: "Submitted a coach application",
   newsletter_subscribed: "Subscribed to the newsletter",
   auth_sign_up: "Created an account",
   auth_sign_in: "Signed in",
@@ -89,19 +94,20 @@ function salesIqActionLabel(
   return typeof detail === "string" && detail ? `${base}: ${detail}` : base;
 }
 
-/** Meta standard events. Anything absent is not sent to the Pixel. */
-const META_EVENT_NAMES: Partial<Record<AnalyticsEvent, string>> = {
-  lead_submitted: "Contact",
-  newsletter_subscribed: "Lead",
-  auth_sign_up: "CompleteRegistration",
-  checkout_started: "InitiateCheckout",
-  booking_confirmed: "Purchase",
-  cta_click: "Contact",
+export type TrackOptions = {
+  /**
+   * Shared with the server-side Conversions API event so Meta counts the pair
+   * once. Set by form submissions (`postAndTrack`); absent everywhere else.
+   */
+  eventId?: string;
+  /** Sub-brand override; defaults to the current page's `<html data-theme>`. */
+  brand?: string;
 };
 
 export function track<E extends AnalyticsEvent>(
   event: E,
   props: AnalyticsEventMap[E],
+  options?: TrackOptions,
 ): void {
   if (!features.analytics) {
     if (process.env.NODE_ENV === "development") {
@@ -123,8 +129,16 @@ export function track<E extends AnalyticsEvent>(
   }
 
   try {
-    const metaEvent = META_EVENT_NAMES[event];
-    if (metaEvent) window.fbq?.("track", metaEvent, properties);
+    const meta = META_EVENTS[event];
+    if (meta && window.fbq) {
+      const data = metaCustomData(event, properties, options?.brand ?? currentBrand());
+      const method = meta.custom ? "trackCustom" : "track";
+      if (options?.eventId) {
+        window.fbq(method, meta.name, data, { eventID: options.eventId });
+      } else {
+        window.fbq(method, meta.name, data);
+      }
+    }
   } catch {
     /* ignore */
   }

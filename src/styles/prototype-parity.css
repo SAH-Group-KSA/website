@@ -5967,6 +5967,33 @@ a.contact-meta-item:hover {
   color: var(--white);
   font-size: var(--fs-eyebrow);
 }
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  margin-block-start: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border: 1px solid color-mix(in srgb, var(--white) 35%, transparent);
+  border-radius: 999px;
+  color: var(--white);
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  color: var(--gold);
+  border-color: var(--gold);
+}
 
 .footer-nav {
   display: grid;
@@ -11895,6 +11922,139 @@ button.dashboard-nav-item-btn {
 }
 .apply-success p {
   color: var(--muted);
+}
+
+/* Apply as Coach form (/apply-as-coach) */
+/*
+ * Fluid card: fills the container on small and medium screens, capped at the
+ * wide content measure on large ones. Padding scales with the viewport.
+ */
+.apply-card.coach-apply-card {
+  inline-size: 100%;
+  max-width: var(--content-max-lg);
+  padding-block: clamp(var(--space-6), 4vw, var(--space-8));
+  padding-inline: clamp(var(--space-4), 4vw, var(--card-pad-lg));
+}
+/* Rows reflow on the card's own width: two columns when each gets ~16rem. */
+.coach-apply-form .apply-form-row {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+.coach-apply-hp {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.coach-apply-fieldset {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.coach-apply-fieldset legend {
+  margin-block-end: var(--form-label-gap);
+  padding: 0;
+  color: var(--label-color);
+  font-size: var(--label-fs);
+  font-weight: var(--label-fw);
+}
+.apply-form .coach-apply-segment {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 0;
+}
+.apply-form .coach-apply-segment input {
+  margin: 0;
+  padding: 0;
+}
+.coach-apply-segment input:focus-visible + span {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.apply-form .coach-apply-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  line-height: 1.5;
+  text-align: start;
+  cursor: pointer;
+}
+.apply-form .coach-apply-consent input[type="checkbox"] {
+  flex: none;
+  inline-size: 18px;
+  block-size: 18px;
+  margin: 0;
+  margin-block-start: 2px;
+  padding: 0;
+  border-radius: 4px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+.apply-form .coach-apply-consent input[type="checkbox"]:focus {
+  box-shadow: none;
+}
+.apply-form .coach-apply-consent input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.coach-apply-submit-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.coach-apply-submit-error .form-error {
+  flex: 1 1 16rem;
+  margin: 0;
+}
+/* Mobile number: calling-code picker + number, always LTR. The native select
+   is stretched invisibly over a compact "flag +code" face. */
+.coach-apply-phone {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--form-label-gap);
+}
+.apply-form .coach-apply-phone input {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 0;
+}
+.coach-apply-dial {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--input-pad-y) var(--input-pad-x);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.coach-apply-dial-caret {
+  color: var(--muted);
+  font-size: 0.75em;
+}
+.apply-form .coach-apply-dial select {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.coach-apply-dial:focus-within {
+  border-color: var(--gold);
+  box-shadow: var(--focus-ring-strong);
+}
+.apply-form [aria-invalid="true"] {
+  border-color: var(--error);
 }
 
 /* Group coaching interest form */

@@ -1,6 +1,7 @@
 /** Lead / application payloads — Zoho Forms / CRM contracts. */
 
 import type { LeadAttribution } from "@/lib/attribution";
+import type { CoachLanguageId, CoachSpecialisationId } from "@/lib/coach-application";
 
 /**
  * First-touch acquisition data attached to every lead when the visitor has
@@ -66,6 +67,27 @@ export type CommunityApplication = {
   attribution?: LeadAttribution;
 };
 
+export type CoachApplication = {
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  specialisation: CoachSpecialisationId;
+  yearsExperience: number;
+  certifications?: string;
+  linkedinUrl?: string;
+  language: CoachLanguageId;
+  bio: string;
+  /** Literal `true`: the API route re-checks with `z.literal(true)`. */
+  consent: true;
+  locale: "ar" | "en";
+  attribution?: LeadAttribution;
+  /** Honeypot — always empty for a person. */
+  website?: string;
+  /** `Date.now()` when the form rendered; the route rejects instant submits. */
+  startedAt: number;
+};
+
 export type NewsletterSubscribe = {
   firstName: string;
   lastName: string;
@@ -81,4 +103,10 @@ export type NewsletterSubscribe = {
 
 export type AdapterResult =
   | { ok: true; id?: string }
-  | { ok: false; code: "not_configured" | "validation" | "upstream"; message: string };
+  | {
+      ok: false;
+      code: "not_configured" | "validation" | "upstream" | "duplicate";
+      message: string;
+      /** Zoho API name of the offending field, for `duplicate`. */
+      field?: string;
+    };

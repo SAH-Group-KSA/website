@@ -62,6 +62,12 @@
     "path": "/cookie-policy",
     "ogImage": "/og/og-share.png"
   },
+  "applyAsCoach": {
+    "title": "انضم كمدرب",
+    "description": "قدّم طلبك للانضمام إلى شبكة المدربين المحترفين في مجموعة سعة.",
+    "path": "/apply-as-coach",
+    "ogImage": "/og/og-share.png"
+  },
   "notFound": {
     "title": "الصفحة غير موجودة",
     "description": "تعذّر العثور على الصفحة المطلوبة.",

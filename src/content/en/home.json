@@ -736,6 +736,10 @@
         {
           "label": "Join Us",
           "href": "/community/apply"
+        },
+        {
+          "label": "Apply as a Coach",
+          "href": "/apply-as-coach"
         }
       ]
     },

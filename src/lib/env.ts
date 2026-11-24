@@ -74,6 +74,13 @@ export const env = {
    * Description note regardless of this flag.
    */
   zohoAttributionFieldsEnabled: () => read("ZOHO_ATTRIBUTION_FIELDS") === "1",
+  /**
+   * API name of the custom CRM module that receives "Apply as Coach"
+   * submissions. Server-only. SAH creates the module in Zoho; set this when
+   * its API name differs from the default.
+   */
+  zohoCoachApplicationsModule: () =>
+    read("ZOHO_COACH_APPLICATIONS_MODULE") ?? "Coach_Applications",
 
   // Payments (KSA)
   moyasarPublishableKey: () => clean(process.env.NEXT_PUBLIC_MOYASAR_PUBLISHABLE_KEY),
@@ -114,6 +121,7 @@ export const env = {
   /** Defaults to the EU cloud — keep data out of the US unless told otherwise. */
   posthogHost: () =>
     clean(process.env.NEXT_PUBLIC_POSTHOG_HOST) ?? "https://eu.i.posthog.com",
+  /** Validated before use — see `validMetaPixelId` in `analytics-config.ts`. */
   metaPixelId: () => clean(process.env.NEXT_PUBLIC_META_PIXEL_ID),
   linkedInPartnerId: () => clean(process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID),
   /**
@@ -122,6 +130,12 @@ export const env = {
    * it. Validated before injection in `analytics-config.ts`.
    */
   zohoPageSenseSrc: () => clean(process.env.NEXT_PUBLIC_ZOHO_PAGESENSE_SRC),
+
+  // Meta Conversions API — server-only. Sends the Pixel's form conversions
+  // from the server too; see `src/adapters/meta/capi.ts`.
+  metaCapiAccessToken: () => read("META_CAPI_ACCESS_TOKEN"),
+  /** Events Manager → Test events. Preview/local only — never Production. */
+  metaCapiTestEventCode: () => read("META_CAPI_TEST_EVENT_CODE"),
 } as const;
 
 export type PublicEnvKey = keyof typeof env;

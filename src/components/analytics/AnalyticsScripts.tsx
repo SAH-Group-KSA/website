@@ -45,6 +45,29 @@ export function AnalyticsScripts({ locale }: { locale: Locale }) {
       `; path=/; max-age=0; SameSite=Lax`;
   }, [hydrated, consent, pageSenseProjectKey]);
 
+  /**
+   * Meta, after a change of mind in the same tab. The Pixel cannot be
+   * unloaded, so a decline tells it to stop sending (`consent revoke`) and
+   * removes its browser/click-id cookies; a later accept re-grants. On a fresh
+   * page load neither matters — the Pixel is simply never loaded after a
+   * decline — so on first accept `fbq` does not exist yet and this is a no-op.
+   */
+  const metaPixelId = config.metaPixelId;
+  useEffect(() => {
+    if (!hydrated || !metaPixelId) return;
+    try {
+      if (consent === "accepted") {
+        window.fbq?.("consent", "grant");
+      } else if (consent === "declined") {
+        window.fbq?.("consent", "revoke");
+        expireCookieEverywhere("_fbp");
+        expireCookieEverywhere("_fbc");
+      }
+    } catch {
+      /* a vendor failure must not break the page */
+    }
+  }, [hydrated, consent, metaPixelId]);
+
   useEffect(() => {
     if (!accepted || !posthogKey) return;
 
@@ -262,6 +285,23 @@ window.$zoho.salesiq.afterReady = function(){
       ) : null}
     </>
   );
+}
+
+/**
+ * Expire a cookie on every domain it could have been set on.
+ *
+ * The Pixel writes `_fbp` / `_fbc` on the widest domain the browser accepts
+ * (`.sah.com.sa`, not `www.sah.com.sa`), and a cookie can only be deleted with
+ * the domain it was set on. So expire it host-only and on each parent domain;
+ * the browser ignores the attempts on a public suffix such as `.com.sa`.
+ */
+function expireCookieEverywhere(name: string): void {
+  const expired = `${name}=; path=/; max-age=0; SameSite=Lax`;
+  document.cookie = expired;
+  const labels = window.location.hostname.split(".");
+  for (let i = 0; i < labels.length - 1; i++) {
+    document.cookie = `${expired}; domain=.${labels.slice(i).join(".")}`;
+  }
 }
 
 /**

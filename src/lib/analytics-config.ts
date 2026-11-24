@@ -67,6 +67,19 @@ function safePageSenseSrc(raw: string | undefined): string | undefined {
 }
 
 /**
+ * A Meta Pixel / dataset id is all digits. Rejecting anything else keeps the
+ * `.env.example` placeholder (`000000000000000`), a pasted snippet, or a typo
+ * from initialising a Pixel that silently records nothing — and the value is
+ * interpolated into an inline script, so digits-only is also the safe shape.
+ *
+ * Exported because the server-side Conversions API posts to the same id.
+ */
+export function validMetaPixelId(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  return /^[1-9]\d{9,19}$/.test(raw) ? raw : undefined;
+}
+
+/**
  * Parse `brand:Department,brand:Department` into a lookup.
  *
  * Tolerant by design: a malformed pair is skipped rather than throwing, since
@@ -141,7 +154,7 @@ export function getAnalyticsConfig(): AnalyticsConfig {
     ga4Id: on ? env.ga4MeasurementId() : undefined,
     posthogKey: on ? env.posthogKey() : undefined,
     posthogHost: env.posthogHost(),
-    metaPixelId: on ? env.metaPixelId() : undefined,
+    metaPixelId: on ? validMetaPixelId(env.metaPixelId()) : undefined,
     linkedInPartnerId: on ? env.linkedInPartnerId() : undefined,
     pageSenseSrc,
     pageSenseProjectKey: pageSenseProjectKeyFrom(pageSenseSrc),

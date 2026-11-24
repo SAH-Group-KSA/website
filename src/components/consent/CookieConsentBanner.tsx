@@ -8,7 +8,7 @@ const COPY = {
   ar: {
     label: "إشعار ملفات تعريف الارتباط",
     title: "نحن نقدّر خصوصيتك",
-    body: "نستخدم ملفات تعريف الارتباط لتحسين تجربتك، وتحليل حركة الزيارات، وتطوير خدماتنا.",
+    body: "نستخدم ملفات تعريف الارتباط لتحسين تجربتك، وتحليل حركة الزيارات، وتطوير خدماتنا، وقياس فعالية إعلاناتنا، بما في ذلك على منصات Meta (فيسبوك وإنستغرام).",
     policyPrefix: "راجع ",
     policy: "سياسة ملفات تعريف الارتباط",
     policySuffix: " لمزيد من المعلومات.",
@@ -18,7 +18,7 @@ const COPY = {
   en: {
     label: "Cookie notice",
     title: "We Value Your Privacy",
-    body: "We use cookies to enhance your browsing experience, analyze site traffic, and improve our services.",
+    body: "We use cookies to enhance your browsing experience, analyze site traffic, improve our services, and measure our advertising, including on Meta platforms (Facebook and Instagram).",
     policyPrefix: "See our ",
     policy: "Cookie Policy",
     policySuffix: " for more information.",

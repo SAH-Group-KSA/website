@@ -1,4 +1,5 @@
 import type {
+  CoachApplication,
   CommunityApplication,
   ContactLead,
   DiscoveryLead,
@@ -13,6 +14,7 @@ import type {
 } from "@/adapters/analytics/events";
 import { track } from "@/adapters/analytics/track";
 import { getAttribution } from "@/lib/attribution";
+import { createTrackingContext } from "@/lib/tracking-context";
 
 /**
  * Zoho CRM / Campaigns submissions via Route Handlers.
@@ -24,8 +26,9 @@ type ApiResponse =
   | { ok: true; id?: string }
   | {
       ok: false;
-      code: "validation" | "upstream" | "not_configured";
+      code: "validation" | "upstream" | "not_configured" | "duplicate";
       message?: string;
+      field?: string;
     };
 
 async function postZohoForm(
@@ -44,6 +47,7 @@ async function postZohoForm(
       ok: false,
       code: data.code ?? "upstream",
       message: data.message ?? "Submission failed",
+      field: data.field,
     };
   } catch {
     return {
@@ -53,6 +57,17 @@ async function postZohoForm(
     };
   }
 }
+
+type PostAndTrackOptions = {
+  /**
+   * Count the conversion only when the server returned a CRM record id.
+   *
+   * For routes with a silent spam filter (the coach application): a dropped
+   * bot submission is answered `{ ok: true }` with no id, so the bot learns
+   * nothing — but it must not count as a conversion either.
+   */
+  requireRecordId?: boolean;
+};
 
 /**
  * POST, then fire the analytics event only if the submission succeeded.
@@ -64,15 +79,25 @@ async function postAndTrack<E extends AnalyticsEvent>(
   body: object,
   event: E,
   props: AnalyticsEventMap[E],
+  { requireRecordId = false }: PostAndTrackOptions = {},
 ): Promise<AdapterResult> {
   // First-touch acquisition, when the visitor consented and arrived with a
   // campaign or referrer. `getAttribution()` returns undefined otherwise, so
   // the key is simply absent and the payload is unchanged.
   const attribution = getAttribution();
-  const payload = attribution ? { ...body, attribution } : body;
+  // Event id + brand for the Meta Conversions API. Also undefined without
+  // consent — and its absence is what stops the server sending anything.
+  const tracking = createTrackingContext();
+  const payload = {
+    ...body,
+    ...(attribution ? { attribution } : {}),
+    ...(tracking ? { tracking } : {}),
+  };
 
   const result = await postZohoForm(path, payload);
-  if (result.ok) track(event, props);
+  if (result.ok && (!requireRecordId || result.id)) {
+    track(event, props, tracking);
+  }
   return result;
 }
 
@@ -120,6 +145,18 @@ export async function submitCommunityApplication(
     kind: "community",
     locale: payload.locale,
   });
+}
+
+export async function submitCoachApplication(
+  payload: CoachApplication,
+): Promise<AdapterResult> {
+  return postAndTrack(
+    "/api/zoho/coach",
+    payload,
+    "coach_application_submitted",
+    { locale: payload.locale },
+    { requireRecordId: true },
+  );
 }
 
 export async function subscribeNewsletter(

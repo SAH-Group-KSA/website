@@ -4,6 +4,11 @@ export type AnalyticsEventMap = {
     locale: string;
     programId?: string;
   };
+  /**
+   * "Apply as Coach" form accepted by the server. Its own event rather than a
+   * `lead_submitted` kind so each vendor can count it as a separate conversion.
+   */
+  coach_application_submitted: { locale: string };
   newsletter_subscribed: { locale: string; source?: string };
   auth_sign_in: { emailDomain?: string };
   auth_sign_up: { emailDomain?: string };
@@ -21,8 +26,8 @@ export type AnalyticsEventMap = {
    * The visitor opened the SalesIQ chat widget.
    *
    * An intent signal, not a conversion: it fires on the float-button click,
-   * before any message is sent. Deliberately absent from `META_EVENT_NAMES` for
-   * that reason — counting it as a Meta "Contact" would inflate ad-reported
+   * before any message is sent. Deliberately absent from `META_EVENTS`
+   * (`adapters/analytics/meta.ts`) for that reason — counting it as a Meta "Contact" would inflate ad-reported
    * conversions with people who opened the widget and closed it again.
    */
   chat_opened: { locale: string; brand: string };

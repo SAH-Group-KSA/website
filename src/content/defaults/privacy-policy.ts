@@ -11,7 +11,7 @@ import type { PrivacyPolicyContent } from "@/content/types";
  * "cookies" section in BOTH locales in the same change.
  */
 
-const LAST_UPDATED_ISO = "2026-09-01";
+const LAST_UPDATED_ISO = "2026-11-23";
 
 export const privacyPolicyEn: PrivacyPolicyContent = {
   eyebrow: "Legal",
@@ -19,7 +19,7 @@ export const privacyPolicyEn: PrivacyPolicyContent = {
   lead: "How SAH Group collects, uses, stores and discloses personal data collected through this website, and how you can exercise your rights.",
   breadcrumbCurrent: "Privacy Policy",
   lastUpdatedIso: LAST_UPDATED_ISO,
-  lastUpdatedLabel: "Last updated: September 2026",
+  lastUpdatedLabel: "Last updated: November 2026",
   sections: [
     {
       id: "introduction",
@@ -127,6 +127,7 @@ export const privacyPolicyEn: PrivacyPolicyContent = {
           items: [
             "Technology, hosting, security, communications, analytics and operational service providers acting on behalf of SAH Group and subject to appropriate confidentiality and data protection obligations.",
             "Partners or service providers connected with a specific event, programme, initiative or request where such sharing is necessary to provide the relevant service and is consistent with the notice provided to the data subject.",
+            "Advertising platforms, such as Meta Platforms (Facebook and Instagram), to measure the effectiveness of SAH Group's advertising — only where the data subject has accepted cookies, and with contact details (email address, phone number and name) shared only in hashed, non-readable form.",
             "Government, judicial, regulatory or law-enforcement authorities where disclosure is required or permitted by law.",
             "Other parties where the data subject has provided consent and consent is required.",
           ],
@@ -205,7 +206,7 @@ export const privacyPolicyEn: PrivacyPolicyContent = {
       blocks: [
         {
           type: "paragraph",
-          text: "The website may use cookies and similar technologies to operate website features, remember preferences, protect the website and, where enabled, measure performance or usage. Further information is provided in the Cookie Policy.",
+          text: "The website may use cookies and similar technologies to operate website features, remember preferences, protect the website and, where enabled, measure performance, usage and the effectiveness of advertising, including through the Meta Pixel on Facebook and Instagram. Non-essential technologies are used only after you accept cookies. Further information is provided in the Cookie Policy.",
         },
       ],
     },
@@ -264,7 +265,7 @@ export const privacyPolicyAr: PrivacyPolicyContent = {
   lead: "كيف تجمع مجموعة سعة البيانات الشخصية وتستخدمها وتحفظها وتفصح عنها من خلال هذا الموقع، وكيف يمكنك ممارسة حقوقك.",
   breadcrumbCurrent: "سياسة الخصوصية",
   lastUpdatedIso: LAST_UPDATED_ISO,
-  lastUpdatedLabel: "آخر تحديث: سبتمبر ٢٠٢٦",
+  lastUpdatedLabel: "آخر تحديث: نوفمبر ٢٠٢٦",
   sections: [
     {
       id: "introduction",
@@ -372,6 +373,7 @@ export const privacyPolicyAr: PrivacyPolicyContent = {
           items: [
             "مزودي خدمات التقنية والاستضافة والأمن والاتصالات والتحليلات والتشغيل الذين يعملون لصالح مجموعة سعة، مع خضوعهم لالتزامات مناسبة تتعلق بالسرية وحماية البيانات.",
             "الشركاء أو مزودي الخدمات المرتبطين بفعالية أو برنامج أو مبادرة أو طلب محدد، عندما تكون المشاركة ضرورية لتقديم الخدمة ذات الصلة ومتوافقة مع الإشعار المقدم لصاحب البيانات.",
+            "منصات الإعلان، مثل شركة Meta Platforms (فيسبوك وإنستغرام)، لقياس فعالية إعلانات مجموعة سعة — وذلك فقط عند قبول صاحب البيانات لملفات تعريف الارتباط، مع مشاركة بيانات التواصل (البريد الإلكتروني ورقم الهاتف والاسم) بصيغة مشفرة غير مقروءة (تجزئة) فقط.",
             "الجهات الحكومية أو القضائية أو التنظيمية أو جهات إنفاذ النظام، عندما يكون الإفصاح مطلوبًا أو مسموحًا به نظامًا.",
             "أطراف أخرى عندما يقدم صاحب البيانات موافقته وكانت الموافقة مطلوبة.",
           ],
@@ -450,7 +452,7 @@ export const privacyPolicyAr: PrivacyPolicyContent = {
       blocks: [
         {
           type: "paragraph",
-          text: "قد يستخدم الموقع ملفات تعريف الارتباط وتقنيات مشابهة لتشغيل وظائف الموقع، وتذكر التفضيلات، وحماية الموقع، وعند تفعيلها، لقياس الأداء أو الاستخدام. تتوفر معلومات إضافية في سياسة ملفات تعريف الارتباط.",
+          text: "قد يستخدم الموقع ملفات تعريف الارتباط وتقنيات مشابهة لتشغيل وظائف الموقع، وتذكر التفضيلات، وحماية الموقع، وعند تفعيلها، لقياس الأداء أو الاستخدام أو فعالية الإعلانات، بما في ذلك من خلال بكسل Meta على فيسبوك وإنستغرام. ولا تُستخدم التقنيات غير الضرورية إلا بعد قبولك لملفات تعريف الارتباط. تتوفر معلومات إضافية في سياسة ملفات تعريف الارتباط.",
         },
       ],
     },

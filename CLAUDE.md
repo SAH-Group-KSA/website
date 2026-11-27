@@ -10,7 +10,7 @@ capture, planned authenticated dashboard, and planned bookings/payments. The sit
 from a static-content prototype toward a fully CMS- and backend-integrated platform. Most backend
 integrations are scaffolded behind feature flags but not yet live in production — treat this as a
 **static-content marketing site today**, not a fully wired platform, unless a specific flag/env var
-says otherwise.
+says otherwise. 
 
 ## Tech Stack
 
